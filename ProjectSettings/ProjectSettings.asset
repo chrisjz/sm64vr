@@ -10,14 +10,14 @@ PlayerSettings:
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: sm64vr
+  companyName: Independent
+  productName: Super Mario 64 VR
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  defaultScreenWidth: 1024
-  defaultScreenHeight: 768
-  defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 600
+  defaultScreenWidth: 1280
+  defaultScreenHeight: 800
+  defaultScreenWidthWeb: 1280
+  defaultScreenHeightWeb: 800
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
@@ -35,7 +35,7 @@ PlayerSettings:
   use32BitDisplayBuffer: 1
   use24BitDepthBuffer: 1
   defaultIsFullScreen: 1
-  defaultIsNativeResolution: 1
+  defaultIsNativeResolution: 0
   runInBackground: 0
   captureSingleScreen: 0
   Override IPod Music: 0
@@ -108,10 +108,15 @@ PlayerSettings:
   AndroidSplashScreenScale: 0
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
-  resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  resolutionDialogBanner: {fileID: 2800000, guid: 72868bff2d0cb544c9deeb221c15bc0c,
+    type: 3}
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: 72868bff2d0cb544c9deeb221c15bc0c, type: 3}
+      m_Size: 128
   m_BuildTargetBatching: []
-  webPlayerTemplate: APPLICATION:Default
+  webPlayerTemplate: APPLICATION:Black Background
   m_TemplateCustomTags: {}
   wiiRegion: 1
   wiiGameCode: RABA
@@ -149,27 +154,40 @@ PlayerSettings:
   flashStrippingLevel: 2
   spritePackerPolicy: 
   scriptingDefineSymbols: {}
-  metroPackageName: sm64vr
-  metroPackageLogo: 
-  metroPackageVersion: 
+  metroPackageName: SM64VR
+  metroPackageLogo: Assets/General/Logo/logo-50.png
+  metroPackageVersion: 0.1.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: sm64vr
-  metroTileLogo: 
-  metroTileWideLogo: 
-  metroTileSmallLogo: 
-  metroTileShortName: 
+  metroApplicationDescription: Super Mario 64 VR
+  metroTileLogo: Assets/General/Logo/logo-150.png
+  metroTileWideLogo: Assets/General/Logo/logo-310x150.png
+  metroTileSmallLogo: Assets/General/Logo/logo-30.png
+  metroTileShortName: SM64VR
   metroCommandLineArgsFile: 
   metroTileShowName: 1
   metroTileForegroundText: 1
   metroTileBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  metroSplashScreenImage: 
+  metroSplashScreenImage: Assets/General/Logo/logo-620x300.png
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
-  metroCapabilities: {}
+  metroCapabilities:
+    EnterpriseAuthentication: 0
+    InternetClient: 0
+    InternetClientServer: 0
+    Location: 0
+    Microphone: 0
+    MusicLibrary: 0
+    PicturesLibrary: 0
+    PrivateNetworkClientServer: 0
+    Proximity: 0
+    RemovableStorage: 0
+    SharedUserCertificates: 0
+    VideosLibrary: 0
+    WebCam: 0
   metroUnprocessedPlugins: []
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
