@@ -4209,9 +4209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement:
-    maxForwardSpeed: 3
-    maxSidewaysSpeed: 2
-    maxBackwardsSpeed: 2
+    maxForwardSpeed: 15
+    maxSidewaysSpeed: 10
+    maxBackwardsSpeed: 15
     slopeSpeedMultiplier:
       serializedVersion: 2
       m_Curve:
@@ -4234,12 +4234,12 @@ MonoBehaviour:
       m_PostInfinity: 2
     maxGroundAcceleration: 30
     maxAirAcceleration: 20
-    gravity: 9.81000042
+    gravity: 20
     maxFallSpeed: 20
   jumping:
     enabled: 1
-    baseHeight: 1
-    extraHeight: 4.0999999
+    baseHeight: 2
+    extraHeight: 4
     perpAmount: 0
     steepPerpAmount: .5
   movingPlatform:
