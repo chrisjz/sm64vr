@@ -82,7 +82,7 @@ public class OVRMainMenu : MonoBehaviour
 	
 	private bool  ShowVRVars;
 	
-	private bool  OldSpaceHit;
+	private bool  OldBackQuoteHit;
 	
 	// FPS 
 	private float  UpdateInterval 	= 0.5f;
@@ -187,7 +187,7 @@ public class OVRMainMenu : MonoBehaviour
 		PrevHatDown    = false;
 		PrevHatUp      = false;
 		ShowVRVars	   = false;
-		OldSpaceHit    = false;
+		OldBackQuoteHit    = false;
 		strFPS         = "FPS: 0";
 		LoadingLevel   = false;	
 		
@@ -733,8 +733,8 @@ public class OVRMainMenu : MonoBehaviour
 	// GUIShowVRVariables
 	void GUIShowVRVariables()
 	{
-		bool SpaceHit = Input.GetKey("space");
-		if ((OldSpaceHit == false) && (SpaceHit == true))
+		bool BackQuoteHit = Input.GetKey(KeyCode.BackQuote);
+		if ((OldBackQuoteHit == false) && (BackQuoteHit == true))
 		{
 			if(ShowVRVars == true) 
 				ShowVRVars = false;
@@ -742,7 +742,7 @@ public class OVRMainMenu : MonoBehaviour
 				ShowVRVars = true;
 		}
 		
-		OldSpaceHit = SpaceHit;
+		OldBackQuoteHit = BackQuoteHit;
 
 		int y   = VRVarsSY;
 		
