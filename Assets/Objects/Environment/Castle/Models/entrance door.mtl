@@ -1,0 +1,22 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Material.104
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.290000 0.290000 0.330000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd E:\Dropbox\SM64VR\Models\Uncompressed\Castle\1FEE462_c.bmp
+
+newmtl Material.104_princess_peaches_cast
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.290000 0.290000 0.330000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd E:\Dropbox\SM64VR\Models\Uncompressed\Castle\princess peaches castle (outside)_grp.png
