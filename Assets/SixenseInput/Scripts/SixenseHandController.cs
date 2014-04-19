@@ -66,19 +66,16 @@ public class SixenseHandController : SixenseObjectController
 		if (Hand == SixenseHands.LEFT) {
 			currentPosition = GameObject.Find("LeftHandCollider").transform.position;
 			currentRotation = GameObject.Find("LeftHandCollider").transform.rotation;
-			//Debug.Log ("left"+currentPosition+currentRotation);
 		}
 		if (Hand == SixenseHands.RIGHT) {
 			currentPosition = GameObject.Find("RightHandCollider").transform.position;
 			currentRotation = GameObject.Find("RightHandCollider").transform.rotation;
-			//Debug.Log ("right"+currentPosition+currentRotation);
 		}
 		
 		if (!holdingObject) {
 			foreach (GameObject o in GameObject.FindGameObjectsWithTag ("Grabbable"))	
 			{	
 				float dist = Vector3.Distance(o.transform.position, currentPosition);
-				//Debug.Log ("dist"+dist);
 				
 				if (dist < minDist)	{	
 					closestObject = o;	
