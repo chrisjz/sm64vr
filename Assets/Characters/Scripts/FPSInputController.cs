@@ -1,12 +1,9 @@
-﻿// Converted from UnityScript to C# at http://www.M2H.nl/files/js_to_c.php - by Mike Hergaarden
-// Do test the code! You usually need to change a few small bits.
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 // Require a character controller to be attached to the same game object
 [RequireComponent(typeof(CharacterMotor))]
-[AddComponentMenu("Character/CFPS Input Controller")]
+[AddComponentMenu("Character/FPS Input Controller")]
 
 public class FPSInputController : MonoBehaviour {
 	private CharacterMotor motor;
@@ -22,6 +19,14 @@ public class FPSInputController : MonoBehaviour {
 	void  Update (){
 		// Get the input vector from keyboard or analog stick
 		Vector3 directionVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+		// Get the input vector from hydra
+		SixenseInput.Controller hydraLeftController = SixenseInput.GetController (SixenseHands.LEFT);
+		SixenseInput.Controller hydraRightController = SixenseInput.GetController (SixenseHands.RIGHT);
+
+		if (hydraLeftController != null) {
+			directionVector= new Vector3(hydraLeftController.JoystickX, 0, hydraLeftController.JoystickY);
+		}
 		
 		if (directionVector != Vector3.zero) {
 			// Get the length of the directon vector and then normalize it
