@@ -27,6 +27,12 @@ public class FPSInputController : MonoBehaviour {
 		if (hydraLeftController != null) {
 			directionVector= new Vector3(hydraLeftController.JoystickX, 0, hydraLeftController.JoystickY);
 		}
+
+		if (hydraRightController != null) {
+			motor.inputJump = hydraRightController.GetButton (SixenseButtons.BUMPER);
+		} else {
+			motor.inputJump = Input.GetButton ("Jump");
+		}
 		
 		if (directionVector != Vector3.zero) {
 			// Get the length of the directon vector and then normalize it
@@ -47,6 +53,5 @@ public class FPSInputController : MonoBehaviour {
 		
 		// Apply the direction to the CharacterMotor
 		motor.inputMoveDirection = ovrCamera.transform.rotation * directionVector;
-		motor.inputJump = Input.GetButton("Jump");
 	}			
 }
