@@ -9,28 +9,24 @@ using System.Collections;
 
 public class SixenseHandController : SixenseObjectController
 {
-	protected Animator			m_animator = null;
-	protected float				m_fLastTriggerVal = 0.0f;
+	static GameObject			closestObject = null;
+	protected bool				holdingObject = false;
 	
 	protected override void Start() 
-	{
-		// get the Animator
-		m_animator = this.gameObject.GetComponent<Animator>();
-		
+	{		
 		base.Start();
 	}
 	
 	protected override void UpdateObject( SixenseInput.Controller controller )
 	{
-		if ( m_animator == null )
-		{
-			return;
-		}
 		
 		if ( controller.Enabled )  
 		{		
 			// Animation update
 			UpdateAnimationInput( controller );
+
+			// Action update
+			UpdateActionInput ( controller );
 		}
 				
 		base.UpdateObject(controller);
@@ -56,66 +52,52 @@ public class SixenseHandController : SixenseObjectController
 	}
 	
 	// Updates the animated object from controller input.
-	protected void UpdateAnimationInput( SixenseInput.Controller controller)
-	{
-		// Point
-		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.ONE) : controller.GetButton(SixenseButtons.TWO) )
-		{
-			m_animator.SetBool( "Point", true );
+	protected void UpdateAnimationInput( SixenseInput.Controller controller){}
+
+	protected void UpdateActionInput( SixenseInput.Controller controller) {
+		float minDist = 1.0f;	
+		Vector3 currentPosition = new Vector3();
+		Quaternion currentRotation = new Quaternion();
+		
+		if (holdingObject && !controller.GetButton(SixenseButtons.TRIGGER)) {
+			holdingObject = false;
 		}
-		else
-		{
-			m_animator.SetBool( "Point", false );
+
+		if (Hand == SixenseHands.LEFT) {
+			currentPosition = GameObject.Find("LeftHandCollider").transform.position;
+			currentRotation = GameObject.Find("LeftHandCollider").transform.rotation;
+			//Debug.Log ("left"+currentPosition+currentRotation);
+		}
+		if (Hand == SixenseHands.RIGHT) {
+			currentPosition = GameObject.Find("RightHandCollider").transform.position;
+			currentRotation = GameObject.Find("RightHandCollider").transform.rotation;
+			//Debug.Log ("right"+currentPosition+currentRotation);
 		}
 		
-		// Grip Ball
-		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.TWO) : controller.GetButton(SixenseButtons.ONE)  )
-		{
-			m_animator.SetBool( "GripBall", true );
-		}
-		else
-		{
-			m_animator.SetBool( "GripBall", false );
-		}
+		if (!holdingObject) {
+			foreach (GameObject o in GameObject.FindGameObjectsWithTag ("Grabbable"))	
+			{	
+				float dist = Vector3.Distance(o.transform.position, currentPosition);
+				//Debug.Log ("dist"+dist);
 				
-		// Hold Book
-		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.THREE) : controller.GetButton(SixenseButtons.FOUR) )
-		{
-			m_animator.SetBool( "HoldBook", true );
-		}
-		else
-		{
-			m_animator.SetBool( "HoldBook", false );
-		}
-				
-		// Fist
-		float fTriggerVal = controller.Trigger;
-		fTriggerVal = Mathf.Lerp( m_fLastTriggerVal, fTriggerVal, 0.1f );
-		m_fLastTriggerVal = fTriggerVal;
-		
-		if ( fTriggerVal > 0.01f )
-		{
-			m_animator.SetBool( "Fist", true );
-		}
-		else
-		{
-			m_animator.SetBool( "Fist", false );
+				if (dist < minDist)	{	
+					closestObject = o;	
+					minDist = dist;	
+				}
+			}
 		}
 		
-		m_animator.SetFloat("FistAmount", fTriggerVal);
-		
-		// Idle
-		if ( m_animator.GetBool("Fist") == false &&  
-			 m_animator.GetBool("HoldBook") == false && 
-			 m_animator.GetBool("GripBall") == false && 
-			 m_animator.GetBool("Point") == false )
-		{
-			m_animator.SetBool("Idle", true);
-		}
-		else
-		{
-			m_animator.SetBool("Idle", false);
+		if (closestObject != null && Vector3.Distance(closestObject.transform.position, currentPosition) < 1.0 && controller.GetButton(SixenseButtons.TRIGGER)) {
+			if (closestObject.rigidbody && closestObject.rigidbody.isKinematic)
+				return;
+			
+			closestObject.transform.position = currentPosition;
+			closestObject.transform.rotation = currentRotation;
+			holdingObject = true;
 		}
 	}
+	
+	public static GameObject getClosestObject() {
+		return closestObject;
+	}
 }
-
