@@ -3353,6 +3353,7 @@ GameObject:
   - 114: {fileID: 1747038515}
   - 114: {fileID: 1747038512}
   - 136: {fileID: 1747038513}
+  - 114: {fileID: 1747038517}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3489,6 +3490,24 @@ CharacterController:
   m_SkinWidth: .0799999982
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1747038517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1747038510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 516ade8f559ac974189caa990b9b68f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 0
+  sensitivityX: 15
+  sensitivityY: 15
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!1 &1834187534
 GameObject:
   m_ObjectHideFlags: 0
