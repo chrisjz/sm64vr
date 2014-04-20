@@ -2184,6 +2184,105 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 580728376}
   m_Mesh: {fileID: 4300038, guid: 25306ccc480cc044b9b24978b34d0ca0, type: 3}
+--- !u!1 &583227313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+  m_PrefabInternal: {fileID: 693513044}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 583227314}
+  - 33: {fileID: 583227318}
+  - 23: {fileID: 583227317}
+  - 64: {fileID: 583227316}
+  - 95: {fileID: 583227315}
+  m_Layer: 0
+  m_Name: whomp's fortress room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &583227314
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+  m_PrefabInternal: {fileID: 693513044}
+  m_GameObject: {fileID: 583227313}
+  m_LocalRotation: {x: -2.44261056e-09, y: -.999831736, z: -1.33135657e-07, w: -.0183437802}
+  m_LocalPosition: {x: -.0199999996, y: -.382739931, z: 21.2181625}
+  m_LocalScale: {x: 49.5802994, y: 49.7778549, z: 49.5802994}
+  m_Children: []
+  m_Father: {fileID: 857162598}
+--- !u!95 &583227315
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9500000, guid: f7667e22baac75149b71d364418bb0a2,
+    type: 3}
+  m_PrefabInternal: {fileID: 693513044}
+  m_GameObject: {fileID: 583227313}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
+--- !u!64 &583227316
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: f7667e22baac75149b71d364418bb0a2,
+    type: 3}
+  m_PrefabInternal: {fileID: 693513044}
+  m_GameObject: {fileID: 583227313}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+--- !u!23 &583227317
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: f7667e22baac75149b71d364418bb0a2,
+    type: 3}
+  m_PrefabInternal: {fileID: 693513044}
+  m_GameObject: {fileID: 583227313}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: a68f0d7d587e3944999998544aa03cf8, type: 2}
+  - {fileID: 2100000, guid: 115e55de4157ae94d8e24c88afaec1af, type: 2}
+  - {fileID: 2100000, guid: e9bc9817a3320e2439be47ebc5361515, type: 2}
+  - {fileID: 2100000, guid: 80bb2c8779cb86b48b5d2e725770016e, type: 2}
+  - {fileID: 2100000, guid: 8008a508181aced458235ea3a316aca1, type: 2}
+  - {fileID: 2100000, guid: c03225b217b9680498b05ec89dde0723, type: 2}
+  - {fileID: 2100000, guid: 5d9c3314dddb3e3458e58cf25ee05c8c, type: 2}
+  - {fileID: 2100000, guid: 7baca29f624439f4d9952a5fe4ca020a, type: 2}
+  - {fileID: 2100000, guid: bf7fbfdde4b6453438dd73adadaaa611, type: 2}
+  - {fileID: 2100000, guid: cdac3d29d5507074a9c2af025bf0d997, type: 2}
+  - {fileID: 2100000, guid: cdac3d29d5507074a9c2af025bf0d997, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!33 &583227318
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: f7667e22baac75149b71d364418bb0a2,
+    type: 3}
+  m_PrefabInternal: {fileID: 693513044}
+  m_GameObject: {fileID: 583227313}
+  m_Mesh: {fileID: 4300000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
 --- !u!1 &600888282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2652,6 +2751,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 808371403}
   m_GameObject: {fileID: 690790618}
   m_Mesh: {fileID: 4300000, guid: e9d30632571732e46b147622f317d156, type: 3}
+--- !u!1001 &693513044
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 857162598}
+    m_Modifications:
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -.0199999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -.382739931
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.2181625
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -2.44261056e-09
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -.999831736
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -1.33135657e-07
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -.0183437802
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 49.5802994
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 49.7778549
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 49.5802994
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f7667e22baac75149b71d364418bb0a2, type: 3}
+  m_RootGameObject: {fileID: 583227313}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &701047489
 GameObject:
   m_ObjectHideFlags: 0
@@ -3235,6 +3386,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848880183}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &857162597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 857162598}
+  m_Layer: 0
+  m_Name: Whomp's Fortress Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &857162598
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 857162597}
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: -4.37113883e-08}
+  m_LocalPosition: {x: -.745364845, y: .153605223, z: -3.36102366}
+  m_LocalScale: {x: .0231432896, y: .0231432896, z: .0231432896}
+  m_Children:
+  - {fileID: 583227314}
+  m_Father: {fileID: 1847204986}
 --- !u!1 &862605639
 GameObject:
   m_ObjectHideFlags: 0
@@ -7390,6 +7568,7 @@ Transform:
   - {fileID: 1707752004}
   - {fileID: 212551633}
   - {fileID: 772350652}
+  - {fileID: 857162598}
   m_Father: {fileID: 991745922}
 --- !u!95 &1847204987
 Animator:
