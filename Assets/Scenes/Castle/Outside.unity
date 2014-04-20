@@ -1151,6 +1151,58 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1561813805}
+--- !u!1001 &266905611
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1714990966}
+    m_Modifications:
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.2199993
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.56200027
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: .27700001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 9.87194255e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -.671096265
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -8.9361869e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: .74137032
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 248
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 248
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 248
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+  m_RootGameObject: {fileID: 1267314173}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &271499297
 GameObject:
   m_ObjectHideFlags: 0
@@ -5309,6 +5361,109 @@ Transform:
   m_Children:
   - {fileID: 1868704098}
   m_Father: {fileID: 820619700}
+--- !u!1 &1267314173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+  m_PrefabInternal: {fileID: 266905611}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1267314174}
+  - 33: {fileID: 1267314178}
+  - 23: {fileID: 1267314177}
+  - 64: {fileID: 1267314176}
+  - 95: {fileID: 1267314175}
+  m_Layer: 0
+  m_Name: jolly roger bay room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1267314174
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+  m_PrefabInternal: {fileID: 266905611}
+  m_GameObject: {fileID: 1267314173}
+  m_LocalRotation: {x: 9.87194255e-08, y: -.671096265, z: -8.9361869e-08, w: .74137032}
+  m_LocalPosition: {x: 23.2199993, y: 8.56200027, z: .27700001}
+  m_LocalScale: {x: 248, y: 248, z: 248}
+  m_Children: []
+  m_Father: {fileID: 1714990966}
+--- !u!95 &1267314175
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9500000, guid: d2317820e35e8cd44a9025e2dbab2d73,
+    type: 3}
+  m_PrefabInternal: {fileID: 266905611}
+  m_GameObject: {fileID: 1267314173}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
+--- !u!64 &1267314176
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: d2317820e35e8cd44a9025e2dbab2d73,
+    type: 3}
+  m_PrefabInternal: {fileID: 266905611}
+  m_GameObject: {fileID: 1267314173}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
+--- !u!23 &1267314177
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: d2317820e35e8cd44a9025e2dbab2d73,
+    type: 3}
+  m_PrefabInternal: {fileID: 266905611}
+  m_GameObject: {fileID: 1267314173}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: ac655d9498558f54bb59946fba0f1dbc, type: 2}
+  - {fileID: 2100000, guid: efeba669157c22544b2d3961a09c15f8, type: 2}
+  - {fileID: 2100000, guid: 3801323998a35d44faa249f7bb275927, type: 2}
+  - {fileID: 2100000, guid: 11d1a6535e932884e99cbddb9a9d9230, type: 2}
+  - {fileID: 2100000, guid: 06e4b6ec771e37c45a13a26768600b51, type: 2}
+  - {fileID: 2100000, guid: 2e9da0f6f3f1c984db94abfb94cfee73, type: 2}
+  - {fileID: 2100000, guid: ceaf7acddcbfed347965f91a8c48ba64, type: 2}
+  - {fileID: 2100000, guid: 7d34a16de12248744910b45a95897c28, type: 2}
+  - {fileID: 2100000, guid: 91799f34ea1842e4db7a4ddde55cfde6, type: 2}
+  - {fileID: 2100000, guid: 6088fdb2657addb4bb81f306b34ffd7f, type: 2}
+  - {fileID: 2100000, guid: 250ba0afecb3f0e40bd900e739b1a4ed, type: 2}
+  - {fileID: 2100000, guid: 1d8c37d868f433f4ba90602c606e29a4, type: 2}
+  - {fileID: 2100000, guid: 3611870ccbce0ed4d8d2b366a5dd8594, type: 2}
+  - {fileID: 2100000, guid: f708cbb6943af264aa4d906f3cf50ab0, type: 2}
+  - {fileID: 2100000, guid: 738a3fa3b8399014aab8be58fec4940f, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!33 &1267314178
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: d2317820e35e8cd44a9025e2dbab2d73,
+    type: 3}
+  m_PrefabInternal: {fileID: 266905611}
+  m_GameObject: {fileID: 1267314173}
+  m_Mesh: {fileID: 4300000, guid: d2317820e35e8cd44a9025e2dbab2d73, type: 3}
 --- !u!1 &1273858358
 GameObject:
   m_ObjectHideFlags: 0
@@ -7221,6 +7376,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1714990965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1714990966}
+  m_Layer: 0
+  m_Name: Jolly Roger Bay Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1714990966
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714990965}
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: -4.37113883e-08}
+  m_LocalPosition: {x: -.990558922, y: .161134228, z: -3.11071849}
+  m_LocalScale: {x: .0231432896, y: .0231432896, z: .0231432896}
+  m_Children:
+  - {fileID: 1267314174}
+  m_Father: {fileID: 1847204986}
 --- !u!1 &1723409933
 GameObject:
   m_ObjectHideFlags: 0
@@ -7646,6 +7828,7 @@ Transform:
   - {fileID: 1681011766}
   - {fileID: 629566702}
   - {fileID: 1707752004}
+  - {fileID: 1714990966}
   - {fileID: 212551633}
   - {fileID: 772350652}
   - {fileID: 857162598}
