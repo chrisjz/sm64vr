@@ -10,8 +10,9 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ## Credit
 
-Development - ([Chris Zaharia](http://github.com/chrisjz)
-3D Models - Alec Pike
+* Development - ([Chris Zaharia](http://github.com/chrisjz)
+* 3D Models - Alec Pike
+* Music - ([KHInsider](http://http://www.khinsider.com)
 
 ## Disclaimer
 
