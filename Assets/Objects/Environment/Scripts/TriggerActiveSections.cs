@@ -4,6 +4,20 @@ using System.Collections;
 public class TriggerActiveSections : MonoBehaviour {
 	public GameObject[] loadSections;
 	public GameObject[] unloadSections;
+	public GameObject loadAudio;
+	public GameObject unloadAudio;
+	
+	private AudioSource loadAudioSource;
+	private AudioSource unloadAudioSource;
+
+	void Awake() {
+		if (loadAudio) {
+			loadAudioSource = loadAudio.audio;
+		}
+		if (unloadAudio) {
+			unloadAudioSource = unloadAudio.audio;
+		}
+	}
 
 	// Load or unload areas in scene when player enters trigger
 	protected void OnTriggerEnter () {
@@ -13,6 +27,15 @@ public class TriggerActiveSections : MonoBehaviour {
 
 		if (unloadSections.Length > 0) {
 			TriggerSectionActiveness(unloadSections, false);
+		}
+
+		if (unloadAudioSource) {
+			unloadAudioSource.audio.Stop();
+		}
+
+		if (loadAudioSource) {
+			loadAudio.audio.loop = true;
+			loadAudio.audio.Play();
 		}
 	}
 
