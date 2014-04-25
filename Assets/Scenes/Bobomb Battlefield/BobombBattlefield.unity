@@ -18,7 +18,7 @@ RenderSettings:
   m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .404411793, g: .404411793, b: .404411793, a: 1}
+  m_AmbientLight: {r: .149019614, g: .149019614, b: .149019614, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
   m_FlareStrength: 1
@@ -3794,7 +3794,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1440972149}
-  m_LocalRotation: {x: .649764776, y: -.479753286, z: .204520956, w: .553004324}
+  m_LocalRotation: {x: -.690345526, y: .212631091, z: -.153045878, w: -.674379766}
   m_LocalPosition: {x: -94.9114761, y: 137.890106, z: -160.242996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3809,7 +3809,7 @@ Light:
   serializedVersion: 3
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3.50999999
+  m_Intensity: .430000007
   m_Range: 700
   m_SpotAngle: 30
   m_CookieSize: 10
