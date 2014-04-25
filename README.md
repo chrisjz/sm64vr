@@ -8,11 +8,11 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Mario's hat bobs as player shakes their head
 * Minigames in World 1, such as throwing shells at goombas with timer.
 
-## Credit
+## Credits
 
-* Development - ([Chris Zaharia](http://github.com/chrisjz)
-* 3D Models - Alec Pike
-* Music - ([KHInsider](http://http://www.khinsider.com)
+* Development - [Chris Zaharia](http://github.com/chrisjz)
+* 3D Models - [Alec Pike](http://www.models-resource.com/submitter/alecpike/)
+* Music - [KHInsider](http://http://www.khinsider.com)
 
 ## Disclaimer
 
