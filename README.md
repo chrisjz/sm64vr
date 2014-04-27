@@ -4,14 +4,22 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ## To do
 
-* Luigi as a second player
-* Mario's hat bobs as player shakes their head
+* Mario's arms attached to his shoulders when using hand tracking.
+* Mouse controls moves entire body when it should just move the head.
+* Luigi as a second player.
+* Mario's hat bobs as player shakes their head.
 * Minigames in World 1, such as throwing shells at goombas with timer.
+* Full body tracking (SixenseVR)
 
 ## Credits
 
-* Development - [Chris Zaharia](http://github.com/chrisjz)
-* 3D Models - [Alec Pike](http://www.models-resource.com/submitter/alecpike/)
+* Development
+ * [Chris Zaharia](http://github.com/chrisjz)
+* 3D Models
+ * [Alec Pike](http://www.models-resource.com/submitter/alecpike/)
+ * Friedslick6
+ * MarioKart64n
+ * Maximo
 * Music - [KHInsider](http://http://www.khinsider.com)
 
 ## Disclaimer
