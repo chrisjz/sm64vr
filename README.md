@@ -4,7 +4,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ## To do
 
-* Mario's arms attached to his shoulders when using hand tracking.
+* Fix Mario's left hand model when using Sixense tracking.
 * Mouse controls moves entire body when it should just move the head.
 * Luigi as a second player.
 * Mario's hat bobs as player shakes their head.
