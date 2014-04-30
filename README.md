@@ -4,8 +4,13 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ## To do
 
+* Disable Y axis on right joystick as Rift is used for looking vertically.
 * Improve Mario's left hand model stretching when using Sixense tracking.
 * Mouse controls moves entire body when it should just move the head.
+* Mario animations for:
+ * running
+ * jumping
+ * stomping
 * Luigi as a second player.
 * Mario's hat bobs as player shakes their head.
 * Minigames in World 1, such as throwing shells at goombas with timer.

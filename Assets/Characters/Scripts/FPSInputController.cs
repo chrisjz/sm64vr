@@ -6,13 +6,15 @@ using System.Collections;
 [AddComponentMenu("Character/FPS Input Controller")]
 
 public class FPSInputController : MonoBehaviour {
-	private CharacterMotor motor;
-
 	public GameObject ovrCamera;
+
+	private CharacterMotor motor;
+	private GameObject avatar;
 	
 	// Use this for initialization
 	void  Awake (){
 		motor = GetComponent<CharacterMotor>();
+		avatar = transform.FindChild("Avatar").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -53,5 +55,14 @@ public class FPSInputController : MonoBehaviour {
 		
 		// Apply the direction to the CharacterMotor
 		motor.inputMoveDirection = ovrCamera.transform.rotation * directionVector;
-	}			
+
+		UpdateAnimations (directionVector);
+	}
+
+	void UpdateAnimations(Vector3 directionVector) {
+		if (avatar.animation && directionVector.z != 0) {
+			avatar.animation["Walk"].speed = Mathf.Abs(directionVector.z);
+			avatar.animation.CrossFade("Walk");
+		}
+	}
 }

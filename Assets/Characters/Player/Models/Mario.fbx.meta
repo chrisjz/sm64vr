@@ -154,6 +154,7 @@ ModelImporter:
     7400000: mixamo.com
     7400002: Take 001
     9500000: //RootNode
+    11100000: //RootNode
     13700000: Abdomen
     13700002: Buttons
     13700004: Cap
@@ -228,6 +229,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   additionalBone: 0
   userData: 
