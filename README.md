@@ -4,8 +4,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ## To do
 
-### General
-
 ### Player
 
 * Disable Y axis on right joystick as Rift is used for looking vertically.
@@ -54,17 +52,23 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ## Credits
 
-* Development
- * [Chris Zaharia](http://github.com/chrisjz)
-* 3D Models
- * [Alec Pike](http://www.models-resource.com/submitter/alecpike/)
- * Friedslick6
- * MarioKart64n
- * Maximo
-* Music - [KHInsider](http://http://www.khinsider.com)
+### Development
+
+* [Chris Zaharia](http://github.com/chrisjz)
+
+### 3D Models
+
+* [Alec Pike](http://www.models-resource.com/submitter/alecpike/)
+* Friedslick6
+* MarioKart64n
+* Maximo
+ 
+### Sound & Music
+
+* [KHInsider](http://http://www.khinsider.com)
 
 ## Disclaimer
 
-Super Mario 64 is owned by Nintendo Co., Ltd.
+Super Mario 64 is owned by Nintendo Co., Ltd. This project has no affiliation with Nintendo Co., Ltd.
 
 This project is only a not-commercial tech demonstration on the implementation of virtual reality for the popular title.
