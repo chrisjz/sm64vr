@@ -7,6 +7,7 @@ using System.Collections;
 
 public class FPSInputController : MonoBehaviour {
 	public GameObject ovrCamera;
+	public AudioClip[] initialJumpAudioClips;
 
 	private CharacterMotor motor;
 	private GameObject avatar;
@@ -34,6 +35,12 @@ public class FPSInputController : MonoBehaviour {
 			motor.inputJump = hydraRightController.GetButton (SixenseButtons.BUMPER);
 		} else {
 			motor.inputJump = Input.GetButton ("Jump");
+		}
+
+		// Play jumping audio clips
+		if (initialJumpAudioClips.Length > 0 && motor.inputJump && motor.grounded && !audio.isPlaying) {
+			audio.clip = initialJumpAudioClips[Random.Range(0, initialJumpAudioClips.Length)];
+			audio.Play();
 		}
 		
 		if (directionVector != Vector3.zero) {
