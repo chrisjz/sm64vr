@@ -3051,6 +3051,7 @@ GameObject:
   - 114: {fileID: 1833210258}
   - 114: {fileID: 1833210257}
   - 114: {fileID: 1833210256}
+  - 82: {fileID: 1833210261}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Untagged
@@ -3103,6 +3104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ovrCamera: {fileID: 2098227877}
+  initialJumpAudioClips:
+  - {fileID: 8300000, guid: 911a3b1ae87cd1942b607cab951e9e25, type: 3}
+  - {fileID: 8300000, guid: 39b786907da4c384d8fc7aceab3756fc, type: 3}
 --- !u!114 &1833210258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3191,11 +3195,70 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2.4000001
   m_Radius: .5
-  m_SlopeLimit: 45
-  m_StepOffset: .300000012
+  m_SlopeLimit: 75
+  m_StepOffset: 1
   m_SkinWidth: .0799999982
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1.20000005, z: 0}
+--- !u!82 &1833210261
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 1295600733}
+  m_GameObject: {fileID: 1833210254}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1835858409
 GameObject:
   m_ObjectHideFlags: 0
