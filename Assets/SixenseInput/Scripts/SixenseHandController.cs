@@ -9,9 +9,10 @@ using System.Collections;
 
 public class SixenseHandController : SixenseObjectController
 {
+	public float				minGrabDistance = 1.0f;
 	static GameObject			closestObject = null;
 	protected bool				holdingObject = false;
-	
+
 	protected override void Start() 
 	{		
 		base.Start();
@@ -55,7 +56,6 @@ public class SixenseHandController : SixenseObjectController
 	protected void UpdateAnimationInput( SixenseInput.Controller controller){}
 
 	protected void UpdateActionInput( SixenseInput.Controller controller) {
-		float minDist = 1.0f;	
 		Vector3 currentPosition = new Vector3();
 		Quaternion currentRotation = new Quaternion();
 		
@@ -76,15 +76,17 @@ public class SixenseHandController : SixenseObjectController
 			foreach (GameObject o in GameObject.FindGameObjectsWithTag ("Grabbable"))	
 			{	
 				float dist = Vector3.Distance(o.transform.position, currentPosition);
-				
-				if (dist < minDist)	{	
-					closestObject = o;	
-					minDist = dist;	
+				Debug.Log("disance-"+dist);
+				if (dist < minGrabDistance)	{	
+					closestObject = o;
 				}
 			}
 		}
-		
-		if (closestObject != null && Vector3.Distance(closestObject.transform.position, currentPosition) < 1.0 && controller.GetButton(SixenseButtons.TRIGGER)) {
+
+		Debug.Log("minGrabDistance-"+minGrabDistance);
+
+		if (closestObject != null && Vector3.Distance(closestObject.transform.position, currentPosition) < minGrabDistance && controller.GetButton(SixenseButtons.TRIGGER)) {
+			Debug.Log("Vector3.Distance(closestObject.transform.position, currentPosition)-"+Vector3.Distance(closestObject.transform.position, currentPosition));
 			if (closestObject.rigidbody && closestObject.rigidbody.isKinematic)
 				return;
 			
