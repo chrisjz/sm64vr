@@ -12,6 +12,7 @@ public class SixenseHandController : SixenseObjectController
 	public float				minGrabDistance = 1.0f;
 	static GameObject			closestObject = null;
 	protected bool				holdingObject = false;
+	private GrabObject 			grabObject; // Script attached to grabbed object with grappling data on that object
 
 	protected override void Start() 
 	{		
@@ -76,22 +77,25 @@ public class SixenseHandController : SixenseObjectController
 			foreach (GameObject o in GameObject.FindGameObjectsWithTag ("Grabbable"))	
 			{	
 				float dist = Vector3.Distance(o.transform.position, currentPosition);
-				Debug.Log("disance-"+dist);
 				if (dist < minGrabDistance)	{	
 					closestObject = o;
 				}
 			}
 		}
 
-		Debug.Log("minGrabDistance-"+minGrabDistance);
-
 		if (closestObject != null && Vector3.Distance(closestObject.transform.position, currentPosition) < minGrabDistance && controller.GetButton(SixenseButtons.TRIGGER)) {
-			Debug.Log("Vector3.Distance(closestObject.transform.position, currentPosition)-"+Vector3.Distance(closestObject.transform.position, currentPosition));
-			if (closestObject.rigidbody && closestObject.rigidbody.isKinematic)
+			if (closestObject.rigidbody && closestObject.rigidbody.isKinematic) {
 				return;
-			
-			closestObject.transform.position = currentPosition;
+			}
+
+			grabObject = closestObject.GetComponent<GrabObject>();
+			if (grabObject && grabObject.enabled) {
+				closestObject.transform.position = currentPosition + grabObject.GetPosition(Hand);
+			} else {
+				closestObject.transform.position = currentPosition;
+			}
 			closestObject.transform.rotation = currentRotation;
+
 			holdingObject = true;
 		}
 	}
