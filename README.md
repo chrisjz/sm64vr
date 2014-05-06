@@ -6,6 +6,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Player
 
+* Physics for throwing objects.
 * Disable Y axis on right joystick as Rift is used for looking vertically.
 * Mario has health.
 * Mario takes damage.
@@ -40,8 +41,8 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 * Fix transparency on textures for Princess Peach's Castle area.
 * Populate trees and signs outside castle.
-* Toad inside first floor of castle.
-* Animate waterfall outside Princess Peach's Castle
+* Toad inside first floor.
+* Animate waterfall.
 * Birds & butterflies animated outside castle.
 * Sounds outside castle including birds, waterfall.
 
@@ -49,6 +50,10 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 * Transition to Bob-omb Battlefield when jumping into its painting.
 * Minigames in World 1, such as throwing shells at goombas with timer.
+
+### Miscellaneous
+
+* Shadows for signs, trees.
 
 ## Credits
 
