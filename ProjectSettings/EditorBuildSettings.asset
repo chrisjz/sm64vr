@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Castle/Outside.unity
+    path: Assets/Scenes/Castle.unity
   - enabled: 1
-    path: Assets/Scenes/Bobomb Battlefield/BobombBattlefield.unity
+    path: Assets/Scenes/BobombBattlefield.unity
