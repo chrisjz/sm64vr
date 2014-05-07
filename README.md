@@ -39,8 +39,8 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Princess Peach's Castle
 
+* Collision barrier for fence surrounding castle.
 * Fix transparency on textures for Princess Peach's Castle area.
-* Populate trees and signs outside castle.
 * Toad inside first floor.
 * Animate waterfall.
 * Birds & butterflies animated outside castle.
