@@ -7,21 +7,41 @@ ModelImporter:
     100002: default
     100004: Sphere001
     100006: default001
+    100008: Cap
+    100010: Face
+    100012: Left_Leg
+    100014: Right_Leg
     400000: //RootNode
     400002: default
     400004: Sphere001
     400006: default001
+    400008: Cap
+    400010: Face
+    400012: Left_Leg
+    400014: Right_Leg
     2300000: //RootNode
     2300002: default
     2300004: Sphere001
     2300006: default001
+    2300008: Cap
+    2300010: Face
+    2300012: Left_Leg
+    2300014: Right_Leg
     3300000: //RootNode
     3300002: default
     3300004: Sphere001
     3300006: default001
+    3300008: Cap
+    3300010: Face
+    3300012: Left_Leg
+    3300014: Right_Leg
     4300000: default
     4300002: Sphere001
     4300004: default001
+    4300006: Face
+    4300008: Left_Leg
+    4300010: Cap
+    4300012: Right_Leg
     9500000: //RootNode
   materials:
     importMaterials: 1
