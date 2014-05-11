@@ -2,12 +2,13 @@
 using System.Collections;
 
 public class AutoRotateSprite : MonoBehaviour {
-	public GameObject player;
 	public float offsetY = 0;
+	private GameObject player;
 	private Vector3 rotationVector;
 
 	void Awake () {
 		rotationVector = this.transform.rotation.eulerAngles;
+		player = GameObject.FindWithTag("Player");
 	}
 
 	// Rotate object to always face same direction as player.
