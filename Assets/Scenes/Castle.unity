@@ -261,6 +261,7 @@ GameObject:
   - 4: {fileID: 30708840}
   - 33: {fileID: 30708843}
   - 64: {fileID: 30708842}
+  - 65: {fileID: 30708844}
   - 23: {fileID: 30708841}
   m_Layer: 0
   m_Name: Fence
@@ -309,7 +310,7 @@ MeshCollider:
   m_GameObject: {fileID: 30708839}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -321,6 +322,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 30708839}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &30708844
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 30708839}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.99999905, y: 9.73082706e-07, z: 20}
+  m_Center: {x: 9.53674316e-07, y: -3.81469727e-06, z: 1.14440918e-05}
 --- !u!1 &49161397
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +344,7 @@ GameObject:
   - 4: {fileID: 49161398}
   - 33: {fileID: 49161401}
   - 64: {fileID: 49161400}
+  - 65: {fileID: 49161402}
   - 23: {fileID: 49161399}
   m_Layer: 0
   m_Name: Fence
@@ -379,7 +393,7 @@ MeshCollider:
   m_GameObject: {fileID: 49161397}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -391,6 +405,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 49161397}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &49161402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 49161397}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.0000048, y: 5.1309753e-06, z: 20}
+  m_Center: {x: 3.81469727e-06, y: 0, z: 1.52587891e-05}
 --- !u!1 &49322786
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &49322789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1002,6 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &146413166
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1162,6 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &170689707
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1267,6 +1296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &183148567
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1560,6 +1590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &214237992
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1949,6 +1980,7 @@ GameObject:
   - 4: {fileID: 317398518}
   - 33: {fileID: 317398521}
   - 64: {fileID: 317398520}
+  - 65: {fileID: 317398522}
   - 23: {fileID: 317398519}
   m_Layer: 0
   m_Name: Fence
@@ -1997,7 +2029,7 @@ MeshCollider:
   m_GameObject: {fileID: 317398517}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -2009,6 +2041,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 317398517}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &317398522
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 317398517}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.0000076, y: 1.70220619e-06, z: 20}
+  m_Center: {x: 0, y: 0, z: 1.52587891e-05}
 --- !u!1001 &321098140
 Prefab:
   m_ObjectHideFlags: 0
@@ -2641,6 +2685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &448772636
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2835,6 +2880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &467892163
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3014,6 +3060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &509098209
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3509,6 +3556,7 @@ GameObject:
   - 4: {fileID: 578828327}
   - 33: {fileID: 578828330}
   - 64: {fileID: 578828329}
+  - 65: {fileID: 578828331}
   - 23: {fileID: 578828328}
   m_Layer: 0
   m_Name: Fence
@@ -3557,7 +3605,7 @@ MeshCollider:
   m_GameObject: {fileID: 578828326}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -3569,6 +3617,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 578828326}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &578828331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578828326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.0000048, y: 1.36799576e-06, z: 20}
+  m_Center: {x: 3.81469727e-06, y: -7.62939453e-06, z: 4.76837158e-06}
 --- !u!1001 &580965527
 Prefab:
   m_ObjectHideFlags: 0
@@ -4880,6 +4940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &804287509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5203,6 +5264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &832414395
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5268,6 +5330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &846917684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6190,6 +6253,7 @@ GameObject:
   - 4: {fileID: 996015020}
   - 33: {fileID: 996015023}
   - 64: {fileID: 996015022}
+  - 65: {fileID: 996015024}
   - 23: {fileID: 996015021}
   m_Layer: 0
   m_Name: Fence
@@ -6238,7 +6302,7 @@ MeshCollider:
   m_GameObject: {fileID: 996015019}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -6250,6 +6314,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 996015019}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &996015024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 996015019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.0000048, y: 3.98886698e-07, z: 20}
+  m_Center: {x: -7.62939453e-06, y: 7.62939453e-06, z: 1.14440918e-05}
 --- !u!1 &997595348
 GameObject:
   m_ObjectHideFlags: 0
@@ -6291,6 +6367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &997595351
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6482,6 +6559,7 @@ GameObject:
   - 4: {fileID: 1048684617}
   - 33: {fileID: 1048684620}
   - 64: {fileID: 1048684619}
+  - 65: {fileID: 1048684621}
   - 23: {fileID: 1048684618}
   m_Layer: 0
   m_Name: Fence
@@ -6530,7 +6608,7 @@ MeshCollider:
   m_GameObject: {fileID: 1048684616}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -6542,6 +6620,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1048684616}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1048684621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1048684616}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.000001, y: 1.05860238e-06, z: 20}
+  m_Center: {x: 7.62939453e-06, y: -3.81469727e-06, z: 0}
 --- !u!1 &1048997969
 GameObject:
   m_ObjectHideFlags: 0
@@ -6718,6 +6808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1138118273
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6752,6 +6843,7 @@ GameObject:
   - 4: {fileID: 1143976430}
   - 33: {fileID: 1143976433}
   - 64: {fileID: 1143976432}
+  - 65: {fileID: 1143976434}
   - 23: {fileID: 1143976431}
   m_Layer: 0
   m_Name: Fence
@@ -6800,7 +6892,7 @@ MeshCollider:
   m_GameObject: {fileID: 1143976429}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -6812,6 +6904,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1143976429}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1143976434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1143976429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.0000105, y: 1.49615335e-06, z: 20}
+  m_Center: {x: -1.90734863e-06, y: 0, z: 1.8119812e-05}
 --- !u!1 &1144442726
 GameObject:
   m_ObjectHideFlags: 0
@@ -6822,6 +6926,7 @@ GameObject:
   - 4: {fileID: 1144442727}
   - 33: {fileID: 1144442730}
   - 64: {fileID: 1144442729}
+  - 65: {fileID: 1144442731}
   - 23: {fileID: 1144442728}
   m_Layer: 0
   m_Name: Fence
@@ -6870,7 +6975,7 @@ MeshCollider:
   m_GameObject: {fileID: 1144442726}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -6882,6 +6987,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1144442726}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1144442731
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1144442726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.0000086, y: 4.46907598e-06, z: 20}
+  m_Center: {x: 0, y: 0, z: 9.53674316e-06}
 --- !u!1 &1144946213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6923,6 +7040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1144946216
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8325,6 +8443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1351878180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8359,6 +8478,7 @@ GameObject:
   - 4: {fileID: 1353316110}
   - 33: {fileID: 1353316113}
   - 64: {fileID: 1353316112}
+  - 65: {fileID: 1353316114}
   - 23: {fileID: 1353316111}
   m_Layer: 0
   m_Name: Fence
@@ -8407,7 +8527,7 @@ MeshCollider:
   m_GameObject: {fileID: 1353316109}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -8419,6 +8539,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1353316109}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1353316114
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1353316109}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.0000057, y: 1.03434979e-06, z: 20}
+  m_Center: {x: 9.53674316e-07, y: 1.90734863e-05, z: -7.62939453e-06}
 --- !u!1 &1354857982
 GameObject:
   m_ObjectHideFlags: 0
@@ -8645,6 +8777,7 @@ GameObject:
   - 4: {fileID: 1384926228}
   - 33: {fileID: 1384926231}
   - 64: {fileID: 1384926230}
+  - 65: {fileID: 1384926232}
   - 23: {fileID: 1384926229}
   m_Layer: 0
   m_Name: Fence
@@ -8693,7 +8826,7 @@ MeshCollider:
   m_GameObject: {fileID: 1384926227}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -8705,6 +8838,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1384926227}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1384926232
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1384926227}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.0000019, y: 1.10288937e-07, z: 20}
+  m_Center: {x: 0, y: 0, z: 1.14440918e-05}
 --- !u!1 &1388150976
 GameObject:
   m_ObjectHideFlags: 0
@@ -9067,6 +9212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1435620057
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9153,6 +9299,7 @@ GameObject:
   - 4: {fileID: 1446882864}
   - 33: {fileID: 1446882867}
   - 64: {fileID: 1446882866}
+  - 65: {fileID: 1446882868}
   - 23: {fileID: 1446882865}
   m_Layer: 0
   m_Name: Fence
@@ -9201,7 +9348,7 @@ MeshCollider:
   m_GameObject: {fileID: 1446882863}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -9213,6 +9360,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1446882863}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1446882868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446882863}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.000001, y: 1.48536617e-06, z: 20}
+  m_Center: {x: 0, y: 1.90734863e-06, z: 5.7220459e-06}
 --- !u!1 &1469785921
 GameObject:
   m_ObjectHideFlags: 0
@@ -9434,6 +9593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1499690673
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9754,6 +9914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1571937645
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9897,6 +10058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1587837487
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9986,6 +10148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!1001 &1596099577
 Prefab:
   m_ObjectHideFlags: 0
@@ -10723,6 +10886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1687344484
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11455,6 +11619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1831110793
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11760,6 +11925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1877200954
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11836,6 +12002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1877728852
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12340,6 +12507,7 @@ GameObject:
   - 4: {fileID: 1927934838}
   - 33: {fileID: 1927934841}
   - 64: {fileID: 1927934840}
+  - 65: {fileID: 1927934842}
   - 23: {fileID: 1927934839}
   m_Layer: 0
   m_Name: Fence
@@ -12388,7 +12556,7 @@ MeshCollider:
   m_GameObject: {fileID: 1927934837}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -12400,6 +12568,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1927934837}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1927934842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1927934837}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.99999809, y: 2.6729308e-06, z: 20}
+  m_Center: {x: -7.62939453e-06, y: -3.81469727e-06, z: 7.62939453e-06}
 --- !u!1 &1944627071
 GameObject:
   m_ObjectHideFlags: 0
@@ -12468,6 +12648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &1956343334
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13949,6 +14130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2002403176}
+  offsetY: 0
 --- !u!212 &2120668606
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -3402,6 +3402,7 @@ GameObject:
   - 4: {fileID: 1577785768}
   - 95: {fileID: 1577785770}
   - 111: {fileID: 1577785769}
+  - 114: {fileID: 1577785771}
   m_Layer: 0
   m_Name: Pink Bobomb
   m_TagString: Untagged
@@ -3454,6 +3455,20 @@ Animator:
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
+--- !u!114 &1577785771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 0047ecc0322b14c42a198d2b5ecd0135,
+    type: 2}
+  m_PrefabInternal: {fileID: 1625837372}
+  m_GameObject: {fileID: 1577785767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5febad810b501ed469449b1515119fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1833210254}
+  offsetY: 90
 --- !u!1001 &1613357214
 Prefab:
   m_ObjectHideFlags: 0
@@ -3660,6 +3675,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 7.37584019
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0047ecc0322b14c42a198d2b5ecd0135, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1833210254}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0047ecc0322b14c42a198d2b5ecd0135, type: 2}
   m_RootGameObject: {fileID: 1577785767}
@@ -3785,6 +3804,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: .974102914
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0047ecc0322b14c42a198d2b5ecd0135, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1833210254}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0047ecc0322b14c42a198d2b5ecd0135, type: 2}
   m_RootGameObject: {fileID: 1954149350}
@@ -4627,8 +4650,8 @@ Transform:
   m_LocalPosition: {x: -3.53817368, y: 4.08079576, z: -28.3953934}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1954149351}
   - {fileID: 1577785768}
+  - {fileID: 1954149351}
   m_Father: {fileID: 0}
 --- !u!1 &1916649850
 GameObject:
@@ -4872,6 +4895,7 @@ GameObject:
   - 4: {fileID: 1954149351}
   - 95: {fileID: 1954149352}
   - 111: {fileID: 1954149353}
+  - 114: {fileID: 1954149354}
   m_Layer: 0
   m_Name: Pink Bobomb
   m_TagString: Untagged
@@ -4924,6 +4948,20 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1954149354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 0047ecc0322b14c42a198d2b5ecd0135,
+    type: 2}
+  m_PrefabInternal: {fileID: 1715429874}
+  m_GameObject: {fileID: 1954149350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5febad810b501ed469449b1515119fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1833210254}
+  offsetY: 90
 --- !u!1 &1975380180
 GameObject:
   m_ObjectHideFlags: 0
