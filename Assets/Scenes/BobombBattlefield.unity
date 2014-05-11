@@ -2161,7 +2161,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .707106829
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
       propertyPath: m_LocalRotation.z
@@ -2169,7 +2169,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707106829
+      value: -4.37113883e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: pathTime
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
@@ -3862,7 +3866,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
   m_PrefabInternal: {fileID: 918276164}
   m_GameObject: {fileID: 1577688039}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: -93.9900436, y: 0, z: -45.388916}
   m_LocalScale: {x: 7.37584019, y: 7.37584019, z: 7.37584019}
   m_Children:
@@ -3906,16 +3910,16 @@ MonoBehaviour:
   pathName: BobombPath1
   pathColor: {r: 0, g: 1, b: 1, a: 1}
   nodes:
-  - {x: -89.6787567, y: -1, z: -65.7918091}
-  - {x: -85.5968857, y: -1, z: -76.6049805}
+  - {x: -89.8938293, y: -1, z: -70.503685}
+  - {x: -88.1534119, y: -1, z: -76.6049805}
   - {x: -67.6444321, y: -1, z: -74.395401}
   - {x: -66.8204041, y: -1, z: -61.4894905}
-  - {x: -84.3672028, y: -1, z: -60.9325066}
-  - {x: -89.6787567, y: -1, z: -65.7918091}
+  - {x: -87.4363861, y: -1, z: -58.0391273}
+  - {x: -89.8938293, y: -1, z: -64.9686203}
   nodeCount: 6
   initialized: 1
   initialName: New Path 3
-  pathVisible: 0
+  pathVisible: 1
 --- !u!114 &1577688046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3929,7 +3933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visionDistance: 15
-  pathTime: 10
+  pathTime: 8
 --- !u!1 &1577785767
 GameObject:
   m_ObjectHideFlags: 0

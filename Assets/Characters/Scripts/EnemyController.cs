@@ -48,6 +48,11 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	private void PathAction () {
-		iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(pathName), "time", pathTime, "easetype", iTween.EaseType.linear, "looptype", "loop"));
+		iTween.MoveTo(gameObject,
+		              iTween.Hash("path", iTweenPath.GetPath(pathName),
+		            "time", pathTime,
+		            "easetype", iTween.EaseType.linear,
+		            "looptype", iTween.LoopType.loop,
+		            "orienttopath", true));
 	}
 }
