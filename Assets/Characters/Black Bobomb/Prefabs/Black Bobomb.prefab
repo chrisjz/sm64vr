@@ -77,6 +77,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400008}
   - 95: {fileID: 9500000}
+  - 111: {fileID: 11100000}
   m_Layer: 0
   m_Name: Black Bobomb
   m_TagString: Untagged
@@ -90,9 +91,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: .707106769, y: -5.33850795e-08, z: 5.33850759e-08, w: .707106829}
+  m_LocalPosition: {x: -2.31170652e-05, y: -.111537799, z: -.036806535}
+  m_LocalScale: {x: -1, y: -1, z: -1}
   m_Children: []
   m_Father: {fileID: 400008}
 --- !u!4 &400002
@@ -101,8 +102,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -5.3385083e-08, y: .707106829, z: .707106829, w: 5.3385083e-08}
+  m_LocalPosition: {x: -2.30932237e-05, y: -.111537799, z: .0763003156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
@@ -135,7 +136,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.25232649, y: -1.29118419, z: -14.8514509}
+  m_LocalPosition: {x: -93.9900436, y: -.058350563, z: -55.0100632}
   m_LocalScale: {x: 7.37584019, y: 7.37584019, z: 7.37584019}
   m_Children:
   - {fileID: 400006}
@@ -264,11 +265,25 @@ Animator:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a3c6f385f6dedaf4e9abd0aca260ffa5, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ab45ce6c016f744a86a8c1a6bc7068c, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
+--- !u!111 &11100000
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bb7c0ee82e4684a4c9872961b7f244ed, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
