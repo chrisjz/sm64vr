@@ -17,6 +17,10 @@ public class FPSInputController : MonoBehaviour {
 		motor = GetComponent<CharacterMotor>();
 		avatar = transform.FindChild("Avatar").gameObject;
 	}
+
+	void Start() {
+		IgnorePlayerColliders ();
+	}
 	
 	// Update is called once per frame
 	void  Update (){
@@ -70,6 +74,17 @@ public class FPSInputController : MonoBehaviour {
 		if (avatar.animation && directionVector.z != 0) {
 			avatar.animation["Walk"].speed = Mathf.Abs(directionVector.z);
 			avatar.animation.CrossFade("Walk");
+		}
+	}
+
+	// Prevent colliders on player from colliding with each other i.e. hand colliders with body collider
+	void IgnorePlayerColliders () {
+		Collider[] cols = GetComponentsInChildren<Collider>();
+
+		foreach (Collider col in cols) {
+			if (col != collider) {
+				Physics.IgnoreCollision(col, collider);
+			}
 		}
 	}
 }
