@@ -9,10 +9,10 @@ using System.Collections;
 
 public class SixenseHandController : SixenseObjectController
 {
-	public float				minGrabDistance = 1.0f;
-	static GameObject			closestObject = null;
-	protected bool				holdingObject = false;
-	private GrabObject 			grabObject; // Script attached to grabbed object with grappling data on that object
+	public float					minGrabDistance = 1.0f;
+	private bool					isHoldingObject = false;
+	private GameObject				closestObject = null;
+	private GrabObject 				grabObject; // Script attached to grabbed object with grappling data on that object
 
 	protected override void Start() 
 	{		
@@ -60,8 +60,8 @@ public class SixenseHandController : SixenseObjectController
 		Vector3 currentPosition = new Vector3();
 		Quaternion currentRotation = new Quaternion();
 		
-		if (holdingObject && !controller.GetButton(SixenseButtons.TRIGGER)) {
-			holdingObject = false;
+		if (isHoldingObject && !controller.GetButton(SixenseButtons.TRIGGER)) {
+			isHoldingObject = false;
 		}
 
 		if (Hand == SixenseHands.LEFT) {
@@ -73,7 +73,7 @@ public class SixenseHandController : SixenseObjectController
 			currentRotation = GameObject.Find("RightHandCollider").transform.rotation;
 		}
 		
-		if (!holdingObject) {
+		if (!isHoldingObject) {
 			foreach (GameObject o in GameObject.FindGameObjectsWithTag ("Grabbable"))	
 			{	
 				float dist = Vector3.Distance(o.transform.position, currentPosition);
@@ -91,16 +91,21 @@ public class SixenseHandController : SixenseObjectController
 			grabObject = closestObject.GetComponent<GrabObject>();
 			if (grabObject && grabObject.enabled) {
 				closestObject.transform.position = currentPosition + grabObject.GetPosition(Hand);
+				closestObject.transform.rotation = currentRotation * Quaternion.Euler(grabObject.GetRotation(Hand));
 			} else {
 				closestObject.transform.position = currentPosition;
+				closestObject.transform.rotation = currentRotation;
 			}
-			closestObject.transform.rotation = currentRotation;
 
-			holdingObject = true;
+			isHoldingObject = true;
 		}
 	}
 	
-	public static GameObject getClosestObject() {
+	public GameObject GetClosestObject() {
 		return closestObject;
+	}
+
+	public bool IsHoldingObject() {
+		return isHoldingObject;
 	}
 }
