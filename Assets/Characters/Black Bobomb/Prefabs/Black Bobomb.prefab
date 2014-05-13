@@ -82,6 +82,7 @@ GameObject:
   - 4: {fileID: 400008}
   - 95: {fileID: 9500000}
   - 111: {fileID: 11100000}
+  - 82: {fileID: 8200000}
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
@@ -316,6 +317,104 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300004, guid: a3c6f385f6dedaf4e9abd0aca260ffa5, type: 3}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .00200000009
+      value: 1
+      inSlope: -500.200928
+      outSlope: -500.200928
+      tangentMode: 0
+    - time: .00400000019
+      value: 1
+      inSlope: -125.050232
+      outSlope: -125.050232
+      tangentMode: 0
+    - time: .00800000038
+      value: .756849289
+      inSlope: -31.262558
+      outSlope: -31.262558
+      tangentMode: 0
+    - time: .0160000008
+      value: .631849289
+      inSlope: -7.8156395
+      outSlope: -7.8156395
+      tangentMode: 0
+    - time: .0320000015
+      value: .569349289
+      inSlope: -1.95390987
+      outSlope: -1.95390987
+      tangentMode: 0
+    - time: .064000003
+      value: .538099289
+      inSlope: -.488477468
+      outSlope: -.488477468
+      tangentMode: 0
+    - time: .128000006
+      value: .522474289
+      inSlope: -.122119367
+      outSlope: -.122119367
+      tangentMode: 0
+    - time: .256000012
+      value: .514661789
+      inSlope: -.0305298418
+      outSlope: -.0305298418
+      tangentMode: 0
+    - time: .512000024
+      value: .510755539
+      inSlope: -.00763246045
+      outSlope: -.00763246045
+      tangentMode: 0
+    - time: 1
+      value: .508849263
+      inSlope: -.00200079847
+      outSlope: -.00200079847
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -352,11 +451,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37042f80ddd891340ad62592a42167de, type: 3}
+  m_Script: {fileID: 11500000, guid: 25cc650c58bac16488b4605df6cde0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   visionDistance: 15
+  followSpeed: 12
+  followAudioClip: {fileID: 8300000, guid: fad525075d395fb47bd874482d72a762, type: 3}
   pathTime: 8
+  deathTimer: 5
+  explosionAudioClip: {fileID: 8300000, guid: 49e074fb4ebf0eb448bda9de98855810, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -385,12 +488,13 @@ MonoBehaviour:
   pathName: BobombPath1
   pathColor: {r: 0, g: 1, b: 1, a: 1}
   nodes:
-  - {x: -88.8699341, y: -1, z: -68.2180405}
-  - {x: -86.6086731, y: -1, z: -72.7026978}
-  - {x: -80.6325912, y: -1, z: -71.1373444}
-  - {x: -82.491951, y: -1, z: -63.8768997}
-  - {x: -89.0823517, y: -1, z: -63.8797874}
-  nodeCount: 5
+  - {x: -90, y: -1, z: -69.2510834}
+  - {x: -87.4884186, y: -1, z: -72.0943832}
+  - {x: -82.962677, y: -1, z: -71.1373444}
+  - {x: -82.491951, y: -1, z: -65.4218216}
+  - {x: -88.4943466, y: -1, z: -63.6973724}
+  - {x: -90, y: -1, z: -66.7522202}
+  nodeCount: 6
   initialized: 1
   initialName: New Path 3
   pathVisible: 1
