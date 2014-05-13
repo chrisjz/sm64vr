@@ -1989,6 +1989,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1820584914}
     m_Modifications:
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
       propertyPath: m_LocalPosition.x
       value: -93.9900436
@@ -2016,6 +2020,54 @@ Prefab:
     - target: {fileID: 400008, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
       propertyPath: m_LocalRotation.w
       value: -4.37113883e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[4].z
+      value: -63.6973724
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[4].x
+      value: -88.4943466
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[0].x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[0].z
+      value: -69.2510834
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[1].x
+      value: -87.4884186
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[1].z
+      value: -72.0943832
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[2].x
+      value: -82.962677
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[3].z
+      value: -65.4218216
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodeCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[5].x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[5].z
+      value: -66.7522202
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: nodes.Array.data[5].y
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
@@ -3946,12 +3998,13 @@ MonoBehaviour:
   pathName: BobombPath1
   pathColor: {r: 0, g: 1, b: 1, a: 1}
   nodes:
-  - {x: -88.8699341, y: -1, z: -68.2180405}
-  - {x: -86.6086731, y: -1, z: -72.7026978}
-  - {x: -80.6325912, y: -1, z: -71.1373444}
-  - {x: -82.491951, y: -1, z: -63.8768997}
-  - {x: -89.0823517, y: -1, z: -63.8797874}
-  nodeCount: 5
+  - {x: -90, y: -1, z: -69.2510834}
+  - {x: -87.4884186, y: -1, z: -72.0943832}
+  - {x: -82.962677, y: -1, z: -71.1373444}
+  - {x: -82.491951, y: -1, z: -65.4218216}
+  - {x: -88.4943466, y: -1, z: -63.6973724}
+  - {x: -90, y: -1, z: -66.7522202}
+  nodeCount: 6
   initialized: 1
   initialName: New Path 3
   pathVisible: 1
