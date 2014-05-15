@@ -89,7 +89,7 @@ public class SixenseHandController : SixenseObjectController
 			}
 
 			grabObject = closestObject.GetComponent<GrabObject>();
-			if (grabObject && grabObject.enabled) {
+			if (grabObject && grabObject.isEnabled) {
 				closestObject.transform.position = currentPosition + grabObject.GetPosition(Hand);
 				closestObject.transform.rotation = currentRotation * Quaternion.Euler(grabObject.GetRotation(Hand));
 			} else {

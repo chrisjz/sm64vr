@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GrabObject : MonoBehaviour {
-	public bool enabled = true;
+	public bool isEnabled = true;
 	public Vector3 positionModifier = new Vector3 (0, 0, 0);
 	public Vector3 rotationModifier = new Vector3 (0, 0, 0);
 	

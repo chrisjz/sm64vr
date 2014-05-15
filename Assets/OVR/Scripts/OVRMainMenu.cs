@@ -164,17 +164,18 @@ public class OVRMainMenu : MonoBehaviour
 			Debug.LogWarning("OVRMainMenu: More then 1 OVRCameraController attached.");
 		else
 			CameraController = CameraControllers[0];
-	
-		// Find player controller
-		OVRPlayerController[] PlayerControllers;
-		PlayerControllers = gameObject.GetComponentsInChildren<OVRPlayerController>();
 		
-		if(PlayerControllers.Length == 0)
-			Debug.LogWarning("OVRMainMenu: No OVRPlayerController attached.");
-		else if (PlayerControllers.Length > 1)
-			Debug.LogWarning("OVRMainMenu: More then 1 OVRPlayerController attached.");
-		else
-			PlayerController = PlayerControllers[0];
+		// Commented out as we're using an alternative to OVRPlayerController.
+//		// Find player controller
+//		OVRPlayerController[] PlayerControllers;
+//		PlayerControllers = gameObject.GetComponentsInChildren<OVRPlayerController>();
+//		
+//		if(PlayerControllers.Length == 0)
+//			//Debug.LogWarning("OVRMainMenu: No OVRPlayerController attached.");
+//		else if (PlayerControllers.Length > 1)
+//			Debug.LogWarning("OVRMainMenu: More then 1 OVRPlayerController attached.");
+//		else
+//			PlayerController = PlayerControllers[0];
 	
 	}
 	

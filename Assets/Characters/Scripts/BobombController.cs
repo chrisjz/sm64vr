@@ -9,9 +9,10 @@ public class BobombController : EnemyController {
 		base.FollowPlayer ();
 
 		if (deathTimer <= 0) {
+			animation.Play("Explode");
 			audio.clip = explosionAudioClip;
 			audio.Play();
-			StartCoroutine(Death(explosionAudioClip.length));
+			StartCoroutine(Death(animation.clip.length));
 		} else {
 			deathTimer -= Time.deltaTime;
 		}
