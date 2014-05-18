@@ -775,6 +775,26 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -4.37113883e-08
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: isEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: rotationModifier.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: rotationModifier.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: invertRotationModifier.x
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: invertRotationModifier.y
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
   m_RootGameObject: {fileID: 1809688359}
@@ -5961,8 +5981,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnabled: 1
-  positionModifier: {x: -1, y: -.5, z: 0}
-  rotationModifier: {x: 0, y: 0, z: 0}
+  invertRightHand: 1
+  positionModifier: {x: -.5, y: 0, z: -1}
+  rotationModifier: {x: 90, y: 0, z: 0}
+  invertRotationModifier: {x: -180, y: 180, z: 0}
 --- !u!114 &1809688364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6900,8 +6922,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnabled: 1
+  invertRightHand: 1
   positionModifier: {x: -.699999988, y: 0, z: 0}
   rotationModifier: {x: 0, y: 0, z: 0}
+  invertRotationModifier: {x: 0, y: 0, z: 0}
 --- !u!1 &1921712104
 GameObject:
   m_ObjectHideFlags: 0

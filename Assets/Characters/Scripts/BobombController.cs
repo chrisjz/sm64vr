@@ -12,14 +12,28 @@ public class BobombController : EnemyController {
 		base.Awake ();
 		smoke = transform.Find ("Smoke");
 	}
-
+	
 	protected override void FollowPlayer() {
 		base.FollowPlayer ();
+		Detonation ();
+	}
+	
+	protected override void Freeze() {
+		base.Freeze ();
 
+		if (!audio.isPlaying) {
+			audio.clip = followAudioClip;
+			audio.Play();
+		}
+
+		Detonation ();
+	}
+
+	protected void Detonation () {		
 		if (!smoke.particleSystem.isPlaying) {			
 			smoke.particleSystem.Play ();
 		}
-
+		
 		if (deathTimer <= 0) {
 			animation.Play("Explode");
 			StartCoroutine(Explode(animation["Explode"].length));

@@ -123,7 +123,7 @@ public class EnemyController : MonoBehaviour {
 		            "orienttopath", true));
 	}
 
-	protected void Freeze () {
+	protected virtual void Freeze () {
 		iTween.Stop(gameObject);
 	}
 
