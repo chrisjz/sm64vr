@@ -70,15 +70,18 @@ public class EnemyController : MonoBehaviour {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
 				isHoldingEnemy = true;
 				heldByPlayer = true;
-				agent.enabled = false;
-			} else {				
-				agent.enabled = true;
 			}
 		}
 
 		if (isHoldingEnemy) {
 			movement = Movement.Freeze;
-		} else if (heldByPlayer) {
+			agent.enabled = false;
+		} else {
+			agent.enabled = true;
+		}
+
+		if (!isHoldingEnemy && heldByPlayer) {
+			agent.enabled = true;
 			movement = Movement.Follow;
 		}
 	}
