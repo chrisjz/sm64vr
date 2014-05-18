@@ -26,7 +26,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
  * climbing tree/pole
  * swimming
 * 3D HUD (can trigger visibility).
-* Luigi as a second player.
 * Mario's hat bobs as player shakes their head.
 * Full body tracking (PrioVR, SixenseVR).
 
@@ -46,11 +45,16 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 ### Bob-omb Battlefield
 
 * Transition to Bob-omb Battlefield when jumping into its painting.
-* Minigames in World 1, such as throwing shells at goombas with timer.
 
 ### Miscellaneous
 
 * Shadows for signs, trees.
+
+### Enhancements
+
+* Minigames in World 1, such as throwing shells at goombas with timer.
+* Luigi as a second player.
+* Multiplayer via LAN or online.
 
 ## Credits
 
