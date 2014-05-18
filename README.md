@@ -10,7 +10,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Mario has health.
 * Mario takes damage.
 * Improve Mario's left hand model stretching when using Sixense tracking.
-* Mouse controls moves entire body when it should just move the head.
 * Player can swim
 * Mario animations for:
  * running
@@ -38,7 +37,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Princess Peach's Castle
 
-* Collision barrier for fence surrounding castle.
 * Fix transparency on textures for Princess Peach's Castle area.
 * Toad inside first floor.
 * Animate waterfall.
