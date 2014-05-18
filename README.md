@@ -62,6 +62,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 * [Alec Pike](http://www.models-resource.com/submitter/alecpike/)
 * Friedslick6
+* [Jon Gonzalez](http://xenosmashgames.com/author/gonzosan/)
 * MarioKart64n
 * Maximo
  

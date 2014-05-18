@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour {
 	// These are all the movement types that the enemy can do
 	protected enum Movement{Path, Follow, Freeze};
 
-	void Awake() {
+	protected virtual void Awake() {
 		agent = this.GetComponent<NavMeshAgent> ();
 		player = GameObject.FindWithTag("Player");
 		playerHandControllers = player.GetComponentsInChildren<SixenseHandController> ();
@@ -128,5 +128,12 @@ public class EnemyController : MonoBehaviour {
 		dead = true;
 		yield return new WaitForSeconds(length);
 		gameObject.SetActive (false);
+	}
+
+	protected void ToggleVisibility() {
+		Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+		foreach (Renderer renderer in renderers) {
+			renderer.enabled = !renderer.enabled;
+		}
 	}
 }
