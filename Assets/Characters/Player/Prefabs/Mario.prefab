@@ -988,6 +988,7 @@ GameObject:
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400022}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400026}
   - 114: {fileID: 11400018}
   - 82: {fileID: 8200000}
   m_Layer: 0
@@ -2272,7 +2273,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516ade8f559ac974189caa990b9b68f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 149bf455adc3bd54f8d6345034b9a2e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
@@ -2373,6 +2374,24 @@ MonoBehaviour:
   HeightIncrement: .00999999978
   SpeedRotationIncrement: .0500000007
   CrosshairImage: {fileID: 0}
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d66ece378986145aef55a231e21b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 1
+  sensitivityX: 5
+  sensitivityY: 15
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

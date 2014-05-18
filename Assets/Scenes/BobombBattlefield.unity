@@ -4964,7 +4964,7 @@ Prefab:
       propertyPath: FadeInTexture
       value: 
       objectReference: {fileID: 2800000, guid: a025c23fceb7d4966b603419f551ce99, type: 3}
-    - target: {fileID: 11400018, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
+    - target: {fileID: 0}
       propertyPath: axes
       value: 1
       objectReference: {fileID: 0}
@@ -4986,6 +4986,7 @@ GameObject:
   - 114: {fileID: 1833210258}
   - 114: {fileID: 1833210257}
   - 114: {fileID: 1833210256}
+  - 114: {fileID: 1833210262}
   - 82: {fileID: 1833210261}
   m_Layer: 0
   m_Name: Mario
@@ -5010,13 +5011,13 @@ Transform:
 --- !u!114 &1833210256
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400018, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+  m_PrefabParentObject: {fileID: 11400026, guid: 29432e9eec65f33409c3f8e9d9dc5044,
     type: 2}
   m_PrefabInternal: {fileID: 1831578665}
   m_GameObject: {fileID: 1833210254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516ade8f559ac974189caa990b9b68f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 41d66ece378986145aef55a231e21b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
@@ -5194,6 +5195,25 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1833210262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400018, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 1831578665}
+  m_GameObject: {fileID: 1833210254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149bf455adc3bd54f8d6345034b9a2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 1
+  sensitivityX: 5
+  sensitivityY: 15
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!1 &1835858409
 GameObject:
   m_ObjectHideFlags: 0
