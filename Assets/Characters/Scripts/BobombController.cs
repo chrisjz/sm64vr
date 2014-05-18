@@ -4,8 +4,9 @@ using System.Collections;
 public class BobombController : EnemyController {
 	public float deathTimer = 5; // Seconds until bobomb explodes
 	public AudioClip explosionAudioClip;
-
+	
 	private Transform smoke;
+	private GameObject explosion;
 
 	protected override void Awake() {
 		base.Awake ();
@@ -28,6 +29,8 @@ public class BobombController : EnemyController {
 	}
 
 	protected IEnumerator Explode (float length) {
+		explosion = (GameObject) Instantiate(Resources.Load("Explosion"));
+		explosion.transform.position = transform.position;
 		dead = true;
 		yield return new WaitForSeconds(length);
 		audio.clip = explosionAudioClip;
