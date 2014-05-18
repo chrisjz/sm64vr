@@ -7,10 +7,17 @@ public class BobombController : EnemyController {
 	
 	private Transform smoke;
 	private GameObject explosion;
-
+	private float defaultDeathTimer;
+	
 	protected override void Awake() {
 		base.Awake ();
 		smoke = transform.Find ("Smoke");
+		defaultDeathTimer = deathTimer;
+	}
+	
+	protected override void Init() {
+		deathTimer = defaultDeathTimer;
+		base.Init ();
 	}
 	
 	protected override void FollowPlayer() {
@@ -49,6 +56,7 @@ public class BobombController : EnemyController {
 		yield return new WaitForSeconds(length);
 		audio.clip = explosionAudioClip;
 		audio.Play();
+		smoke.particleSystem.Stop ();
 		ToggleVisibility ();
 		StartCoroutine(Death(explosionAudioClip.length));
 	}
