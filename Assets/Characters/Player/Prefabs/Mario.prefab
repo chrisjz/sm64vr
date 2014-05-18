@@ -2275,8 +2275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516ade8f559ac974189caa990b9b68f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 0
-  sensitivityX: 15
+  axes: 1
+  sensitivityX: 5
   sensitivityY: 15
   minimumX: -360
   maximumX: 360

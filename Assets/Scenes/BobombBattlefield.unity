@@ -4964,6 +4964,10 @@ Prefab:
       propertyPath: FadeInTexture
       value: 
       objectReference: {fileID: 2800000, guid: a025c23fceb7d4966b603419f551ce99, type: 3}
+    - target: {fileID: 11400018, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
+      propertyPath: axes
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
   m_RootGameObject: {fileID: 1833210254}
@@ -5015,8 +5019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516ade8f559ac974189caa990b9b68f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 0
-  sensitivityX: 15
+  axes: 1
+  sensitivityX: 5
   sensitivityY: 15
   minimumX: -360
   maximumX: 360
