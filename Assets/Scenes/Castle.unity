@@ -4487,6 +4487,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 724354225}
   - 137: {fileID: 724354226}
+  - 64: {fileID: 724354227}
   m_Layer: 0
   m_Name: Right_Foot
   m_TagString: Untagged
@@ -4500,8 +4501,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400040, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
   m_PrefabInternal: {fileID: 166827470}
   m_GameObject: {fileID: 724354224}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: -6.12323426e-17}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: .711131275, y: 4.61622243e-08, z: 2.55518238e-08, w: -.703059316}
+  m_LocalPosition: {x: -.00691006053, y: 0, z: 6.75514571e-07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1909967704}
@@ -4541,6 +4542,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -.0266873389, y: .340909064, z: .126663059}
     m_Extent: {x: .315113008, y: .40375632, z: .436786503}
   m_DirtyAABB: 0
+--- !u!64 &724354227
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400002, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 166827470}
+  m_GameObject: {fileID: 724354224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: bd76cf04f47451f49a39a987eb4e155c, type: 3}
 --- !u!1001 &726832033
 Prefab:
   m_ObjectHideFlags: 0
@@ -9040,6 +9055,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1407093821}
   - 137: {fileID: 1407093822}
+  - 64: {fileID: 1407093823}
   m_Layer: 0
   m_Name: Left_Foot
   m_TagString: Untagged
@@ -9053,8 +9069,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400080, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
   m_PrefabInternal: {fileID: 166827470}
   m_GameObject: {fileID: 1407093820}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: -6.12323426e-17}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: .706692755, y: 2.15936975e-08, z: -1.46394052e-08, w: -.707520604}
+  m_LocalPosition: {x: .00864549819, y: 7.15255737e-06, z: -.00612815376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1909967704}
@@ -9094,6 +9110,20 @@ SkinnedMeshRenderer:
     m_Center: {x: .0231767148, y: .343987256, z: .114639968}
     m_Extent: {x: .323012829, y: .411937147, z: .442801088}
   m_DirtyAABB: 0
+--- !u!64 &1407093823
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 166827470}
+  m_GameObject: {fileID: 1407093820}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300006, guid: bd76cf04f47451f49a39a987eb4e155c, type: 3}
 --- !u!1 &1410829337
 GameObject:
   m_ObjectHideFlags: 0
