@@ -157,6 +157,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -4.37113883e-08
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
+      propertyPath: pathTime
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38d3ddb8c73a5ff4c905c07c9cab4696, type: 2}
   m_RootGameObject: {fileID: 1809688359}
@@ -9562,7 +9566,7 @@ MonoBehaviour:
   visionDistance: 15
   followSpeed: 12
   followAudioClip: {fileID: 8300000, guid: fad525075d395fb47bd874482d72a762, type: 3}
-  pathTime: 8
+  pathTime: 20
   respawnTime: 1
   deathTimer: 5
   explosionAudioClip: {fileID: 8300000, guid: 49e074fb4ebf0eb448bda9de98855810, type: 3}
@@ -10338,7 +10342,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 9f44d1c7ba0896d4aa87805b53d9c3f2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .692560196
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 9f44d1c7ba0896d4aa87805b53d9c3f2, type: 2}
       propertyPath: m_LocalRotation.z
@@ -10346,7 +10350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 9f44d1c7ba0896d4aa87805b53d9c3f2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .721360087
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f44d1c7ba0896d4aa87805b53d9c3f2, type: 2}
@@ -11179,6 +11183,8 @@ GameObject:
   - 111: {fileID: 2116792418}
   - 82: {fileID: 2116792420}
   - 195: {fileID: 2116792419}
+  - 114: {fileID: 2116792422}
+  - 114: {fileID: 2116792421}
   m_Layer: 0
   m_Name: Goomba
   m_TagString: Untagged
@@ -11192,7 +11198,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 9f44d1c7ba0896d4aa87805b53d9c3f2, type: 2}
   m_PrefabInternal: {fileID: 1873784697}
   m_GameObject: {fileID: 2116792416}
-  m_LocalRotation: {x: 0, y: .692560196, z: 0, w: .721360087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.547569275, y: -.404155493, z: 2.25432968}
   m_LocalScale: {x: 7.37584019, y: 7.37584019, z: 7.37584066}
   m_Children:
@@ -11297,6 +11303,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &2116792421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2116792416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathName: GoombaPath1
+  pathColor: {r: 0, g: 1, b: 1, a: 1}
+  nodes:
+  - {x: -65.6510315, y: 2.47801995, z: -31.1680279}
+  - {x: -64.7542572, y: 2.13682008, z: -28.4878311}
+  - {x: -57.367424, y: .383187294, z: -21.267189}
+  - {x: -44.5844002, y: -1.12817633, z: -28.3596001}
+  - {x: -41.9714394, y: -1.12817597, z: -35.7093086}
+  - {x: -41.0642395, y: -1.12817597, z: -44.9387169}
+  - {x: -50.4483376, y: .488285303, z: -48.3818665}
+  - {x: -66.4072113, y: 2.47801995, z: -33.806282}
+  nodeCount: 8
+  initialized: 1
+  initialName: New Path 1
+  pathVisible: 1
+--- !u!114 &2116792422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2116792416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a69ab445bc762478a37c141bc06431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visionDistance: 15
+  followSpeed: 5
+  followAudioClip: {fileID: 0}
+  pathTime: 30
+  respawnTime: -1
 --- !u!1 &2117106259
 GameObject:
   m_ObjectHideFlags: 0

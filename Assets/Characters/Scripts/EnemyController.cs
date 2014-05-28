@@ -143,7 +143,9 @@ public class EnemyController : MonoBehaviour {
 	protected IEnumerator Death (float length) {
 		dead = true;
 		yield return new WaitForSeconds(length);
-		StartCoroutine(Respawn(respawnTime));
+		if (respawnTime >= 0) {
+			StartCoroutine(Respawn(respawnTime));
+		}
 	}
 
 	protected IEnumerator Respawn (float length) {		
