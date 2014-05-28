@@ -25,6 +25,10 @@ ModelImporter:
     4300002: Body
     4300004: Head
     4300006: Right_Leg
+    6400000: Body
+    6400002: Head
+    6400004: Left_Leg
+    6400006: Right_Leg
     9500000: //RootNode
     11100000: //RootNode
   materials:
@@ -47,7 +51,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: .00999999978
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

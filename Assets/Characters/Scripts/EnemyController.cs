@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour {
 		spawnRotation = transform.rotation;
 	}
 
-	void Start() {
+	protected virtual void Start() {
 		Init ();
 	}
 

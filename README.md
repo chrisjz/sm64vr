@@ -45,6 +45,8 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 ### Bob-omb Battlefield
 
 * Transition to Bob-omb Battlefield when jumping into its painting.
+* Replace goomba's jumping sound with correct one.
+* Replace goomba's running sound with correct one.
 
 ### Miscellaneous
 
@@ -73,6 +75,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 ### Sound & Music
 
 * [KHInsider](http://http://www.khinsider.com)
+* [The Trasher](http://www.mfgg.net/index.php?act=user&param=01&uid=8)
 
 ## Disclaimer
 
