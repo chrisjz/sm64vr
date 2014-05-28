@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour {
 		dead = false;
 	}
 
-	void Update () {
+	protected virtual void Update () {
 		if (!player || dead) {
 			return;
 		}

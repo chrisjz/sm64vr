@@ -12,10 +12,15 @@ public class GoombaController : EnemyController {
 		base.Start ();
 	}
 
+	protected void OnCollisionEnter(Collision col) {
+		if (col.gameObject.name == player.name) {
+			StartCoroutine (Squash ());
+		}
+	}
+
 	protected override void FollowPlayer() {
 		if (!startFollowPlayer) {
-				animation.Play ("Jump");
-				StartCoroutine (Jumped (animation ["Jump"].length));
+				StartCoroutine (Jumped ());
 		} else {
 			base.FollowPlayer ();
 			if (!audio.isPlaying) {
@@ -25,11 +30,22 @@ public class GoombaController : EnemyController {
 		}
 	}
 
-	protected IEnumerator Jumped (float length) {
-		yield return new WaitForSeconds(length);
+	protected IEnumerator Jumped () {
+		animation.Play ("Jump");
+		yield return new WaitForSeconds(animation ["Jump"].length);
 		audio.clip = jumpAudioClip;
 		audio.Play();
 		animation.Play ("Walk");
 		startFollowPlayer = true;
+	}
+
+	protected IEnumerator Squash () {
+		rigidbody.detectCollisions = false;
+		movement = Movement.Freeze;
+		animation.Play ("Squash");
+		yield return new WaitForSeconds(animation ["Squash"].length + 1);
+		dead = true;
+		ToggleVisibility ();
+		StartCoroutine(Death(0));
 	}
 }

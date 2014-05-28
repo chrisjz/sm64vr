@@ -47,6 +47,8 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Transition to Bob-omb Battlefield when jumping into its painting.
 * Replace goomba's jumping sound with correct one.
 * Replace goomba's running sound with correct one.
+* Smoke effect when goomba disappears after being squished.
+* Sound for squishing goomba.
 
 ### Miscellaneous
 
