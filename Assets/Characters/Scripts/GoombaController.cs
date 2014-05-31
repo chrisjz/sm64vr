@@ -14,6 +14,12 @@ public class GoombaController : EnemyController {
 
 	protected void OnCollisionEnter(Collision col) {
 		if (col.gameObject.name == player.name) {
+			base.Knockback(this.gameObject, player);
+		} else if (col.gameObject.name == "LeftHandCollider" ||
+		           col.gameObject.name == "RightHandCollider") {
+			base.Knockback(player, this.gameObject);
+		} else if (col.gameObject.name == "LeftFootCollider" ||
+		           col.gameObject.name == "RightFootCollider") {
 			StartCoroutine (Squash ());
 		}
 	}

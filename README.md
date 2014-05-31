@@ -59,6 +59,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Minigames in World 1, such as throwing shells at goombas with timer.
 * Luigi as a second player.
 * Multiplayer via LAN or online.
+* Leap Motion integration for hand tracking.
 
 ## Credits
 
