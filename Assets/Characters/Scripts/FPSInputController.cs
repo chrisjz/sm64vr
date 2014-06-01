@@ -11,6 +11,7 @@ public class FPSInputController : MonoBehaviour {
 
 	private CharacterMotor motor;
 	private GameObject avatar;
+	private bool inputEnabled;					// If input is enabled/disabled
 	
 	// Use this for initialization
 	void  Awake (){
@@ -20,10 +21,15 @@ public class FPSInputController : MonoBehaviour {
 
 	void Start() {
 		IgnorePlayerColliders ();
+		inputEnabled = true;
 	}
 	
 	// Update is called once per frame
 	void  Update (){
+		if (!inputEnabled) {
+			return;
+		}
+
 		// Get the input vector from keyboard or analog stick
 		Vector3 directionVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -75,6 +81,10 @@ public class FPSInputController : MonoBehaviour {
 			avatar.animation["Walk"].speed = Mathf.Abs(directionVector.z);
 			avatar.animation.CrossFade("Walk");
 		}
+	}
+
+	public void SetInputEnabled (bool status) {
+		inputEnabled = status;
 	}
 
 	// Prevent colliders on player from colliding with each other i.e. hand colliders with body collider

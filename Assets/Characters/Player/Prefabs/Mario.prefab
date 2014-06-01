@@ -993,10 +993,10 @@ GameObject:
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400022}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400028}
   - 114: {fileID: 11400026}
   - 114: {fileID: 11400018}
   - 82: {fileID: 8200000}
-  - 114: {fileID: 11400028}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -2688,7 +2688,9 @@ MonoBehaviour:
   maxHealth: 8
   health: 8
   recoveryInvincibilityTime: 3
+  respawnTime: 3
   hurtAudioClip: {fileID: 8300000, guid: e862191d8a2959f478578bc20a80b2bd, type: 3}
+  deathAudioClip: {fileID: 8300000, guid: 71e0b521ff33f4a44ab42219470cc8d7, type: 3}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

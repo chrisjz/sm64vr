@@ -7,8 +7,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 ### Player
 
 * Physics for throwing objects.
-* Mario has health.
-* Mario takes damage.
+* Screen fades out when Mario loses life.
 * Improve Mario's left hand model stretching when using Sixense tracking.
 * Player can swim
 * Mario animations for:

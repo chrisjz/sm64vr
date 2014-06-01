@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour {
 
 	protected NavMeshAgent agent;
 	protected GameObject player;
+	protected PlayerHealth playerHealth;
 	protected SixenseHandController[] playerHandControllers;
 	protected RaycastHit hit;
 	protected Movement movement;
@@ -34,6 +35,7 @@ public class EnemyController : MonoBehaviour {
 	protected virtual void Awake() {
 		agent = this.GetComponent<NavMeshAgent> ();
 		player = GameObject.FindWithTag("Player");
+		playerHealth = player.GetComponent<PlayerHealth> ();
 		playerHandControllers = player.GetComponentsInChildren<SixenseHandController> ();
 		pathName = this.GetComponent<iTweenPath> ().pathName;
 		defaultSpeed = agent.speed;
@@ -173,7 +175,6 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	protected void DamagePlayer() {
-		PlayerHealth playerHealth = player.GetComponent<PlayerHealth> ();
 
 		if (playerHealth) {
 			playerHealth.Damage(playerDamage);
