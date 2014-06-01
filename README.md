@@ -49,6 +49,9 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Replace goomba's running sound with correct one.
 * Smoke effect when goomba disappears after being squished.
 * Sound for squishing goomba.
+* Goomba stops following player when player is past a certain distance away from goomba.
+* Chomp enemy.
+* Player respawns in front of painting.
 
 ### Miscellaneous
 

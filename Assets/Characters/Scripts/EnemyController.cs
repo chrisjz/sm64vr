@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour {
 	public float followSpeed = 12;
 	public AudioClip followAudioClip;
 	public float pathTime = 10; 			// Time taken for enemy to traverse its path
+	public int playerDamage = 1;			// Amount of damage player receives when hit by enemy
 	public float respawnTime = 1;			// Time until enemy respawns after death. Will not respawn if set to 0.
 	public float knockbackVelocity = 30;	// Distance of how much a victim is knocked back on collission with enemy
 	public float knockbackDuration = 1;		// Duration of enemy being knocked back
@@ -151,6 +152,7 @@ public class EnemyController : MonoBehaviour {
 		if (victim == player) {
 			CharacterMotor charMotor = player.GetComponent<CharacterMotor> ();
 			charMotor.SetVelocity (dir * knockbackVelocity);
+			DamagePlayer();
 		} else if (victim.rigidbody && !knockingBack) {
 			movement = Movement.Freeze;
 			victim.rigidbody.AddForce(dir * knockbackVelocity * 10);			
@@ -168,6 +170,14 @@ public class EnemyController : MonoBehaviour {
 		dead = true;
 		ToggleVisibility ();
 		StartCoroutine(Death(1));
+	}
+
+	protected void DamagePlayer() {
+		PlayerHealth playerHealth = player.GetComponent<PlayerHealth> ();
+
+		if (playerHealth) {
+			playerHealth.Damage(playerDamage);
+		}
 	}
 	
 	protected IEnumerator Death (float length) {

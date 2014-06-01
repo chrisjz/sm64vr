@@ -996,6 +996,7 @@ GameObject:
   - 114: {fileID: 11400026}
   - 114: {fileID: 11400018}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400028}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -2602,8 +2603,8 @@ MonoBehaviour:
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-      - time: 0
-        value: 1
+      - time: -51.75
+        value: .993749976
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2673,6 +2674,21 @@ MonoBehaviour:
   maximumX: 360
   minimumY: -60
   maximumY: 60
+--- !u!114 &11400028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc890aac4add1a541832ad0e5339809d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 8
+  health: 8
+  recoveryInvincibilityTime: 3
+  hurtAudioClip: {fileID: 8300000, guid: e862191d8a2959f478578bc20a80b2bd, type: 3}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
