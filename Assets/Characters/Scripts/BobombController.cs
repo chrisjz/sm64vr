@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class BobombController : EnemyController {
-	public float deathTimer = 5; // Seconds until bobomb explodes
+	public float deathTimer = 5; 			// Seconds until bobomb explodes
+	public float damageRadius = 5; 			// Radius where objects get damaged from source of bobomb's explosion
 	public AudioClip explosionAudioClip;
 	
 	private Transform smoke;
@@ -54,10 +55,20 @@ public class BobombController : EnemyController {
 		explosion.transform.position = transform.position;
 		dead = true;
 		yield return new WaitForSeconds(length);
+		DamagePlayersInRadius ();
 		audio.clip = explosionAudioClip;
 		audio.Play();
 		smoke.particleSystem.Stop ();
 		ToggleVisibility ();
 		StartCoroutine(Death(explosionAudioClip.length));
+	}
+
+	protected void DamagePlayersInRadius() {
+		if (player) {
+			float dist = Vector3.Distance(player.transform.position, transform.position);
+			if (dist < damageRadius)	{	
+				base.Knockback(gameObject, player.gameObject);
+			}
+		}
 	}
 }
