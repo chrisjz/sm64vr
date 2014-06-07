@@ -35,7 +35,7 @@ public class iTweenPath : MonoBehaviour
 	public bool pathVisible = true;
 		
 	void OnEnable(){
-		if(!paths.ContainsKey(pathName)){
+		if(!paths.ContainsKey(pathName.ToLower())){
 			paths.Add(pathName.ToLower(), this);
 		}
 	}

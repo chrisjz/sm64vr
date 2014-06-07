@@ -2,16 +2,18 @@
 using System.Collections;
 
 public class PathObject : MonoBehaviour {
+	public string pathName = "";
 	public float pathTime = 10;
 	public iTween.EaseType pathEaseType = iTween.EaseType.linear;
 	public iTween.LoopType pathLoopType = iTween.LoopType.loop;
 	public bool pathOrientToPath = false;
-	
-	protected string pathName;
+
 	protected float pathTimer;
 	
 	void Awake () {
-		pathName = this.GetComponent<iTweenPath> ().pathName;
+		if (pathName == "") {
+			pathName = this.GetComponent<iTweenPath> ().pathName;
+		}
 	}
 	
 	void Start () {		
