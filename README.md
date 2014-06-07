@@ -44,6 +44,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 ### Bob-omb Battlefield
 
 * Mario bounces back off goomba when he jumps on it.
+* Big block that blows up when punched.
 * Collider for fences.
 * Transition to Bob-omb Battlefield when jumping into its painting.
 * Add rotation to lifts when they reach top and bottom of cliff.
