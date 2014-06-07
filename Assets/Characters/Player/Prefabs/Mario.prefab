@@ -2419,6 +2419,7 @@ MonoBehaviour:
   Hand: 2
   Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
   minGrabDistance: 2
+  throwForce: 30
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2475,6 +2476,7 @@ MonoBehaviour:
   Hand: 1
   Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
   minGrabDistance: 2
+  throwForce: 30
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1

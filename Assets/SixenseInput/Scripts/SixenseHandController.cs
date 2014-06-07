@@ -10,9 +10,14 @@ using System.Collections;
 public class SixenseHandController : SixenseObjectController
 {
 	public float					minGrabDistance = 1.0f;
+	public float					throwForce = 30.0f;			// Force multiplyer for throwing objects
+
 	private bool					isHoldingObject = false;
 	private GameObject				closestObject = null;
-	private GrabObject 				grabObject; // Script attached to grabbed object with grappling data on that object
+	private GrabObject 				grabObject; 				// Script attached to grabbed object with grappling data on that object
+	private float					handVelocity;
+	private Vector3					handVector;
+	private Vector3					handPrevious;
 
 	protected override void Start() 
 	{		
@@ -59,8 +64,12 @@ public class SixenseHandController : SixenseObjectController
 	protected void UpdateActionInput( SixenseInput.Controller controller) {
 		Vector3 currentPosition = new Vector3();
 		Quaternion currentRotation = new Quaternion();
+
+		Velocity();
 		
 		if (isHoldingObject && !controller.GetButton(SixenseButtons.TRIGGER)) {
+			Throw();
+
 			isHoldingObject = false;
 		}
 
@@ -100,9 +109,32 @@ public class SixenseHandController : SixenseObjectController
 			isHoldingObject = true;
 		}
 	}
+
+	protected void Velocity () {
+		if (Time.deltaTime != 0)
+		{
+			handVector = (transform.position - handPrevious) / Time.deltaTime;
+			handPrevious = transform.position; 
+		}
+
+		handVelocity = Vector3.Magnitude(handVector);
+	}
+
+	// Throw the held object once player lets go based on hand velocity
+	protected void Throw () {
+		if (closestObject.rigidbody) {			
+			Vector3 dir = (closestObject.transform.position - transform.position).normalized;
+
+			closestObject.rigidbody.AddForce(dir * handVelocity * throwForce);
+		}
+	}
 	
 	public GameObject GetClosestObject() {
 		return closestObject;
+	}
+	
+	public float GetHandVelocity() {
+		return handVelocity;
 	}
 
 	public bool IsHoldingObject() {

@@ -9,7 +9,6 @@ public class PushRigidbody : MonoBehaviour {
 
 	protected void OnControllerColliderHit (ControllerColliderHit hit) {
 		Rigidbody body = hit.collider.attachedRigidbody;
-		CharacterMotor motor = GetComponent<CharacterMotor> ();
 		Vector3 force;
 		
 		// no rigidbody
