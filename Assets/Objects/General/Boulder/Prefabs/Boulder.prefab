@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Boulder
   m_TagString: Untagged
@@ -98,7 +99,7 @@ MonoBehaviour:
   nodeCount: 4
   initialized: 1
   initialName: New Path 1
-  pathVisible: 1
+  pathVisible: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +150,39 @@ MonoBehaviour:
   nodeCount: 4
   initialized: 1
   initialName: New Path 1
-  pathVisible: 1
+  pathVisible: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bffa8aa898b437183cd5617f7b5303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathName: BoulderPath3
+  pathColor: {r: 0, g: 1, b: 1, a: 1}
+  nodes:
+  - {x: -114.674782, y: 46.7476654, z: -230.057434}
+  - {x: -112.016228, y: 44.8530655, z: -235.491745}
+  - {x: -134.381531, y: 43.1952248, z: -246.270554}
+  - {x: -160.170441, y: 42.7120132, z: -264.828491}
+  - {x: -184.071487, y: 38.3615112, z: -246.695023}
+  - {x: -213.818497, y: 35.2183151, z: -241.34874}
+  - {x: -203.791809, y: 32.0295105, z: -187.189209}
+  - {x: -188.090363, y: 31.0634899, z: -165.192017}
+  - {x: -168.918152, y: 29.1629219, z: -168.16304}
+  - {x: -158.820068, y: 27.7198143, z: -153.737061}
+  - {x: -138.845673, y: 23.6408195, z: -152.103973}
+  - {x: -122.499451, y: 13.5177002, z: -150.234055}
+  - {x: -91.4555969, y: 1.36081648, z: -134.921295}
+  - {x: -55.3915405, y: -1.38884401, z: -120.619698}
+  nodeCount: 14
+  initialized: 1
+  initialName: New Path 2
+  pathVisible: 0
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
