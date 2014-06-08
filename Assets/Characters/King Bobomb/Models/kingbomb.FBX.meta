@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: 55815c442f000224fbb0c28e81de563c
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Box001
+    100002: Box002
+    100004: Camera001
+    100006: Camera001.Target
+    100008: Camera002
+    100010: Camera002.Target
+    100012: Camera003
+    100014: Camera003.Target
+    100016: Camera004
+    100018: Camera004.Target
+    100020: Crown
+    100022: Face
+    100024: //RootNode
+    100026: Left_Arm
+    100028: Left_Hand
+    100030: Left_Leg
+    100032: Left_Leg 1
+    100034: mesh0006
+    100036: Moustache
+    100038: Right_Arm
+    100040: Right_Hand
+    100042: Right_Leg
+    100044: Right_Leg 1
+    400000: Box001
+    400002: Box002
+    400004: Camera001
+    400006: Camera001.Target
+    400008: Camera002
+    400010: Camera002.Target
+    400012: Camera003
+    400014: Camera003.Target
+    400016: Camera004
+    400018: Camera004.Target
+    400020: Crown
+    400022: Face
+    400024: //RootNode
+    400026: Left_Arm
+    400028: Left_Hand
+    400030: Left_Leg
+    400032: Left_Leg 1
+    400034: mesh0006
+    400036: Moustache
+    400038: Right_Arm
+    400040: Right_Hand
+    400042: Right_Leg
+    400044: Right_Leg 1
+    2300000: Box001
+    2300002: Box002
+    2300004: Crown
+    2300006: Face
+    2300008: Left_Arm
+    2300010: Left_Hand
+    2300012: Left_Leg
+    2300014: Left_Leg 1
+    2300016: mesh0006
+    2300018: Right_Arm
+    2300020: Right_Hand
+    2300022: Right_Leg
+    2300024: Right_Leg 1
+    3300000: Box001
+    3300002: Box002
+    3300004: Crown
+    3300006: Face
+    3300008: Left_Arm
+    3300010: Left_Hand
+    3300012: Left_Leg
+    3300014: Left_Leg 1
+    3300016: mesh0006
+    3300018: Right_Arm
+    3300020: Right_Hand
+    3300022: Right_Leg
+    3300024: Right_Leg 1
+    4300000: Face
+    4300002: Left_Leg
+    4300004: Right_Leg
+    4300006: Box002
+    4300008: Box001
+    4300010: mesh0006
+    4300012: Crown
+    4300014: Left_Leg
+    4300016: Right_Leg
+    4300018: Right_Arm
+    4300020: Left_Arm
+    4300022: Right_Hand
+    4300024: Left_Hand
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
