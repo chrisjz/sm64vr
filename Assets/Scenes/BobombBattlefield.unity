@@ -8988,7 +8988,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9134,6 +9134,10 @@ Prefab:
       propertyPath: m_Animation
       value: 
       objectReference: {fileID: 7400000, guid: 2b4e082ab1af09c49bab3763d096287b, type: 2}
+    - target: {fileID: 11100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: b848aec3de38c164990a339458129eac, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
   m_RootGameObject: {fileID: 1621894811}
@@ -11633,6 +11637,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 2b4e082ab1af09c49bab3763d096287b, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 2b4e082ab1af09c49bab3763d096287b, type: 2}
+  - {fileID: 7400000, guid: b848aec3de38c164990a339458129eac, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
