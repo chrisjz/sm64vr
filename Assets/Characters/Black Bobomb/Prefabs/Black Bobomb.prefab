@@ -81,13 +81,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 400008}
   - 111: {fileID: 11100000}
+  - 65: {fileID: 6500000}
   - 54: {fileID: 5400000}
   - 82: {fileID: 8200000}
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
-  - 65: {fileID: 6500000}
   m_Layer: 0
   m_Name: Black Bobomb
   m_TagString: Grabbable

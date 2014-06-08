@@ -26,6 +26,10 @@ ModelImporter:
     100040: Right_Hand
     100042: Right_Leg
     100044: Right_Leg 1
+    100046: Left_Knee
+    100048: Left_Moustache
+    100050: Right_Knee
+    100052: Right_Moustache
     400000: Box001
     400002: Box002
     400004: Camera001
@@ -49,6 +53,10 @@ ModelImporter:
     400040: Right_Hand
     400042: Right_Leg
     400044: Right_Leg 1
+    400046: Left_Knee
+    400048: Left_Moustache
+    400050: Right_Knee
+    400052: Right_Moustache
     2300000: Box001
     2300002: Box002
     2300004: Crown
@@ -62,6 +70,10 @@ ModelImporter:
     2300020: Right_Hand
     2300022: Right_Leg
     2300024: Right_Leg 1
+    2300026: Left_Knee
+    2300028: Left_Moustache
+    2300030: Right_Knee
+    2300032: Right_Moustache
     3300000: Box001
     3300002: Box002
     3300004: Crown
@@ -75,6 +87,10 @@ ModelImporter:
     3300020: Right_Hand
     3300022: Right_Leg
     3300024: Right_Leg 1
+    3300026: Left_Knee
+    3300028: Left_Moustache
+    3300030: Right_Knee
+    3300032: Right_Moustache
     4300000: Face
     4300002: Left_Leg
     4300004: Right_Leg
@@ -88,6 +104,27 @@ ModelImporter:
     4300020: Left_Arm
     4300022: Right_Hand
     4300024: Left_Hand
+    4300026: Left_Knee
+    4300028: Right_Knee
+    4300030: Right_Moustache
+    4300032: Left_Moustache
+    6400000: Box001
+    6400002: Box002
+    6400004: Crown
+    6400006: Face
+    6400008: Left_Arm
+    6400010: Left_Hand
+    6400012: Left_Leg
+    6400014: Left_Leg 1
+    6400016: mesh0006
+    6400018: Right_Arm
+    6400020: Right_Hand
+    6400022: Right_Leg
+    6400024: Right_Leg 1
+    6400026: Left_Knee
+    6400028: Left_Moustache
+    6400030: Right_Knee
+    6400032: Right_Moustache
     9500000: //RootNode
     11100000: //RootNode
   materials:
@@ -111,7 +148,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: .00999999978
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
