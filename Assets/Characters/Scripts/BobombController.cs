@@ -15,6 +15,14 @@ public class BobombController : EnemyController {
 		smoke = transform.Find ("Smoke");
 		defaultDeathTimer = deathTimer;
 	}
+
+	protected void OnCollisionEnter(Collision col) {
+		// Bobomb explodes when colliding with something whilst being thrown.
+		if (heldByPlayer && !IsHoldingEnemy () && (col.gameObject.name != "LeftHandCollider" ||
+		    	col.gameObject.name != "RightHandCollider")) {
+			deathTimer = 0;
+		}
+	}
 	
 	protected override void Init() {
 		deathTimer = defaultDeathTimer;

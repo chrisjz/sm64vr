@@ -81,11 +81,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 400008}
   - 111: {fileID: 11100000}
+  - 54: {fileID: 5400000}
   - 82: {fileID: 8200000}
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
-  - 54: {fileID: 5400000}
   m_Layer: 0
   m_Name: Goomba
   m_TagString: Untagged
@@ -488,6 +488,7 @@ MonoBehaviour:
   followSpeed: 12
   followAudioClip: {fileID: 0}
   pathTime: 30
+  playerDamage: 1
   respawnTime: -1
   knockbackVelocity: 30
   knockbackDuration: 1

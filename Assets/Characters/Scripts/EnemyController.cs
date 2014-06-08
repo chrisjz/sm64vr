@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour {
 	protected bool heldByPlayer; 								// If enemy has been held by player before
 	protected bool knockingBack;								// If enemy is currently being knocked back
 	protected bool dead; 										// If enemy is dead
+	protected bool defaultUseGravity;
 
 	// These are all the movement types that the enemy can do
 	protected enum Movement{Path, Follow, Freeze};
@@ -42,6 +43,10 @@ public class EnemyController : MonoBehaviour {
 		initAnimationName = animation.clip.name;
 		spawnPosition = transform.position;
 		spawnRotation = transform.rotation;
+
+		if (rigidbody) {
+			defaultUseGravity = rigidbody.useGravity;
+		}
 	}
 
 	protected virtual void Start() {
@@ -53,7 +58,11 @@ public class EnemyController : MonoBehaviour {
 		pathTimer = 0;
 		heldByPlayer = false;
 		knockingBack = false;
-		dead = false;
+		dead = false;		
+
+		if (rigidbody) {
+			rigidbody.useGravity = defaultUseGravity;
+		}
 	}
 
 	protected virtual void Update () {
@@ -85,29 +94,34 @@ public class EnemyController : MonoBehaviour {
 	
 	// If player is holding enemy then stop any enemy movement
 	protected void IsPlayerHoldingEnemy() {
-		bool isHoldingEnemy = false;
-		foreach (SixenseHandController playerHandController in playerHandControllers) {
-			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
-				isHoldingEnemy = true;
-				heldByPlayer = true;
-			}
-		}
-
-		if (isHoldingEnemy) {
+		if (IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
 			agent.enabled = false;
 		} else {
-			agent.enabled = true;
+			if (!heldByPlayer) {
+				agent.enabled = true;
+			} else {
+				if (rigidbody) {
+					rigidbody.useGravity = true;
+				}
+			}
+		}
+	}
+
+	protected bool IsHoldingEnemy () {
+		foreach (SixenseHandController playerHandController in playerHandControllers) {
+			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
+				heldByPlayer = true;
+				return true;
+			}
 		}
 
-		if (!isHoldingEnemy && heldByPlayer) {
-			agent.enabled = true;
-			movement = Movement.Follow;
-		}
+		return false;
 	}
 
 	protected virtual void FollowPlayer () {
 		iTween.Stop(gameObject);
+
 		agent.SetDestination (player.transform.position);
 		agent.speed = followSpeed;
 
