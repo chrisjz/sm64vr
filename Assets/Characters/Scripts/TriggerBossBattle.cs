@@ -6,7 +6,12 @@ public class TriggerBossBattle : MonoBehaviour {
 	public GameObject worldTheme;
 	public AudioClip bossAudioClip;
 
+	private BossController bossController;
 	private bool bossAudioPlaying;
+
+	void Awake () {
+		bossController = boss.GetComponent<BossController> ();
+	}
 
 	void Start () {
 		bossAudioPlaying = false;
@@ -17,6 +22,7 @@ public class TriggerBossBattle : MonoBehaviour {
 			worldTheme.audio.clip = bossAudioClip;
 			worldTheme.audio.Play ();
 			bossAudioPlaying = true;
+			bossController.SetInitBattle(true);
 		}
 	}
 

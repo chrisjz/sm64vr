@@ -1348,7 +1348,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &225546018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4138,10 +4138,10 @@ Transform:
   m_LocalPosition: {x: -46.0295029, y: 31.2496033, z: -188.096558}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1213835248}
   - {fileID: 1038225884}
   - {fileID: 225546017}
   - {fileID: 1655881385}
-  - {fileID: 1213835248}
   m_Father: {fileID: 1030981405}
   m_RootOrder: 7
 --- !u!1 &648345490
@@ -5949,7 +5949,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!23 &1038225885
 Renderer:
   m_ObjectHideFlags: 0
@@ -7436,7 +7436,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 3
+  m_RootOrder: 0
 --- !u!114 &1213835250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11537,10 +11537,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 1621894812}
   - 111: {fileID: 1621894816}
-  - 65: {fileID: 1621894818}
   - 135: {fileID: 1621894817}
   - 54: {fileID: 1621894815}
   - 82: {fileID: 1621894814}
+  - 195: {fileID: 1621894820}
+  - 114: {fileID: 1621894819}
   - 114: {fileID: 1621894813}
   m_Layer: 0
   m_Name: King Bobomb
@@ -11693,18 +11694,40 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: .115000002
   m_Center: {x: 0, y: .159999996, z: .0149999997}
---- !u!65 &1621894818
-BoxCollider:
+--- !u!114 &1621894819
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1621894811}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: .219999999, y: .317000002, z: .219999999}
-  m_Center: {x: 0, y: .159999996, z: .0149999997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c330f1bd2d8aff4c8e921d3f8143f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  followSpeed: 3
+  followAngularSpeed: 30
+--- !u!195 &1621894820
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1621894811}
+  m_Enabled: 1
+  m_Radius: .5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1625416120
 GameObject:
   m_ObjectHideFlags: 0
@@ -12130,7 +12153,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1655881386
 MonoBehaviour:
   m_ObjectHideFlags: 0

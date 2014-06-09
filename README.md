@@ -50,6 +50,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Add rotation to lifts when they reach top and bottom of cliff.
 * Replace goomba's jumping sound with correct one.
 * Replace goomba's running sound with correct one.
+* Walking sound for King Bob-omb.
 * Smoke effect when goomba disappears after being squished.
 * Sound for squishing goomba.
 * Goomba stops following player when player is past a certain distance away from goomba.
