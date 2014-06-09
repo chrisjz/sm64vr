@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour {
 	public float respawnTime = 1;					// Time until enemy respawns after death. Will not respawn if set to 0.
 	public float knockbackOtherForce = 30;			// Distance of how much a victim is knocked back on collission with enemy
 	public float knockbackEnemyForce = 50;			// Distance of how much enemy is knocked back on collission with other collider
+	public float reboundForce = 10;					// Rebound force on player
 	public float knockbackDuration = 1;				// Duration of enemy being knocked back
 
 	protected NavMeshAgent agent;
@@ -202,6 +203,19 @@ public class EnemyController : MonoBehaviour {
 		if (playerHealth) {
 			playerHealth.Damage(playerDamage);
 		}
+	}
+	
+	// Friendly bounce back of player on specific actions with enemy
+	protected void ReboundPlayer(bool pushUp = false) {
+		Vector3 dir = (player.transform.position - transform.position).normalized;
+
+		if (pushUp) {
+			dir.y = 1.0f;
+		}
+
+		CharacterMotor charMotor = player.GetComponent<CharacterMotor> ();
+		
+		charMotor.SetVelocity (dir * reboundForce);
 	}
 	
 	protected IEnumerator Death (float length) {

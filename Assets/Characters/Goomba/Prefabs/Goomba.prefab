@@ -317,7 +317,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300004, guid: 4d27e31cea892b0499ba8aff8028d5fc, type: 3}
 --- !u!64 &6400006
 MeshCollider:
@@ -492,9 +492,11 @@ MonoBehaviour:
   respawnTime: -1
   knockbackOtherForce: 30
   knockbackEnemyForce: 50
+  reboundForce: 20
   knockbackDuration: 1
   jumpAudioClip: {fileID: 8300000, guid: 22818c23f495d0f40b24e62cb3ead8fd, type: 3}
   stepAudioClip: {fileID: 8300000, guid: 9b928c69ea39e704e90cd47aa3eab4ab, type: 3}
+  squashTimeExtension: 3
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
