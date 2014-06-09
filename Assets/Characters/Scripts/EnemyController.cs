@@ -2,14 +2,15 @@
 using System.Collections;
 
 public class EnemyController : MonoBehaviour {
-	public float visionDistance = 15; 		// How far the enemy can see
+	public float visionDistance = 15; 				// How far the enemy can see
 	public float followSpeed = 12;
 	public AudioClip followAudioClip;
-	public float pathTime = 10; 			// Time taken for enemy to traverse its path
-	public int playerDamage = 1;			// Amount of damage player receives when hit by enemy
-	public float respawnTime = 1;			// Time until enemy respawns after death. Will not respawn if set to 0.
-	public float knockbackVelocity = 30;	// Distance of how much a victim is knocked back on collission with enemy
-	public float knockbackDuration = 1;		// Duration of enemy being knocked back
+	public float pathTime = 10; 					// Time taken for enemy to traverse its path
+	public int playerDamage = 1;					// Amount of damage player receives when hit by enemy
+	public float respawnTime = 1;					// Time until enemy respawns after death. Will not respawn if set to 0.
+	public float knockbackOtherForce = 30;			// Distance of how much a victim is knocked back on collission with enemy
+	public float knockbackEnemyForce = 50;			// Distance of how much enemy is knocked back on collission with other collider
+	public float knockbackDuration = 1;				// Duration of enemy being knocked back
 
 	protected NavMeshAgent agent;
 	protected GameObject player;
@@ -161,17 +162,25 @@ public class EnemyController : MonoBehaviour {
 		iTween.Stop(gameObject);
 	}
 	
-	protected virtual void Knockback(GameObject knocker, GameObject victim) {
+	protected virtual void Knockback(GameObject knocker, GameObject victim, GameObject collider = null) {
 		Vector3 dir = (victim.transform.position - knocker.transform.position).normalized;
-		dir.y = 0;
 
 		if (victim == player) {
 			CharacterMotor charMotor = player.GetComponent<CharacterMotor> ();
-			charMotor.SetVelocity (dir * knockbackVelocity);
+			dir.y = 0;
+
+			charMotor.SetVelocity (dir * knockbackOtherForce);
 			DamagePlayer();
 		} else if (victim.rigidbody && !knockingBack) {
+			SixenseHandController hand = collider.transform.parent.gameObject.GetComponent<SixenseHandController>();
+			float force = knockbackEnemyForce;
+
+			if (hand) {
+				force *= hand.GetHandVelocity();
+			}
+
 			movement = Movement.Freeze;
-			victim.rigidbody.AddForce(dir * knockbackVelocity * 10);			
+			victim.rigidbody.AddForce(dir * force);
 			knockingBack = true;
 			StartCoroutine(KnockbackEnemy(knockbackDuration));
 		}

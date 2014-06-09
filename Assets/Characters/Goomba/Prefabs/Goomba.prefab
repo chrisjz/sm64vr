@@ -490,7 +490,8 @@ MonoBehaviour:
   pathTime: 30
   playerDamage: 1
   respawnTime: -1
-  knockbackVelocity: 30
+  knockbackOtherForce: 30
+  knockbackEnemyForce: 50
   knockbackDuration: 1
   jumpAudioClip: {fileID: 8300000, guid: 22818c23f495d0f40b24e62cb3ead8fd, type: 3}
   stepAudioClip: {fileID: 8300000, guid: 9b928c69ea39e704e90cd47aa3eab4ab, type: 3}

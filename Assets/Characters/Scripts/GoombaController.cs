@@ -17,7 +17,7 @@ public class GoombaController : EnemyController {
 			base.Knockback(this.gameObject, player);
 		} else if (col.gameObject.name == "LeftHandCollider" ||
 		           col.gameObject.name == "RightHandCollider") {
-			base.Knockback(player, this.gameObject);
+			base.Knockback(player, this.gameObject, col.gameObject);
 		} else if (col.gameObject.name == "LeftFootCollider" ||
 		           col.gameObject.name == "RightFootCollider") {
 			StartCoroutine (Squash ());
