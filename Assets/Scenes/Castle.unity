@@ -558,6 +558,7 @@ MonoBehaviour:
   Hand: 2
   Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
   minGrabDistance: 2
+  throwForce: 30
 --- !u!1001 &50632726
 Prefab:
   m_ObjectHideFlags: 0
@@ -4149,6 +4150,7 @@ MonoBehaviour:
   Hand: 1
   Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
   minGrabDistance: 2
+  throwForce: 30
 --- !u!1 &628148582
 GameObject:
   m_ObjectHideFlags: 0
@@ -9135,6 +9137,46 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!1 &1396191276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1396191278}
+  - 114: {fileID: 1396191277}
+  m_Layer: 0
+  m_Name: Debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1396191277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396191276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101a6811668c2f34191947638ba0c34e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: 1
+--- !u!4 &1396191278
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396191276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &1402654895
 GameObject:
   m_ObjectHideFlags: 0
@@ -13058,6 +13100,7 @@ GameObject:
   - 114: {fileID: 2002403180}
   - 114: {fileID: 2002403179}
   - 114: {fileID: 2002403185}
+  - 114: {fileID: 2002403186}
   - 114: {fileID: 2002403184}
   - 114: {fileID: 2002403178}
   - 82: {fileID: 2002403183}
@@ -13306,6 +13349,20 @@ MonoBehaviour:
   respawnTime: 3
   hurtAudioClip: {fileID: 8300000, guid: e862191d8a2959f478578bc20a80b2bd, type: 3}
   deathAudioClip: {fileID: 8300000, guid: 71e0b521ff33f4a44ab42219470cc8d7, type: 3}
+--- !u!114 &2002403186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400030, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 166827470}
+  m_GameObject: {fileID: 2002403176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c5bf830e72ae54fa71c5eb9db0d54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushPower: 2
+  weight: 2
 --- !u!1001 &2005658827
 Prefab:
   m_ObjectHideFlags: 0
