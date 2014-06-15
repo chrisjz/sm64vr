@@ -1296,7 +1296,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &225546018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4090,10 +4090,10 @@ Transform:
   m_LocalPosition: {x: -46.0295029, y: 31.2496033, z: -188.096558}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1213835248}
   - {fileID: 1038225884}
   - {fileID: 225546017}
   - {fileID: 1655881385}
-  - {fileID: 1213835248}
   m_Father: {fileID: 1030981405}
   m_RootOrder: 7
 --- !u!1 &648345490
@@ -5901,7 +5901,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!23 &1038225885
 Renderer:
   m_ObjectHideFlags: 0
@@ -6968,6 +6968,14 @@ Prefab:
       propertyPath: movement.maxForwardSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 11400022, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
+      propertyPath: movement.maxSidewaysSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400018, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
+      propertyPath: sensitivityX
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
   m_RootGameObject: {fileID: 1833210254}
@@ -7440,7 +7448,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 3
+  m_RootOrder: 0
 --- !u!114 &1213835250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8948,7 +8956,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9134,6 +9142,10 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: .0147524197
       objectReference: {fileID: 0}
+    - target: {fileID: 11100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
+      propertyPath: m_Animations.Array.data[5]
+      value: 
+      objectReference: {fileID: 7400000, guid: cb76989483360094ab2323f18f4fefd6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
   m_RootGameObject: {fileID: 1621894811}
@@ -11722,6 +11734,7 @@ Animation:
   - {fileID: 7400000, guid: 02804379e65888c4d98817624443f597, type: 2}
   - {fileID: 7400000, guid: 8c1496f914d19564e835568fc4b324d0, type: 2}
   - {fileID: 7400000, guid: a11cc4bdd4397ff4e903d08fc23a7dee, type: 2}
+  - {fileID: 7400000, guid: cb76989483360094ab2323f18f4fefd6, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -11753,6 +11766,7 @@ MonoBehaviour:
   followSpeed: 3
   followAngularSpeed: 30
   playerCarrySpeed: 5
+  playerCarryTurnSpeed: 2
   minHurtAltitude: 75
   terrain: {fileID: 533441662}
   hurtAudioClip: {fileID: 8300000, guid: 47be779dfdf470246b25af447c6ffb3e, type: 3}
@@ -12201,7 +12215,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1655881386
 MonoBehaviour:
   m_ObjectHideFlags: 0

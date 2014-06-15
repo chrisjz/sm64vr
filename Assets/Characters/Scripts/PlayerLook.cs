@@ -24,7 +24,14 @@ public class PlayerLook : MonoBehaviour {
 
 	protected float axisX, axisY;
 
-	void Start () {
+	private float defaultSensitivityX, defaultSensitivityY;
+
+	protected virtual void Awake () {
+		defaultSensitivityX = sensitivityX;
+		defaultSensitivityY = sensitivityY;
+	}
+
+	protected virtual void Start () {
 		// Make the rigid body not change rotation
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
@@ -52,5 +59,13 @@ public class PlayerLook : MonoBehaviour {
 			
 			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
 		}
+	}
+	
+	public float getDefaultSensitivityX () {
+		return defaultSensitivityX;
+	}
+	
+	public float getDefaultSensitivityY () {
+		return defaultSensitivityY;
 	}
 }

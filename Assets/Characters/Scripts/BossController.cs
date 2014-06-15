@@ -6,7 +6,8 @@ public class BossController : MonoBehaviour {
 	public float followSpeed = 3;
 	public float followAngularSpeed = 30;
 	public float playerCarrySpeed = 5;							// Walking speed of player when carrying boss
-	public float minHurtAltitude = 0;								// The min altitude that boss must be at to be hurt by player
+	public float playerCarryTurnSpeed = 2;						// Turn speed of player when carrying boss
+	public float minHurtAltitude = 0;							// The min altitude that boss must be at to be hurt by player
 	public GameObject terrain;									// Terrain that the boss stands on
 	public AudioClip hurtAudioClip;								// Sound when boss gets hurt
 	
@@ -14,6 +15,8 @@ public class BossController : MonoBehaviour {
 	protected GameObject player;
 	protected CharacterMotor motor;
 	protected FPSInputController playerController;
+	protected PlayerLook playerLook;
+	protected HydraLook playerHydraLook;
 	protected PlayerHealth playerHealth;
 	protected SixenseHandController[] playerHandControllers;
 	protected Movement movement;
@@ -34,6 +37,8 @@ public class BossController : MonoBehaviour {
 		player = GameObject.FindWithTag("Player");
 		motor = player.GetComponent<CharacterMotor> ();
 		playerController = player.GetComponent<FPSInputController> ();
+		playerLook = player.GetComponent<PlayerLook> ();
+		playerHydraLook = player.GetComponent<HydraLook> ();
 		playerHealth = player.GetComponent<PlayerHealth> ();
 		playerHandControllers = player.GetComponentsInChildren<SixenseHandController> ();
 		defaultHealth = health;
@@ -110,11 +115,9 @@ public class BossController : MonoBehaviour {
 	protected void IsPlayerHoldingEnemy() {
 		if (IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
-			motor.movement.maxForwardSpeed = playerCarrySpeed;
-			motor.movement.maxBackwardsSpeed = playerCarrySpeed;
+			ChangePlayerSpeed(true);
 		} else {
-			motor.movement.maxForwardSpeed = playerController.getDefaultMaxForwardSpeed();
-			motor.movement.maxBackwardsSpeed = playerController.getDefaultMaxForwardSpeed();
+			ChangePlayerSpeed(false);
 			if (!heldByPlayer) {
 				agent.enabled = true;
 			} else {
@@ -130,11 +133,25 @@ public class BossController : MonoBehaviour {
 		foreach (SixenseHandController playerHandController in playerHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
 				heldByPlayer = true;
+				animation["Walk"].speed = 3;
 				return true;
 			}
 		}
 		
 		return false;
+	}
+	protected void ChangePlayerSpeed (bool change) {
+		if (change) {
+			motor.movement.maxForwardSpeed = playerCarrySpeed;
+			motor.movement.maxBackwardsSpeed = playerCarrySpeed;
+			playerLook.sensitivityX = playerCarryTurnSpeed;
+			playerHydraLook.sensitivityX = playerCarryTurnSpeed;
+		} else {
+			motor.movement.maxForwardSpeed = playerController.getDefaultMaxForwardSpeed();
+			motor.movement.maxBackwardsSpeed = playerController.getDefaultMaxForwardSpeed();
+			playerLook.sensitivityX = playerLook.getDefaultSensitivityX();
+			playerHydraLook.sensitivityX = playerHydraLook.getDefaultSensitivityX();
+		}
 	}
 
 	protected virtual void FollowPlayer() {
