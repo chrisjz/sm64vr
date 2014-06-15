@@ -10,7 +10,6 @@ public class Debugger : MonoBehaviour {
 	void Start () {		
 		player = GameObject.FindWithTag("Player");
 		curSceneName = Application.loadedLevelName;
-		Debug.Log(curSceneName);
 	}
 	
 	void Update () {

@@ -11,12 +11,16 @@ public class FPSInputController : MonoBehaviour {
 
 	private CharacterMotor motor;
 	private GameObject avatar;
+	private float defaultMaxForwardSpeed;
+	private float defaultMaxBackwardsSpeed;
 	private bool inputEnabled;					// If input is enabled/disabled
 	
 	// Use this for initialization
 	void  Awake (){
 		motor = GetComponent<CharacterMotor>();
 		avatar = transform.FindChild("Avatar").gameObject;
+		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
+		defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
 	}
 
 	void Start() {
@@ -96,5 +100,13 @@ public class FPSInputController : MonoBehaviour {
 				Physics.IgnoreCollision(col, collider);
 			}
 		}
+	}
+	
+	public float getDefaultMaxForwardSpeed () {
+		return defaultMaxForwardSpeed;
+	}
+	
+	public float getDefaultMaxBackwardsSpeed () {
+		return defaultMaxForwardSpeed;
 	}
 }

@@ -2965,6 +2965,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 92d8e1265463f3c4bb5bb7d2fe6d0fe5, type: 3}
+      propertyPath: m_Name
+      value: Bobomb Battlefield
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92d8e1265463f3c4bb5bb7d2fe6d0fe5, type: 3}
   m_RootGameObject: {fileID: 533441662}
@@ -3470,7 +3474,7 @@ GameObject:
   - 64: {fileID: 533441664}
   - 95: {fileID: 533441663}
   m_Layer: 8
-  m_Name: bobomb battlefield
+  m_Name: Bobomb Battlefield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6959,6 +6963,10 @@ Prefab:
     - target: {fileID: 400124, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400022, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
+      propertyPath: movement.maxForwardSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
@@ -11744,6 +11752,10 @@ MonoBehaviour:
   health: 3
   followSpeed: 3
   followAngularSpeed: 30
+  playerCarrySpeed: 5
+  minHurtAltitude: 75
+  terrain: {fileID: 533441662}
+  hurtAudioClip: {fileID: 8300000, guid: 47be779dfdf470246b25af447c6ffb3e, type: 3}
 --- !u!195 &1621894820
 NavMeshAgent:
   m_ObjectHideFlags: 0
