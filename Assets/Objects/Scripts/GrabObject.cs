@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GrabObject : MonoBehaviour {
 	public bool isEnabled = true;
-	public bool invertRightHand = true; // invert orientation of grabbed object when held by right hand
+	public bool invertRightHand = true; 						// invert orientation of grabbed object when held by right hand
+	public float additionalThrowForce = 0;						// Additional force added to object when thrown
 	public Vector3 positionModifier = new Vector3 (0, 0, 0);
 	public Vector3 rotationModifier = new Vector3 (0, 0, 0);
 	public Vector3 invertRotationModifier = new Vector2 ();

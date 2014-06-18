@@ -99,6 +99,7 @@ public class EnemyController : MonoBehaviour {
 		if (IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
 			agent.enabled = false;
+			rigidbody.useGravity = false;
 		} else {
 			if (!heldByPlayer) {
 				agent.enabled = true;

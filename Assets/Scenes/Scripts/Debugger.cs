@@ -5,7 +5,12 @@ public class Debugger : MonoBehaviour {
 	public bool enable = false;
 	
 	private GameObject player;
+	private KonamiCode konamiCode;
 	private string curSceneName;
+
+	void Awake () {
+		konamiCode = GetComponent<KonamiCode> ();
+	}
 	
 	void Start () {		
 		player = GameObject.FindWithTag("Player");
@@ -13,6 +18,11 @@ public class Debugger : MonoBehaviour {
 	}
 	
 	void Update () {
+		// Enable if user enters konami code
+		if (konamiCode && konamiCode.IsKonamiCodeEnabled ()) {
+			enable = true;
+		}
+
 		if (!enable) {
 			return;
 		}

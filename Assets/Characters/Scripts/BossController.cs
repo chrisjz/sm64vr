@@ -8,6 +8,9 @@ public class BossController : MonoBehaviour {
 	public float playerCarrySpeed = 5;							// Walking speed of player when carrying boss
 	public float playerCarryTurnSpeed = 2;						// Turn speed of player when carrying boss
 	public float minHurtAltitude = 0;							// The min altitude that boss must be at to be hurt by player
+	public float heldFixedRotationX;							// Keep the boss rotated on axis X at this value when held by player
+	public string heldAnimationName;							// Name of animation clip when player holds boss
+	public float heldAnimationSpeed;							// How fast animation runs when boss held by player
 	public GameObject terrain;									// Terrain that the boss stands on
 	public AudioClip hurtAudioClip;								// Sound when boss gets hurt
 	
@@ -25,8 +28,8 @@ public class BossController : MonoBehaviour {
 	protected float defaultAngularSpeed;
 	protected bool initBattle = false;
 	protected bool startedBattle = false;
-	protected bool heldByPlayer; 								// If boss has been held by player before
-	protected bool isBeingThrown;								// If boss is currently being thrown
+	protected bool isHeldByPlayer;	 							// If boss is currently being held by player
+	protected bool wasHeldByPlayer; 							// If boss has been held by player before
 	protected bool isBeingHurt;
 
 	// These are all the movement types that the enemy can do
@@ -49,12 +52,12 @@ public class BossController : MonoBehaviour {
 
 	protected virtual void Start () {
 		health = defaultHealth;
-
-		heldByPlayer = false;
-		isBeingThrown = false;
+		
+		isHeldByPlayer = false;
+		wasHeldByPlayer = false;
 		isBeingHurt = false;
 
-		IgnorePlayerHandColliders ();
+		TriggerIgnorePlayerHandColliders (true);
 	}
 	
 	protected virtual void Update () {
@@ -76,7 +79,7 @@ public class BossController : MonoBehaviour {
 	}
 	
 	protected void OnCollisionEnter(Collision col) {
-		if (col.gameObject.name == terrain.name && isBeingThrown && !isBeingHurt && transform.position.y > minHurtAltitude) {
+		if (col.gameObject.name == terrain.name && !isHeldByPlayer && wasHeldByPlayer && !isBeingHurt && transform.position.y > minHurtAltitude) {
 			StartCoroutine(Hurt(hurtAudioClip.length));
 		}
 	}
@@ -89,10 +92,23 @@ public class BossController : MonoBehaviour {
 			audio.Play();
 		}
 		yield return new WaitForSeconds(length);
-		isBeingThrown = false;
-		heldByPlayer = false;
-		isBeingHurt = false;
+		rigidbody.freezeRotation = false;
+		StartCoroutine(SitBackUp(5));
 
+	}
+
+	// Boss will return back to their feet after fallen onto ground
+	protected IEnumerator SitBackUp (float length) {
+		// Transition between fallen on back to standing up
+		transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler(new Vector3 (0, transform.rotation.y, transform.rotation.z)), length);
+		yield return new WaitForSeconds(length);
+		// Stop ignoring player colliders
+		TriggerIgnorePlayerColliders(false);
+
+		agent.enabled = true;
+		wasHeldByPlayer = false;
+		isBeingHurt = false;
+		movement = Movement.Follow;
 	}
 	
 	protected virtual void StartBattle() {
@@ -116,15 +132,15 @@ public class BossController : MonoBehaviour {
 		if (IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
 			ChangePlayerSpeed(true);
+			rigidbody.useGravity = false;
+			rigidbody.freezeRotation = true;
+			
+			// Ignore player colliders when held by player
+			TriggerIgnorePlayerColliders(true);
 		} else {
 			ChangePlayerSpeed(false);
-			if (!heldByPlayer) {
-				agent.enabled = true;
-			} else {
-				if (rigidbody) {
-					rigidbody.useGravity = true;
-				}
-				isBeingThrown = true;
+			if (rigidbody) {
+				rigidbody.useGravity = true;
 			}
 		}
 	}
@@ -132,14 +148,20 @@ public class BossController : MonoBehaviour {
 	protected bool IsHoldingEnemy () {
 		foreach (SixenseHandController playerHandController in playerHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
-				heldByPlayer = true;
-				animation["Walk"].speed = 3;
+				isHeldByPlayer = true;
+				wasHeldByPlayer = true;
+				animation[heldAnimationName].speed = heldAnimationSpeed;
+				if (heldFixedRotationX >= -360 && heldFixedRotationX <= 360) {
+					transform.rotation = Quaternion.Euler(new Vector3 (heldFixedRotationX, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
+				}
 				return true;
 			}
 		}
 		
+		isHeldByPlayer = false;
 		return false;
 	}
+
 	protected void ChangePlayerSpeed (bool change) {
 		if (change) {
 			motor.movement.maxForwardSpeed = playerCarrySpeed;
@@ -164,13 +186,32 @@ public class BossController : MonoBehaviour {
 		agent.enabled = false;
 	}
 
-	protected void IgnorePlayerHandColliders () {
+	protected void TriggerIgnorePlayerHandColliders (bool state) {
 		foreach (SixenseHandController playerHandController in playerHandControllers) {
-			Collider[] cols = playerHandController.GetComponentsInChildren<Collider>();
+			Collider[] cols = GetComponentsInChildren<Collider>();
+			Collider[] playerHandCols = playerHandController.GetComponentsInChildren<Collider>();
 			
-			foreach (Collider col in cols) {
-				Physics.IgnoreCollision(col, collider);
+			foreach (Collider playerHandCol in playerHandCols) {
+				foreach (Collider col in cols) {
+					Physics.IgnoreCollision(playerHandCol, col, state);
+				}
 			}
+		}
+	}
+
+	protected void TriggerIgnorePlayerColliders (bool state) {
+		Collider[] cols = GetComponentsInChildren<Collider>();
+		Collider[] playerCols = player.GetComponentsInChildren<Collider>();
+		
+		foreach (Collider playerCol in playerCols) {
+			foreach (Collider col in cols) {
+				Physics.IgnoreCollision(playerCol, col, state);
+			}
+		}
+		
+		// Always ignore player hand colliders
+		if (!state) {
+			TriggerIgnorePlayerHandColliders(true);
 		}
 	}
 	

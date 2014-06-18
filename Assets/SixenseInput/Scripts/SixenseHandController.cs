@@ -122,10 +122,16 @@ public class SixenseHandController : SixenseObjectController
 
 	// Throw the held object once player lets go based on hand velocity
 	protected void Throw () {
-		if (closestObject.rigidbody) {			
+		if (closestObject.rigidbody) {
+			grabObject = closestObject.GetComponent<GrabObject>();
 			Vector3 dir = (closestObject.transform.position - transform.position).normalized;
+			float additionalThrowForce = 0;
 
-			closestObject.rigidbody.AddForce(dir * handVelocity * throwForce);
+			if (grabObject) {
+				additionalThrowForce += grabObject.additionalThrowForce;
+			}
+
+			closestObject.rigidbody.AddForce(dir * handVelocity * (throwForce + additionalThrowForce));
 		}
 	}
 	
