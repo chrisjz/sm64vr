@@ -164,23 +164,24 @@ public class EnemyController : MonoBehaviour {
 		iTween.Stop(gameObject);
 	}
 	
-	protected virtual void Knockback(GameObject knocker, GameObject victim, GameObject collider = null) {
+	public virtual void Knockback(GameObject knocker, GameObject victim, GameObject collider = null, float forceMultiplier = 1) {
 		Vector3 dir = (victim.transform.position - knocker.transform.position).normalized;
 
 		if (victim == player) {
 			CharacterMotor charMotor = player.GetComponent<CharacterMotor> ();
 			dir.y = 0;
 
-			charMotor.SetVelocity (dir * knockbackOtherForce);
+			charMotor.SetVelocity (dir * knockbackOtherForce * forceMultiplier);
 			DamagePlayer();
 		} else if (victim.rigidbody && !knockingBack) {
-			SixenseHandController hand = collider.transform.parent.gameObject.GetComponent<SixenseHandController>();
 			float force = knockbackEnemyForce;
 
-			if (hand) {
-				force *= hand.GetHandVelocity();
+			if (collider) {
+				// Increase the force if the collider was part of a hand object
+				force *= GetKnockersHandVelocity(collider);
 			}
 
+			force *= forceMultiplier;
 			movement = Movement.Freeze;
 			victim.rigidbody.AddForce(dir * force);
 			knockingBack = true;
@@ -189,6 +190,7 @@ public class EnemyController : MonoBehaviour {
 	}
 	
 	protected IEnumerator KnockbackEnemy (float length) {
+		animation.Stop ();
 		yield return new WaitForSeconds(length);
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
@@ -196,7 +198,18 @@ public class EnemyController : MonoBehaviour {
 		knockingBack = false;
 		dead = true;
 		ToggleVisibility ();
+		animation.Play ();
 		StartCoroutine(Death(1));
+	}
+
+	protected float GetKnockersHandVelocity (GameObject collider) {
+		SixenseHandController hand = collider.transform.parent.gameObject.GetComponent<SixenseHandController>();
+		
+		if (hand) {
+			return hand.GetHandVelocity();
+		}
+
+		return 1;
 	}
 
 	protected void DamagePlayer() {

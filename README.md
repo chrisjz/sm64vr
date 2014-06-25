@@ -46,6 +46,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Big block that blows up when punched.
 * Collider for fences.
 * Increase frequency of boulders coming down the mountain.
+* If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
 * Transition to Bob-omb Battlefield when jumping into its painting.
 * Add rotation to lifts when they reach top and bottom of cliff.
 * Replace goomba's jumping sound with correct one.

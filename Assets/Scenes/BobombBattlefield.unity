@@ -1296,7 +1296,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &225546018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4090,10 +4090,10 @@ Transform:
   m_LocalPosition: {x: -46.0295029, y: 31.2496033, z: -188.096558}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1213835248}
   - {fileID: 1038225884}
   - {fileID: 225546017}
   - {fileID: 1655881385}
-  - {fileID: 1213835248}
   m_Father: {fileID: 1030981405}
   m_RootOrder: 7
 --- !u!1 &648345490
@@ -5901,7 +5901,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!23 &1038225885
 Renderer:
   m_ObjectHideFlags: 0
@@ -7449,7 +7449,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 3
+  m_RootOrder: 0
 --- !u!114 &1213835250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10682,6 +10682,10 @@ Prefab:
       propertyPath: m_RootMapOrder
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 9f44d1c7ba0896d4aa87805b53d9c3f2, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f44d1c7ba0896d4aa87805b53d9c3f2, type: 2}
   m_RootGameObject: {fileID: 2116792416}
@@ -12281,7 +12285,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 641566603}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1655881386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13633,6 +13637,7 @@ MonoBehaviour:
   knockbackDuration: 1
   deathTimer: 5
   damageRadius: 5
+  explosionEnemyForce: 10
   explosionAudioClip: {fileID: 8300000, guid: 49e074fb4ebf0eb448bda9de98855810, type: 3}
 --- !u!195 &1809688365
 NavMeshAgent:
@@ -15571,7 +15576,7 @@ GameObject:
   - 114: {fileID: 2116792421}
   m_Layer: 0
   m_Name: Goomba
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

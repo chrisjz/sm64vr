@@ -4,6 +4,7 @@ using System.Collections;
 public class BobombController : EnemyController {
 	public float deathTimer = 5; 			// Seconds until bobomb explodes
 	public float damageRadius = 5; 			// Radius where objects get damaged from source of bobomb's explosion
+	public float explosionEnemyForce = 10;	// Extra force on knocking back enemies within detonation radius
 	public AudioClip explosionAudioClip;
 	
 	private Transform smoke;
@@ -63,7 +64,7 @@ public class BobombController : EnemyController {
 		explosion.transform.position = transform.position;
 		dead = true;
 		yield return new WaitForSeconds(length);
-		DamagePlayersInRadius ();
+		DamageObjectsInRadius ();
 		audio.clip = explosionAudioClip;
 		audio.Play();
 		smoke.particleSystem.Stop ();
@@ -71,11 +72,29 @@ public class BobombController : EnemyController {
 		StartCoroutine(Death(explosionAudioClip.length));
 	}
 
+	protected void DamageObjectsInRadius() {
+		DamagePlayersInRadius ();
+		DamageEnemiesInRadius ();
+	}
+
 	protected void DamagePlayersInRadius() {
 		if (player) {
 			float dist = Vector3.Distance(player.transform.position, transform.position);
 			if (dist < damageRadius)	{	
 				base.Knockback(gameObject, player.gameObject);
+			}
+		}
+	}
+
+	protected void DamageEnemiesInRadius() {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+
+		foreach (GameObject enemy in enemies) {
+			EnemyController enemyController = enemy.GetComponent<EnemyController>();
+			float dist = Vector3.Distance(enemy.transform.position, transform.position);
+
+			if (dist < damageRadius && enemyController)	{	
+				enemyController.Knockback(gameObject, enemy.gameObject, null, explosionEnemyForce);
 			}
 		}
 	}
