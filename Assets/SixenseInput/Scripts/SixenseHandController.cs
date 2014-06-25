@@ -1,4 +1,3 @@
-
 //
 // Copyright (C) 2013 Sixense Entertainment Inc.
 // All Rights Reserved
@@ -9,33 +8,30 @@ using System.Collections;
 
 public class SixenseHandController : SixenseObjectController
 {
-	public float					minGrabDistance = 1.0f;
-	public float					throwForce = 30.0f;			// Force multiplyer for throwing objects
-
-	private bool					isHoldingObject = false;
-	private GameObject				closestObject = null;
-	private GrabObject 				grabObject; 				// Script attached to grabbed object with grappling data on that object
-	private float					handVelocity;
-	private Vector3					handVector;
-	private Vector3					handPrevious;
-
+	protected Animator			m_animator = null;
+	protected float				m_fLastTriggerVal = 0.0f;
+	
 	protected override void Start() 
-	{		
+	{
+		// get the Animator
+		m_animator = this.gameObject.GetComponent<Animator>();
+		
 		base.Start();
 	}
 	
 	protected override void UpdateObject( SixenseInput.Controller controller )
 	{
+		if ( m_animator == null )
+		{
+			return;
+		}
 		
 		if ( controller.Enabled )  
 		{		
 			// Animation update
 			UpdateAnimationInput( controller );
-
-			// Action update
-			UpdateActionInput ( controller );
 		}
-				
+		
 		base.UpdateObject(controller);
 	}
 	
@@ -59,91 +55,65 @@ public class SixenseHandController : SixenseObjectController
 	}
 	
 	// Updates the animated object from controller input.
-	protected void UpdateAnimationInput( SixenseInput.Controller controller){}
-
-	protected void UpdateActionInput( SixenseInput.Controller controller) {
-		Vector3 currentPosition = new Vector3();
-		Quaternion currentRotation = new Quaternion();
-
-		Velocity();
-		
-		if (isHoldingObject && !controller.GetButton(SixenseButtons.TRIGGER)) {
-			Throw();
-
-			isHoldingObject = false;
-		}
-
-		if (Hand == SixenseHands.LEFT) {
-			currentPosition = GameObject.Find("LeftHandCollider").transform.position;
-			currentRotation = GameObject.Find("LeftHandCollider").transform.rotation;
-		}
-		if (Hand == SixenseHands.RIGHT) {
-			currentPosition = GameObject.Find("RightHandCollider").transform.position;
-			currentRotation = GameObject.Find("RightHandCollider").transform.rotation;
-		}
-		
-		if (!isHoldingObject) {
-			foreach (GameObject o in GameObject.FindGameObjectsWithTag ("Grabbable"))	
-			{	
-				float dist = Vector3.Distance(o.transform.position, currentPosition);
-				if (dist < minGrabDistance)	{	
-					closestObject = o;
-				}
-			}
-		}
-
-		if (closestObject != null && Vector3.Distance(closestObject.transform.position, currentPosition) < minGrabDistance && controller.GetButton(SixenseButtons.TRIGGER)) {
-			if (closestObject.rigidbody && closestObject.rigidbody.isKinematic) {
-				return;
-			}
-
-			grabObject = closestObject.GetComponent<GrabObject>();
-			if (grabObject && grabObject.isEnabled) {
-				closestObject.transform.position = currentPosition + grabObject.GetPosition(Hand);
-				closestObject.transform.rotation = currentRotation * Quaternion.Euler(grabObject.GetRotation(Hand));
-			} else {
-				closestObject.transform.position = currentPosition;
-				closestObject.transform.rotation = currentRotation;
-			}
-
-			isHoldingObject = true;
-		}
-	}
-
-	protected void Velocity () {
-		if (Time.deltaTime != 0)
+	protected void UpdateAnimationInput( SixenseInput.Controller controller)
+	{
+		// Point
+		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.ONE) : controller.GetButton(SixenseButtons.TWO) )
 		{
-			handVector = (transform.position - handPrevious) / Time.deltaTime;
-			handPrevious = transform.position; 
+			m_animator.SetBool( "Point", true );
 		}
-
-		handVelocity = Vector3.Magnitude(handVector);
-	}
-
-	// Throw the held object once player lets go based on hand velocity
-	protected void Throw () {
-		if (closestObject.rigidbody) {
-			grabObject = closestObject.GetComponent<GrabObject>();
-			Vector3 dir = (closestObject.transform.position - transform.position).normalized;
-			float additionalThrowForce = 0;
-
-			if (grabObject) {
-				additionalThrowForce += grabObject.additionalThrowForce;
-			}
-
-			closestObject.rigidbody.AddForce(dir * handVelocity * (throwForce + additionalThrowForce));
+		else
+		{
+			m_animator.SetBool( "Point", false );
 		}
-	}
-	
-	public GameObject GetClosestObject() {
-		return closestObject;
-	}
-	
-	public float GetHandVelocity() {
-		return handVelocity;
-	}
-
-	public bool IsHoldingObject() {
-		return isHoldingObject;
+		
+		// Grip Ball
+		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.TWO) : controller.GetButton(SixenseButtons.ONE)  )
+		{
+			m_animator.SetBool( "GripBall", true );
+		}
+		else
+		{
+			m_animator.SetBool( "GripBall", false );
+		}
+		
+		// Hold Book
+		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.THREE) : controller.GetButton(SixenseButtons.FOUR) )
+		{
+			m_animator.SetBool( "HoldBook", true );
+		}
+		else
+		{
+			m_animator.SetBool( "HoldBook", false );
+		}
+		
+		// Fist
+		float fTriggerVal = controller.Trigger;
+		fTriggerVal = Mathf.Lerp( m_fLastTriggerVal, fTriggerVal, 0.1f );
+		m_fLastTriggerVal = fTriggerVal;
+		
+		if ( fTriggerVal > 0.01f )
+		{
+			m_animator.SetBool( "Fist", true );
+		}
+		else
+		{
+			m_animator.SetBool( "Fist", false );
+		}
+		
+		m_animator.SetFloat("FistAmount", fTriggerVal);
+		
+		// Idle
+		if ( m_animator.GetBool("Fist") == false &&  
+		    m_animator.GetBool("HoldBook") == false && 
+		    m_animator.GetBool("GripBall") == false && 
+		    m_animator.GetBool("Point") == false )
+		{
+			m_animator.SetBool("Idle", true);
+		}
+		else
+		{
+			m_animator.SetBool("Idle", false);
+		}
 	}
 }

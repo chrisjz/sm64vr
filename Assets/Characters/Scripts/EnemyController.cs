@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour {
 	protected NavMeshAgent agent;
 	protected GameObject player;
 	protected PlayerHealth playerHealth;
-	protected SixenseHandController[] playerHandControllers;
+	protected HandController[] playerHandControllers;
 	protected RaycastHit hit;
 	protected Movement movement;
 	protected string initAnimationName;
@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour {
 		agent = this.GetComponent<NavMeshAgent> ();
 		player = GameObject.FindWithTag("Player");
 		playerHealth = player.GetComponent<PlayerHealth> ();
-		playerHandControllers = player.GetComponentsInChildren<SixenseHandController> ();
+		playerHandControllers = player.GetComponentsInChildren<HandController> ();
 		pathName = this.GetComponent<iTweenPath> ().pathName;
 		defaultSpeed = agent.speed;
 		initAnimationName = animation.clip.name;
@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	protected bool IsHoldingEnemy () {
-		foreach (SixenseHandController playerHandController in playerHandControllers) {
+		foreach (HandController playerHandController in playerHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
 				heldByPlayer = true;
 				return true;
@@ -203,7 +203,7 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	protected float GetKnockersHandVelocity (GameObject collider) {
-		SixenseHandController hand = collider.transform.parent.gameObject.GetComponent<SixenseHandController>();
+		HandController hand = collider.transform.parent.gameObject.GetComponent<HandController>();
 		
 		if (hand) {
 			return hand.GetHandVelocity();

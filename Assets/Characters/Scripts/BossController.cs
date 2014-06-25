@@ -21,7 +21,7 @@ public class BossController : MonoBehaviour {
 	protected PlayerLook playerLook;
 	protected HydraLook playerHydraLook;
 	protected PlayerHealth playerHealth;
-	protected SixenseHandController[] playerHandControllers;
+	protected HandController[] playerHandControllers;
 	protected Movement movement;
 	protected float defaultHealth;
 	protected float defaultSpeed;
@@ -43,7 +43,7 @@ public class BossController : MonoBehaviour {
 		playerLook = player.GetComponent<PlayerLook> ();
 		playerHydraLook = player.GetComponent<HydraLook> ();
 		playerHealth = player.GetComponent<PlayerHealth> ();
-		playerHandControllers = player.GetComponentsInChildren<SixenseHandController> ();
+		playerHandControllers = player.GetComponentsInChildren<HandController> ();
 		defaultHealth = health;
 		defaultSpeed = agent.speed;
 		defaultAngularSpeed = agent.angularSpeed;
@@ -146,7 +146,7 @@ public class BossController : MonoBehaviour {
 	}
 	
 	protected bool IsHoldingEnemy () {
-		foreach (SixenseHandController playerHandController in playerHandControllers) {
+		foreach (HandController playerHandController in playerHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
 				isHeldByPlayer = true;
 				wasHeldByPlayer = true;
@@ -187,7 +187,7 @@ public class BossController : MonoBehaviour {
 	}
 
 	protected void TriggerIgnorePlayerHandColliders (bool state) {
-		foreach (SixenseHandController playerHandController in playerHandControllers) {
+		foreach (HandController playerHandController in playerHandControllers) {
 			Collider[] cols = GetComponentsInChildren<Collider>();
 			Collider[] playerHandCols = playerHandController.GetComponentsInChildren<Collider>();
 			
