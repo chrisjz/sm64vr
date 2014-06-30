@@ -21,6 +21,8 @@ public class GoombaController : EnemyController {
 		} else if (col.gameObject.name == "LeftHandCollider" ||
 		           col.gameObject.name == "RightHandCollider") {
 			base.Knockback(player, this.gameObject, col.gameObject);
+		} else if (col.gameObject.tag == "Grabbable") {
+			base.Knockback(col.gameObject, this.gameObject);
 		} else if (col.gameObject.name == "LeftFootCollider" ||
 		           col.gameObject.name == "RightFootCollider") {
 			if (!squashed) {

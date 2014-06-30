@@ -13671,6 +13671,7 @@ MonoBehaviour:
   respawnTime: 1
   knockbackOtherForce: 30
   knockbackEnemyForce: 50
+  minKnockbackEnemyForce: 400
   reboundForce: 10
   knockbackDuration: 1
   deathTimer: 5
@@ -15876,6 +15877,7 @@ MonoBehaviour:
   respawnTime: -1
   knockbackOtherForce: 30
   knockbackEnemyForce: 50
+  minKnockbackEnemyForce: 400
   reboundForce: 20
   knockbackDuration: 1
   jumpAudioClip: {fileID: 8300000, guid: 22818c23f495d0f40b24e62cb3ead8fd, type: 3}

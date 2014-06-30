@@ -40,7 +40,6 @@ public class PlayerHealth : MonoBehaviour {
 
 			audio.clip = hurtAudioClip;
 			audio.Play();
-			Debug.Log ("Player health is " + health + "/" + maxHealth);
 			StartCoroutine (Invincibility (recoveryInvincibilityTime));
 		}
 	}

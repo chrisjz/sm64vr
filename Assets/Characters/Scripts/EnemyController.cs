@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour {
 	public float respawnTime = 1;					// Time until enemy respawns after death. Will not respawn if set to 0.
 	public float knockbackOtherForce = 30;			// Distance of how much a victim is knocked back on collission with enemy
 	public float knockbackEnemyForce = 50;			// Distance of how much enemy is knocked back on collission with other collider
+	public float minKnockbackEnemyForce = 400;		// The minimum distance the enemy is knocked back on collission with other collider
 	public float reboundForce = 10;					// Rebound force on player
 	public float knockbackDuration = 1;				// Duration of enemy being knocked back
 
@@ -182,6 +183,11 @@ public class EnemyController : MonoBehaviour {
 			}
 
 			force *= forceMultiplier;
+
+			if (minKnockbackEnemyForce > force) {
+				force = minKnockbackEnemyForce;
+			}
+
 			movement = Movement.Freeze;
 			victim.rigidbody.AddForce(dir * force);
 			knockingBack = true;
