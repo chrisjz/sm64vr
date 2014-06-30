@@ -2187,6 +2187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
+  disableRigidbodyWhenHeld: 1
   additionalThrowForce: 0
   positionModifier: {x: .0500000007, y: -.0500000007, z: .100000001}
   rotationModifier: {x: 0, y: 180, z: 0}
@@ -6191,6 +6192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
+  disableRigidbodyWhenHeld: 1
   additionalThrowForce: 0
   positionModifier: {x: .600000024, y: -.75, z: .699999988}
   rotationModifier: {x: 0, y: 0, z: 0}
@@ -11652,6 +11654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
+  disableRigidbodyWhenHeld: 1
   additionalThrowForce: 10
   positionModifier: {x: -.5, y: -1, z: -1}
   rotationModifier: {x: 90, y: 0, z: 0}
@@ -13642,6 +13645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
+  disableRigidbodyWhenHeld: 0
   additionalThrowForce: 0
   positionModifier: {x: 0, y: .5, z: .5}
   rotationModifier: {x: 90, y: 0, z: 0}
@@ -14894,6 +14898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
+  disableRigidbodyWhenHeld: 1
   additionalThrowForce: 0
   positionModifier: {x: .600000024, y: -.75, z: .699999988}
   rotationModifier: {x: 0, y: 0, z: 0}

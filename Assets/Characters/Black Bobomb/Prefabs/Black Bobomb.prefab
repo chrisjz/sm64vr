@@ -542,6 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
+  disableRigidbodyWhenHeld: 0
   additionalThrowForce: 0
   positionModifier: {x: 0, y: .5, z: .5}
   rotationModifier: {x: 90, y: 0, z: 0}
