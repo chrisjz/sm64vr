@@ -2026,7 +2026,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100138}
   m_LocalRotation: {x: .5, y: .5, z: -.5, w: .5}
-  m_LocalPosition: {x: .379020512, y: .291278601, z: -.382047772}
+  m_LocalPosition: {x: .37902081, y: .260062218, z: -.49639827}
   m_LocalScale: {x: .393700659, y: .393700778, z: .393700838}
   m_Children: []
   m_Father: {fileID: 400124}
@@ -2817,9 +2817,10 @@ MonoBehaviour:
   isEnabled: 1
   invertRightHand: 1
   additionalThrowForce: 0
-  positionModifier: {x: 0, y: 0, z: 0}
-  rotationModifier: {x: 0, y: 0, z: 0}
-  invertRotationModifier: {x: 180, y: 0, z: 0}
+  positionModifier: {x: .0500000007, y: -.0500000007, z: .100000001}
+  rotationModifier: {x: 0, y: 180, z: 0}
+  invertPositionModifier: {x: .5, y: 0, z: 0}
+  invertRotationModifier: {x: 180, y: 180, z: 0}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

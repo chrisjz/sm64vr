@@ -521,10 +521,13 @@ MonoBehaviour:
   pathTime: 20
   playerDamage: 2
   respawnTime: 1
-  knockbackVelocity: 30
+  knockbackOtherForce: 30
+  knockbackEnemyForce: 50
+  reboundForce: 10
   knockbackDuration: 1
   deathTimer: 5
   damageRadius: 5
+  explosionEnemyForce: 10
   explosionAudioClip: {fileID: 8300000, guid: 49e074fb4ebf0eb448bda9de98855810, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -539,8 +542,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
-  positionModifier: {x: -.5, y: 0, z: -1}
+  additionalThrowForce: 0
+  positionModifier: {x: 0, y: .5, z: .5}
   rotationModifier: {x: 90, y: 0, z: 0}
+  invertPositionModifier: {x: 0, y: 0, z: 0}
   invertRotationModifier: {x: -180, y: 180, z: 0}
 --- !u!114 &11400004
 MonoBehaviour:

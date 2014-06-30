@@ -7,14 +7,19 @@ public class GrabObject : MonoBehaviour {
 	public float additionalThrowForce = 0;						// Additional force added to object when thrown
 	public Vector3 positionModifier = new Vector3 (0, 0, 0);
 	public Vector3 rotationModifier = new Vector3 (0, 0, 0);
+	public Vector3 invertPositionModifier = new Vector3 ();
 	public Vector3 invertRotationModifier = new Vector2 ();
 	
 	private Vector3 defaultPositionModifier = new Vector3 (0, 0, 0);
 	private Vector3 defaultRotationModifier = new Vector3 (-180, 180, 0);
 	
 	public Vector3 GetPosition(SixenseHands Hand) {
-		if ( Hand == SixenseHands.LEFT || Hand == SixenseHands.RIGHT ) {
+		if ( Hand == SixenseHands.LEFT || (Hand == SixenseHands.RIGHT && !invertRightHand)) {
 			return positionModifier;
+		}
+		
+		if (Hand == SixenseHands.RIGHT) {
+			return positionModifier + invertPositionModifier;
 		}
 		
 		return defaultPositionModifier;
