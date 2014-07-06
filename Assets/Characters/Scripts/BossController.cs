@@ -11,7 +11,11 @@ public class BossController : MonoBehaviour {
 	public float heldFixedRotationX;							// Keep the boss rotated on axis X at this value when held by player
 	public string heldAnimationName;							// Name of animation clip when player holds boss
 	public float heldAnimationSpeed;							// How fast animation runs when boss held by player
+	public string grabAnimationName;							// Name of animation clip when boss grabs player
+	public string throwAnimationName;							// Name of animation clip when boss throws player
 	public GameObject terrain;									// Terrain that the boss stands on
+	public GameObject grabPerimeter;							// Area where boss will grab player if player enters the area.
+	public float minDistanceGrabPermimeter = 4;					// If player distance from grab perimeter less then this, player is grabbed.
 	public AudioClip hurtAudioClip;								// Sound when boss gets hurt
 	
 	protected NavMeshAgent agent;
@@ -31,9 +35,15 @@ public class BossController : MonoBehaviour {
 	protected bool isHeldByPlayer;	 							// If boss is currently being held by player
 	protected bool wasHeldByPlayer; 							// If boss has been held by player before
 	protected bool isBeingHurt;
+	protected bool isThrowingPlayer = false;
 
 	// These are all the movement types that the enemy can do
 	protected enum Movement{Follow, Freeze, Grab, Idle, Throw};
+	
+	protected GameObject startMarkerThrowPlayer;
+	protected GameObject endMarkerThrowPlayer;
+	protected float startTimeThrowPlayer;
+	protected float journeyLengthThrowPlayer;
 	
 	protected virtual void Awake () {
 		agent = this.GetComponent<NavMeshAgent> ();
@@ -44,6 +54,8 @@ public class BossController : MonoBehaviour {
 		playerHydraLook = player.GetComponent<HydraLook> ();
 		playerHealth = player.GetComponent<PlayerHealth> ();
 		playerHandControllers = player.GetComponentsInChildren<HandController> ();
+		startMarkerThrowPlayer = new GameObject();
+		endMarkerThrowPlayer = new GameObject ();
 		defaultHealth = health;
 		defaultSpeed = agent.speed;
 		defaultAngularSpeed = agent.angularSpeed;
@@ -67,6 +79,8 @@ public class BossController : MonoBehaviour {
 		
 		IsPlayerHoldingEnemy ();
 
+		IsPlayerInGrabPermimeter ();
+
 		switch (movement)
 		{
 		case Movement.Follow:
@@ -75,6 +89,16 @@ public class BossController : MonoBehaviour {
 		case Movement.Freeze:
 			Freeze ();
 			break;
+		}
+
+		if (isThrowingPlayer) {
+			float distCovered = (Time.time - startTimeThrowPlayer) * 20.0f;
+			float fracJourney = distCovered / journeyLengthThrowPlayer;
+			player.transform.position = Vector3.Lerp(startMarkerThrowPlayer.transform.position, endMarkerThrowPlayer.transform.position, fracJourney);
+
+			if (fracJourney >= 1f) {
+				isThrowingPlayer = false;
+			}
 		}
 	}
 	
@@ -144,12 +168,43 @@ public class BossController : MonoBehaviour {
 			}
 		}
 	}
+
+	// Grab player if within grab perimeter
+	protected void IsPlayerInGrabPermimeter () {
+		float dist = Vector3.Distance(player.transform.position, grabPerimeter.transform.position);
+
+		if (dist < minDistanceGrabPermimeter) {
+			StartCoroutine(GrabPlayer ());
+		}
+	}
+
+	// Boss grabs player
+	protected IEnumerator GrabPlayer () {
+		Vector3 offset = new Vector3 (-5.0f, 3f, 0f);
+		animation.Play (grabAnimationName);
+		player.transform.position = transform.position + offset;
+		player.transform.forward = transform.forward;
+		yield return new WaitForSeconds(animation.clip.length);
+		ThrowPlayer ();
+	}
+
+	protected void ThrowPlayer () {
+		if (isThrowingPlayer) {
+			return;
+		}
+		startMarkerThrowPlayer.transform.position = player.transform.position;
+		endMarkerThrowPlayer.transform.position = startMarkerThrowPlayer.transform.position + new Vector3 (-20f, 10f, 0f);
+		startTimeThrowPlayer = Time.time;
+		journeyLengthThrowPlayer = Vector3.Distance(startMarkerThrowPlayer.transform.position, endMarkerThrowPlayer.transform.position);
+		isThrowingPlayer = true;
+	}
 	
 	protected bool IsHoldingEnemy () {
 		foreach (HandController playerHandController in playerHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
 				isHeldByPlayer = true;
 				wasHeldByPlayer = true;
+				animation.Play (heldAnimationName);
 				animation[heldAnimationName].speed = heldAnimationSpeed;
 				if (heldFixedRotationX >= -360 && heldFixedRotationX <= 360) {
 					transform.rotation = Quaternion.Euler(new Vector3 (heldFixedRotationX, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
