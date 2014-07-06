@@ -12633,7 +12633,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1909967704}
-  - 111: {fileID: 1909967706}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -12677,23 +12676,6 @@ Transform:
   - {fileID: 1255276251}
   m_Father: {fileID: 2002403177}
   m_RootOrder: 0
---- !u!111 &1909967706
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 29432e9eec65f33409c3f8e9d9dc5044,
-    type: 2}
-  m_PrefabInternal: {fileID: 166827470}
-  m_GameObject: {fileID: 1909967703}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
-  - {fileID: 7400000, guid: e1c1dfb878f95ec41904dc6b5a86f5f9, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1919671271
 GameObject:
   m_ObjectHideFlags: 0
@@ -13482,6 +13464,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
   - {fileID: 7400000, guid: e1c1dfb878f95ec41904dc6b5a86f5f9, type: 2}
+  - {fileID: 7400000, guid: eff515f3f6ff4c446bd6e9efa0c58c92, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0

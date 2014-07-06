@@ -145,17 +145,17 @@ AnimationClip:
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 13
+        tangentMode: 0
       - time: .0333333351
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 13
+        tangentMode: 0
       - time: .0500000045
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 105034984
+        tangentMode: 0
       - time: .0666666701
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
@@ -170,27 +170,27 @@ AnimationClip:
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 39
+        tangentMode: 0
       - time: .116666667
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 1087373312
+        tangentMode: 0
       - time: .13333334
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 16777473
+        tangentMode: 0
       - time: .150000006
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: -1045430272
+        tangentMode: 0
       - time: .166666672
         value: {x: -.999999464, y: .000521496811, z: -.000932498602, w: 3.98872459e-07}
         inSlope: {x: 0, y: 0, z: 0, w: 0}
         outSlope: {x: 0, y: 0, z: 0, w: 0}
-        tangentMode: 1103101952
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Abdomen
@@ -635,7 +635,7 @@ AnimationClip:
         value: {x: .00042394409, y: .997134686, z: .684297979}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 7209217
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/mixamorig:Hips
@@ -651,7 +651,7 @@ AnimationClip:
         value: {x: -.00661176397, y: 1.12390161, z: 1.38939691}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
+        tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Buttons
@@ -667,7 +667,7 @@ AnimationClip:
         value: {x: -.0135245221, y: 1.12390947, z: 1.38938415}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 4
+        tangentMode: 7209217
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Right_Foot
@@ -683,7 +683,7 @@ AnimationClip:
         value: {x: -.00661176397, y: 1.12390161, z: 1.38939691}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
+        tangentMode: 4
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Abdomen
@@ -691,22 +691,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: .000414704002, y: -1.3951143, z: -.38872546}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-      - time: .166666672
-        value: {x: .000414704002, y: -1.3951143, z: -.38872546}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    path: OVRCameraController/CameraRight/mixamorig:Head
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: {x: -.0065952423, y: 1.13453388, z: 1.39023614}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -715,7 +699,7 @@ AnimationClip:
         value: {x: -.0065952423, y: 1.13453388, z: 1.39023614}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 637796388
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Chest
@@ -731,7 +715,7 @@ AnimationClip:
         value: {x: -.00661176397, y: 1.12390161, z: 1.38939691}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
+        tangentMode: 4
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Right_Lower_Leg
@@ -747,7 +731,7 @@ AnimationClip:
         value: {x: -.00661176397, y: 1.12390161, z: 1.38939691}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 4
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Left_Lower_Leg
@@ -779,7 +763,7 @@ AnimationClip:
         value: {x: -.00661176397, y: 1.12390161, z: 1.38939691}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 3
+        tangentMode: 4
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Left_Upper_Leg
@@ -790,7 +774,7 @@ AnimationClip:
         value: {x: .00202328316, y: 1.11776328, z: 1.38937867}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: -1037565952
+        tangentMode: 0
       - time: .166666672
         value: {x: .00202328316, y: 1.11776328, z: 1.38937867}
         inSlope: {x: 0, y: 0, z: 0}
@@ -806,7 +790,7 @@ AnimationClip:
         value: {x: -.00661176397, y: 1.12390161, z: 1.38939691}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 1104674816
+        tangentMode: 0
       - time: .166666672
         value: {x: -.00661176397, y: 1.12390161, z: 1.38939691}
         inSlope: {x: 0, y: 0, z: 0}
@@ -815,6 +799,22 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: Avatar/Right_Upper_Leg
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: -.0100431442, z: -0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: .166666672
+        value: {x: 0, y: -.0100431442, z: -0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: Avatar
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -1652,63 +1652,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -.38872546
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .166666672
-        value: -.38872546
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_LocalPosition.z
-    path: OVRCameraController/CameraRight/mixamorig:Head
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: -1.3951143
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .166666672
-        value: -1.3951143
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_LocalPosition.y
-    path: OVRCameraController/CameraRight/mixamorig:Head
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: .000414704002
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: .166666672
-        value: .000414704002
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_LocalPosition.x
-    path: OVRCameraController/CameraRight/mixamorig:Head
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: .707106769
         inSlope: 0
         outSlope: 0
@@ -4086,6 +4029,63 @@ AnimationClip:
       m_PostInfinity: 2
     attribute: m_LocalRotation.w
     path: Avatar/Right_Upper_Leg
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .166666672
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.x
+    path: Avatar
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -.0100431442
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .166666672
+        value: -.0100431442
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.y
+    path: Avatar
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .166666672
+        value: -0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.z
+    path: Avatar
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
