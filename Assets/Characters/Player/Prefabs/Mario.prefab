@@ -957,7 +957,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400120}
-  - 95: {fileID: 9500004}
   - 111: {fileID: 11100000}
   m_Layer: 0
   m_Name: Avatar
@@ -990,6 +989,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400124}
   - 143: {fileID: 14300000}
+  - 111: {fileID: 11100002}
+  - 82: {fileID: 8200000}
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400022}
   - 114: {fileID: 11400020}
@@ -997,7 +998,6 @@ GameObject:
   - 114: {fileID: 11400030}
   - 114: {fileID: 11400026}
   - 114: {fileID: 11400018}
-  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -1314,7 +1314,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.94152546, z: .26404047}
+  m_LocalPosition: {x: 0, y: 1.94152546, z: .264040232}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400078}
@@ -2450,31 +2450,34 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
---- !u!95 &9500004
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100120}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: bd76cf04f47451f49a39a987eb4e155c, type: 3}
-  m_Controller: {fileID: 9100000, guid: 38285ab361dcc8747a0159eaa3156e3e, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100120}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
+  - {fileID: 7400000, guid: e1c1dfb878f95ec41904dc6b5a86f5f9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!111 &11100002
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100124}
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
+  - {fileID: 7400000, guid: e1c1dfb878f95ec41904dc6b5a86f5f9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -2816,6 +2819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
+  disableRigidbodyWhenHeld: 1
   additionalThrowForce: 0
   positionModifier: {x: .0500000007, y: -.0500000007, z: .100000001}
   rotationModifier: {x: 0, y: 180, z: 0}

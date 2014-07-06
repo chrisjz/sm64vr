@@ -10,7 +10,6 @@ public class FPSInputController : MonoBehaviour {
 	public AudioClip[] initialJumpAudioClips;
 
 	private CharacterMotor motor;
-	private GameObject avatar;
 	private float defaultMaxForwardSpeed;
 	private float defaultMaxBackwardsSpeed;
 	private bool inputEnabled;					// If input is enabled/disabled
@@ -18,7 +17,6 @@ public class FPSInputController : MonoBehaviour {
 	// Use this for initialization
 	void  Awake (){
 		motor = GetComponent<CharacterMotor>();
-		avatar = transform.FindChild("Avatar").gameObject;
 		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
 		defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
 	}
@@ -81,9 +79,9 @@ public class FPSInputController : MonoBehaviour {
 	}
 
 	void UpdateAnimations(Vector3 directionVector) {
-		if (avatar.animation && directionVector.z != 0) {
-			avatar.animation["Walk"].speed = Mathf.Abs(directionVector.z);
-			avatar.animation.CrossFade("Walk");
+		if (animation && directionVector.z != 0) {
+			animation["Walk"].speed = Mathf.Abs(directionVector.z);
+			animation.CrossFade("Walk");
 		}
 	}
 

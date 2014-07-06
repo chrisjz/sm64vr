@@ -3883,7 +3883,7 @@ Transform:
   m_PrefabInternal: {fileID: 166827470}
   m_GameObject: {fileID: 612664747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.94152546, z: .26404047}
+  m_LocalPosition: {x: 0, y: 1.94152546, z: .264040232}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1388150977}
@@ -6713,6 +6713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   invertRightHand: 1
+  disableRigidbodyWhenHeld: 1
   additionalThrowForce: 0
   positionModifier: {x: .0500000007, y: -.0500000007, z: .100000001}
   rotationModifier: {x: 0, y: 180, z: 0}
@@ -12632,7 +12633,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1909967704}
-  - 95: {fileID: 1909967705}
   - 111: {fileID: 1909967706}
   m_Layer: 0
   m_Name: Avatar
@@ -12677,21 +12677,6 @@ Transform:
   - {fileID: 1255276251}
   m_Father: {fileID: 2002403177}
   m_RootOrder: 0
---- !u!95 &1909967705
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500004, guid: 29432e9eec65f33409c3f8e9d9dc5044,
-    type: 2}
-  m_PrefabInternal: {fileID: 166827470}
-  m_GameObject: {fileID: 1909967703}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: bd76cf04f47451f49a39a987eb4e155c, type: 3}
-  m_Controller: {fileID: 9100000, guid: 38285ab361dcc8747a0159eaa3156e3e, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
 --- !u!111 &1909967706
 Animation:
   m_ObjectHideFlags: 0
@@ -12699,11 +12684,12 @@ Animation:
     type: 2}
   m_PrefabInternal: {fileID: 166827470}
   m_GameObject: {fileID: 1909967703}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
+  - {fileID: 7400000, guid: e1c1dfb878f95ec41904dc6b5a86f5f9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -13214,6 +13200,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 2002403177}
   - 143: {fileID: 2002403182}
+  - 111: {fileID: 2002403187}
+  - 82: {fileID: 2002403183}
   - 114: {fileID: 2002403181}
   - 114: {fileID: 2002403180}
   - 114: {fileID: 2002403179}
@@ -13221,7 +13209,6 @@ GameObject:
   - 114: {fileID: 2002403186}
   - 114: {fileID: 2002403184}
   - 114: {fileID: 2002403178}
-  - 82: {fileID: 2002403183}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -13482,6 +13469,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushPower: 2
   weight: 2
+--- !u!111 &2002403187
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11100002, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 166827470}
+  m_GameObject: {fileID: 2002403176}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 3c55012994961e84aa7e59e4f79e86e6, type: 2}
+  - {fileID: 7400000, guid: e1c1dfb878f95ec41904dc6b5a86f5f9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &2005658827
 Prefab:
   m_ObjectHideFlags: 0
