@@ -11,3 +11,7 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+
+# Executable files
+sm64vr_Data/
+sm64vr*.exe

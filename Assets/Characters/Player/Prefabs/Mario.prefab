@@ -2556,7 +2556,7 @@ MonoBehaviour:
   EnableOrientation: 1
   EnablePosition: 1
   PredictionOn: 1
-  timeWarp: 0
+  timeWarp: 1
   mirror: 0
   FreezeTimeWarp: 0
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -2673,7 +2673,7 @@ MonoBehaviour:
   FadeInTime: 2
   FadeInTexture: {fileID: 2800000, guid: a025c23fceb7d4966b603419f551ce99, type: 3}
   FontReplace: {fileID: 0}
-  MenuKey: 32
+  MenuKey: 9
   QuitKey: 27
   SceneNames: []
   Scenes: []

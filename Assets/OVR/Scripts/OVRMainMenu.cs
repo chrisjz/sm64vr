@@ -195,7 +195,7 @@ public class OVRMainMenu : MonoBehaviour
 		PlayerControllers = gameObject.GetComponentsInChildren<OVRPlayerController>();
 		
 		if (PlayerControllers.Length == 0) {
-			Debug.LogWarning("OVRMainMenu: No OVRPlayerController attached.");
+			//Debug.LogWarning("OVRMainMenu: No OVRPlayerController attached.");
 		} else if (PlayerControllers.Length > 1) {
 			Debug.LogWarning ("OVRMainMenu: More then 1 OVRPlayerController attached.");
 		}
