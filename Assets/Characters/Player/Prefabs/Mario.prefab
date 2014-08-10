@@ -2477,7 +2477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hand: 2
   Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
-  minGrabDistance: 2
+  minGrabDistance: 1.5
   throwForce: 30
 --- !u!114 &11400002
 MonoBehaviour:
@@ -2520,7 +2520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hand: 1
   Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
-  minGrabDistance: 2
+  minGrabDistance: 1.5
   throwForce: 30
 --- !u!114 &11400008
 MonoBehaviour:

@@ -39,11 +39,11 @@ public class HandController : SixenseHandController {
 		
 		base.UpdateObject(controller);
 	}
-
+	
 	
 	protected void UpdateActionInput( SixenseInput.Controller controller) {
-		Vector3 currentPosition = new Vector3();
-		Quaternion currentRotation = new Quaternion();
+		Vector3 currentPosition = GetCurrentColliderPosition ();
+		Quaternion currentRotation = GetCurrentColliderRotation ();
 		
 		Velocity();
 		
@@ -51,15 +51,6 @@ public class HandController : SixenseHandController {
 			Throw();
 			
 			isHoldingObject = false;
-		}
-		
-		if (Hand == SixenseHands.LEFT) {
-			currentPosition = GameObject.Find("LeftHandCollider").transform.position;
-			currentRotation = GameObject.Find("LeftHandCollider").transform.rotation;
-		}
-		if (Hand == SixenseHands.RIGHT) {
-			currentPosition = GameObject.Find("RightHandCollider").transform.position;
-			currentRotation = GameObject.Find("RightHandCollider").transform.rotation;
 		}
 		
 		if (!isHoldingObject) {
@@ -114,6 +105,26 @@ public class HandController : SixenseHandController {
 			
 			grabObject.SetRigidbodyDetectionCollisions(true);
 			closestObject.rigidbody.AddForce(dir * handVelocity * (throwForce + additionalThrowForce));
+		}
+	}
+	
+	public Vector3 GetCurrentColliderPosition () {		
+		if (Hand == SixenseHands.LEFT) {
+			return GameObject.Find ("LeftHandCollider").transform.position;
+		} else if (Hand == SixenseHands.RIGHT) {
+			return GameObject.Find ("RightHandCollider").transform.position;
+		} else {
+			return new Vector3();
+		}
+	}
+	
+	public Quaternion GetCurrentColliderRotation () {		
+		if (Hand == SixenseHands.LEFT) {
+			return GameObject.Find ("LeftHandCollider").transform.rotation;
+		} else if (Hand == SixenseHands.RIGHT) {
+			return GameObject.Find ("RightHandCollider").transform.rotation;
+		} else {
+			return new Quaternion();
 		}
 	}
 	
