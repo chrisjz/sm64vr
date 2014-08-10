@@ -3,18 +3,18 @@
 Filename    :   OVRMainMenu.cs
 Content     :   Main script to run various Unity scenes
 Created     :   January 8, 2013
-Authors     :   Peter Giokaris
+Authors     :   Peter Giokaris, Homin Lee
 
-Copyright   :   Copyright 2013 Oculus VR, Inc. All Rights reserved.
+Copyright   :   Copyright 2014 Oculus VR, Inc. All Rights reserved.
 
-Licensed under the Oculus VR SDK License Version 2.0 (the "License"); 
-you may not use the Oculus VR SDK except in compliance with the License, 
+Licensed under the Oculus VR Rift SDK License Version 3.1 (the "License"); 
+you may not use the Oculus VR Rift SDK except in compliance with the License, 
 which is provided at the time of installation or download, or which 
 otherwise accompanies this software in either electronic or hard copy form.
 
 You may obtain a copy of the License at
 
-http://www.oculusvr.com/licenses/LICENSE-2.0 
+http://www.oculusvr.com/licenses/LICENSE-3.1 
 
 Unless required by applicable law or agreed to in writing, the Oculus VR SDK 
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,31 +23,36 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 ************************************************************************************/
+
+//#define SHOW_DK2_VARIABLES
+
 using UnityEngine;
+using System;
 using System.Collections;
 
-//-------------------------------------------------------------------------------------
-// ***** OVRMainMenu
-//
-// OVRMainMenu is used to control the loading of different scenes. It also renders out 
-// a menu that allows a user to modify various Rift settings, and allow for storing 
-// these settings for recall later.
-// 
-// A user of this component can add as many scenes that they would like to be able to 
-// have access to.
-//
-// OVRMainMenu is currently attached to the OVRPlayerController prefab for convenience, 
-// but can safely removed from it and added to another GameObject that is used for general 
-// Unity logic.
-//
+/// <summary>
+/// OVRMainMenu is used to control the loading of different scenes. It also renders out 
+/// a menu that allows a user to modify various Rift settings, and allow for storing 
+/// these settings for recall later.
+/// 
+/// A user of this component can add as many scenes that they would like to be able to 
+/// have access to.
+///
+/// OVRMainMenu is currently attached to the OVRPlayerController prefab for convenience, 
+/// but can safely removed from it and added to another GameObject that is used for general 
+/// Unity logic.
+///
+/// </summary>
 public class OVRMainMenu : MonoBehaviour
 {
 	private OVRPresetManager	PresetManager 	= new OVRPresetManager();
 	
-	public float 	FadeInTime    		= 2.0f;
-	public Texture 	FadeInTexture 		= null;
+	public float 	FadeInTime    	= 2.0f;
+	public Texture 	FadeInTexture 	= null;
+	public Font 	FontReplace		= null;
 
-	public Font 	FontReplace			= null;
+	public KeyCode	MenuKey			= KeyCode.Space;
+	public KeyCode	QuitKey			= KeyCode.Escape;
 	
 	// Scenes to show onscreen
 	public string [] SceneNames;
@@ -57,13 +62,13 @@ public class OVRMainMenu : MonoBehaviour
 	
 	// Spacing for scenes menu
 	private int    	StartX			= 490;
-	private int    	StartY			= 300;
+	private int    	StartY			= 250;
 	private int    	WidthX			= 300;
 	private int    	WidthY			= 23;
 	
 	// Spacing for variables that users can change
 	private int    	VRVarsSX		= 553;
-	private int		VRVarsSY		= 350;
+	private int		VRVarsSY		= 250;
 	private int    	VRVarsWidthX 	= 175;
 	private int    	VRVarsWidthY 	= 23;
 
@@ -82,7 +87,7 @@ public class OVRMainMenu : MonoBehaviour
 	
 	private bool  ShowVRVars;
 	
-	private bool  OldBackQuoteHit;
+	private bool  OldSpaceHit;
 	
 	// FPS 
 	private float  UpdateInterval 	= 0.5f;
@@ -103,10 +108,6 @@ public class OVRMainMenu : MonoBehaviour
 	public float   FOVIncrement		= 0.2f;
 	private string strFOV     		= "FOV: 0.0f";
 	
-	// Distortion Variables
-	public float   DistKIncrement   = 0.001f;
-	//private string strDistortion 	= "Dist k1: 0.00f k2 0.00f";
-	
 	// Height adjustment
 	public float   HeightIncrement   = 0.01f;
 	private string strHeight     	 = "Height: 0.0f";
@@ -124,37 +125,60 @@ public class OVRMainMenu : MonoBehaviour
 	private bool   SensorPresent        = false;
 	private float  RiftPresentTimeout   = 0.0f;
 	private string strRiftPresent		= "";
-	
-	// Device attach / detach
-	public enum Device {HMDSensor, HMD, LatencyTester}
-	private float  DeviceDetectionTimeout 	= 0.0f;
-	private string strDeviceDetection 		= "";
-	
-	// Mag yaw-drift correction
-	private OVRMagCalibration   MagCal     = new OVRMagCalibration();
-	
+
 	// Replace the GUI with our own texture and 3D plane that
 	// is attached to the rendder camera for true 3D placement
 	private OVRGUI  		GuiHelper 		 = new OVRGUI();
 	private GameObject      GUIRenderObject  = null;
 	private RenderTexture	GUIRenderTexture = null;
-	
+
+	// We can set the layer to be anything we want to, this allows
+	// a specific camera to render it
+	public string 			LayerName 		 = "Default";
+
 	// Crosshair system, rendered onto 3D plane
 	public Texture  CrosshairImage 			= null;
 	private OVRCrosshair Crosshair        	= new OVRCrosshair();
+
+	// Low Persistence mode on/off 
+	private bool LowPersistenceMode = true;
+
+    // Resolution Eye Texture
+    private string strResolutionEyeTexture = "Resolution: 0 x 0";
+
+    // Latency values
+    private string strLatencies = "Ren: 0.0f TWrp: 0.0f PostPresent: 0.0f";
+
+#if	SHOW_DK2_VARIABLES
+	private string strLPM = "LowPersistenceMode: ON";
+#endif
 	
+	// Vision mode on/off
+	private bool VisionMode = true;
+#if	SHOW_DK2_VARIABLES
+	private string strVisionMode = "Vision Enabled: ON";
+#endif
+
+	// We want to hold onto GridCube, for potential sharing
+	// of the menu RenderTarget
+	OVRGridCube GridCube = null;
+
+	// We want to hold onto the VisionGuide so we can share
+	// the menu RenderTarget
+	OVRVisionGuide VisionGuide = null;
+
 	// Create a delegate for update functions
 	private delegate void updateFunctions();
 	private updateFunctions UpdateFunctions;
 	
 	
-	
-	// * * * * * * * * * * * * *
-
-	// Awake
+	#region MonoBehaviour Message Handlers
+	/// <summary>
+	/// Awake this instance.
+	/// </summary>
 	void Awake()
-	{
-		// Find camera controller
+	{    
+        // Find camera controller
 		OVRCameraController[] CameraControllers;
 		CameraControllers = gameObject.GetComponentsInChildren<OVRCameraController>();
 		
@@ -162,24 +186,24 @@ public class OVRMainMenu : MonoBehaviour
 			Debug.LogWarning("OVRMainMenu: No OVRCameraController attached.");
 		else if (CameraControllers.Length > 1)
 			Debug.LogWarning("OVRMainMenu: More then 1 OVRCameraController attached.");
-		else
+		else{
 			CameraController = CameraControllers[0];
+		}
+	
+		// Find player controller
+		OVRPlayerController[] PlayerControllers;
+		PlayerControllers = gameObject.GetComponentsInChildren<OVRPlayerController>();
 		
-		// Commented out as we're using an alternative to OVRPlayerController.
-//		// Find player controller
-//		OVRPlayerController[] PlayerControllers;
-//		PlayerControllers = gameObject.GetComponentsInChildren<OVRPlayerController>();
-//		
-//		if(PlayerControllers.Length == 0)
-//			//Debug.LogWarning("OVRMainMenu: No OVRPlayerController attached.");
-//		else if (PlayerControllers.Length > 1)
-//			Debug.LogWarning("OVRMainMenu: More then 1 OVRPlayerController attached.");
-//		else
-//			PlayerController = PlayerControllers[0];
-	
-	}
-	
-	// Start
+		if (PlayerControllers.Length == 0) {
+			Debug.LogWarning("OVRMainMenu: No OVRPlayerController attached.");
+		} else if (PlayerControllers.Length > 1) {
+			Debug.LogWarning ("OVRMainMenu: More then 1 OVRPlayerController attached.");
+		}
+		else{
+            PlayerController = PlayerControllers[0];
+        }
+    }
+
 	void Start()
 	{
 		AlphaFadeValue = 1.0f;	
@@ -188,37 +212,29 @@ public class OVRMainMenu : MonoBehaviour
 		PrevHatDown    = false;
 		PrevHatUp      = false;
 		ShowVRVars	   = false;
-		OldBackQuoteHit    = false;
+		OldSpaceHit    = false;
 		strFPS         = "FPS: 0";
 		LoadingLevel   = false;	
-		
-		ScenesVisible    = false;
+		ScenesVisible  = false;
 		
 		// Ensure that camera controller variables have been properly
 		// initialized before we start reading them
 		if(CameraController != null)
-		{
 			CameraController.InitCameraControllerVariables();
-			GuiHelper.SetCameraController(ref CameraController);
-		}
-		
-		// Set the GUI target 
+
+		// Set the GUI target
 		GUIRenderObject = GameObject.Instantiate(Resources.Load("OVRGUIObjectMain")) as GameObject;
-		
+
 		if(GUIRenderObject != null)
 		{
+			// Chnge the layer
+			GUIRenderObject.layer = LayerMask.NameToLayer(LayerName);
+
 			if(GUIRenderTexture == null)
 			{
 				int w = Screen.width;
 				int h = Screen.height;
 
-				if(CameraController.PortraitMode == true)
-				{
-					int t = h;
-					h = w;
-					w = t;
-				}
-				
 				// We don't need a depth buffer on this texture
 				GUIRenderTexture = new RenderTexture(w, h, 0);	
 				GuiHelper.SetPixelResolution(w, h);
@@ -237,27 +253,40 @@ public class OVRMainMenu : MonoBehaviour
 			GUIRenderObject.renderer.material.mainTexture = GUIRenderTexture;
 			
 			if(CameraController != null)
-			{
-				// Grab transform of GUI object
-				Transform t = GUIRenderObject.transform;
-				// Attach the GUI object to the camera
-				CameraController.AttachGameObjectToCamera(ref GUIRenderObject);
-				// Reset the transform values (we will be maintaining state of the GUI object
-				// in local state)
-				OVRUtils.SetLocalTransform(ref GUIRenderObject, ref t);
-				// Deactivate object until we have completed the fade-in
-				// Also, we may want to deactive the render object if there is nothing being rendered
-				// into the UI
-				// we will move the position of everything over to the left, so get
-				// IPD / 2 and position camera towards negative X
-				Vector3 lp = GUIRenderObject.transform.localPosition;
-				float ipd = 0.0f;
-				CameraController.GetIPD(ref ipd);
-				lp.x -= ipd * 0.5f;
-				GUIRenderObject.transform.localPosition = lp;
-				
-				GUIRenderObject.SetActive(false);
-			}
+            {
+                // Grab transform of GUI object
+                Vector3 ls = GUIRenderObject.transform.localScale;
+                Vector3 lp = GUIRenderObject.transform.localPosition;
+                Quaternion lr = GUIRenderObject.transform.localRotation;
+
+                // Attach the GUI object to the camera
+                CameraController.AttachGameObjectToCamera(ref GUIRenderObject);
+                // Reset the transform values (we will be maintaining state of the GUI object
+                // in local state)
+
+                GUIRenderObject.transform.localScale = ls;
+                GUIRenderObject.transform.localRotation = lr;
+
+                // Deactivate object until we have completed the fade-in
+                // Also, we may want to deactive the render object if there is nothing being rendered
+                // into the UI
+                // we will move the position of everything over to account for the IPD camera offset. 
+                float ipdOffsetDirection = 1.0f;
+                Transform guiParent = GUIRenderObject.transform.parent;
+                if (guiParent != null)
+                {
+                    OVRCamera ovrCamera = guiParent.GetComponent<OVRCamera>();
+                    if (ovrCamera != null && ovrCamera.RightEye)
+                        ipdOffsetDirection = -1.0f;
+                }
+
+                float ipd = 0.0f;
+                CameraController.GetIPD(ref ipd);
+                lp.x += ipd * 0.5f * ipdOffsetDirection;
+                GUIRenderObject.transform.localPosition = lp;
+
+                GUIRenderObject.SetActive(false);
+            }
 		}
 		
 		// Save default values initially
@@ -278,9 +307,25 @@ public class OVRMainMenu : MonoBehaviour
 		{
 			UpdateFunctions += UpdateIPD;
 			UpdateFunctions += UpdatePrediction;
+
+			// Set LPM on by default
+			UpdateFunctions += UpdateLowPersistenceMode;
+			OVRDevice.SetLowPersistenceMode(LowPersistenceMode);
+			UpdateFunctions += UpdateVisionMode;
 			UpdateFunctions += UpdateFOV;
-			UpdateFunctions += UpdateDistortionCoefs;
 			UpdateFunctions += UpdateEyeHeightOffset;
+            UpdateFunctions += UpdateResolutionEyeTexture;
+            UpdateFunctions += UpdateLatencyValues;
+
+			// Add a GridCube component to this object
+			GridCube = gameObject.AddComponent<OVRGridCube>();
+			GridCube.SetOVRCameraController(ref CameraController);
+
+			// Add a VisionGuide component to this object
+			VisionGuide = gameObject.AddComponent<OVRVisionGuide>();
+			VisionGuide.SetOVRCameraController(ref CameraController);
+			VisionGuide.SetFadeTexture(ref FadeInTexture);
+			VisionGuide.SetVisionGuideLayer(ref LayerName);
 		}
 		
 		// PlayerController updates
@@ -296,15 +341,6 @@ public class OVRMainMenu : MonoBehaviour
 		
 		// Device updates
 		UpdateFunctions += UpdateDeviceDetection;
-		UpdateFunctions += UpdateResetOrientation;
-		OVRMessenger.AddListener<Device, bool>("Sensor_Attached", UpdateDeviceDetectionMsgCallback);
-		
-		// Mag Yaw-Drift correction
-		// We will test to see if we are already calibrated by the
-		// Calibration tool
-		MagCal.SetInitialCalibarationState(); 
-		UpdateFunctions += MagCal.UpdateMagYawDriftCorrection;
-		MagCal.SetOVRCameraController(ref CameraController);
 		
 		// Crosshair functionality
 		Crosshair.Init();
@@ -314,35 +350,120 @@ public class OVRMainMenu : MonoBehaviour
 		UpdateFunctions += Crosshair.UpdateCrosshair;
 		
 		// Check for HMD and sensor
-		CheckIfRiftPresent();
-		
-		// Init static members
-		ScenesVisible = false;
-	}
+        CheckIfRiftPresent();
+	} 
 	
-	// Update
 	void Update()
 	{		
 		if(LoadingLevel == true)
 			return;
-		
-		// Update specific delegate variables that are not passed through
-		// the delegate master function (may change UpdateFunctions to take
-		// a data ptr or certain variables)
-		// MagCal.MagAutoCalibrate = MagAutoCalibrate;
-		
+
+		// Main update
 		UpdateFunctions();
 		
 		// Toggle Fullscreen
 		if(Input.GetKeyDown(KeyCode.F11))
 			Screen.fullScreen = !Screen.fullScreen;
+
+		if (Input.GetKeyDown(KeyCode.M))
+			CameraController.Mirror = !CameraController.Mirror;
 		
 		// Escape Application
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(QuitKey))
 			Application.Quit();
 	}
-	
-	// UpdateFPS
+
+	void OnGUI()
+	{	
+		// Important to keep from skipping render events
+		if (Event.current.type != EventType.Repaint)
+			return;
+		
+		// Fade in screen
+		if(AlphaFadeValue > 0.0f)
+		{
+			AlphaFadeValue -= Mathf.Clamp01(Time.deltaTime / FadeInTime);
+			if(AlphaFadeValue < 0.0f)
+			{
+				AlphaFadeValue = 0.0f;	
+			}
+			else
+			{
+				GUI.color = new Color(0, 0, 0, AlphaFadeValue);
+				GUI.DrawTexture( new Rect(0, 0, Screen.width, Screen.height ), FadeInTexture ); 
+				return;
+			}
+		}
+		// We can turn on the render object so we can render the on-screen menu
+		if(GUIRenderObject != null)
+		{
+			if (ScenesVisible || 
+			    ShowVRVars || 
+			    Crosshair.IsCrosshairVisible() || 
+			    RiftPresentTimeout > 0.0f || 
+			    VisionGuide.GetFadeAlphaValue() > 0.0f)
+			{
+				GUIRenderObject.SetActive(true);
+			}
+			else
+			{
+				GUIRenderObject.SetActive(false);
+			}
+		}
+		
+		//***
+		// Set the GUI matrix to deal with portrait mode
+		Vector3 scale = Vector3.one;
+		Matrix4x4 svMat = GUI.matrix; // save current matrix
+		// substitute matrix - only scale is altered from standard
+		GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, scale);
+		
+		// Cache current active render texture
+		RenderTexture previousActive = RenderTexture.active;
+		
+		// if set, we will render to this texture
+		if(GUIRenderTexture != null && GUIRenderObject.activeSelf)
+		{
+			RenderTexture.active = GUIRenderTexture;
+			GL.Clear (false, true, new Color (0.0f, 0.0f, 0.0f, 0.0f));
+		}
+		
+		// Update OVRGUI functions (will be deprecated eventually when 2D renderingc
+		// is removed from GUI)
+		GuiHelper.SetFontReplace(FontReplace);
+		
+		// If true, we are displaying information about the Rift not being detected
+		// So do not show anything else
+		if(GUIShowRiftDetected() != true)
+		{	
+			GUIShowLevels();
+			GUIShowVRVariables();
+		}
+		
+		// The cross-hair may need to go away at some point, unless someone finds it 
+		// useful
+		Crosshair.OnGUICrosshair();
+		
+		// Since we want to draw into the main GUI that is shared within the MainMenu,
+		// we call the OVRVisionGuide GUI function here
+		VisionGuide.OnGUIVisionGuide();
+		
+		// Restore active render texture
+		if (GUIRenderObject.activeSelf)
+		{
+			RenderTexture.active = previousActive;
+		}
+		
+		// ***
+		// Restore previous GUI matrix
+		GUI.matrix = svMat;
+	}
+	#endregion
+
+	#region Internal State Management Functions
+	/// <summary>
+	/// Updates the FPS.
+	/// </summary>
 	void UpdateFPS()
 	{
     	TimeLeft -= Time.deltaTime;
@@ -359,12 +480,14 @@ public class OVRMainMenu : MonoBehaviour
 				strFPS = System.String.Format("FPS: {0:F2}",fps);
 
        		TimeLeft += UpdateInterval;
-        	Accum = 0.0f;
+        	Accum  = 0.0f;
         	Frames = 0;
     	}
 	}
 	
-	// UpdateIPD
+	/// <summary>
+	/// Updates the IPD.
+	/// </summary>
 	void UpdateIPD()
 	{
 		if(Input.GetKeyDown (KeyCode.Equals))
@@ -382,7 +505,7 @@ public class OVRMainMenu : MonoBehaviour
 			CameraController.SetIPD (ipd);
 		}
 		
-		if(ShowVRVars == true)// limit gc
+		if(ShowVRVars == true) // limit gc
 		{	
 			float ipd = 0;
 			CameraController.GetIPD (ref ipd);
@@ -390,31 +513,28 @@ public class OVRMainMenu : MonoBehaviour
 		}
 	}
 	
-	// UpdatePrediction
+	/// <summary>
+	/// Updates the prediction.
+	/// </summary>
 	void UpdatePrediction()
 	{
 		// Turn prediction on/off
 		if(Input.GetKeyDown (KeyCode.P))
-		{		
-			if( CameraController.PredictionOn == false) 
-				CameraController.PredictionOn = true;
-			else
-				CameraController.PredictionOn = false;
-		}
+			CameraController.PredictionOn = !CameraController.PredictionOn;
 		
 		// Update prediction value (only if prediction is on)
-		if(CameraController.PredictionOn == true)
+		if(CameraController.PredictionOn)
 		{
-			float pt = OVRDevice.GetPredictionTime(0); 
+			float pt = OVRDevice.PredictionTime; 
 			if(Input.GetKeyDown (KeyCode.Comma))
 				pt -= PredictionIncrement;
 			else if(Input.GetKeyDown (KeyCode.Period))
 				pt += PredictionIncrement;
 			
-			OVRDevice.SetPredictionTime(0, pt);
+			OVRDevice.PredictionTime = pt;
 			
 			// re-get the prediction time to make sure it took
-			pt = OVRDevice.GetPredictionTime(0) * 1000.0f;
+			pt = OVRDevice.PredictionTime;
 			
 			if(ShowVRVars == true)// limit gc
 				strPrediction = System.String.Format ("Pred (ms): {0:F3}", pt);								 
@@ -424,8 +544,62 @@ public class OVRMainMenu : MonoBehaviour
 			strPrediction = "Pred: OFF";
 		}
 	}
+
+	/// <summary>
+	/// Updates the low Persistence mode.
+	/// </summary>
+	void UpdateLowPersistenceMode()
+	{
+		if(Input.GetKeyDown (KeyCode.F1))
+		{
+			if(LowPersistenceMode == false)
+			{
+				LowPersistenceMode = true;
+#if	SHOW_DK2_VARIABLES
+				strLPM = "Low Persistence Mode: ON";
+#endif
+				OVRDevice.SetLowPersistenceMode(LowPersistenceMode);
+			}
+			else
+			{
+				LowPersistenceMode = false;
+#if	SHOW_DK2_VARIABLES
+				strLPM = "Low Persistence Mode: OFF";
+#endif
+				OVRDevice.SetLowPersistenceMode(LowPersistenceMode);
+			}
+		}
+	}
 	
-	// UpdateFOV
+	/// <summary>
+	/// Updates the vision mode.
+	/// </summary>
+	void UpdateVisionMode()
+	{
+		if(Input.GetKeyDown (KeyCode.F2))
+		{
+			if(VisionMode == false)
+			{
+				VisionMode = true;
+#if	SHOW_DK2_VARIABLES
+				strVisionMode = "Vision Enabled: ON";
+#endif
+				OVRDevice.SetVisionEnabled(VisionMode);
+			}
+			else
+			{
+				VisionMode = false;
+#if	SHOW_DK2_VARIABLES
+				strVisionMode = "Vision Enabled: OFF";
+#endif
+				OVRDevice.SetVisionEnabled(VisionMode);
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Updates the FOV.
+	/// </summary>
 	void UpdateFOV()
 	{
 		if(Input.GetKeyDown (KeyCode.LeftBracket))
@@ -450,37 +624,40 @@ public class OVRMainMenu : MonoBehaviour
 			strFOV = System.String.Format ("FOV (deg): {0:F3}", cfov);
 		}
 	}
-	
-	// UpdateDistortionCoefs
-	void UpdateDistortionCoefs()
-	{
-	 	float Dk0 = 0.0f;
-		float Dk1 = 0.0f;
-		float Dk2 = 0.0f;
-		float Dk3 = 0.0f;
+
+    /// <summary>
+    /// Updates resolution of eye texture
+    /// </summary>
+    void UpdateResolutionEyeTexture()
+    {
+        if (ShowVRVars == true) // limit gc
+        {
+            int w = 0, h = 0;
+            OVRDevice.GetResolutionEyeTexture(ref w, ref h);
+            strResolutionEyeTexture = System.String.Format("Resolution : {0} x {1}", w, h);
+        }
+    }
+
+    /// <summary>
+    /// Updates latency values
+    /// </summary>
+    void UpdateLatencyValues()
+    {
+
+        if (ShowVRVars == true) // limit gc
+        {
+            float Ren = 0.0f, TWrp = 0.0f, PostPresent = 0.0f;
+            OVRDevice.GetLatencyValues(ref Ren, ref TWrp, ref PostPresent);
+            if (Ren < 0.000001f && TWrp < 0.000001f && PostPresent < 0.000001f)
+                strLatencies = System.String.Format("Ren : N/A TWrp: N/A PostPresent: N/A");
+            else
+                strLatencies = System.String.Format("Ren : {0:F3} TWrp: {1:F3} PostPresent: {2:F3}", Ren, TWrp, PostPresent);
+        }
+    }
 		
-		// * * * * * * * * *
-		// Get the distortion coefficients to apply to shader
-		CameraController.GetDistortionCoefs(ref Dk0, ref Dk1, ref Dk2, ref Dk3);
-		
-		if(Input.GetKeyDown(KeyCode.Alpha1))
-			Dk1 -= DistKIncrement;
-		else if (Input.GetKeyDown(KeyCode.Alpha2))
-			Dk1 += DistKIncrement;
-			
-		if(Input.GetKeyDown(KeyCode.Alpha3))
-			Dk2 -= DistKIncrement;
-		else if (Input.GetKeyDown(KeyCode.Alpha4))
-			Dk2 += DistKIncrement;
-		
-		CameraController.SetDistortionCoefs(Dk0, Dk1, Dk2, Dk3);
-		
-		//if(ShowVRVars == true)// limit gc
-		//	strDistortion = 
-		//	System.String.Format ("DST k1: {0:F3} k2 {1:F3}", Dk1, Dk2);
-	}
-	
-	// UpdateEyeHeightOffset
+	/// <summary>
+	/// Updates the eye height offset.
+	/// </summary>
 	void UpdateEyeHeightOffset()
 	{
 		// We will update neck position, since camera root and eye center should
@@ -509,7 +686,9 @@ public class OVRMainMenu : MonoBehaviour
 		}
 	}
 	
-	// UpdateSpeedAndRotationMultiplier
+	/// <summary>
+	/// Updates the speed and rotation scale multiplier.
+	/// </summary>
 	void UpdateSpeedAndRotationScaleMultiplier()
 	{
 		float moveScaleMultiplier = 0.0f;
@@ -534,14 +713,18 @@ public class OVRMainMenu : MonoBehaviour
 									rotationScaleMultiplier);
 	}
 	
-	// UpdatePlayerControllerMovement
+	/// <summary>
+	/// Updates the player controller movement.
+	/// </summary>
 	void UpdatePlayerControllerMovement()
 	{
 		if(PlayerController != null)
 			PlayerController.SetHaltUpdateMovement(ScenesVisible);
 	}
 	
-	// UpdateSelectCurrentLevel
+	/// <summary>
+	/// Updates the select current level.
+	/// </summary>
 	void UpdateSelectCurrentLevel()
 	{
 		ShowLevels();
@@ -560,7 +743,10 @@ public class OVRMainMenu : MonoBehaviour
 		}
 	}
 	
-	// ShowLevels
+	/// <summary>
+	/// Shows the levels.
+	/// </summary>
+	/// <returns><c>true</c>, if levels was shown, <c>false</c> otherwise.</returns>
 	bool ShowLevels()
 	{
 		if(Scenes.Length == 0)
@@ -587,7 +773,10 @@ public class OVRMainMenu : MonoBehaviour
 		return ScenesVisible;
 	}
 	
-	// GetCurrentLevel
+	/// <summary>
+	/// Gets the current level.
+	/// </summary>
+	/// <returns>The current level.</returns>
 	int GetCurrentLevel()
 	{
 		bool curHatDown = false;
@@ -616,90 +805,14 @@ public class OVRMainMenu : MonoBehaviour
 		
 		return CurrentLevel;
 	}
-	
-	// GUI
-	
-	// * * * * * * * * * * * * * * * * *
-	// OnGUI
- 	void OnGUI()
- 	{	
-		// Important to keep from skipping render events
-		if (Event.current.type != EventType.Repaint)
-			return;
 
-		// Fade in screen
-		if(AlphaFadeValue > 0.0f)
-		{
-  			AlphaFadeValue -= Mathf.Clamp01(Time.deltaTime / FadeInTime);
-			if(AlphaFadeValue < 0.0f)
-			{
-				AlphaFadeValue = 0.0f;	
-			}
-			else
-			{
-				GUI.color = new Color(0, 0, 0, AlphaFadeValue);
-  				GUI.DrawTexture( new Rect(0, 0, Screen.width, Screen.height ), FadeInTexture ); 
-				return;
-			}
-		}
-		
-		// We can turn on the render object so we can render the on-screen menu
-		if(GUIRenderObject != null)
-		{
-			if (ScenesVisible || ShowVRVars || Crosshair.IsCrosshairVisible() || 
-				RiftPresentTimeout > 0.0f || DeviceDetectionTimeout > 0.0f )
-				GUIRenderObject.SetActive(true);
-			else
-				GUIRenderObject.SetActive(false);
-		}
-		
-		//***
-		// Set the GUI matrix to deal with portrait mode
-		Vector3 scale = Vector3.one;
-		if(CameraController.PortraitMode == true)
-		{
-			float h = OVRDevice.HResolution;
-			float v = OVRDevice.VResolution;
-			scale.x = v / h; 					// calculate hor scale
-    		scale.y = h / v; 					// calculate vert scale
-		}
-		Matrix4x4 svMat = GUI.matrix; // save current matrix
-    	// substitute matrix - only scale is altered from standard
-    	GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, scale);
-		
-		// Cache current active render texture
-		RenderTexture previousActive = RenderTexture.active;
-		
-		// if set, we will render to this texture
-		if(GUIRenderTexture != null)
-		{
-			RenderTexture.active = GUIRenderTexture;
-			GL.Clear (false, true, new Color (0.0f, 0.0f, 0.0f, 0.0f));
-		}
-		
-		// Update OVRGUI functions (will be deprecated eventually when 2D renderingc
-		// is removed from GUI)
-		GuiHelper.SetFontReplace(FontReplace);
-		
-		// If true, we are displaying information about the Rift not being detected
-		// So do not show anything else
-		if(GUIShowRiftDetected() != true)
-		{	
-			GUIShowLevels();
-			GUIShowVRVariables();
-		}
-		
-		Crosshair.OnGUICrosshair();
-		
-		// Restore active render texture
-		RenderTexture.active = previousActive;
-		
-		// ***
-		// Restore previous GUI matrix
-		GUI.matrix = svMat;
- 	}
-	
-	// GUIShowLevels
+	#endregion
+
+	#region Internal GUI Functions
+
+	/// <summary>
+	/// Show the GUI levels.
+	/// </summary>
 	void GUIShowLevels()
 	{
 		if(ScenesVisible == true)
@@ -731,69 +844,76 @@ public class OVRMainMenu : MonoBehaviour
 		}				
 	}
 	
-	// GUIShowVRVariables
-	void GUIShowVRVariables()
-	{
-		bool BackQuoteHit = Input.GetKey(KeyCode.BackQuote);
-		if ((OldBackQuoteHit == false) && (BackQuoteHit == true))
-		{
-			if(ShowVRVars == true) 
-				ShowVRVars = false;
-			else 
-				ShowVRVars = true;
-		}
-		
-		OldBackQuoteHit = BackQuoteHit;
+	/// <summary>
+	/// Show the VR variables.
+	/// </summary>
+    void GUIShowVRVariables()
+    {
+        bool SpaceHit = Input.GetKey(MenuKey);
+        if ((OldSpaceHit == false) && (SpaceHit == true))
+        {
+            if (ShowVRVars == true)
+            {
+                ShowVRVars = false;
+            }
+            else
+            {
+                ShowVRVars = true;
+            }
+        }
 
-		int y   = VRVarsSY;
-		
-		// Print out auto mag correction state
-		MagCal.GUIMagYawDriftCorrection(VRVarsSX, y, 
-										VRVarsWidthX, VRVarsWidthY,
-										ref GuiHelper);
-			
-		// Draw FPS
+        OldSpaceHit = SpaceHit;
+
+        // Do not render if we are not showing
+        if (ShowVRVars == false)
+            return;
+
+        int y = VRVarsSY;
+
+#if	SHOW_DK2_VARIABLES
+		// Print out Low Persistence Mode
+		GuiHelper.StereoBox (VRVarsSX, y, VRVarsWidthX, VRVarsWidthY, 
+							 ref strLPM, Color.red);
+ 
+		// Print out Vision Mode
 		GuiHelper.StereoBox (VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY, 
-							 ref strFPS, Color.green);
-		
-		// Don't draw these vars if CameraController is not present
-		if(CameraController != null)
-		{
-			GuiHelper.StereoBox (VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY, 
-							 ref strPrediction, Color.white);		
-			GuiHelper.StereoBox (VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY, 
-							 ref strIPD, Color.yellow);
-			GuiHelper.StereoBox (VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY, 
-							 ref strFOV, Color.white);
-		}
-		
-		// Don't draw these vars if PlayerController is not present
-		if(PlayerController != null)
-		{
-			GuiHelper.StereoBox (VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY, 
-								 ref strHeight, Color.yellow);
-			GuiHelper.StereoBox (VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY, 
-								 ref strSpeedRotationMultipler, Color.white);
-		}
-		
-		// Eventually remove distortion from being changed
-		/*
-		// Don't draw if CameraController is not present
-		if(CameraController != null)
-		{
-			// Distortion k values
-			y += StepY;
-			GUIStereoBox (VRVarsSX, y, VRVarsWidthX, VRVarsWidthY, 
-							 ref strDistortion, 
-							 Color.red);
-		}
-		*/
-			
-	}
+							 ref strVisionMode, Color.green);
+#endif
+
+        // Draw FPS
+        GuiHelper.StereoBox(VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY,
+                             ref strFPS, Color.green);
+
+        // Don't draw these vars if CameraController is not present
+        if (CameraController != null)
+        {
+            GuiHelper.StereoBox(VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY,
+                             ref strPrediction, Color.white);
+            GuiHelper.StereoBox(VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY,
+                             ref strIPD, Color.yellow);
+            GuiHelper.StereoBox(VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY,
+                             ref strFOV, Color.white);
+            GuiHelper.StereoBox(VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY,
+                             ref strResolutionEyeTexture, Color.white);
+            GuiHelper.StereoBox(VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY,
+                             ref strLatencies, Color.white);
+        }
+
+        // Don't draw these vars if PlayerController is not present
+        if (PlayerController != null)
+        {
+            GuiHelper.StereoBox(VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY,
+                                 ref strHeight, Color.yellow);
+            GuiHelper.StereoBox(VRVarsSX, y += StepY, VRVarsWidthX, VRVarsWidthY,
+                                 ref strSpeedRotationMultipler, Color.white);
+        }
+    }
 	
 	// SNAPSHOT MANAGEMENT
 	
-	// UpdateHandleSnapshots
+	/// <summary>
+	/// Handle update of snapshots.
+	/// </summary>
 	void UpdateHandleSnapshots()
 	{
 		// Default shapshot
@@ -829,7 +949,11 @@ public class OVRMainMenu : MonoBehaviour
 		
 	}
 	
-	// StoreSnapshot
+	/// <summary>
+	/// Stores the snapshot.
+	/// </summary>
+	/// <returns><c>true</c>, if snapshot was stored, <c>false</c> otherwise.</returns>
+	/// <param name="snapshotName">Snapshot name.</param>
 	bool StoreSnapshot(string snapshotName)
 	{
 		float f = 0;
@@ -841,7 +965,7 @@ public class OVRMainMenu : MonoBehaviour
 			CameraController.GetIPD(ref f);
 			PresetManager.SetPropertyFloat("IPD", ref f);
 	
-			f = OVRDevice.GetPredictionTime(0);
+			f = OVRDevice.PredictionTime;
 			PresetManager.SetPropertyFloat("PREDICTION", ref f);
 		
 			CameraController.GetVerticalFOV(ref f);
@@ -850,17 +974,6 @@ public class OVRMainMenu : MonoBehaviour
 			Vector3 neckPosition = Vector3.zero;
 			CameraController.GetNeckPosition(ref neckPosition);
 			PresetManager.SetPropertyFloat("HEIGHT", ref neckPosition.y);
-			
-			float Dk0 = 0.0f;
-			float Dk1 = 0.0f;
-			float Dk2 = 0.0f;
-			float Dk3 = 0.0f;		
-			CameraController.GetDistortionCoefs(ref Dk0, ref Dk1, ref Dk2, ref Dk3);
-		
-			PresetManager.SetPropertyFloat("DISTORTIONK0", ref Dk0);
-			PresetManager.SetPropertyFloat("DISTORTIONK1", ref Dk1);
-			PresetManager.SetPropertyFloat("DISTORTIONK2", ref Dk2);
-			PresetManager.SetPropertyFloat("DISTORTIONK3", ref Dk3);	
 		}
 			
 		if(PlayerController != null)
@@ -875,7 +988,11 @@ public class OVRMainMenu : MonoBehaviour
 		return true;
 	}
 	
-	// LoadSnapshot
+	/// <summary>
+	/// Loads the snapshot.
+	/// </summary>
+	/// <returns><c>true</c>, if snapshot was loaded, <c>false</c> otherwise.</returns>
+	/// <param name="snapshotName">Snapshot name.</param>
 	bool LoadSnapshot(string snapshotName)
 	{
 		float f = 0;
@@ -888,7 +1005,7 @@ public class OVRMainMenu : MonoBehaviour
 				CameraController.SetIPD(f);
 		
 			if(PresetManager.GetPropertyFloat("PREDICTION", ref f) == true)
-				OVRDevice.SetPredictionTime(0, f);
+				OVRDevice.PredictionTime = f;
 		
 			if(PresetManager.GetPropertyFloat("FOV", ref f) == true)
 				CameraController.SetVerticalFOV(f);
@@ -900,24 +1017,6 @@ public class OVRMainMenu : MonoBehaviour
 				neckPosition.y = f;
 				CameraController.SetNeckPosition(neckPosition);
 			}
-
-			float Dk0 = 0.0f;
-			float Dk1 = 0.0f;
-			float Dk2 = 0.0f;
-			float Dk3 = 0.0f;
-			CameraController.GetDistortionCoefs(ref Dk0, ref Dk1, ref Dk2, ref Dk3);
-		
-			if(PresetManager.GetPropertyFloat("DISTORTIONK0", ref f) == true)
-				Dk0 = f;
-			if(PresetManager.GetPropertyFloat("DISTORTIONK1", ref f) == true)
-				Dk1 = f;
-			if(PresetManager.GetPropertyFloat("DISTORTIONK2", ref f) == true)
-				Dk2 = f;
-			if(PresetManager.GetPropertyFloat("DISTORTIONK3", ref f) == true)
-				Dk3 = f;
-		
-			CameraController.SetDistortionCoefs(Dk0, Dk1, Dk2, Dk3);
-		
 		}
 		
 		if(PlayerController != null)
@@ -934,13 +1033,14 @@ public class OVRMainMenu : MonoBehaviour
 	
 	// RIFT DETECTION
 	
-	// CheckIfRiftPresent
-	// Checks to see if HMD and / or sensor is available, and displays a 
-	// message if it is not
+	/// <summary>
+	/// Checks to see if HMD and / or sensor is available, and displays a 
+	/// message if it is not.
+	/// </summary>
 	void CheckIfRiftPresent()
 	{
-		HMDPresent = OVRDevice.IsHMDPresent();
-		SensorPresent = OVRDevice.IsSensorPresent(0); // 0 is the main head sensor
+		HMDPresent    = OVRDevice.IsHMDPresent();
+		SensorPresent = OVRDevice.IsSensorPresent();
 		
 		if((HMDPresent == false) || (SensorPresent == false))
 		{
@@ -955,7 +1055,10 @@ public class OVRMainMenu : MonoBehaviour
 		}
 	}
 	
-	// GUIShowRiftDetected
+	/// <summary>
+	/// Show if Rift is detected.
+	/// </summary>
+	/// <returns><c>true</c>, if show rift detected was GUIed, <c>false</c> otherwise.</returns>
 	bool GUIShowRiftDetected()
 	{
 		if(RiftPresentTimeout > 0.0f)
@@ -965,83 +1068,16 @@ public class OVRMainMenu : MonoBehaviour
 		
 			return true;
 		}
-		else if(DeviceDetectionTimeout > 0.0f)
-		{
-			GuiHelper.StereoBox (StartX, StartY, WidthX, WidthY, 
-								 ref strDeviceDetection, Color.white);
-			
-			return true;
-		}
-		
 		return false;
 	}
 	
-	// UpdateDeviceDetection
+	/// <summary>
+	/// Updates the device detection.
+	/// </summary>
 	void UpdateDeviceDetection()
 	{
 		if(RiftPresentTimeout > 0.0f)
 			RiftPresentTimeout -= Time.deltaTime;
-		
-		if(DeviceDetectionTimeout > 0.0f)
-			DeviceDetectionTimeout -= Time.deltaTime;
 	}
-	
-	// UpdateDeviceDetectionMsgCallback
-	void UpdateDeviceDetectionMsgCallback(Device device, bool attached)
-	{
-		if(attached == true)
-		{
-			switch(device)
-			{
-				case(Device.HMDSensor):
-					strDeviceDetection = "HMD SENSOR ATTACHED";
-					break;
-			
-				case(Device.HMD):
-					strDeviceDetection = "HMD ATTACHED";
-					break;
-
-				case(Device.LatencyTester):
-					strDeviceDetection = "LATENCY SENSOR ATTACHED";
-					break;
-			}
-		}
-		else
-		{
-			switch(device)
-			{
-				case(Device.HMDSensor):
-					strDeviceDetection = "HMD SENSOR DETACHED";
-					break;
-			
-				case(Device.HMD):
-					strDeviceDetection = "HMD DETACHED";
-					break;
-
-				case(Device.LatencyTester):
-					strDeviceDetection = "LATENCY SENSOR DETACHED";
-					break;
-			}
-		}
-		
-		// Do not show on startup of level, since we will allow the
-		// other method of detecting the rift to show, and not allow
-		// this method to create a false positive detection at the start
-		if(AlphaFadeValue == 0.0f)
-			DeviceDetectionTimeout = 3.0f;
-	}
-	
-	// RIFT RESET ORIENTATION
-	
-	// UpdateResetOrientation
-	void UpdateResetOrientation()
-	{
-		if( ((ScenesVisible == false) && 
-			 (OVRGamepadController.GPC_GetButton((int)OVRGamepadController.Button.Down) == true)) ||
-			(Input.GetKeyDown(KeyCode.B) == true) )
-		{
-			OVRDevice.ResetOrientation(0);
-		}
-	}
-
+	#endregion
 }

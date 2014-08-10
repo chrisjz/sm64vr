@@ -6,16 +6,16 @@ Content     :   Player controller interface.
 Created     :   March 06, 2013
 Authors     :   Peter Giokaris
 
-Copyright   :   Copyright 2013 Oculus VR, Inc. All Rights reserved.
+Copyright   :   Copyright 2014 Oculus VR, Inc. All Rights reserved.
 
-Licensed under the Oculus VR SDK License Version 2.0 (the "License"); 
-you may not use the Oculus VR SDK except in compliance with the License, 
+Licensed under the Oculus VR Rift SDK License Version 3.1 (the "License"); 
+you may not use the Oculus VR Rift SDK except in compliance with the License, 
 which is provided at the time of installation or download, or which 
 otherwise accompanies this software in either electronic or hard copy form.
 
 You may obtain a copy of the License at
 
-http://www.oculusvr.com/licenses/LICENSE-2.0 
+http://www.oculusvr.com/licenses/LICENSE-3.1 
 
 Unless required by applicable law or agreed to in writing, the Oculus VR SDK 
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -59,21 +59,21 @@ public class OVRCameraControllerEditor : Editor
 	{
 		GUI.color = Color.white;
 		
-		Undo.SetSnapshotTarget(m_Component, "OVRCameraController");
+		Undo.RecordObject(m_Component, "OVRCameraController");
 
 		{
 #if CUSTOM_LAYOUT
 			OVREditorGUIUtility.Separator();			
 			
-			m_Component.VerticalFOV         = EditorGUILayout.FloatField("Vertical FOV", m_Component.VerticalFOV);
 			m_Component.IPD         		= EditorGUILayout.FloatField("IPD", m_Component.IPD);
-			
+			m_Component.CameraTextureScale  = EditorGUILayout.FloatField("Camera Texture Scale", m_Component.CameraTextureScale);
+			m_Component.ScaleRenderTarget   = EditorGUILayout.FloatField("Scale Render", m_Component.ScaleRenderTarget);
+
 			OVREditorGUIUtility.Separator();
 			
 			m_Component.CameraRootPosition  = EditorGUILayout.Vector3Field("Camera Root Position", m_Component.CameraRootPosition);
 			m_Component.NeckPosition 		= EditorGUILayout.Vector3Field("Neck Position", m_Component.NeckPosition);
-			m_Component.EyeCenterPosition 	= EditorGUILayout.Vector3Field("Eye Center Position", m_Component.EyeCenterPosition);
-			
+
 			OVREditorGUIUtility.Separator();
 
 			m_Component.UsePlayerEyeHeight  = EditorGUILayout.Toggle ("Use Player Eye Height", m_Component.UsePlayerEyeHeight);
@@ -87,15 +87,13 @@ public class OVRCameraControllerEditor : Editor
 			
 			OVREditorGUIUtility.Separator();	
 
-			// Remove Portrait Mode from Inspector window for now
-			//m_Component.PortraitMode        = EditorGUILayout.Toggle ("Portrait Mode", m_Component.PortraitMode);
 			m_Component.EnableOrientation   = EditorGUILayout.Toggle ("Enable Orientation", m_Component.EnableOrientation);
+			m_Component.EnablePosition      = EditorGUILayout.Toggle ("Enable Position", m_Component.EnablePosition);
 			m_Component.PredictionOn        = EditorGUILayout.Toggle ("Prediction On", m_Component.PredictionOn);
-			m_Component.CallInPreRender     = EditorGUILayout.Toggle ("Call in Pre-Render", m_Component.CallInPreRender);
-			m_Component.WireMode     		= EditorGUILayout.Toggle ("Wire-Frame Mode", m_Component.WireMode);
-			m_Component.LensCorrection     	= EditorGUILayout.Toggle ("Lens Correction", m_Component.LensCorrection);
-			m_Component.Chromatic     		= EditorGUILayout.Toggle ("Chromatic", m_Component.Chromatic);
-			
+			m_Component.TimeWarp     		= EditorGUILayout.Toggle ("Time Warp", m_Component.TimeWarp);
+			m_Component.FreezeTimeWarp     	= EditorGUILayout.Toggle ("Freeze Time Warp", m_Component.FreezeTimeWarp);
+			m_Component.Mirror  	   		= EditorGUILayout.Toggle ("Mirror to Display", m_Component.Mirror);
+
 			OVREditorGUIUtility.Separator();
 		
 			m_Component.BackgroundColor 	= EditorGUILayout.ColorField("Background Color", m_Component.BackgroundColor);
@@ -110,12 +108,8 @@ public class OVRCameraControllerEditor : Editor
 
 		if (GUI.changed)
 		{
-			Undo.CreateSnapshot();
-			Undo.RegisterSnapshot();
 			EditorUtility.SetDirty(m_Component);
 		}
-		
-		Undo.ClearSnapshotTarget();
 	}		
 }
 

@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
+  serializedVersion: 3
   AndroidProfiler: 0
   defaultScreenOrientation: 0
   targetDevice: 2
@@ -14,8 +14,8 @@ PlayerSettings:
   productName: Super Mario 64 VR
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  defaultScreenWidth: 1280
-  defaultScreenHeight: 800
+  defaultScreenWidth: 1920
+  defaultScreenHeight: 1080
   defaultScreenWidthWeb: 1280
   defaultScreenHeightWeb: 800
   m_RenderingPath: 1
@@ -24,9 +24,10 @@ PlayerSettings:
   m_MTRendering: 1
   m_MobileMTRendering: 0
   m_UseDX11: 0
+  m_Stereoscopic3D: 0
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
-  displayResolutionDialog: 1
+  displayResolutionDialog: 2
   allowedAutorotateToPortrait: 1
   allowedAutorotateToPortraitUpsideDown: 1
   allowedAutorotateToLandscapeRight: 1
@@ -34,9 +35,9 @@ PlayerSettings:
   useOSAutorotation: 1
   use32BitDisplayBuffer: 1
   use24BitDepthBuffer: 1
-  defaultIsFullScreen: 1
+  defaultIsFullScreen: 0
   defaultIsNativeResolution: 0
-  runInBackground: 0
+  runInBackground: 1
   captureSingleScreen: 0
   Override IPod Music: 0
   Prepare IOS For Recording: 0
@@ -56,23 +57,13 @@ PlayerSettings:
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
-  wiiHio2Usage: -1
-  wiiLoadingScreenRectPlacement: 0
-  wiiLoadingScreenBackground: {r: 1, g: 1, b: 1, a: 1}
-  wiiLoadingScreenPeriod: 1000
-  wiiLoadingScreenFileName: 
-  wiiLoadingScreenRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+  videoMemoryForVertexBuffers: 0
   m_SupportedAspectRatios:
-    4:3: 1
-    5:4: 1
+    4:3: 0
+    5:4: 0
     16:10: 1
     16:9: 1
-    Others: 1
+    Others: 0
   iPhoneBundleIdentifier: com.Company.ProductName
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
@@ -118,17 +109,6 @@ PlayerSettings:
   m_BuildTargetBatching: []
   webPlayerTemplate: APPLICATION:Black Background
   m_TemplateCustomTags: {}
-  wiiRegion: 1
-  wiiGameCode: RABA
-  wiiGameVersion: 
-  wiiCompanyCode: ZZ
-  wiiSupportsNunchuk: 0
-  wiiSupportsClassicController: 0
-  wiiSupportsBalanceBoard: 0
-  wiiSupportsMotionPlus: 0
-  wiiControllerCount: 1
-  wiiFloatingPointExceptions: 0
-  wiiScreenCrashDumps: 1
   XboxTitleId: 
   XboxImageXexPath: 
   XboxSpaPath: 
@@ -151,11 +131,30 @@ PlayerSettings:
   ps3TrophyCommSig: 
   ps3SaveGameSlots: 1
   ps3TrialMode: 0
+  psp2Splashimage: {fileID: 0}
+  psp2LiveAreaGate: {fileID: 0}
+  psp2LiveAreaBackround: {fileID: 0}
+  psp2NPTrophyPackPath: 
+  psp2NPCommsID: 
+  psp2NPCommsPassphrase: 
+  psp2NPCommsSig: 
+  psp2ParamSfxPath: 
+  psp2PackagePassword: 
+  psp2DLCConfigPath: 
+  psp2ThumbnailPath: 
+  psp2BackgroundPath: 
+  psp2SoundPath: 
+  psp2TrophyCommId: 
+  psp2TrophyPackagePath: 
+  psp2PackagedResourcesPath: 
   flashStrippingLevel: 2
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: 
   metroPackageName: SM64VR
   metroPackageLogo: Assets/General/Logo/logo-50.png
+  metroPackageLogo140: 
+  metroPackageLogo180: 
   metroPackageVersion: 0.1.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
@@ -163,15 +162,38 @@ PlayerSettings:
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Super Mario 64 VR
+  metroTileLogo80: 
   metroTileLogo: Assets/General/Logo/logo-150.png
+  metroTileLogo140: 
+  metroTileLogo180: 
+  metroTileWideLogo80: 
   metroTileWideLogo: Assets/General/Logo/logo-310x150.png
+  metroTileWideLogo140: 
+  metroTileWideLogo180: 
+  metroTileSmallLogo80: 
   metroTileSmallLogo: Assets/General/Logo/logo-30.png
+  metroTileSmallLogo140: 
+  metroTileSmallLogo180: 
+  metroSmallTile80: 
+  metroSmallTile: 
+  metroSmallTile140: 
+  metroSmallTile180: 
+  metroLargeTile80: 
+  metroLargeTile: 
+  metroLargeTile140: 
+  metroLargeTile180: 
   metroTileShortName: SM64VR
   metroCommandLineArgsFile: 
   metroTileShowName: 1
+  metroMediumTileShowName: 0
+  metroLargeTileShowName: 0
+  metroWideTileShowName: 0
+  metroDefaultTileSize: 1
   metroTileForegroundText: 1
   metroTileBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenImage: Assets/General/Logo/logo-620x300.png
+  metroSplashScreenImage140: 
+  metroSplashScreenImage180: 
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   metroCapabilities:
@@ -214,7 +236,9 @@ PlayerSettings:
   tizenProductURL: 
   tizenCertificatePath: 
   tizenCertificatePassword: 
-  tizenSaveLogPath: 
+  tizenGPSPermissions: 0
+  tizenMicrophonePermissions: 0
+  stvDeviceAddress: 
   firstStreamedLevelWithResources: 0
   unityRebuildLibraryVersion: 9
   unityForwardCompatibleVersion: 39
