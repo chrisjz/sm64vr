@@ -201,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -6.59999671e-07}
-  m_LocalPosition: {x: .00751893874, y: .284717083, z: .470361173}
+  m_LocalPosition: {x: .00751893502, y: .284717083, z: .500452459}
   m_LocalScale: {x: .0566409901, y: .0405053347, z: .0315249972}
   m_Children: []
   m_Father: {fileID: 400018}
@@ -213,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -2.88699169e-07}
-  m_LocalPosition: {x: .00751883304, y: .424890369, z: .470361441}
+  m_LocalPosition: {x: .0075190193, y: .424890369, z: .500452518}
   m_LocalScale: {x: .0566410013, y: .0405053347, z: .0315250047}
   m_Children: []
   m_Father: {fileID: 400018}
@@ -225,7 +225,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.25629401e-06}
-  m_LocalPosition: {x: .00751882046, y: -.0119058285, z: .492372066}
+  m_LocalPosition: {x: .00751897646, y: -.0119058285, z: .504351079}
   m_LocalScale: {x: .0945743546, y: .405053318, z: .0945749953}
   m_Children: []
   m_Father: {fileID: 400010}
@@ -237,7 +237,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -8.75545595e-07}
-  m_LocalPosition: {x: .00751882046, y: -.0540533662, z: .492372066}
+  m_LocalPosition: {x: .00751897646, y: -.0540533662, z: .504351079}
   m_LocalScale: {x: .0945743844, y: .405053318, z: .0945750102}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -249,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: .00751883257, y: -.050085336, z: .492370278}
+  m_LocalPosition: {x: .00751897646, y: -.050085336, z: .504351079}
   m_LocalScale: {x: .0945745632, y: .405054837, z: .0945745409}
   m_Children: []
   m_Father: {fileID: 400016}
@@ -348,7 +348,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  - {fileID: 2100000, guid: ca9e88a75c03f1f4f81868d4fe291937, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -368,7 +368,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  - {fileID: 2100000, guid: ca9e88a75c03f1f4f81868d4fe291937, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -388,7 +388,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  - {fileID: 2100000, guid: ca9e88a75c03f1f4f81868d4fe291937, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -408,7 +408,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  - {fileID: 2100000, guid: ca9e88a75c03f1f4f81868d4fe291937, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -428,7 +428,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  - {fileID: 2100000, guid: ca9e88a75c03f1f4f81868d4fe291937, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -654,7 +654,7 @@ TextMesh:
   m_FontSize: 14
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  m_Font: {fileID: 12800000, guid: b12612ba9acf01b47b7b57cd19348ba2, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -675,7 +675,7 @@ TextMesh:
   m_FontSize: 24
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  m_Font: {fileID: 12800000, guid: b12612ba9acf01b47b7b57cd19348ba2, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -696,7 +696,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  m_Font: {fileID: 12800000, guid: b12612ba9acf01b47b7b57cd19348ba2, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -717,7 +717,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  m_Font: {fileID: 12800000, guid: b12612ba9acf01b47b7b57cd19348ba2, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -738,7 +738,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 1c269d0237399244b8348181594cc1ba, type: 3}
+  m_Font: {fileID: 12800000, guid: b12612ba9acf01b47b7b57cd19348ba2, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -754,6 +754,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitSceneName: Castle
+  sixenseLeftHandMenuButton: 8
+  sixenseRightHandMenuButton: 16
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
