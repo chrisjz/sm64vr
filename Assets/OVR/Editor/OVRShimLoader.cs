@@ -43,6 +43,7 @@ class OVRShimLoader
 
 	static void Update()
 	{
+		#if !UNITY_EDITOR_OSX && !UNITY_STANDALONE_OSX
 		// Suppresses the resolution dialog and sets Rift-optimized launch settings.
 		if (_isEnabled)
 		{
@@ -51,6 +52,7 @@ class OVRShimLoader
 			PlayerSettings.defaultScreenWidth = 1920;
 			PlayerSettings.defaultScreenHeight = 1080;
 		}
+		#endif
 	}
 
 	[PreferenceItem("Oculus VR")]

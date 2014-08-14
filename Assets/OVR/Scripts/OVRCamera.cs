@@ -63,7 +63,11 @@ public class OVRCamera : MonoBehaviour
 	[DllImport(strOvrLib)]
 	static extern void OVR_SetEndFrameInPresent(bool isEnabled);
 	[DllImport(strOvrLib)]
-	static extern void OVR_SampleEyePose(int eyeId);
+	static extern ovrPosef OVR_GetRenderPose();
+    [DllImport(strOvrLib)]
+    static extern void OVR_SetMacEditorPlay(bool isEditorPlay);
+    [DllImport(strOvrLib)]
+    static extern void OVR_SetDX11EditorPlay(bool isEditorPlay);
 	#endregion
 
 	#region Private Member Variables
@@ -144,8 +148,13 @@ public class OVRCamera : MonoBehaviour
 		camera.rect = new Rect(0, 0, 1, 1);
 #if UNITY_EDITOR_OSX
 		OVR_SetEndFrameInPresent(false);
+		OVR_SetMacEditorPlay(true);
+#elif UNITY_STANDALONE_OSX
+		OVR_SetMacEditorPlay(false);
+#elif UNITY_EDITOR_WIN
+        OVR_SetDX11EditorPlay(true);
 #endif
-	}
+    }
 
 	void Start()
 	{
@@ -166,13 +175,17 @@ public class OVRCamera : MonoBehaviour
 		if (!CameraController.UseCameraTexture)
 			return;
 
+#if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
+		// if AA & AF are disabled, step down RT scale for a FPS boost
+		if (QualitySettings.anisotropicFiltering == 0 && QualitySettings.antiAliasing == 0)
+			CameraController.CameraTextureScale = Mathf.Min(CameraController.CameraTextureScale, 0.7f);
+#endif
+
 		// This will scale the render texture based on ideal resolution
 		CreateRenderTexture(EyeId, CameraController.CameraTextureScale);
 
 		camera.targetTexture = CameraTexture[EyeId];
         OldScale = CameraController.ScaleRenderTarget;
-
-		OVR_SetTexture(EyeId, CameraTexture[EyeId].GetNativeTexturePtr(), CameraController.ScaleRenderTarget);
 	}
 
     static int PendingEyeCount = 0;
@@ -202,9 +215,9 @@ public class OVRCamera : MonoBehaviour
         	PendingEyeCount--;
 
         NeedsSetTexture = NeedsSetTexture || ((CameraController.ScaleRenderTarget != OldScale) || (Screen.fullScreen != wasFullScreen) || OVR_UnityGetModeChange());
-		
+
         if (NeedsSetTexture)
-		{
+        {
             if (CameraTexture[EyeId].GetNativeTexturePtr() == System.IntPtr.Zero)
                 return;             
 
@@ -215,9 +228,9 @@ public class OVRCamera : MonoBehaviour
 
 			if (PendingEyeCount == 0)
 				OVR_UnitySetModeChange(false);
-		
+
             NeedsSetTexture = false;
-		}
+        }
 
         if (PendingEyeCount == 0)
 			GL.IssuePluginEvent((int)EventType.EndFrame);
@@ -228,7 +241,11 @@ public class OVRCamera : MonoBehaviour
 		while (true)
 		{
             OVRDevice.HMD = Hmd.GetHmd();
+#if UNITY_EDITOR_WIN || (!UNITY_EDITOR_OSX && UNITY_STANDALONE_OSX)
+            yield return new WaitForEndOfFrame();
+#else
             yield return null;
+#endif
 			OnCoroutine();
 		}
 	}
@@ -251,21 +268,15 @@ public class OVRCamera : MonoBehaviour
 				transform.parent.transform.eulerAngles = a;
 			}
 
-			OVR_SampleEyePose(0);
-			OVR_SampleEyePose(1);
-
-			// Get camera orientation and position from vision
-			Quaternion camOrt = Quaternion.identity;
-			Vector3 camPos = Vector3.zero;
-			OVRDevice.GetCameraPositionOrientation(ref camPos, ref camOrt, CameraController.GetRenderTime());
+			ovrPosef renderPose = OVR_GetRenderPose();
 
 			if (CameraController.EnablePosition)
-				CameraPosition = camPos;
+				CameraPosition = renderPose.Position.ToVector3();
 
 			bool useOrt = (CameraController.EnableOrientation &&
 			               !(CameraController.TimeWarp && CameraController.FreezeTimeWarp));	
 			if(useOrt)
-				CameraOrientation = camOrt;
+				CameraOrientation = renderPose.Orientation.ToQuaternion();
 		}
 		
 		// Calculate the rotation Y offset that is getting updated externally

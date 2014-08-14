@@ -141,6 +141,29 @@ public static class OVRExtensions
 
 		return mat;
 	}
+
+	public static Vector3 ToVector3(this ovrVector3f ovrVec, bool rhToLh = true)
+	{
+		Vector3 vec = new Vector3(ovrVec.x, ovrVec.y, ovrVec.z);
+
+		if (rhToLh)
+			vec.z = -vec.z;
+
+		return vec;
+	}
+	
+	public static Quaternion ToQuaternion(this ovrQuatf ovrQuat, bool rhToLh = true)
+	{
+		Quaternion q = new Quaternion(ovrQuat.x, ovrQuat.y, ovrQuat.z, ovrQuat.w);
+
+		if (rhToLh)
+		{
+			q.x = -q.x; 
+			q.y = -q.y;	
+		}
+
+		return q;
+	}
 }
 
 

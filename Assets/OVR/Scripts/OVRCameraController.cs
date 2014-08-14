@@ -24,6 +24,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 ************************************************************************************/
+
+//#define OVR_USE_PROJ_MATRIX
+
 using UnityEngine;
 using OVR;
 using System.Collections.Generic;
@@ -44,6 +47,8 @@ public class OVRCameraController : MonoBehaviour
 	public const string strOvrLib = "OculusPlugin";
 	[DllImport(strOvrLib)]
 	static extern void OVR_EnableTimeWarp(bool isEnabled);
+	[DllImport(strOvrLib)]
+	static extern void OVR_ForceSymmetricProj(bool isEnabled);
 	[DllImport(strOvrLib)]
 	static extern bool OVR_SetViewport(int x, int y, int w, int h);
 	#endregion
@@ -74,6 +79,9 @@ public class OVRCameraController : MonoBehaviour
 		get{return ipd;}
 		set
 		{
+			if (ipd == value)
+				return;
+
 			ipd = value;
 			UpdateDistortionDirtyFlag = true;
 		}
@@ -89,7 +97,12 @@ public class OVRCameraController : MonoBehaviour
 		get{return verticalFOV;}
 		set
 		{
-			verticalFOV = Mathf.Clamp(value, 40.0f, 170.0f);
+			float newVerticalFOV = Mathf.Clamp(value, 40.0f, 170.0f);
+
+			if (newVerticalFOV == verticalFOV)
+				return;
+
+			verticalFOV = newVerticalFOV;
 			UpdateDistortionDirtyFlag = true;
 		}
 	}
@@ -241,7 +254,7 @@ public class OVRCameraController : MonoBehaviour
 	#endregion
 
 	#region MonoBehaviour Message Handlers
-	void Start()
+	void Awake()
 	{
 		// Get the cameras
 		OVRCamera[] cameras = gameObject.GetComponentsInChildren<OVRCamera>();
@@ -258,7 +271,10 @@ public class OVRCameraController : MonoBehaviour
 			Debug.LogWarning("No left camera found for OVRCameraController!");
 		if(CameraRight == null)
 			Debug.LogWarning("No right camera found for OVRCameraController!");
+	}
 
+	void Start()
+	{
 		if (camera == null)
 		{
 			gameObject.AddComponent<Camera>();
@@ -379,10 +395,15 @@ public class OVRCameraController : MonoBehaviour
 		camera.nearClipPlane = NearClipPlane;
 		camera.farClipPlane = FarClipPlane;
 
+#if OVR_USE_PROJ_MATRIX
 		// Projection Matrix
 		Matrix4x4 camMat = Matrix4x4.identity;
 		OVRDevice.GetCameraProjection(cam.EyeId, NearClipPlane, FarClipPlane, ref camMat);
 		camera.projectionMatrix = camMat;
+		OVR_ForceSymmetricProj(false);
+#else
+		OVR_ForceSymmetricProj(true);
+#endif
 		
 		// Set camera variables that pertain to the neck and eye position
 		// NOTE: We will want to add a scale vlue here in the event that the player 
@@ -706,17 +727,6 @@ public class OVRCameraController : MonoBehaviour
 		eyeHeight = CameraRootPosition.y + NeckPosition.y;  
 		
 		return true;
-	}
-
-	/// <summary>
-	/// Returns the time for which we should sample sensor data.
-	/// </summary>
-	public double GetRenderTime()
-	{
-		int frameId = 0; // Increase this to get predicted frames from the future.
-		double predictionTime = (TimeWarp) ? OVRDevice.GetScanoutTime(frameId) :
-								(PredictionOn) ? (double)OVRDevice.PredictionTime : 0d;
-		return predictionTime;
 	}
 	#endregion
 }

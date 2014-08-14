@@ -144,7 +144,7 @@ public class OVRDevice : MonoBehaviour
 
 		ovrTrackingState ss = HMD.GetTrackingState();
 		
-		return (ss.StatusFlags | (uint)ovrStatusBits.ovrStatus_HmdConnected) != 0;
+		return (ss.StatusFlags & (uint)ovrStatusBits.ovrStatus_HmdConnected) != 0;
 	}
 
 	/// <summary>
@@ -279,7 +279,7 @@ public class OVRDevice : MonoBehaviour
 
 		ovrTrackingState ss = HMD.GetTrackingState();
 		
-		return (ss.StatusFlags | (uint)ovrStatusBits.ovrStatus_PositionConnected) != 0;
+		return (ss.StatusFlags & (uint)ovrStatusBits.ovrStatus_PositionConnected) != 0;
 	}
 	
 	/// <summary>
@@ -293,7 +293,7 @@ public class OVRDevice : MonoBehaviour
 
 		ovrTrackingState ss = HMD.GetTrackingState();
 		
-		return (ss.StatusFlags | (uint)ovrStatusBits.ovrStatus_PositionTracked) != 0;
+		return (ss.StatusFlags & (uint)ovrStatusBits.ovrStatus_PositionTracked) != 0;
 	}
 	
 	/// <summary>
@@ -398,22 +398,22 @@ public class OVRDevice : MonoBehaviour
 		resV = 800;
 		fovH = fovV = 90.0f;
 		
-		float desiredPixelDensity = 1.0f;
-
         if (HMD == null || !SupportedPlatform)
             return;
 
 		ovrHmdDesc desc = HMD.GetDesc();
-		
+		ovrFovPort fov = desc.DefaultEyeFov[0];
+		fov.LeftTan = fov.RightTan = Mathf.Max(fov.LeftTan, fov.RightTan);
+		fov.UpTan   = fov.DownTan  = Mathf.Max(fov.UpTan,   fov.DownTan);
+
 		// Configure Stereo settings. Default pixel density is 1.0f.
-		ovrSizei tex0Size = HMD.GetFovTextureSize(ovrEyeType.ovrEye_Left, desc.DefaultEyeFov[0], desiredPixelDensity);
-		//ovrSizei tex1Size = HMD.GetFovTextureSize(ovrEyeType.ovrEye_Right, desc.DefaultEyeFov[1], desiredPixelDensity);
-		
-		//TODO: account for differences between eyes.
-		resH = tex0Size.w;
-		resV = tex0Size.h;
-		fovH = Mathf.Rad2Deg * ( Mathf.Atan(desc.DefaultEyeFov[0].LeftTan) + Mathf.Atan(desc.DefaultEyeFov[0].RightTan) );
-		fovV = Mathf.Rad2Deg * ( Mathf.Atan(desc.DefaultEyeFov[0].UpTan)   + Mathf.Atan(desc.DefaultEyeFov[0].DownTan)  );
+		float desiredPixelDensity = 1.0f;
+		ovrSizei texSize = HMD.GetFovTextureSize(ovrEyeType.ovrEye_Left, fov, desiredPixelDensity);
+
+		resH = texSize.w;
+		resV = texSize.h;
+		fovH = 2f * Mathf.Rad2Deg * Mathf.Atan( fov.LeftTan );
+		fovV = 2f * Mathf.Rad2Deg * Mathf.Atan( fov.UpTan );
 	}
 
     /// <summary>
@@ -455,20 +455,5 @@ public class OVRDevice : MonoBehaviour
         Ren = latencies[0];
         TWrp = latencies[1];
         PostPresent = latencies[2];
-    }   
-
-	/// <summary>
-	/// Gets the time (relative to now) at which the given frame will
-	/// show up on the screen, based on prediction.
-	/// </summary>
-	/// <returns>The scanout time.</returns>
-	/// <param name="frameNumber">Frame number.</param>
-	public static double GetScanoutTime(int frameNumber)
-	{
-        if (HMD == null || !SupportedPlatform)
-			return 0d;
-
-		ovrFrameTiming frameTiming = HMD.GetFrameTiming((uint)frameNumber);
-		return frameTiming.ScanoutMidpointSeconds - Hmd.GetTimeInSeconds();
-	}
+    }
 }
