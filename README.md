@@ -60,6 +60,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Miscellaneous
 
+* Convert Sixense GUI dialogs into 3D
 * In-game menu functionality
 * In-game menu theme
 * Shadows for signs, trees.

@@ -12,7 +12,6 @@ using System.Collections;
 
 public class CubeMenuButton : MonoBehaviour {
 	public string buttonName;
-	public bool buttonEnabled;
 
 	protected CubeMenu menu;
 	
@@ -21,10 +20,6 @@ public class CubeMenuButton : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (!buttonEnabled) {
-			return;
-		}
-
 		menu.HandleButtonByName(buttonName);
 	}
 }
