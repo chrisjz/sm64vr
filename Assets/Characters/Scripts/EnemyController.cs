@@ -28,7 +28,6 @@ public class EnemyController : MonoBehaviour {
 	protected bool heldByPlayer; 								// If enemy has been held by player before
 	protected bool knockingBack;								// If enemy is currently being knocked back
 	protected bool dead; 										// If enemy is dead
-	protected bool defaultUseGravity;
 
 	// These are all the movement types that the enemy can do
 	protected enum Movement{Path, Follow, Freeze};
@@ -46,10 +45,6 @@ public class EnemyController : MonoBehaviour {
 		initAnimationName = animation.clip.name;
 		spawnPosition = transform.position;
 		spawnRotation = transform.rotation;
-
-		if (rigidbody) {
-			defaultUseGravity = rigidbody.useGravity;
-		}
 	}
 
 	protected virtual void Start() {
@@ -61,11 +56,7 @@ public class EnemyController : MonoBehaviour {
 		pathTimer = 0;
 		heldByPlayer = false;
 		knockingBack = false;
-		dead = false;		
-
-		if (rigidbody) {
-			rigidbody.useGravity = defaultUseGravity;
-		}
+		dead = false;
 	}
 
 	protected virtual void Update () {
@@ -100,15 +91,8 @@ public class EnemyController : MonoBehaviour {
 		if (IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
 			agent.enabled = false;
-			rigidbody.useGravity = false;
-		} else {
-			if (!heldByPlayer) {
-				agent.enabled = true;
-			} else {
-				if (rigidbody) {
-					rigidbody.useGravity = true;
-				}
-			}
+		} else if (!heldByPlayer) {
+			agent.enabled = true;
 		}
 	}
 

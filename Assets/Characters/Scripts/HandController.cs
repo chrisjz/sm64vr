@@ -70,9 +70,9 @@ public class HandController : SixenseHandController {
 			
 			grabObject = closestObject.GetComponent<GrabObject>();
 			if (grabObject && grabObject.isEnabled) {
+				grabObject.SetRigidbodyDetectionCollisions(false);
 				closestObject.transform.position = currentPosition + closestObject.transform.TransformDirection(grabObject.GetPosition(Hand));
 				closestObject.transform.rotation = currentRotation * Quaternion.Euler(grabObject.GetRotation(Hand));
-				grabObject.SetRigidbodyDetectionCollisions(false);
 			} else {
 				closestObject.transform.position = currentPosition;
 				closestObject.transform.rotation = currentRotation;
