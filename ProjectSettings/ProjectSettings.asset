@@ -54,6 +54,7 @@ PlayerSettings:
   xboxEnableKinectAutoTracking: 0
   xboxEnableFitness: 0
   macFullscreenMode: 2
+  d3d9FullscreenMode: 1
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
@@ -155,6 +156,7 @@ PlayerSettings:
   metroPackageLogo: Assets/General/Logo/logo-50.png
   metroPackageLogo140: 
   metroPackageLogo180: 
+  metroPackageLogo240: 
   metroPackageVersion: 0.1.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
@@ -162,26 +164,44 @@ PlayerSettings:
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Super Mario 64 VR
-  metroTileLogo80: 
-  metroTileLogo: Assets/General/Logo/logo-150.png
-  metroTileLogo140: 
-  metroTileLogo180: 
-  metroTileWideLogo80: 
-  metroTileWideLogo: Assets/General/Logo/logo-310x150.png
-  metroTileWideLogo140: 
-  metroTileWideLogo180: 
-  metroTileSmallLogo80: 
-  metroTileSmallLogo: Assets/General/Logo/logo-30.png
-  metroTileSmallLogo140: 
-  metroTileSmallLogo180: 
-  metroSmallTile80: 
-  metroSmallTile: 
-  metroSmallTile140: 
-  metroSmallTile180: 
-  metroLargeTile80: 
-  metroLargeTile: 
-  metroLargeTile140: 
-  metroLargeTile180: 
+  metroStoreTileLogo80: 
+  metroStoreTileLogo: 
+  metroStoreTileLogo140: 
+  metroStoreTileLogo180: 
+  metroStoreTileWideLogo80: 
+  metroStoreTileWideLogo: 
+  metroStoreTileWideLogo140: 
+  metroStoreTileWideLogo180: 
+  metroStoreTileSmallLogo80: 
+  metroStoreTileSmallLogo: 
+  metroStoreTileSmallLogo140: 
+  metroStoreTileSmallLogo180: 
+  metroStoreSmallTile80: 
+  metroStoreSmallTile: 
+  metroStoreSmallTile140: 
+  metroStoreSmallTile180: 
+  metroStoreLargeTile80: 
+  metroStoreLargeTile: 
+  metroStoreLargeTile140: 
+  metroStoreLargeTile180: 
+  metroStoreSplashScreenImage: 
+  metroStoreSplashScreenImage140: 
+  metroStoreSplashScreenImage180: 
+  metroPhoneAppIcon: 
+  metroPhoneAppIcon140: 
+  metroPhoneAppIcon240: 
+  metroPhoneSmallTile: 
+  metroPhoneSmallTile140: 
+  metroPhoneSmallTile240: 
+  metroPhoneMediumTile: 
+  metroPhoneMediumTile140: 
+  metroPhoneMediumTile240: 
+  metroPhoneWideTile: 
+  metroPhoneWideTile140: 
+  metroPhoneWideTile240: 
+  metroPhoneSplashScreenImage: 
+  metroPhoneSplashScreenImage140: 
+  metroPhoneSplashScreenImage240: 
   metroTileShortName: SM64VR
   metroCommandLineArgsFile: 
   metroTileShowName: 1
@@ -191,9 +211,6 @@ PlayerSettings:
   metroDefaultTileSize: 1
   metroTileForegroundText: 1
   metroTileBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  metroSplashScreenImage: Assets/General/Logo/logo-620x300.png
-  metroSplashScreenImage140: 
-  metroSplashScreenImage180: 
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   metroCapabilities:
