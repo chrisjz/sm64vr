@@ -35,6 +35,7 @@ public class BossController : MonoBehaviour {
 	protected bool isHeldByPlayer;	 							// If boss is currently being held by player
 	protected bool wasHeldByPlayer; 							// If boss has been held by player before
 	protected bool isBeingHurt;
+	protected bool isGrabbingPlayer = false;
 	protected bool isThrowingPlayer = false;
 
 	// These are all the movement types that the enemy can do
@@ -97,7 +98,9 @@ public class BossController : MonoBehaviour {
 			player.transform.position = Vector3.Lerp(startMarkerThrowPlayer.transform.position, endMarkerThrowPlayer.transform.position, fracJourney);
 
 			if (fracJourney >= 1f) {
+				isGrabbingPlayer = false;
 				isThrowingPlayer = false;
+				animation.Play ("Walk");
 			}
 		}
 	}
@@ -174,16 +177,19 @@ public class BossController : MonoBehaviour {
 		float dist = Vector3.Distance(player.transform.position, grabPerimeter.transform.position);
 
 		if (dist < minDistanceGrabPermimeter) {
-			StartCoroutine(GrabPlayer ());
+			if (!isGrabbingPlayer) {
+				StartCoroutine(GrabPlayer ());
+			}
+			Vector3 offset = new Vector3 (-5.0f, 3f, 0f);
+			player.transform.position = transform.position + offset;
+			player.transform.forward = transform.forward;
 		}
 	}
 
 	// Boss grabs player
 	protected IEnumerator GrabPlayer () {
-		Vector3 offset = new Vector3 (-5.0f, 3f, 0f);
 		animation.Play (grabAnimationName);
-		player.transform.position = transform.position + offset;
-		player.transform.forward = transform.forward;
+		isGrabbingPlayer = true;
 		yield return new WaitForSeconds(animation.clip.length);
 		ThrowPlayer ();
 	}
@@ -192,6 +198,7 @@ public class BossController : MonoBehaviour {
 		if (isThrowingPlayer) {
 			return;
 		}
+		animation.Play (throwAnimationName);
 		startMarkerThrowPlayer.transform.position = player.transform.position;
 		endMarkerThrowPlayer.transform.position = startMarkerThrowPlayer.transform.position + new Vector3 (-20f, 10f, 0f);
 		startTimeThrowPlayer = Time.time;
