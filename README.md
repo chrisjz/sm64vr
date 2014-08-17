@@ -43,8 +43,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 ### Bob-omb Battlefield
 
 * Bob-omb glitches sometimes when grabbed.
-* Big block that blows up when punched.
-* Collider for fences.
+* Big block collision on punch is no working completely.
 * Increase frequency of boulders coming down the mountain.
 * If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
 * Transition to Bob-omb Battlefield when jumping into its painting.
@@ -62,7 +61,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 * Convert Sixense GUI dialogs into 3D
 * In-game menu functionality
-* In-game menu theme
 * Shadows for signs, trees.
 
 ### Enhancements
