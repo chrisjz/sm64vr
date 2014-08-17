@@ -57,6 +57,13 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Chomp enemy.
 * Player respawns in front of painting.
 
+### King Bob-omb
+
+* Bug - if he is grabbed at the start, while rotating towards player, an agent related error occurs.
+* Recovers animation after throwing player
+* Resets if player leaves boss perimeter
+* Jumps back onto arena if player throws him off the mountain, takes no damage
+
 ### Miscellaneous
 
 * Convert Sixense GUI dialogs into 3D

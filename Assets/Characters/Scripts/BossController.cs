@@ -9,10 +9,12 @@ public class BossController : MonoBehaviour {
 	public float playerCarryTurnSpeed = 2;						// Turn speed of player when carrying boss
 	public float minHurtAltitude = 0;							// The min altitude that boss must be at to be hurt by player
 	public float heldFixedRotationX;							// Keep the boss rotated on axis X at this value when held by player
+	public float hurtDuration = 3;									// Seconds where boss is in hurt stage
 	public string heldAnimationName;							// Name of animation clip when player holds boss
 	public float heldAnimationSpeed;							// How fast animation runs when boss held by player
 	public string grabAnimationName;							// Name of animation clip when boss grabs player
 	public string throwAnimationName;							// Name of animation clip when boss throws player
+	public string recoverAnimationName;							// Name of animation clip where boss recovers from being hurt
 	public GameObject terrain;									// Terrain that the boss stands on
 	public GameObject grabPerimeter;							// Area where boss will grab player if player enters the area.
 	public float minDistanceGrabPermimeter = 4;					// If player distance from grab perimeter less then this, player is grabbed.
@@ -107,28 +109,31 @@ public class BossController : MonoBehaviour {
 	
 	protected void OnCollisionEnter(Collision col) {
 		if (col.gameObject.name == terrain.name && !isHeldByPlayer && wasHeldByPlayer && !isBeingHurt && transform.position.y > minHurtAltitude) {
-			StartCoroutine(Hurt(hurtAudioClip.length));
+			StartCoroutine(Hurt());
 		}
 	}
 	
-	protected IEnumerator Hurt (float length) {
+	protected IEnumerator Hurt () {
 		isBeingHurt = true;
 		health -= 1;
 		if (!audio.isPlaying) {
 			audio.clip = hurtAudioClip;
 			audio.Play();
 		}
-		yield return new WaitForSeconds(length);
+		yield return new WaitForSeconds(hurtDuration);
 		rigidbody.freezeRotation = false;
-		StartCoroutine(SitBackUp(5));
+		StartCoroutine(SitBackUp());
 
 	}
 
 	// Boss will return back to their feet after fallen onto ground
-	protected IEnumerator SitBackUp (float length) {
+	protected IEnumerator SitBackUp () {
+		animation.Play ("Recover");
+		float animLength = animation.clip.length;
+
 		// Transition between fallen on back to standing up
-		transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler(new Vector3 (0, transform.rotation.y, transform.rotation.z)), length);
-		yield return new WaitForSeconds(length);
+		transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler(new Vector3 (0, transform.rotation.y, transform.rotation.z)), animLength);
+		yield return new WaitForSeconds(animLength);
 		// Stop ignoring player colliders
 		TriggerIgnorePlayerColliders(false);
 
@@ -136,6 +141,7 @@ public class BossController : MonoBehaviour {
 		wasHeldByPlayer = false;
 		isBeingHurt = false;
 		movement = Movement.Follow;
+		animation.Play ("Walk");
 	}
 	
 	protected virtual void StartBattle() {

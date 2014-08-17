@@ -26643,7 +26643,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26897,6 +26897,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
+      propertyPath: m_Animations.Array.data[6]
+      value: 
+      objectReference: {fileID: 7400000, guid: 6d3ea6023d655e844bfb4c67c10ac3ef, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
   m_RootGameObject: {fileID: 1621894811}
@@ -36030,6 +36034,7 @@ Animation:
   - {fileID: 7400000, guid: 8c1496f914d19564e835568fc4b324d0, type: 2}
   - {fileID: 7400000, guid: a11cc4bdd4397ff4e903d08fc23a7dee, type: 2}
   - {fileID: 7400000, guid: cb76989483360094ab2323f18f4fefd6, type: 2}
+  - {fileID: 7400000, guid: 6d3ea6023d655e844bfb4c67c10ac3ef, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -36064,10 +36069,12 @@ MonoBehaviour:
   playerCarryTurnSpeed: 2
   minHurtAltitude: 17
   heldFixedRotationX: 320
+  hurtDuration: 3
   heldAnimationName: Panic
   heldAnimationSpeed: 1
   grabAnimationName: Grab
   throwAnimationName: Throw
+  recoverAnimationName: Recover
   terrain: {fileID: 533441662}
   grabPerimeter: {fileID: 416550693}
   minDistanceGrabPermimeter: 4
