@@ -88,9 +88,10 @@ public class EnemyController : MonoBehaviour {
 	
 	// If player is holding enemy then stop any enemy movement
 	protected void IsPlayerHoldingEnemy() {
-		if (IsHoldingEnemy ()) {
+		if (!heldByPlayer && IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
 			agent.enabled = false;
+			heldByPlayer = true;
 		} else if (!heldByPlayer) {
 			agent.enabled = true;
 		}
@@ -99,7 +100,6 @@ public class EnemyController : MonoBehaviour {
 	protected bool IsHoldingEnemy () {
 		foreach (HandController playerHandController in playerHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
-				heldByPlayer = true;
 				return true;
 			}
 		}

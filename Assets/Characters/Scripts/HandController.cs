@@ -63,7 +63,8 @@ public class HandController : SixenseHandController {
 			}
 		}
 		
-		if (closestObject != null && Vector3.Distance(closestObject.transform.position, currentPosition) < minGrabDistance && controller.GetButton(SixenseButtons.TRIGGER)) {
+		if ((isHoldingObject && controller.GetButton(SixenseButtons.TRIGGER)) ||
+				(closestObject != null && Vector3.Distance(closestObject.transform.position, currentPosition) < minGrabDistance && controller.GetButton(SixenseButtons.TRIGGER))) {
 			if (closestObject.rigidbody && closestObject.rigidbody.isKinematic) {
 				return;
 			}
