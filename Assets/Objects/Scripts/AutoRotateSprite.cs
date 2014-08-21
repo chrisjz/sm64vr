@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class AutoRotateSprite : MonoBehaviour {
-	public float offsetY = 0;
 	private GameObject player;
 	private Vector3 rotationVector;
 
@@ -13,9 +12,13 @@ public class AutoRotateSprite : MonoBehaviour {
 
 	// Rotate object to always face same direction as player.
 	void Update () {
-		if (player) {
-			rotationVector.y = player.transform.rotation.eulerAngles.y + offsetY;
-			this.transform.rotation = Quaternion.Euler(rotationVector);
+		if (!player) {
+			return;
 		}
+
+		Vector3 lookPosition = player.transform.position - transform.position;
+		lookPosition.y = 0.0f;
+		transform.rotation = Quaternion.LookRotation(lookPosition);
+
 	}
 }
