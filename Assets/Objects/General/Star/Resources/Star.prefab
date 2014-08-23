@@ -27,12 +27,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 95: {fileID: 9500000}
+  - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Star
-  m_TagString: Untagged
+  m_TagString: Grabbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,6 +91,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Mesh: {fileID: 4300000, guid: 4ab4a1ba85e361f49b10fa7201b9186a, type: 3}
+--- !u!54 &5400000
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &6400000
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -129,12 +146,12 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: .492795408
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: .495677233
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -199,9 +216,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab691b5b48922674b8457ec5ae8c4138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldSceneName: Castle
   spawnAudioClip: {fileID: 8300000, guid: b4a8be8c862897b4b97bb91f1bda1e0a, type: 3}
+  captureAudioClip: {fileID: 8300000, guid: daf0bea040765f94689c7f680c882125, type: 3}
   finalPointOffset: {x: 0, y: 1.5, z: 0}
   speed: 3
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b8898e7dbabb14bad4ee4102c342c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnabled: 1
+  invertRightHand: 1
+  disableRigidbodyWhenHeld: 0
+  additionalThrowForce: 0
+  positionModifier: {x: -1, y: 1, z: 0}
+  rotationModifier: {x: 270, y: 90, z: 90}
+  invertPositionModifier: {x: 2, y: 0, z: 0}
+  invertRotationModifier: {x: 180, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
