@@ -200,6 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnAudioClip: {fileID: 8300000, guid: b4a8be8c862897b4b97bb91f1bda1e0a, type: 3}
+  finalPointOffset: {x: 0, y: 1.5, z: 0}
+  speed: 3
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
