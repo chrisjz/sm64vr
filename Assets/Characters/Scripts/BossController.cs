@@ -1,53 +1,64 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   BossController.cs
+Content     :   Controller for enemy boss
+Created     :   9 June 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class BossController : MonoBehaviour {
-	public float health = 3;
-	public float followSpeed = 3;
-	public float followAngularSpeed = 30;
-	public float playerCarrySpeed = 5;							// Walking speed of player when carrying boss
-	public float playerCarryTurnSpeed = 2;						// Turn speed of player when carrying boss
-	public float minHurtAltitude = 0;							// The min altitude that boss must be at to be hurt by player
-	public float heldFixedRotationX;							// Keep the boss rotated on axis X at this value when held by player
-	public float hurtDuration = 3;									// Seconds where boss is in hurt stage
-	public string heldAnimationName;							// Name of animation clip when player holds boss
-	public float heldAnimationSpeed;							// How fast animation runs when boss held by player
-	public string grabAnimationName;							// Name of animation clip when boss grabs player
-	public string throwAnimationName;							// Name of animation clip when boss throws player
-	public string recoverAnimationName;							// Name of animation clip where boss recovers from being hurt
-	public GameObject terrain;									// Terrain that the boss stands on
-	public GameObject grabPerimeter;							// Area where boss will grab player if player enters the area.
-	public float minDistanceGrabPermimeter = 4;					// If player distance from grab perimeter less then this, player is grabbed.
-	public AudioClip hurtAudioClip;								// Sound when boss gets hurt
-	
-	protected NavMeshAgent agent;
-	protected GameObject player;
-	protected CharacterMotor motor;
-	protected FPSInputController playerController;
-	protected PlayerLook playerLook;
-	protected HydraLook playerHydraLook;
-	protected PlayerHealth playerHealth;
-	protected HandController[] playerHandControllers;
-	protected Movement movement;
-	protected string tag;										// object's current tag, assumes this tag handles if object is grabbable.
-	protected float defaultHealth;
-	protected float defaultSpeed;
-	protected float defaultAngularSpeed;
-	protected bool initBattle = false;
-	protected bool startedBattle = false;
-	protected bool isHeldByPlayer;	 							// If boss is currently being held by player
-	protected bool wasHeldByPlayer; 							// If boss has been held by player before
-	protected bool isBeingHurt;
-	protected bool isGrabbingPlayer = false;
-	protected bool isThrowingPlayer = false;
+    public float health = 3;
+    public float followSpeed = 3;
+    public float followAngularSpeed = 30;
+    public float playerCarrySpeed = 5;                          // Walking speed of player when carrying boss
+    public float playerCarryTurnSpeed = 2;                      // Turn speed of player when carrying boss
+    public float minHurtAltitude = 0;                           // The min altitude that boss must be at to be hurt by player
+    public float heldFixedRotationX;                            // Keep the boss rotated on axis X at this value when held by player
+    public float hurtDuration = 3;                              // Seconds where boss is in hurt stage
+    public string heldAnimationName;                            // Name of animation clip when player holds boss
+    public float heldAnimationSpeed;                            // How fast animation runs when boss held by player
+    public string grabAnimationName;                            // Name of animation clip when boss grabs player
+    public string throwAnimationName;                           // Name of animation clip when boss throws player
+    public string recoverAnimationName;	                        // Name of animation clip where boss recovers from being hurt
+    public GameObject terrain;                                  // Terrain that the boss stands on
+    public GameObject grabPerimeter;                            // Area where boss will grab player if player enters the area
+    public float minDistanceGrabPermimeter = 4;	                // If player distance from grab perimeter less then this, player is grabbed
+    public AudioClip hurtAudioClip;                             // Sound when boss gets hurt
+    public float standBackUpSpeed = 0.05f;                      // Time taken for boss to stand back up when grounded
 
-	// These are all the movement types that the enemy can do
-	protected enum Movement{Follow, Freeze, Grab, Idle, Throw};
-	
-	protected GameObject startMarkerThrowPlayer;
-	protected GameObject endMarkerThrowPlayer;
-	protected float startTimeThrowPlayer;
-	protected float journeyLengthThrowPlayer;
+    protected NavMeshAgent agent;
+    protected GameObject player;
+    protected CharacterMotor motor;
+    protected FPSInputController playerController;
+    protected PlayerLook playerLook;
+    protected HydraLook playerHydraLook;
+    protected PlayerHealth playerHealth;
+    protected HandController[] playerHandControllers;
+    protected Movement movement;
+    protected string tag;                                       // object's current tag, assumes this tag handles if object is grabbable
+    protected float defaultHealth;
+    protected float defaultSpeed;
+    protected float defaultAngularSpeed;
+    protected bool initBattle = false;
+    protected bool startedBattle = false;
+    protected bool isHeldByPlayer;                              // If boss is currently being held by player
+    protected bool wasHeldByPlayer;                             // If boss has been held by player before
+    protected bool isBeingHurt;
+    protected bool isGrabbingPlayer = false;
+    protected bool isThrowingPlayer = false;
+    protected bool isStandingBackUp = false;
+
+    // These are all the movement types that the enemy can do
+    protected enum Movement{Follow, Freeze, Grab, Idle, Throw};
+
+    protected GameObject startMarkerThrowPlayer;
+    protected GameObject endMarkerThrowPlayer;
+    protected float startTimeThrowPlayer;
+    protected float journeyLengthThrowPlayer;
 	
 	protected virtual void Awake () {
 		agent = this.GetComponent<NavMeshAgent> ();
@@ -109,6 +120,11 @@ public class BossController : MonoBehaviour {
 				animation.Play ("Walk");
 			}
 		}
+        
+        // Transition between fallen on back to standing up
+        if (isStandingBackUp) {
+            transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler(new Vector3 (0, transform.rotation.y, transform.rotation.z)), 1 * standBackUpSpeed);
+        }
 	}
 	
 	protected void OnCollisionEnter(Collision col) {
@@ -118,6 +134,7 @@ public class BossController : MonoBehaviour {
 	}
 	
 	protected IEnumerator Hurt () {
+        gameObject.tag = "Untagged";
         rigidbody.constraints = RigidbodyConstraints.FreezePosition;
 		isBeingHurt = true;
 		health -= 1;
@@ -137,9 +154,9 @@ public class BossController : MonoBehaviour {
 		animation.Play ("Recover");
 		float animLength = animation.clip.length;
 
-		// Transition between fallen on back to standing up
-		transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler(new Vector3 (0, transform.rotation.y, transform.rotation.z)), animLength);
+        isStandingBackUp = true;
 		yield return new WaitForSeconds(animLength);
+        isStandingBackUp = false;
 		// Stop ignoring player colliders
 		TriggerIgnorePlayerColliders(false);
 
@@ -148,6 +165,7 @@ public class BossController : MonoBehaviour {
 		isBeingHurt = false;
 		movement = Movement.Follow;
 		animation.Play ("Walk");
+        gameObject.tag = tag;
 	}
 	
 	protected virtual void StartBattle() {

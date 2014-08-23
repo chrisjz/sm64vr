@@ -36066,6 +36066,7 @@ MonoBehaviour:
   grabPerimeter: {fileID: 416550693}
   minDistanceGrabPermimeter: 4
   hurtAudioClip: {fileID: 8300000, guid: 47be779dfdf470246b25af447c6ffb3e, type: 3}
+  standBackUpSpeed: .0500000007
 --- !u!195 &1621894820
 NavMeshAgent:
   m_ObjectHideFlags: 0

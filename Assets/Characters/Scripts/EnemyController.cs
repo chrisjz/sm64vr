@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   EnemyController.cs
+Content     :   Controller for enemy
+Created     :   11 May 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class EnemyController : MonoBehaviour {

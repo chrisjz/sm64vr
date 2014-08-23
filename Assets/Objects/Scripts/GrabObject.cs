@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   GrabObject.cs
+Content     :   Spatial positioning of object when grabbed.
+Created     :   6 May 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class GrabObject : MonoBehaviour {
