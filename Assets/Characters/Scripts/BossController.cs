@@ -118,6 +118,7 @@ public class BossController : MonoBehaviour {
 	}
 	
 	protected IEnumerator Hurt () {
+        rigidbody.constraints = RigidbodyConstraints.FreezePosition;
 		isBeingHurt = true;
 		health -= 1;
 		if (!audio.isPlaying) {
@@ -125,6 +126,7 @@ public class BossController : MonoBehaviour {
 			audio.Play();
 		}
 		yield return new WaitForSeconds(hurtDuration);
+        rigidbody.constraints &= ~RigidbodyConstraints.FreezePosition;  // unfreeze position
 		rigidbody.freezeRotation = false;
 		StartCoroutine(SitBackUp());
 

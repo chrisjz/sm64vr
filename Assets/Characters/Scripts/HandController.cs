@@ -11,15 +11,17 @@ using UnityEngine;
 using System.Collections;
 
 public class HandController : SixenseHandController {
-	public float					minGrabDistance = 1.0f;
-	public float					throwForce = 30.0f;			// Force multiplier for throwing objects
-	
-	private bool					isHoldingObject = false;
-	private GameObject				closestObject = null;
-	private GrabObject 				grabObject; 				// Script attached to grabbed object with grappling data on that object
-	private float					handVelocity;
-	private Vector3					handVector;
-	private Vector3					handPrevious;
+    public float                    minGrabDistance = 1.0f;
+    public float					throwForce = 30.0f;			// Force multiplier for throwing objects
+
+    protected bool                  isHoldingObject = false;
+    protected GameObject            closestObject = null;
+    protected GrabObject            grabObject; 				// Script attached to grabbed object with grappling data on that object
+    protected float                 handVelocity;
+    protected Vector3               handDirection;
+    protected Vector3               handVector;
+    protected Vector3               handPreviousPosition;
+    protected Vector3               handPreviousDirection;
 	
 	protected override void Start() 
 	{
@@ -86,18 +88,19 @@ public class HandController : SixenseHandController {
 	protected void Velocity () {
 		if (Time.deltaTime != 0)
 		{
-			handVector = (transform.position - handPrevious) / Time.deltaTime;
-			handPrevious = transform.position; 
+			handDirection = transform.position - handPreviousPosition;
+			handVector = (transform.position - handPreviousPosition) / Time.deltaTime;
+			handPreviousPosition = transform.position;
 		}
 		
 		handVelocity = Vector3.Magnitude(handVector);
 	}
 	
 	// Throw the held object once player lets go based on hand velocity
+	// TODO: Take into account weight (1 unit = kilogram) of held object
 	protected void Throw () {
 		if (closestObject.rigidbody) {
 			grabObject = closestObject.GetComponent<GrabObject>();
-			Vector3 dir = (closestObject.transform.position - transform.position).normalized;
 			float additionalThrowForce = 0;
 			
 			if (grabObject) {
@@ -105,7 +108,7 @@ public class HandController : SixenseHandController {
 			}
 			
 			grabObject.SetRigidbodyDetectionCollisions(true);
-			closestObject.rigidbody.AddForce(dir * handVelocity * (throwForce + additionalThrowForce));
+			closestObject.rigidbody.AddForce(handDirection * handVelocity * (throwForce + additionalThrowForce));
 		}
 	}
 	
