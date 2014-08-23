@@ -29,6 +29,7 @@ public class BossController : MonoBehaviour {
 	protected PlayerHealth playerHealth;
 	protected HandController[] playerHandControllers;
 	protected Movement movement;
+	protected string tag;										// object's current tag, assumes this tag handles if object is grabbable.
 	protected float defaultHealth;
 	protected float defaultSpeed;
 	protected float defaultAngularSpeed;
@@ -63,6 +64,7 @@ public class BossController : MonoBehaviour {
 		defaultSpeed = agent.speed;
 		defaultAngularSpeed = agent.angularSpeed;
 		movement = Movement.Idle;
+		tag = gameObject.tag;
 	}
 
 	protected virtual void Start () {
@@ -73,6 +75,8 @@ public class BossController : MonoBehaviour {
 		isBeingHurt = false;
 
 		TriggerIgnorePlayerHandColliders (true);
+
+		gameObject.tag = "Untagged";
 	}
 	
 	protected virtual void Update () {
@@ -157,6 +161,7 @@ public class BossController : MonoBehaviour {
 		agent.SetDestination (player.transform.position);
 		yield return new WaitForSeconds(length);
 		movement = Movement.Follow;
+		gameObject.tag = tag;
 
 	}
 	
@@ -165,16 +170,12 @@ public class BossController : MonoBehaviour {
 		if (IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
 			ChangePlayerSpeed(true);
-			rigidbody.useGravity = false;
 			rigidbody.freezeRotation = true;
 			
 			// Ignore player colliders when held by player
 			TriggerIgnorePlayerColliders(true);
 		} else {
 			ChangePlayerSpeed(false);
-			if (rigidbody) {
-				rigidbody.useGravity = true;
-			}
 		}
 	}
 

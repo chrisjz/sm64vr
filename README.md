@@ -42,7 +42,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Bob-omb Battlefield
 
-* Bob-omb glitches sometimes when grabbed.
+* Coins added to level and increase hit point by one when collected
 * Big block collision on punch is no working completely.
 * Increase frequency of boulders coming down the mountain.
 * If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
@@ -59,15 +59,21 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### King Bob-omb
 
-* Bug - if he is grabbed at the start, while rotating towards player, an agent related error occurs.
-* Recovers animation after throwing player
-* Resets if player leaves boss perimeter
-* Jumps back onto arena if player throws him off the mountain, takes no damage
+* Freezes when dropped by player.
+* Resets if player leaves boss perimeter.
+* Jumps back onto arena if player throws him off the mountain, takes no damage.
+
+### Menus
+
+* Option to show/hide life points.
+* Setting changes are saved to a file and loaded when game starts.
+* Display stats on coins collected in level.
+* Display stats on stars collected in level or world.
 
 ### Miscellaneous
 
-* Convert Sixense GUI dialogs into 3D
-* In-game menu functionality
+* Convert Sixense GUI dialogs into 3D.
+* Play game without Rift with normal camera if Rift isn't detected.
 * Shadows for signs, trees.
 
 ### Enhancements

@@ -3473,6 +3473,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &9500002
 Animator:
   serializedVersion: 3
@@ -3487,6 +3488,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!102 &10200000
 TextMesh:
   serializedVersion: 3
@@ -3707,7 +3709,7 @@ MonoBehaviour:
   Hand: 2
   Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
   minGrabDistance: 2
-  throwForce: 30
+  throwForce: 100
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3750,7 +3752,7 @@ MonoBehaviour:
   Hand: 1
   Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
   minGrabDistance: 2
-  throwForce: 30
+  throwForce: 100
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
