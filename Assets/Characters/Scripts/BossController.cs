@@ -29,6 +29,9 @@ public class BossController : MonoBehaviour {
     public float minDistanceGrabPermimeter = 4;	                // If player distance from grab perimeter less then this, player is grabbed
     public AudioClip hurtAudioClip;                             // Sound when boss gets hurt
     public float standBackUpSpeed = 0.05f;                      // Time taken for boss to stand back up when grounded
+    public AudioClip explosionAudioClip;
+    public Vector3 starSpawnOffset = new Vector3 (0, 2, 0);
+    public float waitToSpawnStar = 0;                           // Time to wait until star is spawned after boss defeat
 
     protected NavMeshAgent agent;
     protected GameObject player;
@@ -39,7 +42,9 @@ public class BossController : MonoBehaviour {
     protected PlayerHealth playerHealth;
     protected HandController[] playerHandControllers;
     protected Movement movement;
-    protected string tag;                                       // object's current tag, assumes this tag handles if object is grabbable
+    protected GameObject explosion;
+    protected GameObject star;
+    protected string defaultTag;                                // object's current tag, assumes this tag handles if object is grabbable
     protected float defaultHealth;
     protected float defaultSpeed;
     protected float defaultAngularSpeed;
@@ -51,6 +56,7 @@ public class BossController : MonoBehaviour {
     protected bool isGrabbingPlayer = false;
     protected bool isThrowingPlayer = false;
     protected bool isStandingBackUp = false;
+    protected bool dead;                                        // If enemy is dead
 
     // These are all the movement types that the enemy can do
     protected enum Movement{Follow, Freeze, Grab, Idle, Throw};
@@ -75,7 +81,7 @@ public class BossController : MonoBehaviour {
 		defaultSpeed = agent.speed;
 		defaultAngularSpeed = agent.angularSpeed;
 		movement = Movement.Idle;
-		tag = gameObject.tag;
+		defaultTag = gameObject.tag;
 	}
 
 	protected virtual void Start () {
@@ -91,6 +97,10 @@ public class BossController : MonoBehaviour {
 	}
 	
 	protected virtual void Update () {
+        if (dead) {
+            return;
+        }
+
 		if (initBattle && !startedBattle) {
 			StartBattle();
 		}
@@ -123,7 +133,7 @@ public class BossController : MonoBehaviour {
         
         // Transition between fallen on back to standing up
         if (isStandingBackUp) {
-            transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler(new Vector3 (0, transform.rotation.y, transform.rotation.z)), 1 * standBackUpSpeed);
+            transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler(new Vector3 (0, transform.rotation.y, transform.rotation.z)), standBackUpSpeed);
         }
 	}
 	
@@ -143,10 +153,13 @@ public class BossController : MonoBehaviour {
 			audio.Play();
 		}
 		yield return new WaitForSeconds(hurtDuration);
-        rigidbody.constraints &= ~RigidbodyConstraints.FreezePosition;  // unfreeze position
-		rigidbody.freezeRotation = false;
-		StartCoroutine(SitBackUp());
-
+        if (health != 0) {
+            rigidbody.constraints &= ~RigidbodyConstraints.FreezePosition;  // unfreeze position
+            rigidbody.freezeRotation = false;
+            StartCoroutine (SitBackUp ());
+        } else {
+            StartCoroutine(Death());
+        }
 	}
 
 	// Boss will return back to their feet after fallen onto ground
@@ -165,7 +178,7 @@ public class BossController : MonoBehaviour {
 		isBeingHurt = false;
 		movement = Movement.Follow;
 		animation.Play ("Walk");
-        gameObject.tag = tag;
+        gameObject.tag = defaultTag;
 	}
 	
 	protected virtual void StartBattle() {
@@ -181,7 +194,7 @@ public class BossController : MonoBehaviour {
 		agent.SetDestination (player.transform.position);
 		yield return new WaitForSeconds(length);
 		movement = Movement.Follow;
-		gameObject.tag = tag;
+		gameObject.tag = defaultTag;
 
 	}
 	
@@ -307,4 +320,35 @@ public class BossController : MonoBehaviour {
 	public void SetInitBattle(bool state) {
 		initBattle = state;
 	}
+
+    protected IEnumerator Death () {
+        dead = true;
+        yield return new WaitForSeconds(waitToSpawnStar);
+        explosion = (GameObject) Instantiate(Resources.Load("Explosion"));
+        explosion.transform.position = transform.position;
+        TriggerBossBattle triggerBossBattle = (TriggerBossBattle) FindObjectOfType(typeof(TriggerBossBattle));
+        triggerBossBattle.worldTheme.audio.Stop ();
+        Disable ();
+        SpawnStar ();
+    }
+
+    protected void SpawnStar () {
+        star = (GameObject) Instantiate(Resources.Load("Star"));
+        StarController starController = star.GetComponent<StarController> ();
+        star.transform.position = transform.position + starSpawnOffset;
+        starController.Spawn ();
+
+    }
+    
+    protected void Disable() {
+        Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers) {
+            renderer.enabled = false;
+        }
+        
+        Collider[] colliders = gameObject.GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders) {
+            col.enabled = false;
+        }
+    }
 }

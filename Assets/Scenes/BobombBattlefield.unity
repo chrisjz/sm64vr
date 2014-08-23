@@ -32659,6 +32659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2cf7e6ca1cc82742b78fad4165cd451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneAudioClip: {fileID: 8300000, guid: 158cb697d8a6b5a45a3740ed7b57136c, type: 3}
   menuSceneDescriptionText: "COURSE 1\r\nBOB-OMB BATTLEFIELD"
 --- !u!4 &1484378780
 Transform:
@@ -36067,6 +36068,9 @@ MonoBehaviour:
   minDistanceGrabPermimeter: 4
   hurtAudioClip: {fileID: 8300000, guid: 47be779dfdf470246b25af447c6ffb3e, type: 3}
   standBackUpSpeed: .0500000007
+  explosionAudioClip: {fileID: 8300000, guid: 49e074fb4ebf0eb448bda9de98855810, type: 3}
+  starSpawnOffset: {x: 0, y: 2, z: 0}
+  waitToSpawnStar: 1
 --- !u!195 &1621894820
 NavMeshAgent:
   m_ObjectHideFlags: 0

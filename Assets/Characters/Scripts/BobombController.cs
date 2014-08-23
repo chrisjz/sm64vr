@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   BobombController.cs
+Content     :   Controller for bobomb enemy
+Created     :   14 May 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class BobombController : EnemyController {

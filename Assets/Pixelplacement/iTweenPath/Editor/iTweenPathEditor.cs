@@ -107,7 +107,7 @@ public class iTweenPathEditor : Editor
 		if(_target.pathVisible){			
 			if(_target.nodes.Count > 0){
 				//allow path adjustment undo:
-				Undo.SetSnapshotTarget(_target,"Adjust iTween Path");
+				Undo.RecordObject(_target,"Adjust iTween Path");
 				
 				//path begin and end labels:
 				Handles.Label(_target.nodes[0], "'" + _target.pathName + "' Begin", style);

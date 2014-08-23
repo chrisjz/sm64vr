@@ -1,12 +1,19 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   AutoRotateSprite.cs
+Content     :   Rotate object to always face the player's direction
+Created     :   7 May 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class AutoRotateSprite : MonoBehaviour {
 	private GameObject player;
-	private Vector3 rotationVector;
 
 	void Awake () {
-		rotationVector = this.transform.rotation.eulerAngles;
 		player = GameObject.FindWithTag("Player");
 	}
 

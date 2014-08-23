@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   TriggerBossBattle.cs
+Content     :   Initiate boss battle when player enters specific zone
+Created     :   9 June 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class TriggerBossBattle : MonoBehaviour {
