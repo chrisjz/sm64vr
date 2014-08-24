@@ -14,26 +14,34 @@ public class BossController : MonoBehaviour {
     public float health = 3;
     public float followSpeed = 3;
     public float followAngularSpeed = 30;
-    public float playerCarrySpeed = 5;                          // Walking speed of player when carrying boss
-    public float playerCarryTurnSpeed = 2;                      // Turn speed of player when carrying boss
-    public float minHurtAltitude = 0;                           // The min altitude that boss must be at to be hurt by player
-    public float heldFixedRotationX;                            // Keep the boss rotated on axis X at this value when held by player
-    public float hurtDuration = 3;                              // Seconds where boss is in hurt stage
-    public string heldAnimationName;                            // Name of animation clip when player holds boss
-    public float heldAnimationSpeed;                            // How fast animation runs when boss held by player
-    public string grabAnimationName;                            // Name of animation clip when boss grabs player
-    public string throwAnimationName;                           // Name of animation clip when boss throws player
-    public string recoverAnimationName;	                        // Name of animation clip where boss recovers from being hurt
-    public GameObject terrain;                                  // Terrain that the boss stands on
-    public GameObject grabPerimeter;                            // Area where boss will grab player if player enters the area
-    public float minDistanceGrabPermimeter = 4;	                // If player distance from grab perimeter less then this, player is grabbed
-    public AudioClip hurtAudioClip;                             // Sound when boss gets hurt
-    public float standBackUpSpeed = 0.05f;                      // Time taken for boss to stand back up when grounded
-    public float lowerYBossInvincibilityBoundary;               // If boss hurt past this boundary, it receives no damage
-    public float lowerYExitArenaBoundary;                       // If player leaves this boundary, boss resets
-    public AudioClip explosionAudioClip;
+    public float playerCarrySpeed = 5;                              // Walking speed of player when carrying boss
+    public float playerCarryTurnSpeed = 2;                          // Turn speed of player when carrying boss
+    public float minHurtAltitude = 0;                               // The min altitude that boss must be at to be hurt by player
+    public float heldFixedRotationX;                                // Keep the boss rotated on axis X at this value when held by player
+    public float hurtDuration = 3;                                  // Seconds where boss is in hurt stage
+    public GameObject terrain;                                      // Terrain that the boss stands on
+    public GameObject grabPerimeter;                                // Area where boss will grab player if player enters the area
+    public float minDistanceGrabPermimeter = 4;	                    // If player distance from grab perimeter less then this, player is grabbed
+    public float standBackUpSpeed = 0.05f;                          // Time taken for boss to stand back up when grounded
+    public float lowerYExitArenaBoundary;                           // If player leaves this boundary, boss resets
+    public Vector3 endMarkerJumpOffset = new Vector3(0, 0, 0);      // Offset where boss will jump to from spawn point
     public Vector3 starSpawnOffset = new Vector3 (0, 2, 0);
-    public float waitToSpawnStar = 0;                           // Time to wait until star is spawned after boss defeat
+    public float waitToSpawnStar = 0;                               // Time to wait until star is spawned after boss defeat
+    public float jumpDropSpeed = 3f;                                    // Speed of boss dropping from jump       
+
+    // Audio clips
+    public AudioClip hurtAudioClip;                                 // Sound when boss gets hurt
+    public AudioClip explosionAudioClip;
+
+    // Animation names
+    public string heldAnimationName;                                // Name of animation clip when player holds boss
+    public float heldAnimationSpeed;                                // How fast animation runs when boss held by player
+    public string grabAnimationName;                                // Name of animation clip when boss grabs player
+    public string throwAnimationName;                               // Name of animation clip when boss throws player
+    public string recoverAnimationName;                             // Name of animation clip where boss recovers from being hurt
+    public string jumpAnimationName;                                // Name of animation clip where boss is jumping
+    public string idleAnimationName;                                // Name of animation clip where boss is idle
+
 
     protected NavMeshAgent agent;
     protected GameObject player;
@@ -55,7 +63,7 @@ public class BossController : MonoBehaviour {
     protected bool startedBattle = false;
     protected bool isHeldByPlayer;                              // If boss is currently being held by player
     protected bool wasHeldByPlayer;                             // If boss has been held by player before
-    protected bool isBeingHurt;
+    protected bool isGrounded;
     protected bool isGrabbingPlayer = false;
     protected bool isThrowingPlayer = false;
     protected bool isStandingBackUp = false;
@@ -63,17 +71,28 @@ public class BossController : MonoBehaviour {
 
     // These are all the movement types that the enemy can do
     protected enum Movement{Follow, Freeze, Grab, Idle, Throw};
-
+    
+    // Throwing player movement
     protected GameObject startMarkerThrowPlayer;
     protected GameObject endMarkerThrowPlayer;
     protected float startTimeThrowPlayer;
     protected float journeyLengthThrowPlayer;
+    
+    // Boss jump movement
+    protected GameObject startMarkerJump;
+    protected GameObject endMarkerJump;
+    protected float startTimeJump;
+    protected float journeyLengthJump;
+    protected bool isJumpingToSpawnPoint;
+    protected bool isLandingFromJump;
 
+    // Object spawn location
     protected Vector3 spawnPosition;
     protected Quaternion spawnRotation;
 	
 	protected virtual void Awake () {
 		agent = this.GetComponent<NavMeshAgent> ();
+
 		player = GameObject.FindWithTag("Player");
 		motor = player.GetComponent<CharacterMotor> ();
 		playerController = player.GetComponent<FPSInputController> ();
@@ -81,15 +100,23 @@ public class BossController : MonoBehaviour {
 		playerHydraLook = player.GetComponent<HydraLook> ();
 		playerHealth = player.GetComponent<PlayerHealth> ();
 		playerHandControllers = player.GetComponentsInChildren<HandController> ();
-		startMarkerThrowPlayer = new GameObject();
+        
+        startMarkerThrowPlayer = new GameObject();
         endMarkerThrowPlayer = new GameObject ();
+
+        startMarkerJump = new GameObject();
+        endMarkerJump = new GameObject ();
+
         spawnPosition = transform.position;
         spawnRotation = transform.rotation;
+
         defaultAnimationName = animation.clip.name;
 		defaultHealth = health;
 		defaultSpeed = agent.speed;
 		defaultAngularSpeed = agent.angularSpeed;
+
 		movement = Movement.Idle;
+
 		defaultTag = gameObject.tag;
 	}
 
@@ -101,7 +128,9 @@ public class BossController : MonoBehaviour {
     protected void Init() {
         isHeldByPlayer = false;
         wasHeldByPlayer = false;
-        isBeingHurt = false;
+        isGrounded = false;
+        isJumpingToSpawnPoint = false;
+        isLandingFromJump = false;
         
         TriggerIgnorePlayerHandColliders (true);
         
@@ -152,18 +181,49 @@ public class BossController : MonoBehaviour {
         if (isStandingBackUp) {
             transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler(new Vector3 (0, transform.rotation.y, transform.rotation.z)), standBackUpSpeed);
         }
+
+        // Jump to above spawn point
+        if (isJumpingToSpawnPoint) {
+            float distCovered = (Time.time - startTimeJump) * 20.0f;
+            float fracJourney = distCovered / journeyLengthJump;
+            transform.position = Vector3.Lerp(startMarkerJump.transform.position, endMarkerJump.transform.position, fracJourney);
+
+            if (transform.position == endMarkerJump.transform.position) {
+                transform.rotation = spawnRotation;
+                isJumpingToSpawnPoint = false;
+                animation.Play(idleAnimationName);
+                isLandingFromJump = true;
+            }
+        }
+
+        // Landing from jump
+        if (isLandingFromJump) {
+            float step = jumpDropSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, spawnPosition, step);
+
+            if (transform.position == spawnPosition) {
+                isLandingFromJump = false;
+                animation.Play(idleAnimationName);
+                TriggerBattle(false);
+            }
+        }
 	}
 	
 	protected void OnCollisionEnter(Collision col) {
-		if (col.gameObject.name == terrain.name && !isHeldByPlayer && wasHeldByPlayer && !isBeingHurt && transform.position.y > minHurtAltitude) {
-			StartCoroutine(Hurt());
+		if (col.gameObject.name == terrain.name && !isHeldByPlayer && wasHeldByPlayer && !isGrounded) {
+            if (transform.position.y > minHurtAltitude) {
+                StartCoroutine(Hurt());
+            } else {
+                isGrounded = true;
+                StartCoroutine (SitBackUp (false));
+            }
 		}
 	}
 	
 	protected IEnumerator Hurt () {
         gameObject.tag = "Untagged";
         rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-		isBeingHurt = true;
+		isGrounded = true;
 		health -= 1;
 		if (!audio.isPlaying) {
 			audio.clip = hurtAudioClip;
@@ -173,29 +233,47 @@ public class BossController : MonoBehaviour {
         if (health != 0) {
             rigidbody.constraints &= ~RigidbodyConstraints.FreezePosition;  // unfreeze position
             rigidbody.freezeRotation = false;
-            StartCoroutine (SitBackUp ());
+            StartCoroutine (SitBackUp (true));
         } else {
             StartCoroutine(Death());
         }
 	}
 
 	// Boss will return back to their feet after fallen onto ground
-	protected IEnumerator SitBackUp () {
+	protected IEnumerator SitBackUp (bool wasHurt) {
 		animation.Play ("Recover");
 		float animLength = animation.clip.length;
 
         isStandingBackUp = true;
 		yield return new WaitForSeconds(animLength);
         isStandingBackUp = false;
+
 		// Stop ignoring player colliders
 		TriggerIgnorePlayerColliders(false);
 
-		agent.enabled = true;
-		wasHeldByPlayer = false;
-		isBeingHurt = false;
-		movement = Movement.Follow;
-		animation.Play ("Walk");
-        gameObject.tag = defaultTag;
+        wasHeldByPlayer = false;
+        isGrounded = false;
+
+        // If boss was just hurt
+        if (wasHurt) {
+            agent.enabled = true;
+            animation.Play ("Walk");
+            movement = Movement.Follow;
+            gameObject.tag = defaultTag;
+        } else {
+            JumpBackToArena ();
+        }
+    }
+    
+    protected void JumpBackToArena() {
+        animation.Play (jumpAnimationName);
+        
+        startMarkerJump.transform.position = transform.position;
+        endMarkerJump.transform.position = spawnPosition + endMarkerJumpOffset;
+        startTimeJump = Time.time;
+        journeyLengthJump = Vector3.Distance(startMarkerJump.transform.position, endMarkerJump.transform.position);
+
+        isJumpingToSpawnPoint = true;
     }
     
     protected virtual void TriggerBattle(bool state) {
@@ -208,7 +286,6 @@ public class BossController : MonoBehaviour {
             startedBattle = false;
             initBattle = false;
             rigidbody.useGravity = false;
-            animation.Play (defaultAnimationName);
             agent.enabled = false;
             agent.enabled = true;
             movement = Movement.Idle;
@@ -264,6 +341,7 @@ public class BossController : MonoBehaviour {
 
     protected void IsPlayerOutsideArena () {
         if (player.transform.position.y <= lowerYExitArenaBoundary) {
+            animation.Play(defaultAnimationName);
             TriggerBattle(false);
         }
     }

@@ -26562,7 +26562,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26658,7 +26658,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6400012, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
       propertyPath: m_Convex
@@ -26820,6 +26820,10 @@ Prefab:
       propertyPath: m_Animations.Array.data[6]
       value: 
       objectReference: {fileID: 7400000, guid: 6d3ea6023d655e844bfb4c67c10ac3ef, type: 2}
+    - target: {fileID: 11100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
+      propertyPath: m_Animations.Array.data[7]
+      value: 
+      objectReference: {fileID: 7400000, guid: 9c2a5be2b82a385409ffe1c84ca6cbbc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55815c442f000224fbb0c28e81de563c, type: 3}
   m_RootGameObject: {fileID: 1621894811}
@@ -35954,6 +35958,7 @@ Animation:
   - {fileID: 7400000, guid: a11cc4bdd4397ff4e903d08fc23a7dee, type: 2}
   - {fileID: 7400000, guid: cb76989483360094ab2323f18f4fefd6, type: 2}
   - {fileID: 7400000, guid: 6d3ea6023d655e844bfb4c67c10ac3ef, type: 2}
+  - {fileID: 7400000, guid: 9c2a5be2b82a385409ffe1c84ca6cbbc, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -35986,24 +35991,27 @@ MonoBehaviour:
   followAngularSpeed: 30
   playerCarrySpeed: 5
   playerCarryTurnSpeed: 2
-  minHurtAltitude: 17
+  minHurtAltitude: 71
   heldFixedRotationX: 320
   hurtDuration: 3
+  terrain: {fileID: 533441662}
+  grabPerimeter: {fileID: 416550693}
+  minDistanceGrabPermimeter: 4
+  standBackUpSpeed: .0500000007
+  lowerYExitArenaBoundary: 49
+  endMarkerJumpOffset: {x: 0, y: 10, z: 0}
+  starSpawnOffset: {x: 0, y: 2, z: 0}
+  waitToSpawnStar: 1
+  jumpDropSpeed: 3
+  hurtAudioClip: {fileID: 8300000, guid: 47be779dfdf470246b25af447c6ffb3e, type: 3}
+  explosionAudioClip: {fileID: 8300000, guid: 49e074fb4ebf0eb448bda9de98855810, type: 3}
   heldAnimationName: Panic
   heldAnimationSpeed: 1
   grabAnimationName: Grab
   throwAnimationName: Throw
   recoverAnimationName: Recover
-  terrain: {fileID: 533441662}
-  grabPerimeter: {fileID: 416550693}
-  minDistanceGrabPermimeter: 4
-  hurtAudioClip: {fileID: 8300000, guid: 47be779dfdf470246b25af447c6ffb3e, type: 3}
-  standBackUpSpeed: .0500000007
-  lowerYBossInvincibilityBoundary: 71
-  lowerYExitArenaBoundary: 49
-  explosionAudioClip: {fileID: 8300000, guid: 49e074fb4ebf0eb448bda9de98855810, type: 3}
-  starSpawnOffset: {x: 0, y: 2, z: 0}
-  waitToSpawnStar: 1
+  jumpAnimationName: Jump
+  idleAnimationName: Idle
 --- !u!195 &1621894820
 NavMeshAgent:
   m_ObjectHideFlags: 0
