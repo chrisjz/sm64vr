@@ -10,7 +10,7 @@ Authors     :   Chris Julian Zaharia
 using UnityEngine;
 using System.Collections;
 
-public class HandController : SixenseHandController {
+public class SixenseHandExtendController : SixenseHandController {
     public float                    minGrabDistance = 1.0f;
     public float					throwForce = 30.0f;			// Force multiplier for throwing objects
 
