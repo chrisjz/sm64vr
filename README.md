@@ -62,6 +62,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 * Resets if player leaves boss perimeter.
 * Jumps back onto arena if player throws him off the mountain, takes no damage.
+* Player drops boss if he falls off ledge.
 * Better movement of star to its final position.
 
 ### Menus

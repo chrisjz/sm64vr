@@ -202,13 +202,13 @@ public class BossController : MonoBehaviour {
 	protected void IsPlayerHoldingEnemy() {
 		if (IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
-			ChangePlayerSpeed(true);
+			LimitPlayerAbilities(true);
 			rigidbody.freezeRotation = true;
 			
 			// Ignore player colliders when held by player
 			TriggerIgnorePlayerColliders(true);
 		} else {
-			ChangePlayerSpeed(false);
+			LimitPlayerAbilities(false);
 		}
 	}
 
@@ -264,17 +264,20 @@ public class BossController : MonoBehaviour {
 		return false;
 	}
 
-	protected void ChangePlayerSpeed (bool change) {
+    // Trigger slowing down and preventing jumping for player
+	protected void LimitPlayerAbilities (bool change) {
 		if (change) {
 			motor.movement.maxForwardSpeed = playerCarrySpeed;
 			motor.movement.maxBackwardsSpeed = playerCarrySpeed;
 			playerLook.sensitivityX = playerCarryTurnSpeed;
 			playerHydraLook.sensitivityX = playerCarryTurnSpeed;
+            playerController.JumpEnabled = false;
 		} else {
 			motor.movement.maxForwardSpeed = playerController.getDefaultMaxForwardSpeed();
 			motor.movement.maxBackwardsSpeed = playerController.getDefaultMaxForwardSpeed();
 			playerLook.sensitivityX = playerLook.getDefaultSensitivityX();
-			playerHydraLook.sensitivityX = playerHydraLook.getDefaultSensitivityX();
+            playerHydraLook.sensitivityX = playerHydraLook.getDefaultSensitivityX();
+            playerController.JumpEnabled = true;
 		}
 	}
 

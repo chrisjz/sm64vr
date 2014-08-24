@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   FPSInputController.cs
+Content     :   Rewrite and extension of Unity's FPSInputController javascript
+Created     :   19 April 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 // Require a character controller to be attached to the same game object
@@ -13,6 +22,7 @@ public class FPSInputController : MonoBehaviour {
 	private float defaultMaxForwardSpeed;
 	private float defaultMaxBackwardsSpeed;
 	private bool inputEnabled;					// If input is enabled/disabled
+    private bool jumpEnabled;
 	
 	// Use this for initialization
 	void  Awake (){
@@ -24,6 +34,7 @@ public class FPSInputController : MonoBehaviour {
 	void Start() {
 		IgnorePlayerColliders ();
 		inputEnabled = true;
+        jumpEnabled = true;
 	}
 	
 	// Update is called once per frame
@@ -43,11 +54,13 @@ public class FPSInputController : MonoBehaviour {
 			directionVector= new Vector3(hydraLeftController.JoystickX, 0, hydraLeftController.JoystickY);
 		}
 
-		if (hydraRightController != null) {
-			motor.inputJump = hydraRightController.GetButton (SixenseButtons.BUMPER);
-		} else {
-			motor.inputJump = Input.GetButton ("Jump");
-		}
+        if (jumpEnabled) {
+            if (hydraRightController != null) {
+                motor.inputJump = hydraRightController.GetButton (SixenseButtons.BUMPER);
+            } else {
+                motor.inputJump = Input.GetButton ("Jump");
+            }
+        }
 
 		// Play jumping audio clips
 		if (initialJumpAudioClips.Length > 0 && motor.inputJump && motor.grounded && !audio.isPlaying) {
@@ -88,6 +101,15 @@ public class FPSInputController : MonoBehaviour {
 	public void SetInputEnabled (bool status) {
 		inputEnabled = status;
 	}
+
+    public bool JumpEnabled {
+        get {
+            return jumpEnabled;
+        }
+        set {
+            jumpEnabled = value;
+        }
+    }
 
 	// Prevent colliders on player from colliding with each other i.e. hand colliders with body collider
 	void IgnorePlayerColliders () {
