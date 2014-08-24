@@ -35,7 +35,7 @@ public class TriggerBossBattle : MonoBehaviour {
 		}
 	}
 
-	protected void SetAudioPlaying(bool state) {
+	public void SetAudioPlaying(bool state) {
 		bossAudioPlaying = state;
 	}
 }

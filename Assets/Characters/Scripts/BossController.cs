@@ -29,6 +29,8 @@ public class BossController : MonoBehaviour {
     public float minDistanceGrabPermimeter = 4;	                // If player distance from grab perimeter less then this, player is grabbed
     public AudioClip hurtAudioClip;                             // Sound when boss gets hurt
     public float standBackUpSpeed = 0.05f;                      // Time taken for boss to stand back up when grounded
+    public float lowerYBossInvincibilityBoundary;               // If boss hurt past this boundary, it receives no damage
+    public float lowerYExitArenaBoundary;                       // If player leaves this boundary, boss resets
     public AudioClip explosionAudioClip;
     public Vector3 starSpawnOffset = new Vector3 (0, 2, 0);
     public float waitToSpawnStar = 0;                           // Time to wait until star is spawned after boss defeat
@@ -45,6 +47,7 @@ public class BossController : MonoBehaviour {
     protected GameObject explosion;
     protected GameObject star;
     protected string defaultTag;                                // object's current tag, assumes this tag handles if object is grabbable
+    protected string defaultAnimationName;
     protected float defaultHealth;
     protected float defaultSpeed;
     protected float defaultAngularSpeed;
@@ -65,6 +68,9 @@ public class BossController : MonoBehaviour {
     protected GameObject endMarkerThrowPlayer;
     protected float startTimeThrowPlayer;
     protected float journeyLengthThrowPlayer;
+
+    protected Vector3 spawnPosition;
+    protected Quaternion spawnRotation;
 	
 	protected virtual void Awake () {
 		agent = this.GetComponent<NavMeshAgent> ();
@@ -76,7 +82,10 @@ public class BossController : MonoBehaviour {
 		playerHealth = player.GetComponent<PlayerHealth> ();
 		playerHandControllers = player.GetComponentsInChildren<HandController> ();
 		startMarkerThrowPlayer = new GameObject();
-		endMarkerThrowPlayer = new GameObject ();
+        endMarkerThrowPlayer = new GameObject ();
+        spawnPosition = transform.position;
+        spawnRotation = transform.rotation;
+        defaultAnimationName = animation.clip.name;
 		defaultHealth = health;
 		defaultSpeed = agent.speed;
 		defaultAngularSpeed = agent.angularSpeed;
@@ -86,28 +95,36 @@ public class BossController : MonoBehaviour {
 
 	protected virtual void Start () {
 		health = defaultHealth;
-		
-		isHeldByPlayer = false;
-		wasHeldByPlayer = false;
-		isBeingHurt = false;
-
-		TriggerIgnorePlayerHandColliders (true);
-
-		gameObject.tag = "Untagged";
+        Init ();
 	}
+
+    protected void Init() {
+        isHeldByPlayer = false;
+        wasHeldByPlayer = false;
+        isBeingHurt = false;
+        
+        TriggerIgnorePlayerHandColliders (true);
+        
+        gameObject.tag = "Untagged";
+
+    }
 	
-	protected virtual void Update () {
+    protected virtual void Update () {
         if (dead) {
             return;
         }
 
 		if (initBattle && !startedBattle) {
-			StartBattle();
+			TriggerBattle(true);
 		}
 		
 		IsPlayerHoldingEnemy ();
 
 		IsPlayerInGrabPermimeter ();
+
+        if (startedBattle) {
+            IsPlayerOutsideArena();
+        }
 
 		switch (movement)
 		{
@@ -179,14 +196,33 @@ public class BossController : MonoBehaviour {
 		movement = Movement.Follow;
 		animation.Play ("Walk");
         gameObject.tag = defaultTag;
-	}
-	
-	protected virtual void StartBattle() {
-		startedBattle = true;
-		rigidbody.useGravity = true;
-		animation.Play ("Walk");
-		StartCoroutine(StartFollowingPlayer(3));
-	}
+    }
+    
+    protected virtual void TriggerBattle(bool state) {
+        if (state) {
+            startedBattle = true;
+            rigidbody.useGravity = true;
+            animation.Play ("Walk");
+            StartCoroutine (StartFollowingPlayer (3));
+        } else {
+            startedBattle = false;
+            initBattle = false;
+            rigidbody.useGravity = false;
+            animation.Play (defaultAnimationName);
+            agent.enabled = false;
+            agent.enabled = true;
+            movement = Movement.Idle;
+            transform.position = spawnPosition;
+            transform.rotation = spawnRotation;
+            Init ();
+            TriggerBossBattle triggerBossBattle = (TriggerBossBattle) FindObjectOfType(typeof(TriggerBossBattle));
+            triggerBossBattle.SetAudioPlaying(false);
+            SceneManager sceneManager = (SceneManager) FindObjectOfType(typeof(SceneManager));
+            GameObject worldTheme = GameObject.Find ("Theme");
+            worldTheme.audio.clip = sceneManager.sceneAudioClip;
+            worldTheme.audio.Play ();
+        }
+    }
 	
 	protected IEnumerator StartFollowingPlayer (float length) {
 		agent.speed = 1;
@@ -225,6 +261,12 @@ public class BossController : MonoBehaviour {
 			player.transform.forward = transform.forward;
 		}
 	}
+
+    protected void IsPlayerOutsideArena () {
+        if (player.transform.position.y <= lowerYExitArenaBoundary) {
+            TriggerBattle(false);
+        }
+    }
 
 	// Boss grabs player
 	protected IEnumerator GrabPlayer () {
