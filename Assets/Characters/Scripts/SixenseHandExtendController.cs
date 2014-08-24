@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 
-Filename    :   HandController.cs
+Filename    :   SixenseHandExtendController.cs
 Content     :   Extend Sixense Hand Controller
 Created     :   25 June 2014
 Authors     :   Chris Julian Zaharia

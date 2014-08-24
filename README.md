@@ -43,7 +43,8 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Bob-omb Battlefield
 
-* Coins added to level and increase hit point by one when collected
+* Increase hight of invisible barriers around level.
+* Coins added to level and increase hit point by one when collected.
 * Big block collision on punch is no working completely.
 * Increase frequency of boulders coming down the mountain.
 * If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
@@ -60,8 +61,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### King Bob-omb
 
-* Resets if player leaves boss perimeter.
-* Jumps back onto arena if player throws him off the mountain, takes no damage.
+* Boss incorrectly slowly moves away from spawn point initially.
 * Player drops boss if he falls off ledge.
 * Better movement of star to its final position.
 
