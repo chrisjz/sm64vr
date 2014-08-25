@@ -41,9 +41,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   separateLeftRight: 1
   leftGraphicsModel: {fileID: 11400010, guid: e441eb13011856d4cba827304bdded4f, type: 2}
-  leftPhysicsModel: {fileID: 11400008, guid: 3bd56e9abd2342f49b739a138a303a19, type: 2}
+  leftPhysicsModel: {fileID: 0}
   rightGraphicsModel: {fileID: 11400010, guid: d447104c52a5ec54fbc110672ca84b76, type: 2}
-  rightPhysicsModel: {fileID: 11400008, guid: 3bd56e9abd2342f49b739a138a303a19, type: 2}
+  rightPhysicsModel: {fileID: 0}
   toolModel: {fileID: 0}
   handMovementScale: {x: 1, y: 1, z: 1}
   enableInteraction: 0

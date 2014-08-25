@@ -6,7 +6,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Player
 
-* Receives damage after falling.
 * Screen fades out when Mario loses life.
 * Improve Mario's left hand model stretching when using Sixense tracking.
 * Mario has arms when using leap motion.
@@ -62,6 +61,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### King Bob-omb
 
+* KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
 * Player drops boss if he falls off ledge.
 * Better movement of star to its final position.
 

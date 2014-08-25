@@ -482,6 +482,7 @@ GameObject:
   - 4: {fileID: 400062}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400010}
+  - 114: {fileID: 11400012}
   m_Layer: 0
   m_Name: RiggedLeftHand
   m_TagString: Untagged
@@ -1023,6 +1024,19 @@ MonoBehaviour:
   - {fileID: 11400004}
   palm: {fileID: 400052}
   foreArm: {fileID: 0}
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ebded26bbce0c44a7ac4d1d6f6889b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceSpringConstant: 20
+  magnetDistance: 2
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
