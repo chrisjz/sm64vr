@@ -9,6 +9,8 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Receives damage after falling.
 * Screen fades out when Mario loses life.
 * Improve Mario's left hand model stretching when using Sixense tracking.
+* Mario has arms when using leap motion.
+* Better skeletal movement of arms when using hand tracking.
 * Player can swim
 * Mario animations for:
  * running
@@ -43,7 +45,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Bob-omb Battlefield
 
-* Increase hight of invisible barriers around level.
 * Coins added to level and increase hit point by one when collected.
 * Big block collision on punch is no working completely.
 * Increase frequency of boulders coming down the mountain.
@@ -61,7 +62,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### King Bob-omb
 
-* Boss incorrectly slowly moves away from spawn point initially.
 * Player drops boss if he falls off ledge.
 * Better movement of star to its final position.
 
@@ -74,6 +74,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Miscellaneous
 
+* Movement by leaning with DK2 on in different directions, move head upwards to jump. Have this as an toggled option.
 * Convert Sixense GUI dialogs into 3D.
 * Play game without Rift with normal camera if Rift isn't detected.
 * Shadows for signs, trees.
@@ -83,7 +84,6 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 * Minigames in World 1, such as throwing shells at goombas with timer.
 * Luigi as a second player.
 * Multiplayer via LAN or online.
-* Leap Motion integration for hand tracking.
 
 ## Credits
 
