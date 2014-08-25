@@ -16,23 +16,34 @@ using System.Collections;
 
 public class FPSInputController : MonoBehaviour {
 	public GameObject ovrCamera;
-	public AudioClip[] initialJumpAudioClips;
+    public AudioClip[] initialJumpAudioClips;
+
+    // Fall damage
+    public float fallDamageHeight;              // Player receives X damage per multiplication of this height
+    public int fallDamageHealth;                // Amount of health player loses per fallen height increment
+
+    protected PlayerHealth playerHealth;
 
 	private CharacterMotor motor;
 	private float defaultMaxForwardSpeed;
-	private float defaultMaxBackwardsSpeed;
+    private float defaultMaxBackwardsSpeed;
+    private float initialVerticalPosition;
+    private float previousVerticalPosition;
+    private float finalVerticalPosition;
 	private bool inputEnabled;					// If input is enabled/disabled
     private bool jumpEnabled;
 	
 	// Use this for initialization
 	void  Awake (){
-		motor = GetComponent<CharacterMotor>();
+        motor = GetComponent<CharacterMotor>();
+        playerHealth = gameObject.GetComponent<PlayerHealth> ();
 		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
 		defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
 	}
 
 	void Start() {
 		IgnorePlayerColliders ();
+        previousVerticalPosition = initialVerticalPosition = transform.position.y;
 		inputEnabled = true;
         jumpEnabled = true;
 	}
@@ -91,6 +102,13 @@ public class FPSInputController : MonoBehaviour {
 		UpdateAnimations (directionVector);
 	}
 
+    void FixedUpdate () {
+        float verticalMovement = VerticalMovement ();
+        if (verticalMovement < 0) {
+            HandleFallDamage(verticalMovement);
+        }
+    }
+
 	void UpdateAnimations(Vector3 directionVector) {
 		if (animation && directionVector.z != 0) {
 			animation["Walk"].speed = Mathf.Abs(directionVector.z);
@@ -108,6 +126,27 @@ public class FPSInputController : MonoBehaviour {
         }
         set {
             jumpEnabled = value;
+        }
+    }
+
+    // Track player's vertical movement to handle fall damage.
+    protected float VerticalMovement () {
+        if (transform.position.y != previousVerticalPosition) {
+            previousVerticalPosition = transform.position.y;
+            return 0;
+        } else {
+            finalVerticalPosition = transform.position.y;
+            float totalVerticalDistance = Mathf.Round((finalVerticalPosition - initialVerticalPosition)*1f)/1f;
+            initialVerticalPosition = transform.position.y;
+
+            return totalVerticalDistance;
+        }
+    }
+
+    protected void HandleFallDamage (float distance) {
+        if (distance < -fallDamageHeight) {
+            int fallHeightIncrement = Mathf.FloorToInt(-distance / fallDamageHeight);
+            playerHealth.Damage(fallDamageHealth * fallHeightIncrement);
         }
     }
 
