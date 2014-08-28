@@ -15,16 +15,23 @@ using System.Collections;
 [AddComponentMenu("Character/FPS Input Controller")]
 
 public class FPSInputController : MonoBehaviour {
-	public GameObject ovrCamera;
+	public enum OvrCameras { Left, Right }
+	public OvrCameras mainOvrCamera = OvrCameras.Right;  // OVR Camera where movement is oriented towards, should have audio listener too
     public AudioClip[] initialJumpAudioClips;
+	public bool enableDetectOVR = true;								    // Detects if player is using Oculus Rift
 
     // Fall damage
-    public float fallDamageHeight;              // Player receives X damage per multiplication of this height
-    public int fallDamageHealth;                // Amount of health player loses per fallen height increment
+    public float fallDamageHeight;              					    // Player receives X damage per multiplication of this height
+    public int fallDamageHealth;                                        // Amount of health player loses per fallen height increment
 
     protected PlayerHealth playerHealth;
 
 	private CharacterMotor motor;
+    private GameObject ovrCameraLeft;
+    private GameObject ovrCameraRight;
+    private GameObject generalCamera;                                   // Camera for monoscopic view
+    private GameObject dirOvrCamera;                                    // Movement oriented using this camera for OVR
+    private GameObject mainCamera;                                      // Camera where movement orientation is done and audio listener enabled
 	private float defaultMaxForwardSpeed;
     private float defaultMaxBackwardsSpeed;
     private float initialVerticalPosition;
@@ -32,6 +39,7 @@ public class FPSInputController : MonoBehaviour {
     private float finalVerticalPosition;
 	private bool inputEnabled;					// If input is enabled/disabled
     private bool jumpEnabled;
+	private bool HMDPresent = false;
 	
 	// Use this for initialization
 	void  Awake (){
@@ -39,10 +47,16 @@ public class FPSInputController : MonoBehaviour {
         playerHealth = gameObject.GetComponent<PlayerHealth> ();
 		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
 		defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
+
+        // Cameras
+        ovrCameraLeft = transform.Find("OVRCameraController/CameraLeft").gameObject;
+        ovrCameraRight = transform.Find("OVRCameraController/CameraRight").gameObject;
+        generalCamera = transform.Find("OVRCameraController/Camera").gameObject;
 	}
 
 	void Start() {
 		IgnorePlayerColliders ();
+        InitCamera();
         previousVerticalPosition = initialVerticalPosition = transform.position.y;
 		inputEnabled = true;
         jumpEnabled = true;
@@ -94,10 +108,9 @@ public class FPSInputController : MonoBehaviour {
 			
 			// Multiply the normalized direction vector by the modified length
 			directionVector = directionVector * directionLength;
-		}
-		
-		// Apply the direction to the CharacterMotor
-		motor.inputMoveDirection = ovrCamera.transform.rotation * directionVector;
+		}		
+
+		motor.inputMoveDirection = mainCamera.transform.rotation * directionVector;
 
 		UpdateAnimations (directionVector);
 	}
@@ -115,6 +128,26 @@ public class FPSInputController : MonoBehaviour {
 			animation.CrossFade("Walk");
 		}
 	}
+
+    public void InitCamera() {
+        if (mainOvrCamera == OvrCameras.Left) {
+            dirOvrCamera = ovrCameraLeft;
+        } else {
+            dirOvrCamera = ovrCameraRight;
+        }
+        
+        // Apply the direction to the CharacterMotor
+        HMDPresent = OVRDevice.IsHMDPresent();
+        if (enableDetectOVR && !HMDPresent) {
+            mainCamera = generalCamera;
+        } else {
+            mainCamera = dirOvrCamera;
+        }
+        
+        if (enableDetectOVR) {
+            DetectOVR();
+        }
+    }
 
 	public void SetInputEnabled (bool status) {
 		inputEnabled = status;
@@ -149,6 +182,28 @@ public class FPSInputController : MonoBehaviour {
             playerHealth.Damage(fallDamageHealth * fallHeightIncrement);
         }
     }
+
+	// Show OVR Camera only if OVR is being used
+	protected void DetectOVR() {
+		HMDPresent = OVRDevice.IsHMDPresent();
+
+        Debug.Log(HMDPresent);
+		if (HMDPresent == false) {
+            ovrCameraLeft.SetActive(false);
+            ovrCameraRight.SetActive(false);
+            generalCamera.SetActive(true);
+            
+            generalCamera.GetComponent<AudioListener>().enabled = true;
+            dirOvrCamera.GetComponent<AudioListener>().enabled = false;
+		} else {
+            ovrCameraLeft.SetActive(true);
+            ovrCameraRight.SetActive(true);
+            generalCamera.SetActive(false);
+            
+            generalCamera.GetComponent<AudioListener>().enabled = false;
+            dirOvrCamera.GetComponent<AudioListener>().enabled = true;
+		}
+	}
 
 	// Prevent colliders on player from colliding with each other i.e. hand colliders with body collider
 	void IgnorePlayerColliders () {
