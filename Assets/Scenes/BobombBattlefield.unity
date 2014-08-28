@@ -20190,6 +20190,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11400020, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
+      propertyPath: minDistJumpViaOVr
+      value: .600000024
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
   m_RootGameObject: {fileID: 1833210254}
@@ -46383,7 +46387,11 @@ MonoBehaviour:
   initialJumpAudioClips:
   - {fileID: 8300000, guid: 911a3b1ae87cd1942b607cab951e9e25, type: 3}
   - {fileID: 8300000, guid: 39b786907da4c384d8fc7aceab3756fc, type: 3}
-  enableDetectOVR: 1
+  enableMoveViaTiltOvr: 0
+  minDistMoveViaOvr: 0
+  enableJumpViaOvr: 0
+  minDistJumpViaOvr: 0
+  enableDetectOvr: 1
   fallDamageHeight: 20
   fallDamageHealth: 2
 --- !u!114 &1833210258
