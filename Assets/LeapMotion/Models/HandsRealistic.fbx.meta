@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 30b3e92281017aa468bfff5d53f955a3
+guid: 82348a3a09a7147bf82330652c31eb40
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: group5
-    100002: HandsREAL_CutOff_Arm2
-    100004: HandsREAL_CutOff_Arm3
-    100006: //RootNode
+    100002: //RootNode
+    100004: HandsREAL_CutOff_Arm2
+    100006: HandsREAL_CutOff_Arm3
     100008: L_Arm
     100010: L_IndexA
     100012: L_IndexB
@@ -63,9 +63,9 @@ ModelImporter:
     100114: R_Wrist
     100116: Root
     400000: group5
-    400002: HandsREAL_CutOff_Arm2
-    400004: HandsREAL_CutOff_Arm3
-    400006: //RootNode
+    400002: //RootNode
+    400004: HandsREAL_CutOff_Arm2
+    400006: HandsREAL_CutOff_Arm3
     400008: L_Arm
     400010: L_IndexA
     400012: L_IndexB
@@ -131,7 +131,7 @@ ModelImporter:
     13700004: nailsFix1
     13700006: nailsFix2
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

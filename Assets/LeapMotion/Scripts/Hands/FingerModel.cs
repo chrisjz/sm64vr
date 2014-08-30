@@ -19,6 +19,7 @@ public abstract class FingerModel : MonoBehaviour {
   private Hand hand_;
   private Finger finger_;
   private Vector3 offset_ = Vector3.zero;
+  private bool mirror_z_axis_ = false;
 
   HandController controller_;
 
@@ -32,11 +33,16 @@ public abstract class FingerModel : MonoBehaviour {
 
   public void SetLeapHand(Hand hand) {
     hand_ = hand;
-    finger_ = hand.Fingers[(int)fingerType];
+    if (hand_ != null)
+      finger_ = hand.Fingers[(int)fingerType];
   }
 
   public void SetOffset(Vector3 offset) {
     offset_ = offset;
+  }
+
+  public void MirrorZAxis(bool mirror = true) {
+    mirror_z_axis_ = mirror;
   }
 
   public Hand GetLeapHand() { return hand_; }
@@ -53,7 +59,8 @@ public abstract class FingerModel : MonoBehaviour {
 
   // Returns the location of the tip of the finger in relation to the controller.
   public Vector3 GetTipPosition() {
-    Vector3 local_tip = finger_.Bone((Bone.BoneType.TYPE_DISTAL)).NextJoint.ToUnityScaled();
+    Vector3 local_tip =
+        finger_.Bone((Bone.BoneType.TYPE_DISTAL)).NextJoint.ToUnityScaled(mirror_z_axis_);
     return controller_.transform.TransformPoint(local_tip) + offset_;
   }
 
@@ -62,7 +69,8 @@ public abstract class FingerModel : MonoBehaviour {
     if (joint >= NUM_BONES)
       return GetTipPosition();
     
-    Vector3 local_position = finger_.Bone((Bone.BoneType)(joint)).PrevJoint.ToUnityScaled();
+    Vector3 local_position =
+        finger_.Bone((Bone.BoneType)(joint)).PrevJoint.ToUnityScaled(mirror_z_axis_);
     return controller_.transform.TransformPoint(local_position) + offset_;
   }
 
@@ -75,7 +83,8 @@ public abstract class FingerModel : MonoBehaviour {
   // Returns the center of the given bone on the finger in relation to the controller.
   public Vector3 GetBoneCenter(int bone_type) {
     Bone bone = finger_.Bone((Bone.BoneType)(bone_type));
-    return controller_.transform.TransformPoint(bone.Center.ToUnityScaled()) + offset_;
+    return controller_.transform.TransformPoint(bone.Center.ToUnityScaled(mirror_z_axis_)) +
+           offset_;
   }
 
   // Returns the direction the given bone is facing on the finger in relation to the controller.
@@ -86,7 +95,8 @@ public abstract class FingerModel : MonoBehaviour {
 
   // Returns the rotation quaternion of the given bone in relation to the controller.
   public Quaternion GetBoneRotation(int bone_type) {
-    Quaternion local_rotation = finger_.Bone((Bone.BoneType)(bone_type)).Basis.Rotation();
+    Quaternion local_rotation =
+        finger_.Bone((Bone.BoneType)(bone_type)).Basis.Rotation(mirror_z_axis_);
     return controller_.transform.rotation * local_rotation;
   }
 }

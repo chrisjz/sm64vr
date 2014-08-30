@@ -489,7 +489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -898,8 +898,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.73134577, y: -.0853323936, z: -45.4597473}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalPosition: {x: -.82002914, y: .00496613979, z: -.908474147}
+  m_LocalScale: {x: 19.9999981, y: 20, z: 19.9999981}
   m_Children:
   - {fileID: 400060}
   - {fileID: 400058}
@@ -913,7 +913,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100062}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1a5aa771180c3fa42939367679c880da, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 82348a3a09a7147bf82330652c31eb40, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9efae042f9f59b74e8e124ab193cbb22, type: 3}
+  m_Script: {fileID: 11500000, guid: 82da28a4ce55440adb4ba89c7a662446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fingerType: 0
@@ -945,7 +945,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9efae042f9f59b74e8e124ab193cbb22, type: 3}
+  m_Script: {fileID: 11500000, guid: 82da28a4ce55440adb4ba89c7a662446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fingerType: 3
@@ -962,7 +962,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9efae042f9f59b74e8e124ab193cbb22, type: 3}
+  m_Script: {fileID: 11500000, guid: 82da28a4ce55440adb4ba89c7a662446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fingerType: 4
@@ -979,7 +979,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9efae042f9f59b74e8e124ab193cbb22, type: 3}
+  m_Script: {fileID: 11500000, guid: 82da28a4ce55440adb4ba89c7a662446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fingerType: 2
@@ -996,7 +996,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9efae042f9f59b74e8e124ab193cbb22, type: 3}
+  m_Script: {fileID: 11500000, guid: 82da28a4ce55440adb4ba89c7a662446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fingerType: 1
@@ -1013,7 +1013,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3e374b8a0ccb504f9441bb87891e8ca, type: 3}
+  m_Script: {fileID: 11500000, guid: a77b65c1ae87b436881aa63bc80f4894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fingers:
@@ -1032,7 +1032,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84ebded26bbce0c44a7ac4d1d6f6889b, type: 3}
+  m_Script: {fileID: 11500000, guid: 75744f6bc3b9e4cb8b938addf7e6495b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   forceSpringConstant: 20
@@ -1043,7 +1043,7 @@ SkinnedMeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1060,7 +1060,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300000, guid: 82348a3a09a7147bf82330652c31eb40, type: 3}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 400044}
   - {fileID: 400042}
@@ -1108,7 +1108,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300002, guid: 1a5aa771180c3fa42939367679c880da, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 82348a3a09a7147bf82330652c31eb40, type: 3}
   m_Bones:
   - {fileID: 400058}
   - {fileID: 400052}

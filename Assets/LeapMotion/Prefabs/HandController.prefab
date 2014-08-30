@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: -3}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36,17 +36,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4df6e3ec7254af4b8977ba9efd4cb42, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c4e0350c46ae405b8db39262c18b8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   separateLeftRight: 0
-  leftGraphicsModel: {fileID: 0}
+  leftGraphicsModel: {fileID: 11400010, guid: 63e1333a64c39404bbcca2f2e642dfee, type: 2}
   leftPhysicsModel: {fileID: 0}
-  rightGraphicsModel: {fileID: 0}
+  rightGraphicsModel: {fileID: 11400010, guid: 1d8a201d377154d9a831f7d2639c658b, type: 2}
   rightPhysicsModel: {fileID: 0}
   toolModel: {fileID: 0}
+  mirrorZAxis: 0
+  destroyHands: 1
   handMovementScale: {x: 1, y: 1, z: 1}
-  enableInteraction: 0
+  enableRecordPlayback: 0
+  recordingAsset: {fileID: 0}
+  recorderSpeed: 1
+  recorderLoop: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
