@@ -80,6 +80,8 @@ public class FPSInputController : MonoBehaviour {
 			return;
 		}
 
+        UpdateInput ();
+
 		// Get the input vector from keyboard or analog stick
 		Vector3 directionVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -161,6 +163,31 @@ public class FPSInputController : MonoBehaviour {
         if (verticalMovement < 0) {
             HandleFallDamage(verticalMovement);
         }
+    }
+
+    protected void UpdateInput() {
+        // Trigger movement via OVR positional tracking
+        if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) &&
+                Input.GetKeyDown(KeyCode.M)) {
+            ovrMovement = !ovrMovement;
+        }
+        
+        // Trigger jump via OVR positional tracking
+        if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) &&
+                Input.GetKeyDown(KeyCode.J)) {
+            ovrJump = !ovrJump;
+        }
+        
+        // Trigger between straffing and rotating for X axis on movement via OVR positional tracking
+        if ((Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift)) &&
+                Input.GetKeyDown(KeyCode.M)) {
+            if (ovrXAxisAction == OvrXAxisAction.Strafe) {
+                ovrXAxisAction = OvrXAxisAction.Rotate;
+            } else {
+                ovrXAxisAction = OvrXAxisAction.Strafe;
+            }
+        }
+
     }
 
 	void UpdateAnimations(Vector3 directionVector) {
