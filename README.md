@@ -2,6 +2,68 @@
 
 Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
+## Supported Devices
+
+* __Oculus Rift DK1__
+* __Oculus Rift DK2__
+ * Positional tracking
+ * Movement & jumping via positional tracking
+* __Razer Hydra__
+ * Hand tracking
+ * Grab objects
+ * Movement
+* __Leap Motion__
+ * Bottom-up tracking only
+ * Hand tracking
+ * Grab some objects
+
+## Calibration
+
+### Hydra
+
+To calibrate a controller:
+1. Point it to the base receiver.
+2. Press __LT__.
+3. Place controller in front of respective shoulder and press __Start__.
+4. Move controller forward and your virtual hand should appear in front of you.
+
+## Controls
+
+### Keyboard
+
+* __W / Up Arrow__ - Forward
+* __A / Left Arrow__ - Left
+* __S / Down Arrow__ - Backward
+* __D / Right Arrow__ - Right
+* __Space__ - Jump
+* __Esc__ - Menu
+* __Ctrl + M__ - Trigger movement using DK2 positional tracking
+* __Ctrl + J__ - Trigger jump using DK2 positional tracking
+* __Shift + M__ - Swap between rotation and straffing on X axis when using DK2 positional tracking for movement
+
+### Hydra
+
+* __Left Joystick__ - Move
+* __Right Joystick__ - Look
+* __LT / RT__ - Grab object
+* __RB__ - Jump
+* __L3 / R4__ - Menu
+* __Start__ - Freeze / Unfreeze hand
+
+### Leap
+
+* __Pinch__ - Grab object
+
+### Rift DK2
+
+The following controls apply in case where "Positional Tracking" is enabled for movement.
+
+* __Lean Forward__ - Forward
+* __Lean Left__ - Left
+* __Lean Backward__ - Backward
+* __Lean Right__ - Right
+* __Poke Head Upward__ - Jump
+
 ## To do
 
 ### Player
@@ -94,6 +156,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 ### 3D Models
 
 * [Alec Pike](http://www.models-resource.com/submitter/alecpike/)
+* [Chris Zaharia](http://github.com/chrisjz)
 * Friedslick6
 * [Jon Gonzalez](http://xenosmashgames.com/author/gonzosan/)
 * MarioKart64n
