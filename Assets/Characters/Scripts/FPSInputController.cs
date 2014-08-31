@@ -18,11 +18,13 @@ public class FPSInputController : MonoBehaviour {
 	public enum OvrCameras { Left, Right }
 	public OvrCameras mainOvrCamera = OvrCameras.Right;                 // OVR Camera where movement is oriented towards, should have audio listener too
     public AudioClip[] initialJumpAudioClips;
-    public bool enableMoveViaTiltOvr = false;                           // Move player by moving head
-    public float minDistMoveViaOvr = 0;                             // Move using head positional tracking if position from body at least this far on X and Z axis.
-    public bool enableJumpViaOvr = false;                               // Player jumps by moving head high up
-    public float minDistJumpViaOvr = 0;                             // Jump using head positional tracking if position from body at least this far on Y axis.
-	public bool enableDetectOvr = true;								    // Detects if player is using Oculus Rift
+    public bool detectOvr = true;                                       // Detects if player is using Oculus Rift
+    public bool ovrMovement = false;                                    // Move player by moving head on X and Z axis
+    public bool ovrJump = false;                                        // Player jumps by moving head on Y axis upwards
+    public Vector3 ovrControlSensitivity = new Vector3(1, 1, 1);        // Multiplier of positiona tracking move/jump actions
+    public Vector3 ovrControlMinimum = new Vector3(0, 0, 0);            // Min distance of head from centre to move/jump
+    public enum OvrXAxisAction { Strafe = 0, Rotate = 1 }
+    public OvrXAxisAction ovrXAxisAction = OvrXAxisAction.Rotate;       // Whether x axis positional tracking performs straffing or rotation
 
     // Fall damage
     public float fallDamageHeight;              					    // Player receives X damage per multiplication of this height
@@ -67,7 +69,7 @@ public class FPSInputController : MonoBehaviour {
 		IgnorePlayerColliders ();
         InitCamera();
         previousVerticalPosition = initialVerticalPosition = transform.position.y;
-        initPosTrackDir = mainCamera.transform.InverseTransformDirection(transform.position - mainCamera.transform.position);
+        initPosTrackDir = mainCamera.transform.localPosition;
 		inputEnabled = true;
         jumpEnabled = true;
 	}
@@ -81,15 +83,32 @@ public class FPSInputController : MonoBehaviour {
 		// Get the input vector from keyboard or analog stick
 		Vector3 directionVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        // Get the input vector from OVR positional tracking via tilting
+        // Get the input vector from OVR positional tracking
         // TODO: Sideways movement will rotate player instead of straff
-        // TODO: also get input vector via head position
-        if (enableMoveViaTiltOvr || enableJumpViaOvr) {
-            curPosTrackDir = mainCamera.transform.InverseTransformDirection(transform.position - mainCamera.transform.position);
+        if (ovrMovement || ovrJump) {
+            curPosTrackDir = mainCamera.transform.localPosition;
         }
 
-        if (enableMoveViaTiltOvr) {
+        if (ovrMovement) {
             diffPosTrackDir = curPosTrackDir - initPosTrackDir;
+
+            if (diffPosTrackDir.x <= -ovrControlMinimum.x || diffPosTrackDir.x >= ovrControlMinimum.x) {
+                if (ovrXAxisAction == OvrXAxisAction.Strafe) {
+                    diffPosTrackDir.x *= ovrControlSensitivity.x;
+                } else {
+                    transform.Rotate(0, diffPosTrackDir.x * ovrControlSensitivity.x, 0);
+                    diffPosTrackDir.x = 0;
+                }
+            } else {
+                diffPosTrackDir.x = 0;
+            }
+
+            if (diffPosTrackDir.z <= -ovrControlMinimum.z || diffPosTrackDir.z >= ovrControlMinimum.z) {
+                diffPosTrackDir.z *= ovrControlSensitivity.z;
+            } else {
+                diffPosTrackDir.z = 0;
+            }
+
             directionVector = new Vector3(diffPosTrackDir.x, 0, diffPosTrackDir.z);
         }
 
@@ -160,20 +179,20 @@ public class FPSInputController : MonoBehaviour {
         
         // Apply the direction to the CharacterMotor
         HMDPresent = OVRDevice.IsHMDPresent();
-        if (enableDetectOvr && !HMDPresent) {
+        if (detectOvr && !HMDPresent) {
             mainCamera = generalCamera;
         } else {
             mainCamera = dirOvrCamera;
         }
         
-        if (enableDetectOvr) {
+        if (detectOvr) {
             DetectOVR();
         }
     }
 
     // TODO: Bind to jump action
     protected bool GetPositionalTrackingYForJump() {
-        if (initPosTrackDir.y - curPosTrackDir.y > minDistJumpViaOvr) {
+        if (initPosTrackDir.y - curPosTrackDir.y > ovrControlMinimum.y) {
             return true;
         } else {
             return false;

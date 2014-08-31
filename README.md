@@ -74,7 +74,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 ### Miscellaneous
 
-* Movement by leaning with DK2 on in different directions, move head upwards to jump. Have this as an toggled option.
+* Movement via DK2's positional tracking by moving head upwards to jump. Have this as an toggled option.
 * Convert Sixense GUI dialogs into 3D.
 * Play game without Rift with normal camera if Rift isn't detected.
 * Shadows for signs, trees.
