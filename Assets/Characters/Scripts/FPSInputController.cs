@@ -84,14 +84,12 @@ public class FPSInputController : MonoBehaviour {
 		Vector3 directionVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         // Get the input vector from OVR positional tracking
-        // TODO: Sideways movement will rotate player instead of straff
         if (ovrMovement || ovrJump) {
             curPosTrackDir = mainCamera.transform.localPosition;
+            diffPosTrackDir = curPosTrackDir - initPosTrackDir;
         }
 
         if (ovrMovement) {
-            diffPosTrackDir = curPosTrackDir - initPosTrackDir;
-
             if (diffPosTrackDir.x <= -ovrControlMinimum.x || diffPosTrackDir.x >= ovrControlMinimum.x) {
                 if (ovrXAxisAction == OvrXAxisAction.Strafe) {
                     diffPosTrackDir.x *= ovrControlSensitivity.x;
@@ -123,7 +121,9 @@ public class FPSInputController : MonoBehaviour {
         if (jumpEnabled) {
             if (hydraRightController != null) {
                 motor.inputJump = hydraRightController.GetButton (SixenseButtons.BUMPER);
-            } else{
+            } else if (ovrJump) {
+                motor.inputJump = GetPositionalTrackingYForJump();
+            } else {
                 motor.inputJump = Input.GetButton ("Jump");
             }
         }
@@ -190,9 +190,8 @@ public class FPSInputController : MonoBehaviour {
         }
     }
 
-    // TODO: Bind to jump action
     protected bool GetPositionalTrackingYForJump() {
-        if (initPosTrackDir.y - curPosTrackDir.y > ovrControlMinimum.y) {
+        if (diffPosTrackDir.y > ovrControlMinimum.y) {
             return true;
         } else {
             return false;

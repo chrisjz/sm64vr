@@ -5847,7 +5847,7 @@ MonoBehaviour:
   ovrMovement: 0
   ovrJump: 0
   ovrControlSensitivity: {x: 5, y: 2, z: 3}
-  ovrControlMinimum: {x: .100000001, y: .699999988, z: .100000001}
+  ovrControlMinimum: {x: .100000001, y: .600000024, z: .100000001}
   ovrXAxisAction: 1
   fallDamageHeight: 20
   fallDamageHealth: 2
@@ -6130,9 +6130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   separateLeftRight: 1
   leftGraphicsModel: {fileID: 11400010, guid: 1f65bea1655ce7c4f864ab6faa8f85aa, type: 2}
-  leftPhysicsModel: {fileID: 0}
+  leftPhysicsModel: {fileID: 11400008, guid: d1ee2987e72174f659cdf5447ad5403c, type: 2}
   rightGraphicsModel: {fileID: 11400010, guid: 1d8a201d377154d9a831f7d2639c658b, type: 2}
-  rightPhysicsModel: {fileID: 0}
+  rightPhysicsModel: {fileID: 11400008, guid: d1ee2987e72174f659cdf5447ad5403c, type: 2}
   toolModel: {fileID: 0}
   mirrorZAxis: 0
   destroyHands: 1
