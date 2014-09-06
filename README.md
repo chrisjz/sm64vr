@@ -66,6 +66,25 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ## To do
 
+### v0.1
+
+* Comprehensive in-game menu.
+* Toggle movement via Rift's positional tracker.
+* Title page menu.
+* Option to show/hide life points.
+* Display stats on coins collected in level.
+* Title page from 3rd person transitioned to 1st person perspective.
+* Player respawns in front of painting from first level.
+* Coins added to first level and increase hit point by one when collected.
+* 3D HUD (can trigger visibility).
+* Setting changes are saved to a file and loaded when game starts.
+* KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
+* Mario wearing VR headset on title page.
+* Big block collision on punch is no working completely.
+* Convert Sixense GUI dialogs into 3D.
+* Co-op Multiplayer via LAN or online.
+
+
 ### Player
 
 * Screen fades out when Mario loses life.
@@ -87,14 +106,8 @@ The following controls apply in case where "Positional Tracking" is enabled for 
  * stomping
  * climbing tree/pole
  * swimming
-* 3D HUD (can trigger visibility).
 * Mario's hat bobs as player shakes their head.
 * Full body tracking (PrioVR, SixenseVR).
-
-### Title
-
-* Title page from 3rd person transitioned to 1st person perspective.
-* Mario wearing VR headset on title page.
 
 ### Princess Peach's Castle
 
@@ -106,8 +119,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### Bob-omb Battlefield
 
-* Coins added to level and increase hit point by one when collected.
-* Big block collision on punch is no working completely.
 * Increase frequency of boulders coming down the mountain.
 * If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
 * Transition to Bob-omb Battlefield when jumping into its painting.
@@ -119,33 +130,25 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * Sound for squishing goomba.
 * Goomba stops following player when player is past a certain distance away from goomba.
 * Chomp enemy.
-* Player respawns in front of painting.
 
 ### King Bob-omb
 
-* KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
 * Player drops boss if he falls off ledge.
 * Better movement of star to its final position.
 
 ### Menus
 
-* Option to show/hide life points.
-* Setting changes are saved to a file and loaded when game starts.
-* Display stats on coins collected in level.
 * Display stats on stars collected in level or world.
 
 ### Miscellaneous
 
-* Movement via DK2's positional tracking by moving head upwards to jump. Have this as an toggled option.
-* Convert Sixense GUI dialogs into 3D.
-* Play game without Rift with normal camera if Rift isn't detected.
 * Shadows for signs, trees.
 
 ### Enhancements
 
 * Minigames in World 1, such as throwing shells at goombas with timer.
 * Luigi as a second player.
-* Multiplayer via LAN or online.
+* Enhanced Multiplayer via LAN or online.
 
 ## Credits
 
