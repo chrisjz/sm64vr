@@ -89,6 +89,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 * Screen fades out when Mario loses life.
 * Improve Mario's left hand model stretching when using Sixense tracking.
+* Look script uses both X and Y axis while also rotating Mario's head
 * Mario has arms when using leap motion.
 * Better skeletal movement of arms when using hand tracking.
 * Player can swim
@@ -164,6 +165,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * [Jon Gonzalez](http://xenosmashgames.com/author/gonzosan/)
 * MarioKart64n
 * Maximo
+* William Burke
  
 ### Sound & Music
 
