@@ -16,6 +16,7 @@ public class HandController : MonoBehaviour {
   protected const float GIZMO_SCALE = 5.0f;
 
   public bool separateLeftRight = false;
+  public bool isHeadMounted = false;
   public HandModel leftGraphicsModel;
   public HandModel leftPhysicsModel;
   public HandModel rightGraphicsModel;
@@ -51,6 +52,14 @@ public class HandController : MonoBehaviour {
 
   void Start() {
     leap_controller_ = new Controller();
+    
+    Controller.PolicyFlag policy_flags = leap_controller_.PolicyFlags;
+    if (isHeadMounted)
+      policy_flags |= Controller.PolicyFlag.POLICY_OPTIMIZE_HMD;
+    else
+      policy_flags &= ~Controller.PolicyFlag.POLICY_OPTIMIZE_HMD;
+    leap_controller_.SetPolicyFlags(policy_flags);
+
     hand_graphics_ = new Dictionary<int, HandModel>();
     hand_physics_ = new Dictionary<int, HandModel>();
 

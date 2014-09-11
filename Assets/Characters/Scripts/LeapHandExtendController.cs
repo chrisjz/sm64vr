@@ -12,10 +12,28 @@ using System.Collections;
 using Leap;
 
 public class LeapHandExtendController : HandController {
+    public Vector3 leapGroundedLocalPosition = new Vector3(0, 0, 0);
+    public Vector3 leapGroundedLocalRotation = new Vector3(0, 0, 0);
+    public Vector3 leapHeadMountedLocalPosition = new Vector3(0, 0, 0);
+    public Vector3 leapHeadMountedLocalRotation = new Vector3(0, 0, 0);
+
     protected Controller leap_controller_;
 
     protected void Awake () {
         leap_controller_ = new Controller();
+
+        Controller.PolicyFlag policy_flags = leap_controller_.PolicyFlags;
+
+        // Change hand position based on if HMD is mounted flag
+        if (isHeadMounted) {
+            transform.localEulerAngles  = leapHeadMountedLocalRotation;
+            transform.localPosition = leapHeadMountedLocalPosition;
+        } else {
+            transform.localEulerAngles = leapGroundedLocalRotation;
+            transform.localPosition = leapGroundedLocalPosition;
+        }
+
+        leap_controller_.SetPolicyFlags(policy_flags);
     }
 	
     protected void LateUpdate () {

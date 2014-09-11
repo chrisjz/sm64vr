@@ -1102,7 +1102,7 @@ MonoBehaviour:
   - {fileID: 400010}
   - {fileID: 400008}
   - {fileID: 400006}
-  easing: .5
+  filtering: .5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1120,7 +1120,7 @@ MonoBehaviour:
   - {fileID: 400004}
   - {fileID: 400002}
   - {fileID: 400000}
-  easing: .5
+  filtering: .5
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   - {fileID: 400016}
   - {fileID: 400014}
   - {fileID: 400012}
-  easing: .5
+  filtering: .5
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1156,7 +1156,7 @@ MonoBehaviour:
   - {fileID: 400022}
   - {fileID: 400020}
   - {fileID: 400018}
-  easing: .5
+  filtering: .5
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1175,7 +1175,8 @@ MonoBehaviour:
   - {fileID: 11400002}
   - {fileID: 11400000}
   palm: {fileID: 100034}
-  easing: .5
+  forearm: {fileID: 0}
+  filtering: .5
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1193,7 +1194,7 @@ MonoBehaviour:
   - {fileID: 400040}
   - {fileID: 400038}
   - {fileID: 400036}
-  easing: .5
+  filtering: .5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
