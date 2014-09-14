@@ -68,21 +68,6 @@ public class OVRDevice : MonoBehaviour
 	#region MonoBehaviour Message Handlers
 	void Awake()
 	{
-		string[] args = System.Environment.GetCommandLineArgs();
-		for (int i = 0; i < args.Length; ++i)
-		{
-			if (args[i] == "-fullscreen")
-			{
-				Debug.Log("Going to Full-Screen");
-				Screen.fullScreen = true;
-			}
-			else if (args[i] == "-window")
-			{
-				Debug.Log("Going to Window");
-				Screen.fullScreen = false;
-			}
-		}
-
         // Detect whether this platform is a supported platform
         RuntimePlatform currPlatform = Application.platform;
         SupportedPlatform |= currPlatform == RuntimePlatform.Android;
@@ -97,13 +82,11 @@ public class OVRDevice : MonoBehaviour
             return;
         }
 
-		if (HMD != null)
-			return;
-
+        if (HMD != null)
+            return;
         HMD = Hmd.GetHmd();
 
-		//HACK: Forcing LP off until service initializes it properly.
-		SetLowPersistenceMode(true);
+        SetLowPersistenceMode(true);
 	}
 
 	void Update()
@@ -113,7 +96,6 @@ public class OVRDevice : MonoBehaviour
 	}
 	#endregion
 
-#if false
 	/// <summary>
 	/// Destroy this instance.
 	/// </summary>
@@ -122,12 +104,7 @@ public class OVRDevice : MonoBehaviour
         // We may want to turn this off so that values are maintained between level / scene loads
         if (!ResetTrackerOnLoad || HMD == null)
             return;
-
-        HMD.Destroy();
-        Hmd.Shutdown();
-        HMD = null;
     }
-#endif
 
 	// * * * * * * * * * * * *
 	// PUBLIC FUNCTIONS
@@ -456,4 +433,15 @@ public class OVRDevice : MonoBehaviour
         TWrp = latencies[1];
         PostPresent = latencies[2];
     }
+
+#if (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
+	[DllImport("user32.dll", CharSet=CharSet.Auto, ExactSpelling=true)]
+	public static extern IntPtr GetActiveWindow();
+#endif
+
+	public const string LibFile = "OculusPlugin";
+	[DllImport(LibFile)]
+	public static extern void OVR_SetHMD(ref IntPtr hmdPtr);
+	[DllImport(LibFile)]
+	private static extern void OVR_GetHMD(ref IntPtr hmdPtr);
 }

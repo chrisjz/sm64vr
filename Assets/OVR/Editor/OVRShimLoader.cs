@@ -36,23 +36,11 @@ using System.IO;
 [InitializeOnLoad]
 class OVRShimLoader
 {
+#if !UNITY_EDITOR_OSX
+
 	static OVRShimLoader()
 	{
-		EditorApplication.update += Update;
-	}
-
-	static void Update()
-	{
-		#if !UNITY_EDITOR_OSX && !UNITY_STANDALONE_OSX
-		// Suppresses the resolution dialog and sets Rift-optimized launch settings.
-		if (_isEnabled)
-		{
 			PlayerSettings.displayResolutionDialog = ResolutionDialogSetting.HiddenByDefault;
-			PlayerSettings.defaultIsFullScreen = false;
-			PlayerSettings.defaultScreenWidth = 1920;
-			PlayerSettings.defaultScreenHeight = 1080;
-		}
-		#endif
 	}
 
 	[PreferenceItem("Oculus VR")]
@@ -65,7 +53,13 @@ class OVRShimLoader
 		}
 		
 		// Preferences GUI
-		_isEnabled = EditorGUILayout.Toggle ("Optimize Builds for Rift", _isEnabled);
+
+		bool isEnabled = EditorGUILayout.Toggle ("Optimize Builds for Rift", _isEnabled);
+
+		if (isEnabled && !_isEnabled)
+			PlayerSettings.displayResolutionDialog = ResolutionDialogSetting.HiddenByDefault;
+
+		_isEnabled = isEnabled;
 		
 		// Save the preferences
 		if (GUI.changed)
@@ -95,10 +89,15 @@ class OVRShimLoader
 			File.Delete(targetPath);
 
 		File.Copy(autoPatcherPath, targetPath);
-		
-		Debug.Log ("Patched " + pathToBuiltProject + " for " + target.ToString() + ".");
+
+		string appInfoPath = pathToBuiltProject.Replace(".exe", "_Data/OVRAppInfo");
+		var file = new System.IO.StreamWriter (appInfoPath);
+		file.Write(PlayerSettings.companyName + "\\" + PlayerSettings.productName);
+		file.Dispose();
 	}
 
 	static bool _isEnabled = true;
 	static bool _prefsLoaded = false;
+
+#endif
 }

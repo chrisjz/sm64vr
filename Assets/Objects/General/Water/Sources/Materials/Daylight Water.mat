@@ -78,6 +78,10 @@ Material:
     m_Colors:
       data:
         first:
+          name: _MainTex_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
           name: _RefrColor
         second: {r: .136786312, g: .475122422, b: .808823526, a: 1}
       data:
@@ -104,10 +108,6 @@ Material:
         first:
           name: _HorizonColor
         second: {r: .135759518, g: .228107125, b: .381078809, a: 0}
-      data:
-        first:
-          name: _MainTex_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
           name: _ReflectionTex_ST

@@ -701,7 +701,7 @@ public struct ovrHSWDisplayState
 // Shutdown:
 //   - Destroy() to release the HMD.
 //   - ovr_Shutdown() to shutdown the OVR SDK.
-	public class Hmd
+	public class Hmd 
 	{
 		public const string OVR_KEY_USER                   = "User";
 		public const string OVR_KEY_NAME                   = "Name";
@@ -722,9 +722,10 @@ public struct ovrHSWDisplayState
 		public const float OVR_DEFAULT_EYE_RELIEF_DIAL         = 3;
 
 		IntPtr HmdPtr;
+
 		// Used to return color result to avoid per-frame allocation.
 		byte[] LatencyTestRgb = new byte[3];
-
+		
 		// -----------------------------------------------------------------------------------
 		// Static Methods
 
@@ -754,7 +755,7 @@ public struct ovrHSWDisplayState
 			if (hmdPtr == IntPtr.Zero)
 				return null;
 
-			OVR_SetHMD(ref hmdPtr);
+            OVR_SetHMD(ref hmdPtr);
 			return new Hmd(hmdPtr);
 		}
 
@@ -764,15 +765,15 @@ public struct ovrHSWDisplayState
 			if (hmdPtr == IntPtr.Zero)
 				return null;
 
-			OVR_SetHMD(ref hmdPtr);
+            OVR_SetHMD(ref hmdPtr);
 			return new Hmd(hmdPtr);
 		}
 
         public static Hmd GetHmd()
         {
             IntPtr hmdPtr = IntPtr.Zero;
-			OVR_GetHMD(ref hmdPtr);
-			return (hmdPtr != IntPtr.Zero) ? new Hmd(hmdPtr) : null;
+            OVR_GetHMD(ref hmdPtr);
+            return (hmdPtr != IntPtr.Zero) ? new Hmd(hmdPtr) : null;
         }
 
 		// Used to generate projection from ovrEyeDesc::Fov.
@@ -808,25 +809,18 @@ public struct ovrHSWDisplayState
 		{
 			this.HmdPtr = hmdPtr;
 		}
-		
+
         //~Hmd()
         //{
-        //    if (HmdPtr != IntPtr.Zero)
-        //    {
-        //        ovrHmd_Destroy(HmdPtr);
-        //        HmdPtr = IntPtr.Zero;
-        //        OVR_SetHMD(ref HmdPtr);
-        //    }
+        //    Dispose();
         //}
 
-		// Destroys the resources associated with HMD.
-		// No member methods should be called after Destroy.
-		public void Destroy()
+        public void Destroy()
 		{
-			ovrHmd_Destroy(HmdPtr);
-			HmdPtr = IntPtr.Zero;
-            OVR_SetHMD(ref HmdPtr);
-		}
+            //ovrHmd_Destroy(HmdPtr);
+            //HmdPtr = IntPtr.Zero;
+            //OVR_SetHMD(ref HmdPtr);
+        }
 
 		// Returns last error for HMD state. Returns null for no error.
 		public string GetLastError()
@@ -841,7 +835,7 @@ public struct ovrHSWDisplayState
         }
 #endif
 
-		public uint GetEnabledCaps()
+        public uint GetEnabledCaps()
 		{
 			return ovrHmd_GetEnabledCaps(HmdPtr);
 		}
@@ -907,19 +901,16 @@ public struct ovrHSWDisplayState
 			return ovrHmd_GetFovTextureSize(HmdPtr, eye, fov, pixelsPerDisplayPixel);
 		}
 		
-#if false
-	//TODO: ovrHmd_ConfigureRendering().
-		public ovrEyeRenderDesc? ConfigureRendering(ovrEyeDesc[] eyeDescIn, uint distortionCaps)
+		public ovrEyeRenderDesc[] ConfigureRendering(ovrFovPort[] eyeFovIn, uint distortionCaps)
 		{
 			ovrEyeRenderDesc[] eyeRenderDesc = new ovrEyeRenderDesc[] { new ovrEyeRenderDesc(), new ovrEyeRenderDesc() };
 			ovrRenderAPIConfig renderAPIConfig = new ovrRenderAPIConfig();
 
-			if (ovrHmd_ConfigureRendering(HmdPtr, renderAPIConfig, distortionCaps, eyeDescIn, eyeRenderDesc))
+			if (ovrHmd_ConfigureRendering(HmdPtr, ref renderAPIConfig, distortionCaps, eyeFovIn, eyeRenderDesc))
 				return eyeRenderDesc;
 			return null;
 		}
-#endif
-		
+
 		// Begins a frame, returning timing and orientation information.
 		// This should be called in the very beginning of game rendering loop (on render thread),
 		// ideally immediately after prior frame buffer swap (Present) was flushed and synced.
@@ -1076,6 +1067,7 @@ public struct ovrHSWDisplayState
 		public ovrHSWDisplayState GetHSWDisplayState()
 		{
 			ovrHSWDisplayState hswDisplayState;
+            OVR_GetHMD(ref HmdPtr);
 			ovrHmd_GetHSWDisplayState(HmdPtr, out hswDisplayState);
 			return hswDisplayState;
 		}
@@ -1162,12 +1154,11 @@ public struct ovrHSWDisplayState
 
 		// -----------------------------------------------------------------------------------
 		// ***** Private Interface to OculusPlugin
+        [DllImport(LibFile)]
+        private static extern void OVR_SetHMD(ref IntPtr hmdPtr);
+        [DllImport(LibFile)]
+        private static extern void OVR_GetHMD(ref IntPtr hmdPtr);
 
-		// Unity Functions
-		[DllImport(LibFile)]
-		private static extern void OVR_SetHMD(ref IntPtr hmdPtr);
-		[DllImport(LibFile)]
-		private static extern void OVR_GetHMD(ref IntPtr hmdPtr);
 
 		// -----------------------------------------------------------------------------------
 		// ***** Private Interface to libOVR
@@ -1208,6 +1199,12 @@ public struct ovrHSWDisplayState
 		
 		[DllImport(LibFile)]
 		private static extern ovrSizei ovrHmd_GetFovTextureSize(IntPtr hmd, ovrEyeType eye, ovrFovPort fov, float pixelsPerDisplayPixel);
+		[DllImport(LibFile)]
+		private static extern bool ovrHmd_ConfigureRendering(IntPtr hmd,
+						                                     ref ovrRenderAPIConfig apiConfig,
+						                                     uint distortionCaps,
+					                                         ovrFovPort[] eyeFovIn,
+						                                     ovrEyeRenderDesc[] eyeRenderDescOut);
 		[DllImport(LibFile)]
 		private static extern ovrFrameTiming_Raw ovrHmd_BeginFrame(IntPtr hmd, uint frameIndex);
 		[DllImport(LibFile)]

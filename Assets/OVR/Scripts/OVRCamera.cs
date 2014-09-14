@@ -46,9 +46,7 @@ public class OVRCamera : MonoBehaviour
 	private enum EventType
     {
 		BeginFrame = 0,
-		GetLeftEyePose = 1,
-		GetRightEyePose = 2,
-        EndFrame = 3,
+        EndFrame = 1,
     };
 
 	#region Plugin Imports
@@ -186,6 +184,8 @@ public class OVRCamera : MonoBehaviour
 
 		camera.targetTexture = CameraTexture[EyeId];
         OldScale = CameraController.ScaleRenderTarget;
+
+        
 	}
 
     static int PendingEyeCount = 0;
@@ -216,12 +216,13 @@ public class OVRCamera : MonoBehaviour
 
         NeedsSetTexture = NeedsSetTexture || ((CameraController.ScaleRenderTarget != OldScale) || (Screen.fullScreen != wasFullScreen) || OVR_UnityGetModeChange());
 
+        
         if (NeedsSetTexture)
         {
             if (CameraTexture[EyeId].GetNativeTexturePtr() == System.IntPtr.Zero)
                 return;             
 
-			OVR_SetTexture(EyeId, CameraTexture[EyeId].GetNativeTexturePtr(), CameraController.ScaleRenderTarget);
+            OVR_SetTexture(EyeId, CameraTexture[EyeId].GetNativeTexturePtr(), CameraController.ScaleRenderTarget);
 
 			OldScale = CameraController.ScaleRenderTarget;
 			wasFullScreen = Screen.fullScreen;
@@ -230,6 +231,7 @@ public class OVRCamera : MonoBehaviour
 				OVR_UnitySetModeChange(false);
 
             NeedsSetTexture = false;
+         
         }
 
         if (PendingEyeCount == 0)
@@ -238,16 +240,17 @@ public class OVRCamera : MonoBehaviour
 
 	IEnumerator CallbackCoroutine()
 	{
-		while (true)
-		{
-            OVRDevice.HMD = Hmd.GetHmd();
+        OVRDevice.HMD = Hmd.GetHmd();
+        while (true)
+        {
 #if UNITY_EDITOR_WIN || (!UNITY_EDITOR_OSX && UNITY_STANDALONE_OSX)
             yield return new WaitForEndOfFrame();
 #else
-            yield return null;
+           yield return null;
 #endif
-			OnCoroutine();
-		}
+            OnCoroutine();
+          
+        }
 	}
 	#endregion
 	
