@@ -140,6 +140,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 ### Menus
 
 * Display stats on stars collected in level or world.
+* Add title scene menu music from original game.
 
 ### Miscellaneous
 
