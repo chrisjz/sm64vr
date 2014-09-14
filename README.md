@@ -172,6 +172,10 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * [KHInsider](http://http://www.khinsider.com)
 * [The Trasher](http://www.mfgg.net/index.php?act=user&param=01&uid=8)
 
+### Fonts
+
+* [Mario Monsters](http://www.fontspace.com/mario-monsters)
+
 ## Disclaimer
 
 Super Mario 64 is owned by Nintendo Co., Ltd. This project has no affiliation with Nintendo Co., Ltd.
