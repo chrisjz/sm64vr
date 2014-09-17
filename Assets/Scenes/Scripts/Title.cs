@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Title : MonoBehaviour {
     public GameObject menu;
+    public GameObject initialMenuPanel;
     public GameObject titleActionText;
     public float titleActionFlickerSpeed = 1;
 
@@ -11,19 +12,21 @@ public class Title : MonoBehaviour {
 
 	protected void Start () {
         menu.SetActive (false);
+        initialMenuPanel.SetActive (false);
         titleActionTimer = titleActionFlickerSpeed;
         titleActionActive = true;
 	}
 	
     protected void Update () {
+        if (!titleActionActive) {
+            return;
+        }
+
         FlickerActionText ();
         UpdateAction ();
 	}
 
     protected void FlickerActionText() {
-        if (!titleActionActive) {
-            return;
-        }
 
         titleActionTimer -= Time.deltaTime;
         if (titleActionTimer < 0) {
@@ -32,10 +35,11 @@ public class Title : MonoBehaviour {
         }
     }
 
-    protected void UpdateAction () {        
+    protected void UpdateAction () {
         // Keyboard
         if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.KeypadEnter)) {
             menu.SetActive (true);
+            initialMenuPanel.SetActive(true);
             titleActionText.SetActive(false);
             titleActionActive = false;
         }
