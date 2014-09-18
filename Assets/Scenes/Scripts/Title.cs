@@ -10,7 +10,8 @@ public class Title : MonoBehaviour {
     protected float titleActionTimer;
     protected bool titleActionActive;
 
-	protected void Start () {
+    protected void Start () {
+        StorageManager.Load ();
         menu.SetActive (false);
         initialMenuPanel.SetActive (false);
         titleActionTimer = titleActionFlickerSpeed;
