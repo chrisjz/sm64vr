@@ -19,7 +19,6 @@ public static class StorageManager {
     public static string fileName = "settings.ini";
 
     public static void Save () {
-        data = GameData.current;
         BinaryFormatter bf = new BinaryFormatter ();
         FileStream file = File.Create (Application.persistentDataPath + "/" + fileName);
         bf.Serialize (file, StorageManager.data);

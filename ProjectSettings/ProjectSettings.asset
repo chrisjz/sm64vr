@@ -10,7 +10,7 @@ PlayerSettings:
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: Independent
+  companyName: CJZ
   productName: Super Mario 64 VR
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}

@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   Title.cs
+Content     :   Scene manager for Title scene
+Created     :   15 September 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class Title : MonoBehaviour {
@@ -11,7 +20,6 @@ public class Title : MonoBehaviour {
     protected bool titleActionActive;
 
     protected void Start () {
-        StorageManager.Load ();
         menu.SetActive (false);
         initialMenuPanel.SetActive (false);
         titleActionTimer = titleActionFlickerSpeed;

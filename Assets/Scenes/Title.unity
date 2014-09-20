@@ -2080,7 +2080,11 @@ MonoBehaviour:
   startsActive: 0
   instantTween: 0
   optionCanBeNone: 0
-  onChange: []
+  onChange:
+  - mTarget: {fileID: 1476582089}
+    mMethodName: UIToggleRiftPosTrackJump
+    mParameters: []
+    oneShot: 0
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
   eventReceiver: {fileID: 0}
@@ -3466,7 +3470,11 @@ MonoBehaviour:
   startsActive: 0
   instantTween: 0
   optionCanBeNone: 0
-  onChange: []
+  onChange:
+  - mTarget: {fileID: 1476582089}
+    mMethodName: UIToggleRiftPosTrackMove
+    mParameters: []
+    oneShot: 0
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
   eventReceiver: {fileID: 0}
@@ -4624,6 +4632,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1476582088}
   - 114: {fileID: 1476582087}
+  - 114: {fileID: 1476582089}
   m_Layer: 0
   m_Name: Scene Manager
   m_TagString: Untagged
@@ -4658,6 +4667,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
+--- !u!114 &1476582089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1476582086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611767998e18398408878c9262b1fc81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectEnableRift: {fileID: 1705832463}
+  objectRiftPosTrackMove: {fileID: 1224159033}
+  objectRiftPosTrackJump: {fileID: 736606913}
 --- !u!1 &1494496113
 GameObject:
   m_ObjectHideFlags: 0
@@ -6005,7 +6028,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 1476582089}
+    mMethodName: Save
+    mParameters: []
+    oneShot: 0
 --- !u!54 &2078808093
 Rigidbody:
   m_ObjectHideFlags: 0
