@@ -8400,6 +8400,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 2339d73a2af63324199c8acf69d2679b, type: 3}
   - {fileID: 2800000, guid: b1964ba37b94fc842a3a87ccc2397c68, type: 3}
   - {fileID: 2800000, guid: dbc7e8a40ced3a24181df444f5a62b5a, type: 3}
+  displayPosition: {x: 1, y: 2.79999995, z: 2.5}
+  displayRotation: {x: 100, y: 50, z: 200}
 --- !u!114 &1037117278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16911,8 +16913,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 911a3b1ae87cd1942b607cab951e9e25, type: 3}
   - {fileID: 8300000, guid: 39b786907da4c384d8fc7aceab3756fc, type: 3}
   detectOvr: 1
-  ovrMovement: 0
-  ovrJump: 0
   ovrControlSensitivity: {x: 5, y: 2, z: 3}
   ovrControlMinimum: {x: .100000001, y: .600000024, z: .100000001}
   ovrXAxisAction: 1

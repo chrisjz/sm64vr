@@ -19,8 +19,6 @@ public class FPSInputController : MonoBehaviour {
 	public OvrCameras mainOvrCamera = OvrCameras.Right;                 // OVR Camera where movement is oriented towards, should have audio listener too
     public AudioClip[] initialJumpAudioClips;
     public bool detectOvr = true;                                       // Detects if player is using Oculus Rift
-    public bool ovrMovement = false;                                    // Move player by moving head on X and Z axis
-    public bool ovrJump = false;                                        // Player jumps by moving head on Y axis upwards
     public Vector3 ovrControlSensitivity = new Vector3(1, 1, 1);        // Multiplier of positiona tracking move/jump actions
     public Vector3 ovrControlMinimum = new Vector3(0, 0, 0);            // Min distance of head from centre to move/jump
     public enum OvrXAxisAction { Strafe = 0, Rotate = 1 }
@@ -86,12 +84,12 @@ public class FPSInputController : MonoBehaviour {
 		Vector3 directionVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         // Get the input vector from OVR positional tracking
-        if (ovrMovement || ovrJump) {
+        if (StorageManager.data.optionControlsRiftPosTrackMove || StorageManager.data.optionControlsRiftPosTrackJump) {
             curPosTrackDir = mainCamera.transform.localPosition;
             diffPosTrackDir = curPosTrackDir - initPosTrackDir;
         }
 
-        if (ovrMovement) {
+        if (StorageManager.data.optionControlsRiftPosTrackMove) {
             if (diffPosTrackDir.x <= -ovrControlMinimum.x || diffPosTrackDir.x >= ovrControlMinimum.x) {
                 if (ovrXAxisAction == OvrXAxisAction.Strafe) {
                     diffPosTrackDir.x *= ovrControlSensitivity.x;
@@ -123,7 +121,7 @@ public class FPSInputController : MonoBehaviour {
         if (jumpEnabled) {
             if (hydraRightController != null) {
                 motor.inputJump = hydraRightController.GetButton (SixenseButtons.BUMPER);
-            } else if (ovrJump) {
+            } else if (StorageManager.data.optionControlsRiftPosTrackJump) {
                 motor.inputJump = GetPositionalTrackingYForJump();
             } else {
                 motor.inputJump = Input.GetButton ("Jump");
@@ -169,13 +167,13 @@ public class FPSInputController : MonoBehaviour {
         // Trigger movement via OVR positional tracking
         if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) &&
                 Input.GetKeyDown(KeyCode.M)) {
-            ovrMovement = !ovrMovement;
+            StorageManager.data.optionControlsRiftPosTrackMove = !StorageManager.data.optionControlsRiftPosTrackMove;
         }
         
         // Trigger jump via OVR positional tracking
         if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) &&
                 Input.GetKeyDown(KeyCode.J)) {
-            ovrJump = !ovrJump;
+            StorageManager.data.optionControlsRiftPosTrackJump = !StorageManager.data.optionControlsRiftPosTrackJump;
         }
         
         // Trigger between straffing and rotating for X axis on movement via OVR positional tracking

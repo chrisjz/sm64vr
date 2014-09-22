@@ -69,15 +69,10 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 ### v0.1
 
 * Comprehensive in-game menu.
-* Toggle movement via Rift's positional tracker.
-* Title page menu.
-* Option to show/hide life points.
 * Display stats on coins collected in level.
 * Title page from 3rd person transitioned to 1st person perspective.
 * Player respawns in front of painting from first level.
 * Coins added to first level and increase hit point by one when collected.
-* 3D HUD (can trigger visibility).
-* Setting changes are saved to a file and loaded when game starts.
 * KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
 * Mario wearing VR headset on title page.
 * Big block collision on punch is no working completely.

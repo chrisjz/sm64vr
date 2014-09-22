@@ -12,24 +12,48 @@ using System.Collections;
 
 public class HealthIndicator : MonoBehaviour {
 	public GameObject player;
-	public Texture[] healthTextures;			// Place images of different health increments starting from lowest to highest.
+    public Texture[] healthTextures;			        // Place images of different health increments starting from lowest to highest.
+    public Vector3 displayPosition = new Vector3();
+    public Vector3 displayRotation = new Vector3();
 
-	private PlayerHealth playerHealth;
+    protected PlayerHealth playerHealth;
+    protected Vector3 initialPosition;
+    protected Quaternion initialRotation;
 
-	void Awake () {
+	protected void Awake () {
 		playerHealth = player.GetComponent<PlayerHealth> ();
+
 	}
 
-	void Update () {
-		int health = playerHealth.health;
-		Material material = renderer.materials[1];
+    protected void Start () {    
+        SetPosition ();
+    }
 
-		if (health < 0) {
-			material.mainTexture = healthTextures[0];
-		} else if (health + 1 > healthTextures.Length) {
-			material.mainTexture = healthTextures[healthTextures.Length];
-		} else {
-			material.mainTexture = healthTextures[health];
-		}
-	}
+	protected void Update () {
+        UpdateAction ();    
+    }
+    
+    public void SetPosition () {
+        if (StorageManager.data.optionInterfaceDisplayHealth) {
+            transform.localPosition = displayPosition;
+            transform.localRotation = Quaternion.Euler(displayRotation);
+            
+        } else {
+            transform.localPosition = initialPosition;
+            transform.localRotation = initialRotation;
+        }
+    }
+
+    protected void UpdateAction () {
+        int health = playerHealth.health;
+        Material material = renderer.materials[1];
+        
+        if (health < 0) {
+            material.mainTexture = healthTextures[0];
+        } else if (health + 1 > healthTextures.Length) {
+            material.mainTexture = healthTextures[healthTextures.Length];
+        } else {
+            material.mainTexture = healthTextures[health];
+        }
+    }
 }

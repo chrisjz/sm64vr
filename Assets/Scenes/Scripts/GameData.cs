@@ -17,10 +17,12 @@ public class GameData {
     public bool optionControlsEnableRift;
     public bool optionControlsRiftPosTrackMove;         // Move via the Rift's positional tracker
     public bool optionControlsRiftPosTrackJump;         // Jump via the Rift's positional tracker
+    public bool optionInterfaceDisplayHealth;           // Display player's health in front of player
 
     public GameData () {
         this.optionControlsEnableRift = true;
         this.optionControlsRiftPosTrackMove = false;
         this.optionControlsRiftPosTrackJump = false;
+        this.optionInterfaceDisplayHealth = false;
     }
 }
