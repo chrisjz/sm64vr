@@ -1,4 +1,13 @@
-﻿using UnityEditor;
+﻿/************************************************************************************
+
+Filename    :   MenuManagerEditor.cs
+Content     :   Editor for MenuManager.cs
+Created     :   17 September 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(MenuManager)), CanEditMultipleObjects]

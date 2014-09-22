@@ -1,10 +1,19 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   MenuManager.cs
+Content     :   Manage NGUI menu actions
+Created     :   17 September 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 [AddComponentMenu("NGUI/Interaction/Menu Manager")]
 public class MenuManager : MonoBehaviour {
     public enum Type {Action, GoToScene, SwitchPanel}
-    public enum Action {Exit}
+    public enum Action {Exit, Resume, Restart}
     public Type type;
     public Action action;
     public string nextSceneName;
@@ -30,7 +39,19 @@ public class MenuManager : MonoBehaviour {
         case Action.Exit:
             Application.Quit();
             break;
+        case Action.Resume:
+            Resume();
+            break;
+        case Action.Restart:
+            Application.LoadLevel (Application.loadedLevel);
+            break;
         }
+    }
+
+    protected void Resume() {
+        Transform player = GameObject.FindGameObjectWithTag ("Player").transform;
+        GameObject menu = player.Find ("Menu").gameObject;
+        menu.SetActive (false);
     }
     
     protected void GoToScene() {
