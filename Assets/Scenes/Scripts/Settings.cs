@@ -19,6 +19,8 @@ public class Settings : MonoBehaviour {
 	protected UIToggle toggleRiftPosTrackMove;
 	protected UIToggle toggleRiftPosTrackJump;
 
+    protected bool enableRiftChanged = false;
+
 	protected void Awake () {
 		GameData.current = new GameData();
 		StorageManager.Load ();
@@ -48,10 +50,14 @@ public class Settings : MonoBehaviour {
 
 	public void Save () {
 		StorageManager.Save ();
+        if (enableRiftChanged) {
+            Application.LoadLevel (Application.loadedLevel);
+        }
 	}
 	
 	public void UIToggleEnableRift () {
 		StorageManager.data.optionControlsEnableRift = toggleEnableRift.value;
+        enableRiftChanged = true;
 	}
 	
 	public void UIToggleRiftPosTrackMove () {
