@@ -13,11 +13,12 @@ public abstract class HandModel : MonoBehaviour {
 
   public const int NUM_FINGERS = 5;
 
+  public float handModelPalmWidth = 0.085f;
   public FingerModel[] fingers = new FingerModel[NUM_FINGERS];
 
-  private Hand hand_;
-  private HandController controller_;
-  private bool mirror_z_axis_ = false;
+  protected Hand hand_;
+  protected HandController controller_;
+  protected bool mirror_z_axis_ = false;
 
   public Vector3 GetPalmOffset() {
     if (controller_ == null || hand_ == null)

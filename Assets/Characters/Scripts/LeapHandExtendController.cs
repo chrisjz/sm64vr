@@ -12,49 +12,59 @@ using System.Collections;
 using Leap;
 
 public class LeapHandExtendController : HandController {
-    public Vector3 leapGroundedLocalPosition = new Vector3(0, 0, 0);
-    public Vector3 leapGroundedLocalRotation = new Vector3(0, 0, 0);
-    public Vector3 leapHeadMountedLocalPosition = new Vector3(0, 0, 0);
-    public Vector3 leapHeadMountedLocalRotation = new Vector3(0, 0, 0);
-
+    public Vector3 GroundedLocalPosition = new Vector3(0, 0, 0);
+    public Vector3 GroundedLocalRotation = new Vector3(0, 0, 0);
+    public Vector3 MountedLocalPosition = new Vector3(0, 0, 0);
+    public Vector3 MountedLocalRotation = new Vector3(0, 0, 0);
+    
     protected Controller leap_controller_;
-
-    protected void Awake () {
-        leap_controller_ = new Controller();
-
-        Controller.PolicyFlag policy_flags = leap_controller_.PolicyFlags;
-
-        // Change hand position based on if HMD is mounted flag
-        if (isHeadMounted) {
-            transform.localEulerAngles  = leapHeadMountedLocalRotation;
-            transform.localPosition = leapHeadMountedLocalPosition;
-        } else {
-            transform.localEulerAngles = leapGroundedLocalRotation;
-            transform.localPosition = leapGroundedLocalPosition;
+    protected bool isOrientationSet = false;
+    protected bool initialised = false;
+    
+    protected void LateUpdate () {
+        if (!initialised) {
+            Initialise ();
         }
 
-        leap_controller_.SetPolicyFlags(policy_flags);
-    }
-	
-    protected void LateUpdate () {
         if (leap_controller_ == null)
             return;
 
+        SetOrientation ();
         CheckIfHandsEnabled ();
-	}
+    }
 
+    protected void Initialise () {
+        leap_controller_ = new Controller ();
+        initialised = true;
+    }
+    
+    // Set position of hands based on if leap is grounded/mounted
+    protected void SetOrientation () {
+        if (!isOrientationSet) {
+            if (isHeadMounted) {
+                transform.localEulerAngles  = GroundedLocalRotation;
+                transform.localPosition = MountedLocalPosition;
+            } else {
+                transform.localEulerAngles = GroundedLocalRotation;
+                transform.localPosition = GroundedLocalPosition;
+            }
+
+            isOrientationSet = true;
+        }
+    }
+    
     protected void CheckIfHandsEnabled () {
         Frame frame = leap_controller_.Frame();
         HandList hands = frame.Hands;
         int num_hands = hands.Count;
-
+        
         if (num_hands > 0) {
             TriggerSixenseHands (false);
         } else {
             TriggerSixenseHands (true);
         }
     }
-
+    
     protected void TriggerSixenseHands (bool state) {
         Transform player = transform.root;
         player.Find ("Avatar/Left_Hand").renderer.enabled = state;

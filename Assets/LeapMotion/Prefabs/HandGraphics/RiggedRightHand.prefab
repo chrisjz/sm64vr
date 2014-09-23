@@ -937,6 +937,8 @@ MonoBehaviour:
   - {fileID: 400038}
   - {fileID: 400036}
   - {fileID: 400034}
+  modelFingerPointing: {x: 0, y: 0, z: 1}
+  modelPalmFacing: {x: -0, y: -1, z: -0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -954,6 +956,8 @@ MonoBehaviour:
   - {fileID: 400018}
   - {fileID: 400016}
   - {fileID: 400014}
+  modelFingerPointing: {x: 0, y: 0, z: 1}
+  modelPalmFacing: {x: -0, y: -1, z: -0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -971,6 +975,8 @@ MonoBehaviour:
   - {fileID: 400008}
   - {fileID: 400006}
   - {fileID: 400004}
+  modelFingerPointing: {x: 0, y: 0, z: 1}
+  modelPalmFacing: {x: -0, y: -1, z: -0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -988,6 +994,8 @@ MonoBehaviour:
   - {fileID: 400028}
   - {fileID: 400026}
   - {fileID: 400024}
+  modelFingerPointing: {x: 0, y: 0, z: 1}
+  modelPalmFacing: {x: -0, y: -1, z: -0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1005,6 +1013,8 @@ MonoBehaviour:
   - {fileID: 400046}
   - {fileID: 400044}
   - {fileID: 400042}
+  modelFingerPointing: {x: 0, y: 0, z: 1}
+  modelPalmFacing: {x: -0, y: -1, z: -0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1016,6 +1026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77b65c1ae87b436881aa63bc80f4894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handModelPalmWidth: .0850000009
   fingers:
   - {fileID: 11400000}
   - {fileID: 11400008}
@@ -1024,6 +1035,8 @@ MonoBehaviour:
   - {fileID: 11400004}
   palm: {fileID: 400052}
   foreArm: {fileID: 0}
+  modelFingerPointing: {x: 0, y: 0, z: 1}
+  modelPalmFacing: {x: -0, y: -1, z: -0}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
