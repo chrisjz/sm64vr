@@ -71,5 +71,11 @@ public class Settings : MonoBehaviour {
     
     public void UIToggleDisplayHealth () {
         StorageManager.data.optionInterfaceDisplayHealth = toggleDisplayHealth.value;
+
+        HealthIndicator healthIndicator = GameObject.FindGameObjectWithTag ("Player").GetComponentInChildren<HealthIndicator> ();
+        if (healthIndicator) {
+            Debug.Log (healthIndicator.name);
+            healthIndicator.SetPosition();
+        }
     }
 }

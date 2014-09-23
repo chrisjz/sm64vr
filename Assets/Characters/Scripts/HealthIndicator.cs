@@ -25,11 +25,12 @@ public class HealthIndicator : MonoBehaviour {
 
 	protected void Awake () {
         playerHealth = player.GetComponent<PlayerHealth> ();
-        HMDPresent = OVRDevice.IsHMDPresent();
 
 	}
 
     protected void Start () {    
+        HMDPresent = OVRDevice.IsHMDPresent();
+
         SetPosition ();
     }
 
