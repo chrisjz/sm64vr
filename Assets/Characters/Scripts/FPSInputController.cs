@@ -23,6 +23,7 @@ public class FPSInputController : MonoBehaviour {
     public Vector3 ovrControlMinimum = new Vector3(0, 0, 0);            // Min distance of head from centre to move/jump
     public enum OvrXAxisAction { Strafe = 0, Rotate = 1 }
     public OvrXAxisAction ovrXAxisAction = OvrXAxisAction.Rotate;       // Whether x axis positional tracking performs straffing or rotation
+    public bool enableMovement;
 
     // Fall damage
     public float fallDamageHeight;              					    // Player receives X damage per multiplication of this height
@@ -36,6 +37,7 @@ public class FPSInputController : MonoBehaviour {
     private GameObject generalCamera;                                   // Camera for monoscopic view
     private GameObject dirOvrCamera;                                    // Movement oriented using this camera for OVR
     private GameObject mainCamera;                                      // Camera where movement orientation is done and audio listener enabled
+    private Vector3 directionVector;
 	private float defaultMaxForwardSpeed;
     private float defaultMaxBackwardsSpeed;
     private float initialVerticalPosition;
@@ -54,6 +56,7 @@ public class FPSInputController : MonoBehaviour {
 	void  Awake (){
         motor = GetComponent<CharacterMotor>();
         playerHealth = gameObject.GetComponent<PlayerHealth> ();
+        enableMovement = true;
 		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
 		defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
 
@@ -78,17 +81,34 @@ public class FPSInputController : MonoBehaviour {
 			return;
 		}
 
-        UpdateInput ();
+        UpdateKeyInput ();
 
-		// Get the input vector from keyboard or analog stick
-		Vector3 directionVector= new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if (enableMovement) {
+            UpdateMovement ();
+        } else {
+            motor.inputMoveDirection = new Vector3(0, 0, 0);
+        }
 
+		UpdateAnimation ();
+	}
+
+    void FixedUpdate () {
+        float verticalMovement = VerticalMovement ();
+        if (verticalMovement < 0) {
+            HandleFallDamage(verticalMovement);
+        }
+    }
+
+    protected void UpdateMovement () {
+        // Get the input vector from keyboard or analog stick
+        directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        
         // Get the input vector from OVR positional tracking
         if (StorageManager.data.optionControlsRiftPosTrackMove || StorageManager.data.optionControlsRiftPosTrackJump) {
             curPosTrackDir = mainCamera.transform.localPosition;
             diffPosTrackDir = curPosTrackDir - initPosTrackDir;
         }
-
+        
         if (StorageManager.data.optionControlsRiftPosTrackMove) {
             if (diffPosTrackDir.x <= -ovrControlMinimum.x || diffPosTrackDir.x >= ovrControlMinimum.x) {
                 if (ovrXAxisAction == OvrXAxisAction.Strafe) {
@@ -100,24 +120,24 @@ public class FPSInputController : MonoBehaviour {
             } else {
                 diffPosTrackDir.x = 0;
             }
-
+            
             if (diffPosTrackDir.z <= -ovrControlMinimum.z || diffPosTrackDir.z >= ovrControlMinimum.z) {
                 diffPosTrackDir.z *= ovrControlSensitivity.z;
             } else {
                 diffPosTrackDir.z = 0;
             }
-
+            
             directionVector = new Vector3(diffPosTrackDir.x, 0, diffPosTrackDir.z);
         }
-
-		// Get the input vector from hydra
-		SixenseInput.Controller hydraLeftController = SixenseInput.GetController (SixenseHands.LEFT);
-		SixenseInput.Controller hydraRightController = SixenseInput.GetController (SixenseHands.RIGHT);
-
-		if (hydraLeftController != null) {
-			directionVector= new Vector3(hydraLeftController.JoystickX, 0, hydraLeftController.JoystickY);
-		}
-
+        
+        // Get the input vector from hydra
+        SixenseInput.Controller hydraLeftController = SixenseInput.GetController (SixenseHands.LEFT);
+        SixenseInput.Controller hydraRightController = SixenseInput.GetController (SixenseHands.RIGHT);
+        
+        if (hydraLeftController != null) {
+            directionVector= new Vector3(hydraLeftController.JoystickX, 0, hydraLeftController.JoystickY);
+        }
+        
         if (jumpEnabled) {
             if (hydraRightController != null) {
                 motor.inputJump = hydraRightController.GetButton (SixenseButtons.BUMPER);
@@ -127,43 +147,34 @@ public class FPSInputController : MonoBehaviour {
                 motor.inputJump = Input.GetButton ("Jump");
             }
         }
-
-		// Play jumping audio clips
-		if (initialJumpAudioClips.Length > 0 && motor.inputJump && motor.grounded && !audio.isPlaying) {
-			audio.clip = initialJumpAudioClips[Random.Range(0, initialJumpAudioClips.Length)];
-			audio.Play();
-		}
-		
-		if (directionVector != Vector3.zero) {
-			// Get the length of the directon vector and then normalize it
-			// Dividing by the length is cheaper than normalizing when we already have the length anyway
-			float directionLength= directionVector.magnitude;
-			directionVector = directionVector / directionLength;
-			
-			// Make sure the length is no bigger than 1
-			directionLength = Mathf.Min(1, directionLength);
-			
-			// Make the input vector more sensitive towards the extremes and less sensitive in the middle
-			// This makes it easier to control slow speeds when using analog sticks
-			directionLength = directionLength * directionLength;
-			
-			// Multiply the normalized direction vector by the modified length
-			directionVector = directionVector * directionLength;
-		}		
-
-		motor.inputMoveDirection = mainCamera.transform.rotation * directionVector;
-
-		UpdateAnimations (directionVector);
-	}
-
-    void FixedUpdate () {
-        float verticalMovement = VerticalMovement ();
-        if (verticalMovement < 0) {
-            HandleFallDamage(verticalMovement);
+        
+        // Play jumping audio clips
+        if (initialJumpAudioClips.Length > 0 && motor.inputJump && motor.grounded && !audio.isPlaying) {
+            audio.clip = initialJumpAudioClips[Random.Range(0, initialJumpAudioClips.Length)];
+            audio.Play();
         }
+        
+        if (directionVector != Vector3.zero) {
+            // Get the length of the directon vector and then normalize it
+            // Dividing by the length is cheaper than normalizing when we already have the length anyway
+            float directionLength= directionVector.magnitude;
+            directionVector = directionVector / directionLength;
+            
+            // Make sure the length is no bigger than 1
+            directionLength = Mathf.Min(1, directionLength);
+            
+            // Make the input vector more sensitive towards the extremes and less sensitive in the middle
+            // This makes it easier to control slow speeds when using analog sticks
+            directionLength = directionLength * directionLength;
+            
+            // Multiply the normalized direction vector by the modified length
+            directionVector = directionVector * directionLength;
+        }       
+        
+        motor.inputMoveDirection = mainCamera.transform.rotation * directionVector;
     }
 
-    protected void UpdateInput() {
+    protected void UpdateKeyInput() {
         // Trigger movement via OVR positional tracking
         if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) &&
                 Input.GetKeyDown(KeyCode.M)) {
@@ -188,8 +199,8 @@ public class FPSInputController : MonoBehaviour {
 
     }
 
-	void UpdateAnimations(Vector3 directionVector) {
-		if (animation && directionVector.z != 0) {
+	void UpdateAnimation() {
+        if (animation && directionVector.z != 0) {
 			animation["Walk"].speed = Mathf.Abs(directionVector.z);
 			animation.CrossFade("Walk");
 		}
@@ -204,7 +215,7 @@ public class FPSInputController : MonoBehaviour {
         
         // Apply the direction to the CharacterMotor
         HMDPresent = OVRDevice.IsHMDPresent();
-        if (detectOvr && !HMDPresent) {
+        if (!StorageManager.data.optionControlsEnableRift || (detectOvr && !HMDPresent)) {
             mainCamera = generalCamera;
         } else {
             mainCamera = dirOvrCamera;
@@ -261,7 +272,7 @@ public class FPSInputController : MonoBehaviour {
 	protected void DetectOVR() {
 		HMDPresent = OVRDevice.IsHMDPresent();
 
-		if (HMDPresent == false) {
+        if (!HMDPresent || !StorageManager.data.optionControlsEnableRift) {
             ovrCameraLeft.SetActive(false);
             ovrCameraRight.SetActive(false);
             generalCamera.SetActive(true);

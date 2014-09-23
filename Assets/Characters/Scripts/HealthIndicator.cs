@@ -14,14 +14,18 @@ public class HealthIndicator : MonoBehaviour {
 	public GameObject player;
     public Texture[] healthTextures;			        // Place images of different health increments starting from lowest to highest.
     public Vector3 displayPosition = new Vector3();
+    public Vector3 displayPositionNoOVR = new Vector3();
     public Vector3 displayRotation = new Vector3();
 
     protected PlayerHealth playerHealth;
     protected Vector3 initialPosition;
     protected Quaternion initialRotation;
 
+    private bool HMDPresent;
+
 	protected void Awake () {
-		playerHealth = player.GetComponent<PlayerHealth> ();
+        playerHealth = player.GetComponent<PlayerHealth> ();
+        HMDPresent = OVRDevice.IsHMDPresent();
 
 	}
 
@@ -35,7 +39,11 @@ public class HealthIndicator : MonoBehaviour {
     
     public void SetPosition () {
         if (StorageManager.data.optionInterfaceDisplayHealth) {
-            transform.localPosition = displayPosition;
+            if (!StorageManager.data.optionControlsEnableRift || !HMDPresent) {
+                transform.localPosition = displayPositionNoOVR;
+            } else {
+                transform.localPosition = displayPosition;
+            }
             transform.localRotation = Quaternion.Euler(displayRotation);
             
         } else {

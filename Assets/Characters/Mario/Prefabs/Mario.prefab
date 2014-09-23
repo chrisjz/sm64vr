@@ -1185,7 +1185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100148
 GameObject:
   m_ObjectHideFlags: 1
@@ -3084,8 +3084,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100124}
-  m_LocalRotation: {x: 0, y: .923879564, z: 0, w: -.382683396}
-  m_LocalPosition: {x: 7.62618494, y: -2.12408781, z: -16.8687649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.00763097405, y: -1.93436432, z: -10.3969517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400120}
@@ -4972,11 +4972,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialMenuPanel: {fileID: 0}
-  menuPanels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  NGUIRoot: {fileID: 0}
+  offsetNoOVR: {x: 0, y: -.5, z: 1.5}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5014,6 +5011,7 @@ MonoBehaviour:
   ovrControlSensitivity: {x: 5, y: 2, z: 3}
   ovrControlMinimum: {x: .100000001, y: .600000024, z: .100000001}
   ovrXAxisAction: 1
+  enableMovement: 0
   fallDamageHeight: 20
   fallDamageHealth: 2
 --- !u!114 &11400022
@@ -5165,6 +5163,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: b1964ba37b94fc842a3a87ccc2397c68, type: 3}
   - {fileID: 2800000, guid: dbc7e8a40ced3a24181df444f5a62b5a, type: 3}
   displayPosition: {x: 1, y: 2.79999995, z: 2.5}
+  displayPositionNoOVR: {x: 1, y: 2, z: 2.5}
   displayRotation: {x: 100, y: 50, z: 200}
 --- !u!114 &11400034
 MonoBehaviour:

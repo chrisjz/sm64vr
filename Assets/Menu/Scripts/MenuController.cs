@@ -12,16 +12,24 @@ using System.Collections;
 
 public class MenuController : MonoBehaviour {
     public GameObject initialMenuPanel;
-    public GameObject[] menuPanels;
+    public GameObject NGUIRoot;             // Root NGUI object, usually named "UI Root"
+    public Vector3 offsetNoOVR = new Vector3();
 
     protected GameObject menu;
+    protected FPSInputController inputController;
+
+    private bool HMDPresent;
 
     protected void Awake () {
     }
 
     protected void Start () {
         menu = transform.Find ("Menu").gameObject;
-        menu.SetActive (false);
+        inputController = transform.GetComponent<FPSInputController> ();
+        menu.SetActive (false);        
+        HMDPresent = OVRDevice.IsHMDPresent();
+
+        SetMenuPosition ();
     }
 	
     protected void Update () {
@@ -30,12 +38,22 @@ public class MenuController : MonoBehaviour {
             menu.SetActive (!menu.activeSelf);
             if (menu.activeSelf) {
                 NGUITools.SetActive(initialMenuPanel, true);
+                inputController.enableMovement = false;
             } else {
-                // TODO: Refactor inactivating all panels
-                foreach (GameObject menuPanel in menuPanels) {
-                    NGUITools.SetActive(menuPanel, false);
+                foreach (Transform child in NGUIRoot.transform) {
+                    if (child.name.StartsWith("Panel")) {
+                        child.gameObject.SetActive(false);
+                    }
                 }
+                inputController.enableMovement = true;
             }
         }
 	}
+
+    protected void SetMenuPosition () {
+        // Change menu position if Rift is disabled
+        if (!StorageManager.data.optionControlsEnableRift || !HMDPresent) {
+            menu.transform.localPosition += offsetNoOVR;
+        }
+    }
 }

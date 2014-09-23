@@ -51,7 +51,9 @@ public class MenuManager : MonoBehaviour {
     protected void Resume() {
         Transform player = GameObject.FindGameObjectWithTag ("Player").transform;
         GameObject menu = player.Find ("Menu").gameObject;
+        FPSInputController inputController = player.GetComponent<FPSInputController> ();
         menu.SetActive (false);
+        inputController.enableMovement = true;
     }
     
     protected void GoToScene() {
