@@ -49533,7 +49533,7 @@ MonoBehaviour:
   FadeInTexture: {fileID: 2800000, guid: a025c23fceb7d4966b603419f551ce99, type: 3}
   FontReplace: {fileID: 0}
   MenuKey: 9
-  QuitKey: 27
+  QuitKey: 0
   SceneNames: []
   Scenes: []
   IPDIncrement: .00249999994
