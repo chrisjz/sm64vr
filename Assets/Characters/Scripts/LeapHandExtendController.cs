@@ -16,9 +16,10 @@ public class LeapHandExtendController : HandController {
     public Vector3 GroundedLocalRotation = new Vector3(0, 0, 0);
     public Vector3 MountedLocalPosition = new Vector3(0, 0, 0);
     public Vector3 MountedLocalRotation = new Vector3(0, 0, 0);
+
+    public bool isOrientationSet = false;
     
     protected Controller leap_controller_;
-    protected bool isOrientationSet = false;
     protected bool initialised = false;
     
     protected void LateUpdate () {
@@ -39,16 +40,28 @@ public class LeapHandExtendController : HandController {
     }
     
     // Set position of hands based on if leap is grounded/mounted
-    protected void SetOrientation () {
+    public void SetOrientation () {
         if (!isOrientationSet) {
+            if (StorageManager.data.optionControlsLeapVR) {
+                isHeadMounted = true;
+            } else {
+                isHeadMounted = false;
+            }
+            
+            // Optimize for top-down tracking if on head mounted display.
+            Controller.PolicyFlag policy_flags = leap_controller_.PolicyFlags;
+
             if (isHeadMounted) {
-                transform.localEulerAngles  = GroundedLocalRotation;
+                policy_flags |= Controller.PolicyFlag.POLICY_OPTIMIZE_HMD;
+                transform.localEulerAngles  = MountedLocalRotation;
                 transform.localPosition = MountedLocalPosition;
             } else {
+                policy_flags &= ~Controller.PolicyFlag.POLICY_OPTIMIZE_HMD;
                 transform.localEulerAngles = GroundedLocalRotation;
                 transform.localPosition = GroundedLocalPosition;
             }
-
+            
+            leap_controller_.SetPolicyFlags(policy_flags);
             isOrientationSet = true;
         }
     }

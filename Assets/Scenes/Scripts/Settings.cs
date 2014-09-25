@@ -14,11 +14,13 @@ public class Settings : MonoBehaviour {
 	public GameObject objectEnableRift;
     public GameObject objectRiftPosTrackMove;
     public GameObject objectRiftPosTrackJump;
+    public GameObject objectLeapVR;
     public GameObject objectDisplayHealth;
 	
     protected UIToggle toggleEnableRift;
     protected UIToggle toggleRiftPosTrackMove;
     protected UIToggle toggleRiftPosTrackJump;
+    protected UIToggle toggleLeapVR;
     protected UIToggle toggleDisplayHealth;
 
 	protected void Awake () {
@@ -46,6 +48,11 @@ public class Settings : MonoBehaviour {
             toggleRiftPosTrackJump.value = StorageManager.data.optionControlsRiftPosTrackJump;
             EventDelegate.Add(toggleRiftPosTrackJump.onChange, UIToggleRiftPosTrackJump);
         }
+        if (objectLeapVR) {
+            toggleLeapVR = objectLeapVR.GetComponent<UIToggle>();
+            toggleLeapVR.value = StorageManager.data.optionControlsLeapVR;
+            EventDelegate.Add(toggleLeapVR.onChange, UIToggleLeapVR);
+        }
         if (objectDisplayHealth) {
             toggleDisplayHealth = objectDisplayHealth.GetComponent<UIToggle>();
             toggleDisplayHealth.value = StorageManager.data.optionInterfaceDisplayHealth;
@@ -69,12 +76,33 @@ public class Settings : MonoBehaviour {
         StorageManager.data.optionControlsRiftPosTrackJump = toggleRiftPosTrackJump.value;
     }
     
+    public void UIToggleLeapVR () {
+        StorageManager.data.optionControlsLeapVR = toggleLeapVR.value;
+
+        GameObject player = GameObject.FindGameObjectWithTag ("Player");
+
+        if (!player) {
+            return;
+        }
+
+        LeapHandExtendController controller = player.GetComponentInChildren<LeapHandExtendController> ();
+        if (controller) {
+            controller.isOrientationSet = false;
+            controller.SetOrientation();
+        }
+    }
+    
     public void UIToggleDisplayHealth () {
         StorageManager.data.optionInterfaceDisplayHealth = toggleDisplayHealth.value;
+        
+        GameObject player = GameObject.FindGameObjectWithTag ("Player");
+        
+        if (!player) {
+            return;
+        }
 
-        HealthIndicator healthIndicator = GameObject.FindGameObjectWithTag ("Player").GetComponentInChildren<HealthIndicator> ();
+        HealthIndicator healthIndicator = player.GetComponentInChildren<HealthIndicator> ();
         if (healthIndicator) {
-            Debug.Log (healthIndicator.name);
             healthIndicator.SetPosition();
         }
     }
