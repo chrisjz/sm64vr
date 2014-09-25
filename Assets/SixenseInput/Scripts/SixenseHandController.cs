@@ -1,3 +1,4 @@
+
 //
 // Copyright (C) 2013 Sixense Entertainment Inc.
 // All Rights Reserved
@@ -31,7 +32,7 @@ public class SixenseHandController : SixenseObjectController
 			// Animation update
 			UpdateAnimationInput( controller );
 		}
-		
+				
 		base.UpdateObject(controller);
 	}
 	
@@ -76,7 +77,7 @@ public class SixenseHandController : SixenseObjectController
 		{
 			m_animator.SetBool( "GripBall", false );
 		}
-		
+				
 		// Hold Book
 		if ( Hand == SixenseHands.RIGHT ? controller.GetButton(SixenseButtons.THREE) : controller.GetButton(SixenseButtons.FOUR) )
 		{
@@ -86,7 +87,7 @@ public class SixenseHandController : SixenseObjectController
 		{
 			m_animator.SetBool( "HoldBook", false );
 		}
-		
+				
 		// Fist
 		float fTriggerVal = controller.Trigger;
 		fTriggerVal = Mathf.Lerp( m_fLastTriggerVal, fTriggerVal, 0.1f );
@@ -105,9 +106,9 @@ public class SixenseHandController : SixenseObjectController
 		
 		// Idle
 		if ( m_animator.GetBool("Fist") == false &&  
-		    m_animator.GetBool("HoldBook") == false && 
-		    m_animator.GetBool("GripBall") == false && 
-		    m_animator.GetBool("Point") == false )
+			 m_animator.GetBool("HoldBook") == false && 
+			 m_animator.GetBool("GripBall") == false && 
+			 m_animator.GetBool("Point") == false )
 		{
 			m_animator.SetBool("Idle", true);
 		}
@@ -117,3 +118,4 @@ public class SixenseHandController : SixenseObjectController
 		}
 	}
 }
+
