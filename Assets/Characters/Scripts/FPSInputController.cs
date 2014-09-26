@@ -56,6 +56,7 @@ public class FPSInputController : MonoBehaviour {
 	void  Awake (){
         motor = GetComponent<CharacterMotor>();
         playerHealth = gameObject.GetComponent<PlayerHealth> ();
+        HMDPresent = OVRDevice.IsHMDPresent();
         enableMovement = true;
 		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
 		defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
@@ -109,7 +110,7 @@ public class FPSInputController : MonoBehaviour {
             diffPosTrackDir = curPosTrackDir - initPosTrackDir;
         }
         
-        if (StorageManager.data.optionControlsRiftPosTrackMove) {
+        if (StorageManager.data.optionControlsRiftPosTrackMove && HMDPresent) {
             if (diffPosTrackDir.x <= -ovrControlMinimum.x || diffPosTrackDir.x >= ovrControlMinimum.x) {
                 if (ovrXAxisAction == OvrXAxisAction.Strafe) {
                     diffPosTrackDir.x *= ovrControlSensitivity.x;
@@ -141,7 +142,7 @@ public class FPSInputController : MonoBehaviour {
         if (jumpEnabled) {
             if (hydraRightController != null) {
                 motor.inputJump = hydraRightController.GetButton (SixenseButtons.BUMPER);
-            } else if (StorageManager.data.optionControlsRiftPosTrackJump) {
+            } else if (StorageManager.data.optionControlsRiftPosTrackJump && HMDPresent) {
                 motor.inputJump = GetPositionalTrackingYForJump();
             } else {
                 motor.inputJump = Input.GetButton ("Jump");
@@ -170,7 +171,7 @@ public class FPSInputController : MonoBehaviour {
             // Multiply the normalized direction vector by the modified length
             directionVector = directionVector * directionLength;
         }       
-        
+
         motor.inputMoveDirection = mainCamera.transform.rotation * directionVector;
     }
 
@@ -214,7 +215,6 @@ public class FPSInputController : MonoBehaviour {
         }
         
         // Apply the direction to the CharacterMotor
-        HMDPresent = OVRDevice.IsHMDPresent();
         if (!StorageManager.data.optionControlsEnableRift || (detectOvr && !HMDPresent)) {
             mainCamera = generalCamera;
         } else {
@@ -270,8 +270,6 @@ public class FPSInputController : MonoBehaviour {
 
 	// Show OVR Camera only if OVR is being used
 	protected void DetectOVR() {
-		HMDPresent = OVRDevice.IsHMDPresent();
-
         if (!HMDPresent || !StorageManager.data.optionControlsEnableRift) {
             ovrCameraLeft.SetActive(false);
             ovrCameraRight.SetActive(false);

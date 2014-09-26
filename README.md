@@ -68,13 +68,11 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### v0.1
 
-* Comprehensive in-game menu.
 * Display stats on coins collected in level.
 * Title page from 3rd person transitioned to 1st person perspective.
 * Player respawns in front of painting from first level.
 * Coins added to first level and increase hit point by one when collected.
 * KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
-* Mario wearing VR headset on title page.
 * Big block collision on punch is no working completely.
 * Convert Sixense GUI dialogs into 3D.
 * Co-op Multiplayer via LAN or online.
