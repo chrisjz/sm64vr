@@ -19,7 +19,8 @@ public class GoombaController : EnemyController {
 		if (col.gameObject.name == player.name) {
 			base.Knockback(this.gameObject, player);
 		} else if (col.gameObject.name == "LeftHandCollider" ||
-		           col.gameObject.name == "RightHandCollider") {
+		           col.gameObject.name == "RightHandCollider" ||
+                   col.gameObject.GetComponentInParent<RigidHand>()) {
 			base.Knockback(player, this.gameObject, col.gameObject);
 		} else if (col.gameObject.tag == "Grabbable") {
 			base.Knockback(col.gameObject, this.gameObject);
