@@ -104,10 +104,10 @@ public class SixenseHandExtendController : SixenseHandController {
 			float additionalThrowForce = 0;
 			
 			if (grabObject) {
-				additionalThrowForce += grabObject.additionalThrowForce;
+                additionalThrowForce += grabObject.additionalThrowForce;
+                grabObject.SetRigidbodyDetectionCollisions(true);
 			}
 			
-			grabObject.SetRigidbodyDetectionCollisions(true);
 			closestObject.rigidbody.AddForce(handDirection * handVelocity * (throwForce + additionalThrowForce));
 		}
 	}

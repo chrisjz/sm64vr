@@ -38,8 +38,9 @@ public class StarController : MonoBehaviour {
     }
     
     protected void OnCollisionEnter(Collision col) {
-        Debug.Log (col.gameObject.name);
-        if (col.gameObject.name == "RightHandCollider" || col.gameObject.name == "LeftHandCollider") {
+        if (col.gameObject.name == "RightHandCollider" ||
+            col.gameObject.name == "LeftHandCollider" ||
+            col.gameObject.GetComponentInParent<RigidHand>()) {
             if (!grabbedStar) {
                 StartCoroutine(GrabStar ());
             }
