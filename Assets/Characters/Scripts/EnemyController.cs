@@ -25,8 +25,8 @@ public class EnemyController : MonoBehaviour {
 
 	protected NavMeshAgent agent;
 	protected GameObject player;
-	protected PlayerHealth playerHealth;
-    protected SixenseHandExtendController[] playerHandControllers;
+    protected PlayerHealth playerHealth;
+    protected SixenseHandExtendController[] playerSixsenseHandControllers;
 	protected RaycastHit hit;
 	protected Movement movement;
 	protected string initAnimationName;
@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour {
 		agent = this.GetComponent<NavMeshAgent> ();
 		player = GameObject.FindWithTag("Player");
 		playerHealth = player.GetComponent<PlayerHealth> ();
-		playerHandControllers = player.GetComponentsInChildren<SixenseHandExtendController> ();
+		playerSixsenseHandControllers = player.GetComponentsInChildren<SixenseHandExtendController> ();
 		pathName = this.GetComponent<iTweenPath> ().pathName;
 		defaultSpeed = agent.speed;
 		initAnimationName = animation.clip.name;
@@ -107,11 +107,19 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	protected bool IsHoldingEnemy () {
-        foreach (SixenseHandExtendController playerHandController in playerHandControllers) {
+        foreach (SixenseHandExtendController playerHandController in playerSixsenseHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
 				return true;
 			}
 		}
+
+        LeapHandGrabExtend[] leapHands = GameObject.FindObjectsOfType<LeapHandGrabExtend> ();
+
+        foreach (LeapHandGrabExtend leapHand in leapHands) {
+            if (leapHand.Grabbed_ && leapHand.Grabbed_.gameObject == gameObject) {
+                return true;
+            }
+        }
 
 		return false;
 	}

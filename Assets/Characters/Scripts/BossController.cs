@@ -50,7 +50,7 @@ public class BossController : MonoBehaviour {
     protected PlayerLook playerLook;
     protected HydraLook playerHydraLook;
     protected PlayerHealth playerHealth;
-    protected SixenseHandExtendController[] playerHandControllers;
+    protected SixenseHandExtendController[] playerSixenseHandControllers;
     protected Movement movement;
     protected GameObject explosion;
     protected GameObject star;
@@ -99,7 +99,7 @@ public class BossController : MonoBehaviour {
 		playerLook = player.GetComponent<PlayerLook> ();
 		playerHydraLook = player.GetComponent<HydraLook> ();
 		playerHealth = player.GetComponent<PlayerHealth> ();
-        playerHandControllers = player.GetComponentsInChildren<SixenseHandExtendController> ();
+        playerSixenseHandControllers = player.GetComponentsInChildren<SixenseHandExtendController> ();
         
         startMarkerThrowPlayer = new GameObject();
         endMarkerThrowPlayer = new GameObject ();
@@ -367,21 +367,35 @@ public class BossController : MonoBehaviour {
 	}
 	
 	protected bool IsHoldingEnemy () {
-        foreach (SixenseHandExtendController playerHandController in playerHandControllers) {
+        bool isHoldingEnemy = false;
+        foreach (SixenseHandExtendController playerHandController in playerSixenseHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
-				isHeldByPlayer = true;
-				wasHeldByPlayer = true;
-				animation.Play (heldAnimationName);
-				animation[heldAnimationName].speed = heldAnimationSpeed;
-				if (heldFixedRotationX >= -360 && heldFixedRotationX <= 360) {
-					transform.rotation = Quaternion.Euler(new Vector3 (heldFixedRotationX, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
-				}
-				return true;
+                isHoldingEnemy = true;
 			}
-		}
+        }
+        
+        LeapHandGrabExtend[] leapHands = GameObject.FindObjectsOfType<LeapHandGrabExtend> ();
+        
+        foreach (LeapHandGrabExtend leapHand in leapHands) {
+            if (leapHand.Grabbed_ && leapHand.Grabbed_.gameObject == gameObject) {
+                isHoldingEnemy = true;
+            }
+        }
+
+        if (isHoldingEnemy) {
+            isHeldByPlayer = true;
+            wasHeldByPlayer = true;
+            animation.Play (heldAnimationName);
+            animation[heldAnimationName].speed = heldAnimationSpeed;
+            if (heldFixedRotationX >= -360 && heldFixedRotationX <= 360) {
+                transform.rotation = Quaternion.Euler(new Vector3 (heldFixedRotationX, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
+            }
+            return true;
+        } else {
+            isHeldByPlayer = false;
+            return false;
+        }
 		
-		isHeldByPlayer = false;
-		return false;
 	}
 
     // Trigger slowing down and preventing jumping for player
@@ -412,7 +426,7 @@ public class BossController : MonoBehaviour {
 	}
 
 	protected void TriggerIgnorePlayerHandColliders (bool state) {
-        foreach (SixenseHandExtendController playerHandController in playerHandControllers) {
+        foreach (SixenseHandExtendController playerHandController in playerSixenseHandControllers) {
 			Collider[] cols = GetComponentsInChildren<Collider>();
 			Collider[] playerHandCols = playerHandController.GetComponentsInChildren<Collider>();
 			

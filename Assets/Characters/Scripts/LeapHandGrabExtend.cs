@@ -173,4 +173,10 @@ public class LeapHandGrabExtend : MonoBehaviour {
                 grabbed_.rigidbody.angularVelocity = angle * axis;
         }
     }
+
+    public Collider Grabbed_ {
+        get {
+            return grabbed_;
+        }
+    }
 }

@@ -87,6 +87,7 @@ GameObject:
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Black Bobomb
@@ -574,6 +575,25 @@ MonoBehaviour:
   initialized: 1
   initialName: New Path 3
   pathVisible: 1
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fa1c5dbed51cc4daec6c82a9a26d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keepDistanceWhenGrabbed: 0
+  preferredOrientation: 0
+  objectOrientation: {x: 0, y: 0, z: 0}
+  palmOrientation: {x: 0, y: 0, z: 0}
+  ignoreOnGrab: []
+  breakableJoint: {fileID: 0}
+  breakForce: 0
+  breakTorque: 0
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
