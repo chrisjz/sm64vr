@@ -118,6 +118,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 * Red coins: increment red coin counter when collected, and play increasingly louder sound.
 * Increase frequency of boulders coming down the mountain.
+* Breaking certain small and big blocks releases coins.
 * If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
 * Transition to Bob-omb Battlefield when jumping into its painting.
 * Add rotation to lifts when they reach top and bottom of cliff.
