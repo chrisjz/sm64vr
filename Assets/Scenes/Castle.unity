@@ -18664,6 +18664,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1396191278}
   - 114: {fileID: 1396191277}
+  - 114: {fileID: 1396191279}
   m_Layer: 0
   m_Name: Debug
   m_TagString: Untagged
@@ -18682,7 +18683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101a6811668c2f34191947638ba0c34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enable: 1
+  audioEnable: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  audioDisable: {fileID: 8300000, guid: 7afff99f316208744a267f2baa5d0a6d, type: 3}
 --- !u!4 &1396191278
 Transform:
   m_ObjectHideFlags: 0
@@ -18695,6 +18697,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &1396191279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396191276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e15f6ad40bb9949a13a4179379313e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enable: 1
+  disableIfReentered: 1
 --- !u!1 &1401173740
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,24 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   Debugger.cs
+Content     :   Debug game
+Created     :   10 June 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class Debugger : MonoBehaviour {
-	public bool enable = false;
+    public AudioClip audioEnable;
+    public AudioClip audioDisable;
+	protected bool enable = false;
 	
 	private GameObject player;
 	private KonamiCode konamiCode;
 	private string curSceneName;
+    private bool prevState = false;     // Previous state of variable "enable"
 
 	void Awake () {
 		konamiCode = GetComponent<KonamiCode> ();
@@ -15,29 +27,51 @@ public class Debugger : MonoBehaviour {
 	void Start () {		
 		player = GameObject.FindWithTag("Player");
 		curSceneName = Application.loadedLevelName;
+        enable = StorageManager.data.debug;
+        prevState = enable;
+
+        if (konamiCode)
+            konamiCode.KonamiCodeEnabled = enable;
 	}
 	
 	void Update () {
-		// Enable if user enters konami code
-		if (konamiCode && konamiCode.IsKonamiCodeEnabled ()) {
-			enable = true;
-		}
+        // Save debug state changes to storage
+        if (prevState != enable) {
+            UpdateTriggerAudio(enable);
+            StorageManager.data.debug = enable;
+            StorageManager.Save();
+            prevState = enable;
+        }
 
-		if (!enable) {
+		// Enable if user enters konami code
+		if (konamiCode)
+            enable = konamiCode.KonamiCodeEnabled;
+
+		if (!enable)
 			return;
-		}
 		
 		RestartScene ();
 		Teleport ();
 	}
+
+    private void UpdateTriggerAudio (bool enable) {
+        if (enable && audioEnable) {
+            audio.clip = audioEnable;
+            audio.Play();
+        }
+
+        if (!enable && audioDisable) {
+            audio.clip = audioDisable;
+            audio.Play();
+        }
+    }
 	
 	private void RestartScene() {
-		if (Input.GetKeyDown (KeyCode.R)) {
+		if (Input.GetKeyDown (KeyCode.R))
 			Application.LoadLevel (Application.loadedLevel);
-		}
 	}
 	
-	private void Teleport() {
+	protected virtual void Teleport() {
 		if (curSceneName == "Castle") {
 			if (Input.GetKeyDown (KeyCode.Alpha1)) {
 				Debug.Log("Player teleported to starting point");

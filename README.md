@@ -68,6 +68,9 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### v0.1
 
+* Only make some objects grabbable by leap hands.
+* Improve throwing physics with leap hands.
+* 3D message dialogs.
 * Display stats on coins collected in level.
 * Title page from 3rd person transitioned to 1st person perspective.
 * Player respawns in front of painting from first level.
@@ -127,6 +130,10 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### King Bob-omb
 
+* When KB throws Mario with Mario at an angle, Mario's viewpoint is still at an angle.
+* Grabbing KB using Leap whilst being thrown causes KB to float away waving.
+* KB doesn't return to spawn point if player throws KB and then player leaves the battleground perimeter.
+* Level is completed when player grabs star with Leap hands, instead of only when colliding with it with hands.
 * Player drops boss if he falls off ledge.
 * Better movement of star to its final position.
 
@@ -138,6 +145,8 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 ### Miscellaneous
 
 * Shadows for signs, trees.
+* Star model has a hole at its top tip.
+* Replace current coin sound with original sound from game.
 
 ### Enhancements
 
@@ -164,6 +173,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 ### Sound & Music
 
 * [KHInsider](http://http://www.khinsider.com)
+* [Sound FX Center](http://soundfxcenter.com)
 * [The Trasher](http://www.mfgg.net/index.php?act=user&param=01&uid=8)
 
 ### Fonts

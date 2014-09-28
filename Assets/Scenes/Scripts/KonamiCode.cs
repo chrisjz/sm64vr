@@ -14,21 +14,21 @@ using System.Collections;
 
 public class KonamiCode : MonoBehaviour {
 	public bool enable = false;
+    public bool disableIfReentered = false;     // Disables Konami code if re-entered.
 
 	private string[] konamiCode = new string[]{"UpArrow", "UpArrow", "DownArrow", "DownArrow", "LeftArrow", "RightArrow", "LeftArrow", "RightArrow", "B", "A", "Return"};
 	private int currentPos = 0;
 	private bool konamiCodeEnabled = false;
 
 	void OnGUI () {
-		if (!enable) {
+		if (!enable)
 			return;
-		}
 
 		Event e = Event.current;
 
-		if (e.isKey && Input.anyKeyDown && !konamiCodeEnabled && e.keyCode.ToString() != "None") {
+        if (e.isKey && Input.anyKeyDown && (disableIfReentered || (!konamiCodeEnabled && !disableIfReentered))  &&
+                e.keyCode.ToString() != "None")
 			KonamiFunction (e.keyCode);
-		}
 	}
 
 	protected void KonamiFunction (KeyCode incomingKey) {
@@ -38,8 +38,14 @@ public class KonamiCode : MonoBehaviour {
 			currentPos++;
 
 			if ((currentPos + 1) > konamiCode.Length) {
-				//Debug.Log("You master Konami.");
-				SetKonamiCodeEnabled(true);
+                if (disableIfReentered && konamiCodeEnabled) {
+                    Debug.Log("Konami code disabled.");
+                    konamiCodeEnabled = false;
+                } else {
+                    Debug.Log("You master Konami.");
+                    konamiCodeEnabled = true;
+                }
+
 				currentPos = 0;
 			}
 		} else {
@@ -48,11 +54,12 @@ public class KonamiCode : MonoBehaviour {
 		}
 	}
 
-	public bool IsKonamiCodeEnabled () {
-		return konamiCodeEnabled;
-	}
-
-	public void SetKonamiCodeEnabled (bool state) {
-		konamiCodeEnabled = state;
-	}
+    public bool KonamiCodeEnabled {
+        get {
+            return konamiCodeEnabled;
+        }
+        set {
+            konamiCodeEnabled = value;
+        }
+    }
 }
