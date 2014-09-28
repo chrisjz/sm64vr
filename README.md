@@ -116,6 +116,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### Bob-omb Battlefield
 
+* Red coins: increment red coin counter when collected, and play increasingly louder sound.
 * Increase frequency of boulders coming down the mountain.
 * If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
 * Transition to Bob-omb Battlefield when jumping into its painting.
@@ -144,6 +145,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### Miscellaneous
 
+* Mario spins continuously when he is atop certain moving objects, including: pink bob-omb, coin.
 * Shadows for signs, trees.
 * Star model has a hole at its top tip.
 * Replace current coin sound with original sound from game.
