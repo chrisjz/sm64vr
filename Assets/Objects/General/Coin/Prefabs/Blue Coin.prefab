@@ -16,7 +16,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 82: {fileID: 8200000}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Blue Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: .488664359, y: .165264532, z: -3.47879505}
+  m_LocalPosition: {x: 4.04434824, y: -1.76310492, z: -18.7476559}
   m_LocalScale: {x: .829152942, y: .0631108284, z: .829152942}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 158ba76fb6f7df84d9cdf6a42319535a, type: 2}
+  - {fileID: 2100000, guid: d088f7b10651bb74894b044d7670f9b4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf52fda20eb6e1e4fa6d9ac1df0f115a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
 --- !u!136 &13600000
 CapsuleCollider:

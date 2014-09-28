@@ -25,32 +25,40 @@ public class CoinController : MonoBehaviour {
     protected void OnTriggerEnter(Collider col) {
         if (col.transform.root.gameObject.tag == "Player" || col.gameObject.GetComponentInParent<RigidHand>()) {
             player = col.transform.root.gameObject;
-            Collect ();
+            StartCoroutine(Collect ());
         }
 
     }
 
-    protected void Collect () {
-        switch (type) {
-        case Type.Yellow:
-        default:
-            StartCoroutine(CollectYellowCoin ());
-            break;
-
-        }
-    }
-
-    protected IEnumerator CollectYellowCoin () {
+    protected IEnumerator Collect () {
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth> ();
+        int value = GetCoinValue ();
         gameObject.collider.enabled = false;
         gameObject.renderer.enabled = false;
         audio.clip = yellowCoinSound;
         audio.Play ();
         yield return new WaitForSeconds(audio.clip.length);
-        playerHealth.Heal (1);
+        playerHealth.Heal (value);
         if (sceneManager) {
-            sceneManager.coins += 1;
+            sceneManager.coins += value;
+            if (type == Type.Red)
+                sceneManager.redCoins += 1;
         }
         gameObject.SetActive (false);
+    }
+
+    protected int GetCoinValue () {
+        switch (type) {
+        case Type.Blue:
+            return 5;
+            break;
+        case Type.Red:
+            return 2;
+            break;
+        case Type.Yellow:
+        default:
+            return 1;
+            break;
+        }
     }
 }
