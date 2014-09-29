@@ -23,6 +23,9 @@ public class Title : MonoBehaviour {
 
     protected float titleActionTimer;
     protected bool titleActionActive;
+    
+    protected GameObject objectMarioHead;
+    protected GameObject objectRift;
 
     protected GameObject ovrCameraLeft;
     protected GameObject ovrCameraRight;
@@ -31,6 +34,10 @@ public class Title : MonoBehaviour {
     protected bool HMDPresent = false;
 
     protected void Awake () {
+        // Objects
+        objectMarioHead = GameObject.Find ("Mario Head");
+        objectRift = GameObject.Find ("Rift");
+
         // Cameras
         ovrCameraLeft = GameObject.Find("OVRCameraController/CameraLeft").gameObject;
         ovrCameraRight = GameObject.Find("OVRCameraController/CameraRight").gameObject;
@@ -42,6 +49,8 @@ public class Title : MonoBehaviour {
 
     protected void Start () {
         InitCamera();
+        objectRift.transform.Find("rift").gameObject.renderer.enabled = false;
+        PlayIntroAnimation ();
         menu.SetActive (false);
         initialMenuPanel.SetActive (false);
         titleActionTimer = titleActionFlickerSpeed;
@@ -89,6 +98,20 @@ public class Title : MonoBehaviour {
         if (detectOvr) {
             DetectOVR();
         }
+    }
+
+    protected void PlayIntroAnimation () {
+        objectMarioHead.animation.clip = objectMarioHead.animation.GetClip("Intro");
+        objectMarioHead.animation.Play ();
+        StartCoroutine (PlayIntroAnimation2(objectMarioHead.animation.clip.length));
+    }
+
+    protected IEnumerator PlayIntroAnimation2 (float length) {
+        yield return new WaitForSeconds(length);
+        objectRift.transform.Find("rift").renderer.enabled = true;
+        objectRift.animation.clip = objectRift.animation.GetClip("Intro");
+        objectRift.animation.Play ();
+
     }
     
     // Show OVR Camera only if OVR is being used

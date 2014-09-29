@@ -13,9 +13,9 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
  * Grab objects
  * Movement
 * __Leap Motion__
- * Bottom-up tracking only
+ * Grounded and HMD mounted
  * Hand tracking
- * Grab some objects
+ * Grab objects
 
 ## Calibration
 
@@ -23,7 +23,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 To calibrate a controller:
 1. Point it to the base receiver.
-2. Press __LT__.
+2. Press __LT__/__RT__.
 3. Place controller in front of respective shoulder and press __Start__.
 4. Move controller forward and your virtual hand should appear in front of you.
 
@@ -73,7 +73,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * 3D message dialogs.
 * Display stats on coins collected in level.
 * Title page from 3rd person transitioned to 1st person perspective.
-* Player respawns in front of painting from first level.
 * KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
 * Big block collision on punch is no working completely.
 * Convert Sixense GUI dialogs into 3D.
