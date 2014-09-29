@@ -190,6 +190,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2273919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8958,6 +8967,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &251256709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9472,6 +9490,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!114 &271437268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10096,6 +10123,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &290436861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13547,6 +13583,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &367382731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14544,6 +14589,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &411287146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15559,6 +15613,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &455561389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18513,6 +18576,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &565745993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22498,6 +22570,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &671462228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23328,6 +23409,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &694192656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24211,6 +24301,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &729105301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26181,6 +26280,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!114 &819637524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26862,6 +26970,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!114 &877797773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29825,6 +29942,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &956302330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30132,6 +30258,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &961033036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32862,6 +32997,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1041380436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33220,6 +33364,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!114 &1060293429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42114,6 +42267,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!114 &1367312912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45045,6 +45207,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1409901962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46218,6 +46389,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1436058010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49738,6 +49918,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1550882638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57485,6 +57674,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1748335886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59825,6 +60023,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1826054662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60197,6 +60404,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1830918863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60389,6 +60605,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1831849074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61415,6 +61640,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1847859882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65518,6 +65752,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!114 &1975248711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66133,6 +66376,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2013613181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67912,6 +68164,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2058444543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70294,6 +70555,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!114 &2116002601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71309,6 +71579,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!114 &2146897541
 MonoBehaviour:
   m_ObjectHideFlags: 0

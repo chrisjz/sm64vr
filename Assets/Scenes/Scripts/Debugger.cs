@@ -99,10 +99,13 @@ public class Debugger : MonoBehaviour {
 			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
 				Debug.Log("Player teleported to mountain mid-point");
 				player.transform.position = new Vector3(-122.3424f, 47.80969f, -175.9443f);
-			} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-				Debug.Log("Player teleported to mountain summit");
-				player.transform.position = new Vector3(-185.179f, 72.37347f, -227.5629f);
-			}
+            } else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+                Debug.Log("Player teleported to mountain summit");
+                player.transform.position = new Vector3(-185.179f, 72.37347f, -227.5629f);
+            } else if (Input.GetKeyDown (KeyCode.Alpha6)) {
+                Debug.Log("Player teleported to floating island");
+                player.transform.position = new Vector3(-180f, 55f, -105f);
+            }
 		}
 	}
 }

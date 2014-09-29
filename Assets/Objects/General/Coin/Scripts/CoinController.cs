@@ -14,6 +14,7 @@ public class CoinController : MonoBehaviour {
     public enum Type {Blue, Red, Yellow}
     public Type type = Type.Yellow;
     public AudioClip yellowCoinSound;
+    public AudioClip[] redCoinSounds = new AudioClip[8];      // Red coin sounds in ascending order.
 
     protected SceneManager sceneManager;
     protected GameObject player;
@@ -35,8 +36,7 @@ public class CoinController : MonoBehaviour {
         int value = GetCoinValue ();
         gameObject.collider.enabled = false;
         gameObject.renderer.enabled = false;
-        audio.clip = yellowCoinSound;
-        audio.Play ();
+        PlaySound ();
         yield return new WaitForSeconds(audio.clip.length);
         playerHealth.Heal (value);
         if (sceneManager) {
@@ -45,6 +45,15 @@ public class CoinController : MonoBehaviour {
                 sceneManager.redCoins += 1;
         }
         gameObject.SetActive (false);
+    }
+
+    protected void PlaySound () {
+        if (type == Type.Red && sceneManager.redCoins < redCoinSounds.Length) {
+            audio.clip = redCoinSounds [sceneManager.redCoins];
+        } else {
+            audio.clip = yellowCoinSound;
+        }
+        audio.Play ();
     }
 
     protected int GetCoinValue () {

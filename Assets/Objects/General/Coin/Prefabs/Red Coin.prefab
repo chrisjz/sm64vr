@@ -160,6 +160,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 8300000, guid: 6626ea667b01a5343bb87796bbab7a3a, type: 3}
+  - {fileID: 8300000, guid: a6490f37df347564593d4673dc3a6b4e, type: 3}
+  - {fileID: 8300000, guid: a3c47e908e1d00946b9dba0b65f2b541, type: 3}
+  - {fileID: 8300000, guid: 31b494a27c2870c43b9a1dce86b998a4, type: 3}
+  - {fileID: 8300000, guid: ce314ea5f82bab34ba9a9d892ed0f567, type: 3}
+  - {fileID: 8300000, guid: d4ea6fd38ce3d5b458587d98d09e7076, type: 3}
+  - {fileID: 8300000, guid: 7732bb7d9ffe44b4e9b5115aed533ab4, type: 3}
+  - {fileID: 8300000, guid: 35da78b35c6b1b9489798e138df5ab48, type: 3}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
