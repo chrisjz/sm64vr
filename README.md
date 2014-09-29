@@ -74,12 +74,13 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * Display stats on coins collected in level.
 * Title page from 3rd person transitioned to 1st person perspective.
 * Player respawns in front of painting from first level.
-* Coins added to first level and increase hit point by one when collected.
 * KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
 * Big block collision on punch is no working completely.
 * Convert Sixense GUI dialogs into 3D.
-* Co-op Multiplayer via LAN or online.
 
+### v0.2
+
+* Co-op Multiplayer via LAN or online.
 
 ### Player
 
@@ -117,6 +118,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 ### Bob-omb Battlefield
 
 * Red coins: increment red coin counter when collected, and play increasingly louder sound.
+* Enemies release coins on first spawn.
 * Increase frequency of boulders coming down the mountain.
 * Breaking certain small and big blocks releases coins.
 * If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
@@ -128,7 +130,12 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * Smoke effect when goomba disappears after being squished.
 * Sound for squishing goomba.
 * Goomba stops following player when player is past a certain distance away from goomba.
+* Mario can open gate at ground of mountain by hitting switch.
 * Chomp enemy.
+* Heart near top of mountain.
+* Certain cannons shoot bubbles.
+* Mario can enter and be shot out of certain cannons.
+* Teleportation points in group of flowers and cave along mountain.
 
 ### King Bob-omb
 
@@ -146,7 +153,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### Miscellaneous
 
-* Mario spins continuously when he is atop certain moving objects, including: pink bob-omb, coin.
+* Mario spins continuously when he is atop certain moving objects, including: pink bob-omb.
 * Shadows for signs, trees.
 * Star model has a hole at its top tip.
 * Replace current coin sound with original sound from game.
