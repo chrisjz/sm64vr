@@ -7944,7 +7944,7 @@ GameObject:
   - 114: {fileID: 619313502}
   - 82: {fileID: 619313501}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Yellow Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8092,6 +8092,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!54 &619313503
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9879,7 +9888,7 @@ GameObject:
   - 114: {fileID: 744216333}
   - 82: {fileID: 744216332}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Yellow Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10027,6 +10036,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!54 &744216334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10469,7 +10487,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneAudioClip: {fileID: 0}
   menuSceneDescriptionText: Castle
+  exitSceneName: 
   coins: 0
+  redCoins: 0
 --- !u!1 &800149213
 GameObject:
   m_ObjectHideFlags: 0
@@ -16987,7 +17007,7 @@ GameObject:
   - 114: {fileID: 1261505848}
   - 82: {fileID: 1261505847}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Yellow Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17135,6 +17155,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!54 &1261505849
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22124,7 +22153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1660395583
 Transform:
   m_ObjectHideFlags: 0
@@ -22989,7 +23018,7 @@ GameObject:
   - 114: {fileID: 1743927332}
   - 82: {fileID: 1743927331}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Yellow Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23137,6 +23166,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   yellowCoinSound: {fileID: 8300000, guid: f35d9d7e4a637764dabe65051c9c9a23, type: 3}
+  redCoinSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!54 &1743927333
 Rigidbody:
   m_ObjectHideFlags: 0

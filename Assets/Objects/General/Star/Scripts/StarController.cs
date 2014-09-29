@@ -57,6 +57,8 @@ public class StarController : MonoBehaviour {
         worldTheme.audio.clip = captureAudioClip;
         worldTheme.audio.Play ();
         yield return new WaitForSeconds(captureAudioClip.length);
+        PlayerPrefs.SetString ("previousSceneName", Application.loadedLevelName);
+        PlayerPrefs.SetString ("previousSceneExitAction", "exit");
         Application.LoadLevel(worldSceneName);
         
     }

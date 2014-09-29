@@ -60,14 +60,11 @@ public class CoinController : MonoBehaviour {
         switch (type) {
         case Type.Blue:
             return 5;
-            break;
         case Type.Red:
             return 2;
-            break;
         case Type.Yellow:
         default:
             return 1;
-            break;
         }
     }
 }

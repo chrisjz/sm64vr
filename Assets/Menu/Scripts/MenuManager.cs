@@ -58,6 +58,7 @@ public class MenuManager : MonoBehaviour {
     
     protected void GoToScene() {
         if (nextSceneName != null) {
+            InitNextScene ();
             Application.LoadLevel(nextSceneName);
         }
     }
@@ -65,5 +66,15 @@ public class MenuManager : MonoBehaviour {
     protected void SwitchPanel () {
         NGUITools.SetActive(currentPanelObject, false);
         NGUITools.SetActive(nextPanelObject, true);
+    }
+
+    // Pass through any required cross scene variables
+    protected virtual void InitNextScene () {
+        string currentSceneName = Application.loadedLevelName;
+
+        if (currentSceneName == "BobombBattlefield") {
+            PlayerPrefs.SetString ("previousSceneName", currentSceneName);
+            PlayerPrefs.SetString ("previousSceneExitAction", "exit");
+        }
     }
 }

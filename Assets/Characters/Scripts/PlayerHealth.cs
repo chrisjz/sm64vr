@@ -78,7 +78,14 @@ public class PlayerHealth : MonoBehaviour {
 	}
 	
 	protected IEnumerator Respawn (float length) {		
-		yield return new WaitForSeconds(length);
-		Application.LoadLevel (Application.loadedLevel);
+        yield return new WaitForSeconds(length);
+        SceneManager sceneManager = GameObject.FindObjectOfType<SceneManager> ();
+        if (sceneManager) {
+            PlayerPrefs.SetString ("previousSceneName", Application.loadedLevelName);
+            PlayerPrefs.SetString ("previousSceneExitAction", "death");
+            Application.LoadLevel (sceneManager.exitSceneName);
+        } else {
+            Application.LoadLevel (Application.loadedLevel);
+        }
 	}
 }

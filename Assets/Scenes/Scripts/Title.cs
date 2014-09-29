@@ -35,6 +35,9 @@ public class Title : MonoBehaviour {
         ovrCameraLeft = GameObject.Find("OVRCameraController/CameraLeft").gameObject;
         ovrCameraRight = GameObject.Find("OVRCameraController/CameraRight").gameObject;
         generalCamera = GameObject.Find("OVRCameraController/Camera").gameObject;
+
+        PlayerPrefs.SetString ("previousSceneName", null);
+        PlayerPrefs.SetString ("previousSceneExitAction", null);
     }
 
     protected void Start () {

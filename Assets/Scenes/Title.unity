@@ -5771,6 +5771,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1476582088}
   - 114: {fileID: 1476582087}
+  - 114: {fileID: 1476582090}
   - 114: {fileID: 1476582089}
   m_Layer: 0
   m_Name: Scene Manager
@@ -5824,6 +5825,22 @@ MonoBehaviour:
   objectRiftPosTrackJump: {fileID: 736606913}
   objectLeapVR: {fileID: 1824852815}
   objectDisplayHealth: {fileID: 1069273396}
+--- !u!114 &1476582090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1476582086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cf7e6ca1cc82742b78fad4165cd451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneAudioClip: {fileID: 0}
+  menuSceneDescriptionText: 
+  exitSceneName: 
+  coins: 0
+  redCoins: 0
 --- !u!1 &1494496113
 GameObject:
   m_ObjectHideFlags: 0

@@ -9123,9 +9123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730efd6d4058dd24598098ea1bb83a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   action: 0
-  nextSceneName: 
+  nextSceneName: Castle
   currentPanelObject: {fileID: 0}
   nextPanelObject: {fileID: 0}
 --- !u!114 &259605105
@@ -44358,6 +44358,14 @@ Prefab:
       propertyPath: onChange.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 1484378781}
+    - target: {fileID: 11400018, guid: a7f43162a559c6849b88e31095205ded, type: 2}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400018, guid: a7f43162a559c6849b88e31095205ded, type: 2}
+      propertyPath: nextSceneName
+      value: Castle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7f43162a559c6849b88e31095205ded, type: 2}
   m_RootGameObject: {fileID: 2102967807}
@@ -47131,6 +47139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneAudioClip: {fileID: 8300000, guid: 158cb697d8a6b5a45a3740ed7b57136c, type: 3}
   menuSceneDescriptionText: "COURSE 1\r\nBOB-OMB BATTLEFIELD"
+  exitSceneName: Castle
   coins: 0
   redCoins: 0
 --- !u!4 &1484378780
