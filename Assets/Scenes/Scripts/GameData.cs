@@ -19,6 +19,7 @@ public class GameData {
     public bool optionControlsRiftPosTrackJump;         // Jump via the Rift's positional tracker
     public bool optionControlsLeapVR;                   // Hand tracking via head mounted Leap
     public bool optionInterfaceDisplayHealth;           // Display player's health in front of player
+    public bool optionInterfaceDisplayCoins;            // Display player's coins in front of player
     public bool debug;                                  // Enable debug mode.
 
     public GameData () {
@@ -27,6 +28,7 @@ public class GameData {
         this.optionControlsRiftPosTrackJump = false;
         this.optionControlsLeapVR = true;
         this.optionInterfaceDisplayHealth = false;
+        this.optionInterfaceDisplayCoins = false;
         this.debug = false;
     }
 }

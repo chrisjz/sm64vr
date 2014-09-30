@@ -16,10 +16,12 @@ public class CoinController : MonoBehaviour {
     public AudioClip yellowCoinSound;
     public AudioClip[] redCoinSounds = new AudioClip[8];      // Red coin sounds in ascending order.
 
+    protected CoinIndicator coinIndicator;
     protected SceneManager sceneManager;
     protected GameObject player;
 
     void Awake () {
+        coinIndicator = GameObject.FindObjectOfType<CoinIndicator> ();
         sceneManager = GameObject.FindObjectOfType<SceneManager> ();
     }
 
@@ -41,6 +43,7 @@ public class CoinController : MonoBehaviour {
         playerHealth.Heal (value);
         if (sceneManager) {
             sceneManager.coins += value;
+            coinIndicator.UpdateAction ();
             if (type == Type.Red)
                 sceneManager.redCoins += 1;
         }

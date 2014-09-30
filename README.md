@@ -72,7 +72,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * Improve throwing physics with leap hands.
 * 3D message dialogs.
 * Display stats on coins collected in level.
-* Title page from 3rd person transitioned to 1st person perspective.
 * KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
 * Big block collision on punch is no working completely.
 * Convert Sixense GUI dialogs into 3D.

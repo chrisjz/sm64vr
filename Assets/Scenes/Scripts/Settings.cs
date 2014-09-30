@@ -16,12 +16,14 @@ public class Settings : MonoBehaviour {
     public GameObject objectRiftPosTrackJump;
     public GameObject objectLeapVR;
     public GameObject objectDisplayHealth;
+    public GameObject objectDisplayCoins;
 	
     protected UIToggle toggleEnableRift;
     protected UIToggle toggleRiftPosTrackMove;
     protected UIToggle toggleRiftPosTrackJump;
     protected UIToggle toggleLeapVR;
     protected UIToggle toggleDisplayHealth;
+    protected UIToggle toggleDisplayCoins;
 
 	protected void Awake () {
 		GameData.current = new GameData();
@@ -57,6 +59,11 @@ public class Settings : MonoBehaviour {
             toggleDisplayHealth = objectDisplayHealth.GetComponent<UIToggle>();
             toggleDisplayHealth.value = StorageManager.data.optionInterfaceDisplayHealth;
             EventDelegate.Add(toggleDisplayHealth.onChange, UIToggleDisplayHealth);
+        }
+        if (objectDisplayCoins) {
+            toggleDisplayCoins = objectDisplayCoins.GetComponent<UIToggle>();
+            toggleDisplayCoins.value = StorageManager.data.optionInterfaceDisplayCoins;
+            EventDelegate.Add(toggleDisplayCoins.onChange, UIToggleDisplayCoins);
         }
 	}
 
@@ -100,10 +107,25 @@ public class Settings : MonoBehaviour {
         if (!player) {
             return;
         }
-
+        
         HealthIndicator healthIndicator = player.GetComponentInChildren<HealthIndicator> ();
         if (healthIndicator) {
             healthIndicator.SetPosition();
+        }
+    }
+    
+    public void UIToggleDisplayCoins () {
+        StorageManager.data.optionInterfaceDisplayCoins = toggleDisplayCoins.value;
+        
+        GameObject player = GameObject.FindGameObjectWithTag ("Player");
+        
+        if (!player) {
+            return;
+        }
+        
+        CoinIndicator coinIndicator = player.GetComponentInChildren<CoinIndicator> ();
+        if (coinIndicator) {
+            coinIndicator.SetPosition();
         }
     }
 }
