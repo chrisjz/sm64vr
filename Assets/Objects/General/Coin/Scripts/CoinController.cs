@@ -19,18 +19,33 @@ public class CoinController : MonoBehaviour {
     protected CoinIndicator coinIndicator;
     protected SceneManager sceneManager;
     protected GameObject player;
+    protected bool collecting;
+    protected bool collected;
 
     void Awake () {
         coinIndicator = GameObject.FindObjectOfType<CoinIndicator> ();
         sceneManager = GameObject.FindObjectOfType<SceneManager> ();
+        collecting = false;
+        collected = false;
+    }
+
+    protected void Update () {
+        // Stops propagating collect action on multiple simultaneous collisions.
+        if (collecting && !collected) {
+            collecting = false;
+            collected = true;            
+            StartCoroutine(Collect ());
+        }
     }
 
     protected void OnTriggerEnter(Collider col) {
-        if (col.transform.root.gameObject.tag == "Player" || col.gameObject.GetComponentInParent<RigidHand>()) {
+        if (col.transform.root.gameObject.tag == "Player" || col.gameObject.GetComponentInParent<RigidHand>() && collected == false) {
+            collecting = true;
             player = col.transform.root.gameObject;
-            StartCoroutine(Collect ());
-        }
 
+            if (!player)
+                player = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     protected IEnumerator Collect () {
@@ -39,7 +54,6 @@ public class CoinController : MonoBehaviour {
         gameObject.collider.enabled = false;
         gameObject.renderer.enabled = false;
         PlaySound ();
-        yield return new WaitForSeconds(audio.clip.length);
         playerHealth.Heal (value);
         if (sceneManager) {
             sceneManager.coins += value;
@@ -47,6 +61,7 @@ public class CoinController : MonoBehaviour {
             if (type == Type.Red)
                 sceneManager.redCoins += 1;
         }
+        yield return new WaitForSeconds(audio.clip.length);
         gameObject.SetActive (false);
     }
 
