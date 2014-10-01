@@ -22,7 +22,7 @@ public class PunchObject : MonoBehaviour {
 		gameObject.SetActive (true);
 	}
 	
-	void OnCollisionEnter(Collision col) {
+    void OnCollisionEnter(Collision col) {
 		if (col.gameObject.name == "LeftHandCollider" ||
 		           col.gameObject.name == "RightHandCollider" &&
 		    		!exploding) {
@@ -41,6 +41,7 @@ public class PunchObject : MonoBehaviour {
 		emission.Play ();
 		
 		transform.renderer.enabled = false;
+        collider.enabled = false;
 
 		StartCoroutine (Destroy ());
 
@@ -48,6 +49,6 @@ public class PunchObject : MonoBehaviour {
 
 	protected IEnumerator Destroy () {
 		yield return new WaitForSeconds(5);
-		gameObject.SetActive (false);
+        Destroy (gameObject);
 	}
 }
