@@ -2,11 +2,12 @@
 using System.Collections;
 
 public class SceneManager : MonoBehaviour {
-    public AudioClip sceneAudioClip;            // Main music played throughout scene
+    public int id;                              // Unique ID for world scenes, used to store coin scores.
+    public AudioClip sceneAudioClip;            // Main music played throughout scene.
 	public string menuSceneDescriptionText;
-    public string exitSceneName;                // Go to this scene when exiting level
-    public int coins = 0;                       // coin counter
-    public int redCoins = 0;                    // red coin counter
+    public string exitSceneName;                // Go to this scene when exiting level.
+    public int coins = 0;                       // coin counter.
+    public int redCoins = 0;                    // red coin counter.
 
     protected GameObject player;
 
@@ -44,5 +45,14 @@ public class SceneManager : MonoBehaviour {
 
         PlayerPrefs.SetString ("previousSceneName", null);
         PlayerPrefs.SetString ("previousSceneExitAction", null);
+    }
+
+    public void SaveScore () {
+        int[] scoreCoins = StorageManager.data.coins;
+
+        if (id < scoreCoins.Length && coins > scoreCoins[id]) {
+            StorageManager.data.coins[id] = coins;
+            StorageManager.Save ();
+        }
     }
 }

@@ -2402,7 +2402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 100004}
-  hover: {r: .20784314, g: .36470589, b: .764705896, a: 1}
+  hover: {r: .258823544, g: .450980395, b: .937254906, a: 1}
   pressed: {r: .0745098069, g: .145098045, b: .337254912, a: 1}
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
   duration: .200000003
@@ -3236,7 +3236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 100020}
-  hover: {r: .20784314, g: .36470589, b: .764705896, a: 1}
+  hover: {r: .258823544, g: .450980395, b: .937254906, a: 1}
   pressed: {r: .0745098069, g: .145098045, b: .337254912, a: 1}
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
   duration: .200000003
@@ -4966,7 +4966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 100102}
-  hover: {r: .20784314, g: .36470589, b: .764705896, a: 1}
+  hover: {r: .258823544, g: .450980395, b: .937254906, a: 1}
   pressed: {r: .0745098069, g: .145098045, b: .337254912, a: 1}
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
   duration: .200000003
@@ -5655,7 +5655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 100044}
-  hover: {r: .20784314, g: .36470589, b: .764705896, a: 1}
+  hover: {r: .258823544, g: .450980395, b: .937254906, a: 1}
   pressed: {r: .0745098069, g: .145098045, b: .337254912, a: 1}
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
   duration: .200000003

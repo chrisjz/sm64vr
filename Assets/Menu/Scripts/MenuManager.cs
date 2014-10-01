@@ -73,6 +73,11 @@ public class MenuManager : MonoBehaviour {
         string currentSceneName = Application.loadedLevelName;
 
         if (currentSceneName == "BobombBattlefield") {
+            SceneManager sceneManager = (SceneManager) FindObjectOfType(typeof(SceneManager));
+
+            if (sceneManager)
+                sceneManager.SaveScore ();
+
             PlayerPrefs.SetString ("previousSceneName", currentSceneName);
             PlayerPrefs.SetString ("previousSceneExitAction", "exit");
         }

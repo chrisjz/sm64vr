@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1577167707}
-  hover: {r: .20784314, g: .36470589, b: .764705896, a: 1}
+  hover: {r: .258823544, g: .450980395, b: .937254906, a: 1}
   pressed: {r: .0745098069, g: .145098045, b: .337254912, a: 1}
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
   duration: .200000003
@@ -616,6 +616,10 @@ Prefab:
     - target: {fileID: 11400196, guid: a7f43162a559c6849b88e31095205ded, type: 2}
       propertyPath: onChange.Array.data[0].mMethodName
       value: UIToggleDisplayHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400018, guid: a7f43162a559c6849b88e31095205ded, type: 2}
+      propertyPath: type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7f43162a559c6849b88e31095205ded, type: 2}
@@ -11088,6 +11092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2cf7e6ca1cc82742b78fad4165cd451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   sceneAudioClip: {fileID: 0}
   menuSceneDescriptionText: Castle
   exitSceneName: 
@@ -18882,7 +18887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730efd6d4058dd24598098ea1bb83a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   action: 0
   nextSceneName: Castle
   currentPanelObject: {fileID: 0}
@@ -21507,7 +21512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 991706521}
-  hover: {r: .20784314, g: .36470589, b: .764705896, a: 1}
+  hover: {r: .258823544, g: .450980395, b: .937254906, a: 1}
   pressed: {r: .0745098069, g: .145098045, b: .337254912, a: 1}
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
   duration: .200000003
@@ -23632,7 +23637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 487120495}
-  hover: {r: .20784314, g: .36470589, b: .764705896, a: 1}
+  hover: {r: .258823544, g: .450980395, b: .937254906, a: 1}
   pressed: {r: .0745098069, g: .145098045, b: .337254912, a: 1}
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
   duration: .200000003
@@ -27827,7 +27832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 196216992}
-  hover: {r: .20784314, g: .36470589, b: .764705896, a: 1}
+  hover: {r: .258823544, g: .450980395, b: .937254906, a: 1}
   pressed: {r: .0745098069, g: .145098045, b: .337254912, a: 1}
   disabledColor: {r: .5, g: .5, b: .5, a: 1}
   duration: .200000003

@@ -81,6 +81,7 @@ public class PlayerHealth : MonoBehaviour {
         yield return new WaitForSeconds(length);
         SceneManager sceneManager = GameObject.FindObjectOfType<SceneManager> ();
         if (sceneManager) {
+            sceneManager.SaveScore ();
             PlayerPrefs.SetString ("previousSceneName", Application.loadedLevelName);
             PlayerPrefs.SetString ("previousSceneExitAction", "death");
             Application.LoadLevel (sceneManager.exitSceneName);

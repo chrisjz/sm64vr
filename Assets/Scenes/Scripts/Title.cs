@@ -64,7 +64,8 @@ public class Title : MonoBehaviour {
     }
 
     protected void Start () {
-        InitCamera();
+        InitCamera ();
+        PrefillScore ();
         objectRift.transform.Find("rift").gameObject.renderer.enabled = false;
         PlayIntroAnimation ();
         menu.SetActive (false);
@@ -136,6 +137,18 @@ public class Title : MonoBehaviour {
         
         if (detectOvr) {
             DetectOVR();
+        }
+    }
+
+    // Prefill's coin score for each world
+    protected void PrefillScore () {
+        int[] coins = StorageManager.data.coins;
+        GameObject panelScore = GameObject.Find ("Panel - Score");
+
+        for (int key = 0; key < coins.Length; ++key) {
+            Transform level = panelScore.transform.Find((key + 1) + "/Label - Coins");
+            if (level)
+                level.GetComponent<UILabel> ().text = coins[key].ToString ();
         }
     }
 

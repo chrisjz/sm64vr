@@ -15,11 +15,12 @@ public class GameData {
 
     public static GameData current;
     public bool optionControlsEnableRift;
-    public bool optionControlsRiftPosTrackMove;         // Move via the Rift's positional tracker
-    public bool optionControlsRiftPosTrackJump;         // Jump via the Rift's positional tracker
-    public bool optionControlsLeapVR;                   // Hand tracking via head mounted Leap
-    public bool optionInterfaceDisplayHealth;           // Display player's health in front of player
-    public bool optionInterfaceDisplayCoins;            // Display player's coins in front of player
+    public bool optionControlsRiftPosTrackMove;         // Move via the Rift's positional tracker.
+    public bool optionControlsRiftPosTrackJump;         // Jump via the Rift's positional tracker.
+    public bool optionControlsLeapVR;                   // Hand tracking via head mounted Leap.
+    public bool optionInterfaceDisplayHealth;           // Display player's health in front of player.
+    public bool optionInterfaceDisplayCoins;            // Display player's coins in front of player.
+    public int[] coins;                                 // Coin totals for each level.
     public bool debug;                                  // Enable debug mode.
 
     public GameData () {
@@ -29,6 +30,7 @@ public class GameData {
         this.optionControlsLeapVR = true;
         this.optionInterfaceDisplayHealth = false;
         this.optionInterfaceDisplayCoins = false;
+        this.coins = new int[14];
         this.debug = false;
     }
 }
