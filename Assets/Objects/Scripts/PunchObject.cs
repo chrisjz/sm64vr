@@ -23,9 +23,10 @@ public class PunchObject : MonoBehaviour {
 	}
 	
     void OnCollisionEnter(Collision col) {
-		if (col.gameObject.name == "LeftHandCollider" ||
-		           col.gameObject.name == "RightHandCollider" &&
-		    		!exploding) {
+		if ((col.gameObject.name == "LeftHandCollider" ||
+             col.gameObject.name == "RightHandCollider" ||
+             col.gameObject.GetComponentInParent<RigidHand>()) &&
+            !exploding) {
 			Explode();
 		}
 	}

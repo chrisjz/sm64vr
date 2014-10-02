@@ -41,10 +41,7 @@ public class CoinController : MonoBehaviour {
     protected void OnTriggerEnter(Collider col) {
         if (col.transform.root.gameObject.tag == "Player" || col.gameObject.GetComponentInParent<RigidHand>() && collected == false) {
             collecting = true;
-            player = col.transform.root.gameObject;
-
-            if (!player)
-                player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindGameObjectWithTag("Player");
         }
     }
 

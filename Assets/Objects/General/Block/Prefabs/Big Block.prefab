@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Big Block
@@ -188,6 +189,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emissionName: Particles
   hitAudioClip: {fileID: 8300000, guid: 6f4461cc4f4fd264ebfcc5a2065d459b, type: 3}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58874ab429e66b24285fa79ab950518c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keepDistanceWhenGrabbed: 0
+  preferredOrientation: 0
+  objectOrientation: {x: 0, y: 0, z: 0}
+  palmOrientation: {x: 0, y: 0, z: 0}
+  ignoreOnGrab: []
+  breakableJoint: {fileID: 0}
+  breakForce: 0
+  breakTorque: 0
+  canGrab: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

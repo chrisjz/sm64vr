@@ -59,8 +59,13 @@ public class LeapHandGrabExtend : MonoBehaviour {
                 foreach(HandModel hand in physicsHands) {
                     if (close_things[j].transform.IsChildOf(hand.gameObject.transform))
                         isPhysicsHandCollider = true;
-                }
+                }                
                 
+                LeapGrabbableExtend grabbableExtend = close_things[j].GetComponent<LeapGrabbableExtend>();
+
+                if (grabbableExtend && !grabbableExtend.canGrab)
+                    continue;
+
                 if (!isPhysicsHandCollider) {
                     grabbed_ = close_things[j];
                     distance = new_distance;

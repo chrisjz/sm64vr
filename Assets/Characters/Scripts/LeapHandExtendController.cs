@@ -86,5 +86,15 @@ public class LeapHandExtendController : HandController {
         player.Find ("Avatar/Right_Hand").renderer.enabled = state;
         player.Find ("Avatar/Right_Upper_Arm").renderer.enabled = state;
         player.Find ("Avatar/Right_Lower_Arm").renderer.enabled = state;
+
+        // Prevent sixense hand collider collision with leap hand.
+        Transform sixenseLeftHandCollider = player.Find ("OVRCameraController/SixenseHands/Left Hand/LeftHandCollider");
+        Transform sixenseRightHandCollider = player.Find ("OVRCameraController/SixenseHands/Right Hand/RightHandCollider");
+
+        if (sixenseLeftHandCollider)
+            sixenseLeftHandCollider.rigidbody.detectCollisions = state;
+
+        if (sixenseRightHandCollider)
+        sixenseRightHandCollider.rigidbody.detectCollisions = state;
     }
 }
