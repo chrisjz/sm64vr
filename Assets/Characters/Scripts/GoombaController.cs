@@ -22,7 +22,7 @@ public class GoombaController : EnemyController {
 		           col.gameObject.name == "RightHandCollider" ||
                    col.gameObject.GetComponentInParent<RigidHand>()) {
 			base.Knockback(player, this.gameObject, col.gameObject);
-		} else if (col.gameObject.tag == "Grabbable") {
+		} else if (col.gameObject.tag == "Grabbable" || col.gameObject.tag == "Enemy") {
 			base.Knockback(col.gameObject, this.gameObject);
 		} else if (col.gameObject.name == "LeftFootCollider" ||
 		           col.gameObject.name == "RightFootCollider") {
@@ -59,9 +59,11 @@ public class GoombaController : EnemyController {
 		rigidbody.detectCollisions = false;
 		movement = Movement.Freeze;
 		animation.Play ("Squash");
+        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 		yield return new WaitForSeconds(animation ["Squash"].length + squashTimeExtension);
 		dead = true;
-		ToggleVisibility ();
+        ToggleVisibility ();
+        rigidbody.constraints = RigidbodyConstraints.None;
 		StartCoroutine(Death(0));
 	}
 }

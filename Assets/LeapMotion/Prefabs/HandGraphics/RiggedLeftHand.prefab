@@ -1052,6 +1052,7 @@ MonoBehaviour:
   filtering: .5
   minConfidence: .300000012
   maxVelocity: .300000012
+  releaseForce: 10
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

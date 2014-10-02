@@ -21,6 +21,7 @@ public class LeapHandGrabExtend : MonoBehaviour {
     public float filtering = 0.5f;
     public float minConfidence = 0.3f;
     public float maxVelocity = 0.3f;
+    public float releaseForce = 1.0f;
     
     protected bool pinching_;
     private Collider grabbed_;
@@ -105,6 +106,8 @@ public class LeapHandGrabExtend : MonoBehaviour {
             Grabbable grabbable = grabbed_.GetComponent<Grabbable>();
             if (grabbable != null)
                 grabbable.OnRelease();
+
+            grabbed_.rigidbody.AddForce(grabbed_.rigidbody.velocity * releaseForce);
         }
         grabbed_ = null;
     }

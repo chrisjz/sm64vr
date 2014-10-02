@@ -28,8 +28,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 93.4232864, y: 30.7068825, z: -89.2782211}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 35.7474136, y: 13.1195469, z: 14.2250919}
+  m_LocalScale: {x: 1.50000012, y: 1.50000012, z: 1.50000012}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fa1c5dbed51cc4daec6c82a9a26d63, type: 3}
+  m_Script: {fileID: 11500000, guid: 58874ab429e66b24285fa79ab950518c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   keepDistanceWhenGrabbed: 1
@@ -125,6 +125,8 @@ MonoBehaviour:
   breakableJoint: {fileID: 0}
   breakForce: 0
   breakTorque: 0
+  canGrab: 1
+  overrideGrabDistance: 1.10000002
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

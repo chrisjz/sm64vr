@@ -49,7 +49,10 @@ public class EnemyController : MonoBehaviour {
 		player = GameObject.FindWithTag("Player");
 		playerHealth = player.GetComponent<PlayerHealth> ();
 		playerSixsenseHandControllers = player.GetComponentsInChildren<SixenseHandExtendController> ();
-		pathName = this.GetComponent<iTweenPath> ().pathName;
+
+        if (this.GetComponent<iTweenPath> ())
+		    pathName = this.GetComponent<iTweenPath> ().pathName;
+
 		defaultSpeed = agent.speed;
 		initAnimationName = animation.clip.name;
 		spawnPosition = transform.position;
@@ -146,7 +149,7 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	protected void PathMovement() {
-		if (pathTimer <= 0) {
+        if (pathTimer <= 0 && this.GetComponent<iTweenPath> ()) {
 			pathTimer = pathTime * 60;
 			movement = Movement.Path;
 			PathAction();

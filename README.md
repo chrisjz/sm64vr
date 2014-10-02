@@ -117,8 +117,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * Increase frequency of boulders coming down the mountain.
 * Breaking certain small and big blocks releases coins.
 * Goomba sometimes disappears likely due to occlusion setup.
-* Goomba incorrectly slides away when squished.
-* If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
 * Transition to Bob-omb Battlefield when jumping into its painting.
 * Add rotation to lifts when they reach top and bottom of cliff.
 * Replace goomba's jumping sound with correct one.
