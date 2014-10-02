@@ -51,6 +51,7 @@ public class BossController : MonoBehaviour {
     protected HydraLook playerHydraLook;
     protected PlayerHealth playerHealth;
     protected SixenseHandExtendController[] playerSixenseHandControllers;
+    protected LeapGrabbableExtend leapGrabbable;
     protected Movement movement;
     protected GameObject explosion;
     protected GameObject star;
@@ -100,6 +101,7 @@ public class BossController : MonoBehaviour {
 		playerHydraLook = player.GetComponent<HydraLook> ();
 		playerHealth = player.GetComponent<PlayerHealth> ();
         playerSixenseHandControllers = player.GetComponentsInChildren<SixenseHandExtendController> ();
+        leapGrabbable = GetComponent<LeapGrabbableExtend> ();
         
         startMarkerThrowPlayer = new GameObject();
         endMarkerThrowPlayer = new GameObject ();
@@ -126,6 +128,7 @@ public class BossController : MonoBehaviour {
 	}
 
     protected void Init() {
+        leapGrabbable.canGrab = false;
         isHeldByPlayer = false;
         wasHeldByPlayer = false;
         isGrounded = false;
@@ -279,15 +282,17 @@ public class BossController : MonoBehaviour {
     protected virtual void TriggerBattle(bool state) {
         if (state) {
             startedBattle = true;
+            leapGrabbable.canGrab = true;
             rigidbody.useGravity = true;
             animation.Play ("Walk");
+            agent.enabled = true;
             StartCoroutine (StartFollowingPlayer (3));
         } else {
             startedBattle = false;
             initBattle = false;
+            leapGrabbable.canGrab = false;
             rigidbody.useGravity = false;
             agent.enabled = false;
-            agent.enabled = true;
             movement = Movement.Idle;
             transform.position = spawnPosition;
             transform.rotation = spawnRotation;
@@ -416,6 +421,9 @@ public class BossController : MonoBehaviour {
 	}
 
 	protected virtual void FollowPlayer() {
+        if (!agent.enabled)
+            return;
+
 		agent.SetDestination (player.transform.position);
 		agent.speed = followSpeed;
 		agent.angularSpeed = followAngularSpeed;

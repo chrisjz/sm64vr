@@ -53,18 +53,27 @@ public class LeapHandGrabExtend : MonoBehaviour {
         
         for (int j = 0; j < close_things.Length; ++j) {
             Vector3 new_distance = pinch_position - close_things[j].transform.position;
+
+            LeapGrabbableExtend grabbableExtend = close_things[j].GetComponent<LeapGrabbableExtend>();
+            
+            if (grabbableExtend) {
+                if (!grabbableExtend.canGrab)
+                    continue;
+
+                // override the hand's grab distance. Useful for grabbing large objects
+                float overrideGrabDistance = grabbableExtend.overrideGrabDistance;
+                if (overrideGrabDistance > 0)
+                    distance = new Vector3(overrideGrabDistance, 0.0f, 0.0f);
+            }
+
             if (close_things[j].rigidbody != null && new_distance.magnitude < distance.magnitude &&
                 !close_things[j].transform.IsChildOf(transform)) {
                 bool isPhysicsHandCollider = false;
                 foreach(HandModel hand in physicsHands) {
                     if (close_things[j].transform.IsChildOf(hand.gameObject.transform))
                         isPhysicsHandCollider = true;
-                }                
-                
-                LeapGrabbableExtend grabbableExtend = close_things[j].GetComponent<LeapGrabbableExtend>();
+                }
 
-                if (grabbableExtend && !grabbableExtend.canGrab)
-                    continue;
 
                 if (!isPhysicsHandCollider) {
                     grabbed_ = close_things[j];

@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82fc8ec9c84fac49ad734df0acb1c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabDistance: 10
+  grabDistance: 1
   filtering: .5
   minConfidence: .300000012
   maxVelocity: .300000012

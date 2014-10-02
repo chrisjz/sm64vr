@@ -68,7 +68,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### v0.1
 
-* Only make some objects grabbable by leap hands.
 * Improve throwing physics with leap hands.
 * 3D message dialogs.
 * KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
@@ -117,6 +116,8 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * Enemies release coins on first spawn.
 * Increase frequency of boulders coming down the mountain.
 * Breaking certain small and big blocks releases coins.
+* Goomba sometimes disappears likely due to occlusion setup.
+* Goomba incorrectly slides away when squished.
 * If one goomba is knocked back into a second goomba, the second goomba will be knocked back too.
 * Transition to Bob-omb Battlefield when jumping into its painting.
 * Add rotation to lifts when they reach top and bottom of cliff.

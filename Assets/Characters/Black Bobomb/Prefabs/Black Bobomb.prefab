@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 64: {fileID: 6400002}
   m_Layer: 0
   m_Name: Right_Leg
   m_TagString: Untagged
@@ -28,7 +27,6 @@ GameObject:
   - 4: {fileID: 400002}
   - 33: {fileID: 3300002}
   - 23: {fileID: 2300002}
-  - 64: {fileID: 6400000}
   m_Layer: 0
   m_Name: Left_Leg
   m_TagString: Untagged
@@ -46,7 +44,6 @@ GameObject:
   - 4: {fileID: 400004}
   - 33: {fileID: 3300004}
   - 23: {fileID: 2300004}
-  - 64: {fileID: 6400004}
   m_Layer: 0
   m_Name: Face
   m_TagString: Untagged
@@ -64,7 +61,6 @@ GameObject:
   - 4: {fileID: 400006}
   - 33: {fileID: 3300006}
   - 23: {fileID: 2300006}
-  - 64: {fileID: 6400006}
   m_Layer: 0
   m_Name: Cap
   m_TagString: Untagged
@@ -313,58 +309,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &6400000
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300002, guid: a3c6f385f6dedaf4e9abd0aca260ffa5, type: 3}
---- !u!64 &6400002
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300006, guid: a3c6f385f6dedaf4e9abd0aca260ffa5, type: 3}
---- !u!64 &6400004
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: a3c6f385f6dedaf4e9abd0aca260ffa5, type: 3}
---- !u!64 &6400006
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300004, guid: a3c6f385f6dedaf4e9abd0aca260ffa5, type: 3}
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -586,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fa1c5dbed51cc4daec6c82a9a26d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepDistanceWhenGrabbed: 0
+  keepDistanceWhenGrabbed: 1
   preferredOrientation: 0
   objectOrientation: {x: 0, y: 0, z: 0}
   palmOrientation: {x: 0, y: 0, z: 0}

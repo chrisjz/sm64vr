@@ -242,15 +242,16 @@ public class EnemyController : MonoBehaviour {
 	protected IEnumerator Death (float length) {
 		dead = true;
 		yield return new WaitForSeconds(length);
-		if (respawnTime >= 0) {
-			StartCoroutine(Respawn(respawnTime));
-		}
+		if (respawnTime >= 0)
+            StartCoroutine (Respawn (respawnTime));
+        else
+            Destroy (gameObject);
 	}
 
-	protected IEnumerator Respawn (float length) {		
+    protected IEnumerator Respawn (float length) {
 		yield return new WaitForSeconds(length);
 		gameObject.transform.position = spawnPosition;
-		gameObject.transform.rotation = spawnRotation;
+        gameObject.transform.rotation = spawnRotation;
 		agent.speed = defaultSpeed;
 		animation.Play (initAnimationName);
 		Init ();

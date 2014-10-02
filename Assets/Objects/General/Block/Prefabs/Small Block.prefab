@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fa1c5dbed51cc4daec6c82a9a26d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepDistanceWhenGrabbed: 0
+  keepDistanceWhenGrabbed: 1
   preferredOrientation: 0
   objectOrientation: {x: 0, y: 0, z: 0}
   palmOrientation: {x: 0, y: 0, z: 0}
