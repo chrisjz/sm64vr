@@ -15,10 +15,18 @@ using System.Collections;
 public class KonamiCode : MonoBehaviour {
 	public bool enable = false;
     public bool disableIfReentered = false;     // Disables Konami code if re-entered.
+    public string enabledMessage = "Konami code disabled.";
+    public string disabledMessage = "You master Konami.";
+
+    protected StereoDialog stereoDialog;
 
 	private string[] konamiCode = new string[]{"UpArrow", "UpArrow", "DownArrow", "DownArrow", "LeftArrow", "RightArrow", "LeftArrow", "RightArrow", "B", "A", "Return"};
 	private int currentPos = 0;
 	private bool konamiCodeEnabled = false;
+
+    void Awake () {
+        stereoDialog = GameObject.Find ("StereoDialog").GetComponent<StereoDialog> ();
+    }
 
 	void OnGUI () {
 		if (!enable)
@@ -39,10 +47,10 @@ public class KonamiCode : MonoBehaviour {
 
 			if ((currentPos + 1) > konamiCode.Length) {
                 if (disableIfReentered && konamiCodeEnabled) {
-                    Debug.Log("Konami code disabled.");
+                    DisplayMessage (disabledMessage);
                     konamiCodeEnabled = false;
                 } else {
-                    Debug.Log("You master Konami.");
+                    DisplayMessage (enabledMessage);
                     konamiCodeEnabled = true;
                 }
 
@@ -61,5 +69,15 @@ public class KonamiCode : MonoBehaviour {
         set {
             konamiCodeEnabled = value;
         }
+    }
+    
+    protected void DisplayMessage (string text) {
+        Transform existingDebuggerMessage = stereoDialog.transform.Find ("Debugger");
+        if (existingDebuggerMessage) {
+            Destroy(existingDebuggerMessage.gameObject);
+        }
+        if (stereoDialog)
+            stereoDialog.Create (-550, -700, text, Color.black, TextAlignment.Left, 48, FontStyle.Normal, "Debugger", 5);
+        Debug.Log (text);
     }
 }
