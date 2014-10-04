@@ -42898,6 +42898,14 @@ Prefab:
       propertyPath: throwForce
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
+      propertyPath: initialMenuPanel
+      value: 
+      objectReference: {fileID: 85455216}
+    - target: {fileID: 11400014, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
+      propertyPath: NGUIRoot
+      value: 
+      objectReference: {fileID: 2102967807}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
   m_RootGameObject: {fileID: 1833210254}
@@ -54212,8 +54220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1656cca0339b4446856095fec2635e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMenuPanel: {fileID: 0}
-  NGUIRoot: {fileID: 0}
+  initialMenuPanel: {fileID: 85455216}
+  NGUIRoot: {fileID: 2102967807}
   offsetNoOVR: {x: 0, y: -.5, z: 1.5}
 --- !u!1001 &1833542795
 Prefab:
