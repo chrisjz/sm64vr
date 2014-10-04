@@ -284,6 +284,7 @@ public class BossController : MonoBehaviour {
             startedBattle = true;
             leapGrabbable.canGrab = true;
             rigidbody.useGravity = true;
+            rigidbody.isKinematic = false;
             animation.Play ("Walk");
             agent.enabled = true;
             StartCoroutine (StartFollowingPlayer (3));
@@ -292,6 +293,7 @@ public class BossController : MonoBehaviour {
             initBattle = false;
             leapGrabbable.canGrab = false;
             rigidbody.useGravity = false;
+            rigidbody.isKinematic = true;
             agent.enabled = false;
             movement = Movement.Idle;
             transform.position = spawnPosition;
