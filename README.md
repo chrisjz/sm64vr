@@ -69,7 +69,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 ### v0.1
 
 * KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
-* Convert Sixense GUI dialogs into 3D.
 
 ### v0.2
 

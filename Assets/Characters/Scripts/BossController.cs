@@ -1,4 +1,4 @@
-﻿/************************************************************************************
+/************************************************************************************
 
 Filename    :   BossController.cs
 Content     :   Controller for enemy boss
@@ -50,8 +50,8 @@ public class BossController : MonoBehaviour {
     protected PlayerLook playerLook;
     protected HydraLook playerHydraLook;
     protected PlayerHealth playerHealth;
-    protected SixenseHandExtendController[] playerSixenseHandControllers;
-    protected LeapGrabbableExtend leapGrabbable;
+    protected SixenseHandControllerExtender[] playerSixenseHandControllers;
+    protected LeapGrabbableExtender leapGrabbable;
     protected Movement movement;
     protected GameObject explosion;
     protected GameObject star;
@@ -100,8 +100,8 @@ public class BossController : MonoBehaviour {
 		playerLook = player.GetComponent<PlayerLook> ();
 		playerHydraLook = player.GetComponent<HydraLook> ();
 		playerHealth = player.GetComponent<PlayerHealth> ();
-        playerSixenseHandControllers = player.GetComponentsInChildren<SixenseHandExtendController> ();
-        leapGrabbable = GetComponent<LeapGrabbableExtend> ();
+        playerSixenseHandControllers = player.GetComponentsInChildren<SixenseHandControllerExtender> ();
+        leapGrabbable = GetComponent<LeapGrabbableExtender> ();
         
         startMarkerThrowPlayer = new GameObject();
         endMarkerThrowPlayer = new GameObject ();
@@ -373,15 +373,15 @@ public class BossController : MonoBehaviour {
 	
 	protected bool IsHoldingEnemy () {
         bool isHoldingEnemy = false;
-        foreach (SixenseHandExtendController playerHandController in playerSixenseHandControllers) {
+        foreach (SixenseHandControllerExtender playerHandController in playerSixenseHandControllers) {
 			if (gameObject == playerHandController.GetClosestObject() && playerHandController.IsHoldingObject()) {
                 isHoldingEnemy = true;
 			}
         }
         
-        LeapHandGrabExtend[] leapHands = GameObject.FindObjectsOfType<LeapHandGrabExtend> ();
+        LeapHandGrabExtender[] leapHands = GameObject.FindObjectsOfType<LeapHandGrabExtender> ();
         
-        foreach (LeapHandGrabExtend leapHand in leapHands) {
+        foreach (LeapHandGrabExtender leapHand in leapHands) {
             if (leapHand.Grabbed_ && leapHand.Grabbed_.gameObject == gameObject) {
                 isHoldingEnemy = true;
             }
@@ -434,7 +434,7 @@ public class BossController : MonoBehaviour {
 	}
 
 	protected void TriggerIgnorePlayerHandColliders (bool state) {
-        foreach (SixenseHandExtendController playerHandController in playerSixenseHandControllers) {
+        foreach (SixenseHandControllerExtender playerHandController in playerSixenseHandControllers) {
 			Collider[] cols = GetComponentsInChildren<Collider>();
 			Collider[] playerHandCols = playerHandController.GetComponentsInChildren<Collider>();
 			

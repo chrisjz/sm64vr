@@ -1,4 +1,4 @@
-﻿/************************************************************************************
+/************************************************************************************
 
 Filename    :   Settings.cs
 Content     :   Game settings handler
@@ -92,7 +92,7 @@ public class Settings : MonoBehaviour {
             return;
         }
 
-        LeapHandExtendController controller = player.GetComponentInChildren<LeapHandExtendController> ();
+        LeapHandControllerExtender controller = player.GetComponentInChildren<LeapHandControllerExtender> ();
         if (controller) {
             controller.isOrientationSet = false;
             controller.SetOrientation();

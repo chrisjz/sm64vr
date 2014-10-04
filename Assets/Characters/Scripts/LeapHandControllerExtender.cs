@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 
-Filename    :   LeapHandExtendController.cs
+Filename    :   LeapHandControllerExtender.cs
 Content     :   Extend Leap Hand Controller
 Created     :   25 August 2014
 Authors     :   Chris Julian Zaharia
@@ -11,7 +11,7 @@ using UnityEngine;
 using System.Collections;
 using Leap;
 
-public class LeapHandExtendController : HandController {
+public class LeapHandControllerExtender : HandController {
     public Vector3 GroundedLocalPosition = new Vector3(0, 0, 0);
     public Vector3 GroundedLocalRotation = new Vector3(0, 0, 0);
     public Vector3 MountedLocalPosition = new Vector3(0, 0, 0);

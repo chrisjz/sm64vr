@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 
-Filename    :   SixenseHandExtendController.cs
+Filename    :   SixenseHandControllerExtender.cs
 Content     :   Extend Sixense Hand Controller
 Created     :   25 June 2014
 Authors     :   Chris Julian Zaharia
@@ -10,7 +10,7 @@ Authors     :   Chris Julian Zaharia
 using UnityEngine;
 using System.Collections;
 
-public class SixenseHandExtendController : SixenseHandController {
+public class SixenseHandControllerExtender : SixenseHandController {
     public float                    minGrabDistance = 1.0f;
     public float					throwForce = 30.0f;			// Force multiplier for throwing objects
 
@@ -22,11 +22,20 @@ public class SixenseHandExtendController : SixenseHandController {
     protected Vector3               handVector;
     protected Vector3               handPreviousPosition;
     protected Vector3               handPreviousDirection;
+    protected StereoDialog          stereoDialog;
+
+    private bool                    HMDPresent = false;
 	
 	protected override void Start() 
 	{
 		// get the Animator
-		m_animator = this.gameObject.GetComponent<Animator>();
+        m_animator = this.gameObject.GetComponent<Animator>();
+
+        // get stereo dialog
+        stereoDialog = GameObject.Find ("StereoDialog").GetComponent<StereoDialog> ();
+
+        // check if HMD is on
+        HMDPresent = OVRDevice.IsHMDPresent();
 		
 		base.Start();
 	}
@@ -40,7 +49,35 @@ public class SixenseHandExtendController : SixenseHandController {
 		}
 		
 		base.UpdateObject(controller);
-	}
+    }
+    
+    
+    // Override GUI to only display instructions if Sixense hands exist and support display in OVR cameras.
+    void OnGUI()
+    {
+        if ( Hand == SixenseHands.UNKNOWN )
+        {
+            return;
+        }
+        
+        if ( SixenseInput.IsBaseConnected (0) && !m_enabled )
+        {
+            string handStr = Hand == SixenseHands.LEFT ? "left" : "right";
+
+            if (HMDPresent && StorageManager.data.optionControlsEnableRift == true) {
+                string instructions = "To enable a Hydra controller, point it at base, pull trigger,\n\r";
+                instructions += "place on respective shoulder and press START\n\r";
+                DisplayStereoMessage (instructions, "center", "Sixense-center");
+                DisplayStereoMessage ("Press " + handStr + " START\n\rto control " + gameObject.name, handStr, "Sixense-" + handStr);
+            } else {
+                int labelWidth = 250;
+                int labelPadding = 120;
+                int horizOffset = Hand == SixenseHands.LEFT ? -labelWidth - labelPadding  : labelPadding;
+                
+                GUI.Box( new Rect( Screen.width / 2 + horizOffset, Screen.height - 40, labelWidth, 30 ),  "Press " + handStr + " START to control " + gameObject.name );
+            }
+        }       
+    }
 	
 	
 	protected void UpdateActionInput( SixenseInput.Controller controller) {
@@ -142,5 +179,25 @@ public class SixenseHandExtendController : SixenseHandController {
 	
 	public bool IsHoldingObject() {
 		return isHoldingObject;
-	}
+    }
+    
+    protected void DisplayStereoMessage (string text, string pos, string name) {
+        Transform existingDebuggerMessage = stereoDialog.transform.Find (name);
+        if (!existingDebuggerMessage) {
+            float x = 0;
+            float y = 0;
+            if (pos == "left") {
+                x = -550;
+                y = -750;
+            } else if (pos == "right") {
+                x = 160;
+                y = -750;
+            } else {
+                x = -550;
+                y = 0;
+            }
+            if (stereoDialog)
+                stereoDialog.Create (x, y, text, Color.black, TextAlignment.Left, 48, FontStyle.Normal, name, 1);
+        }
+    }
 }

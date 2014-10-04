@@ -225,7 +225,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58874ab429e66b24285fa79ab950518c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b925cd940abd534a9562379693822af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   keepDistanceWhenGrabbed: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   breakForce: 0
   breakTorque: 0
   canGrab: 0
+  overrideGrabDistance: 0
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

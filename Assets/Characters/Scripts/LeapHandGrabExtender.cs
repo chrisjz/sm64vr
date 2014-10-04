@@ -1,6 +1,6 @@
-﻿/************************************************************************************
+/************************************************************************************
 
-Filename    :   LeapHandGrabExtend.cs
+Filename    :   LeapHandGrabExtender.cs
 Content     :   Extend Leap Grab script
 Created     :   25 August 2014
 Authors     :   Chris Julian Zaharia
@@ -13,7 +13,7 @@ using System.Collections;
 using Leap;
 
 // This script currently replicates almost the entire GrabHand class due to limited access to methods and variables in the original script.
-public class LeapHandGrabExtend : MonoBehaviour {
+public class LeapHandGrabExtender : MonoBehaviour {
     
     private const float TRIGGER_DISTANCE_RATIO = 0.7f;
     
@@ -42,7 +42,7 @@ public class LeapHandGrabExtend : MonoBehaviour {
 
     // Expands on origin method by ignoring physical hand colliders when detecting what object to grab
     private void OnPinch(Vector3 pinch_position) {
-        LeapHandExtendController handController = GameObject.FindObjectOfType<LeapHandExtendController> ();
+        LeapHandControllerExtender handController = GameObject.FindObjectOfType<LeapHandControllerExtender> ();
         pinching_ = true;
         
         // Check if we pinched a movable object and grab the closest one that's not part of the hand.
@@ -55,7 +55,7 @@ public class LeapHandGrabExtend : MonoBehaviour {
         for (int j = 0; j < close_things.Length; ++j) {
             Vector3 new_distance = pinch_position - close_things[j].transform.position;
 
-            LeapGrabbableExtend grabbableExtend = close_things[j].GetComponent<LeapGrabbableExtend>();
+            LeapGrabbableExtender grabbableExtend = close_things[j].GetComponent<LeapGrabbableExtender>();
             
             if (grabbableExtend) {
                 if (!grabbableExtend.canGrab)
