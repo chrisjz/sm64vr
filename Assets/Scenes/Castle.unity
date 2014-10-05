@@ -535,7 +535,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400018, guid: a7f43162a559c6849b88e31095205ded, type: 2}
       propertyPath: type
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400018, guid: a7f43162a559c6849b88e31095205ded, type: 2}
+      propertyPath: nextSceneName
+      value: Title
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7f43162a559c6849b88e31095205ded, type: 2}
@@ -8524,7 +8528,7 @@ MonoBehaviour:
   id: 0
   sceneAudioClip: {fileID: 0}
   menuSceneDescriptionText: Castle
-  exitSceneName: 
+  exitSceneName: Title
   coins: 0
   redCoins: 0
 --- !u!1 &804287506
@@ -14283,9 +14287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730efd6d4058dd24598098ea1bb83a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   action: 0
-  nextSceneName: Castle
+  nextSceneName: Title
   currentPanelObject: {fileID: 0}
   nextPanelObject: {fileID: 0}
 --- !u!114 &1338000797

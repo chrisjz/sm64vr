@@ -142,7 +142,12 @@ public class Title : MonoBehaviour {
 
     // Prefill's coin score for each world
     protected void PrefillScore () {
-        int[] coins = StorageManager.data.coins;
+        int[] coins = new int[14];
+        if (StorageManager.data.coins != null)
+            coins = StorageManager.data.coins;
+        else
+            StorageManager.data.coins = new int[14];
+
         GameObject panelScore = GameObject.Find ("Panel - Score");
 
         for (int key = 0; key < coins.Length; ++key) {

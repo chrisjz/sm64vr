@@ -57,7 +57,11 @@ public class SceneManager : MonoBehaviour {
     }
 
     public void SaveScore () {
-        int[] scoreCoins = StorageManager.data.coins;
+        int[] scoreCoins = new int[14];
+        if (StorageManager.data.coins != null)
+            scoreCoins = StorageManager.data.coins;
+        else
+            StorageManager.data.coins = new int[14];
 
         if (id < scoreCoins.Length && coins > scoreCoins[id]) {
             StorageManager.data.coins[id] = coins;
