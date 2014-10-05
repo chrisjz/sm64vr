@@ -1,4 +1,14 @@
-﻿// Credit: titegtnodI @ Unity3D Answers
+﻿/************************************************************************************
+
+Filename    :   PushRigidbody.cs
+Content     :   
+Created     :   7 June 2014
+Authors     :   titegtnodI
+Source      :   Unity3D Answers
+
+************************************************************************************/
+
+// Credit: titegtnodI @ Unity3D Answers
 
 using UnityEngine;
 using System.Collections;

@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   HydraLook.cs
+Content     :   Player looking around using Razer Hydra
+Created     :   18 May 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class HydraLook : PlayerLook {

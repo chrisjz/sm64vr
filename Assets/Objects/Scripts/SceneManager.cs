@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   SceneManager.cs
+Content     :   Manage current scene specific identifiers and cross scene functions
+Created     :   16 August 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class SceneManager : MonoBehaviour {

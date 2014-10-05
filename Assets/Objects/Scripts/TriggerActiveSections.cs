@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   TriggerActiveSections.cs
+Content     :   Handle render visibility and audio for sections of a scene based on triggers
+Created     :   4 May 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class TriggerActiveSections : MonoBehaviour {

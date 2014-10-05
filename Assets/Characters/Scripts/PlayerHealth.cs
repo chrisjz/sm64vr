@@ -1,4 +1,13 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   PlayerHealth.cs
+Content     :   Handle health of player
+Created     :   1 June 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour {

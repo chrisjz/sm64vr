@@ -1,9 +1,18 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   KnockbackPlayer.cs
+Content     :   Object which knocks back and damages player
+Created     :   7 June 2014
+Authors     :   Chris Julian Zaharia
+
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
 
 public class KnockbackPlayer : MonoBehaviour {
 	public int playerDamage = 1;			// Amount of damage player receives when hit by enemy
-	public float knockbackVelocity = 30;	// Distance of how much a victim is knocked back on collission with enemy
+	public float knockbackVelocity = 30;	// Distance of how much a victim is knocked back on collision with enemy
 
 	protected GameObject player;
 	protected PlayerHealth playerHealth;

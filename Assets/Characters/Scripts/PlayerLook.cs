@@ -1,10 +1,17 @@
-﻿using UnityEngine;
+﻿/************************************************************************************
+
+Filename    :   PlayerLook.cs
+Content     :   PlayerLook rotates the transform based on the input device's delta.
+Created     :   18 May 2014
+Authors     :   Chris Julian Zaharia
+
+Minimum and Maximum values can be used to constrain the possible rotation.
+
+Based on Unity's MouseLook script.
+************************************************************************************/
+
+using UnityEngine;
 using System.Collections;
-
-/// PlayerLook rotates the transform based on the input device's delta.
-/// Minimum and Maximum values can be used to constrain the possible rotation.
-
-/// Based on Unity's MouseLook script.
 
 [AddComponentMenu("Camera-Control/Player Look")]
 public class PlayerLook : MonoBehaviour {
