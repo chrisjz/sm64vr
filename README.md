@@ -66,10 +66,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ## To do
 
-### v0.1
-
-* KB starts shifting around randomly instead of following player sometimes. Seems to occur at least after he throws player.
-
 ### v0.2
 
 * Co-op Multiplayer via LAN or online.
@@ -109,7 +105,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### Bob-omb Battlefield
 
-* Red coins: increment red coin counter when collected, and play increasingly louder sound.
 * Enemies release coins on first spawn.
 * Increase frequency of boulders coming down the mountain.
 * Breaking certain small and big blocks releases coins.
@@ -131,11 +126,13 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### King Bob-omb
 
+* When dropping KB, sometimes he rotates incorrectly when grounded.
+* Letting KB go gently at ground sometimes causes him to freeze without registering damage to KB.
 * When KB throws Mario with Mario at an angle, Mario's viewpoint is still at an angle.
 * Grabbing KB using Leap whilst being thrown causes KB to float away waving.
 * KB doesn't return to spawn point if player throws KB and then player leaves the battleground perimeter.
 * Level is completed when player grabs star with Leap hands, instead of only when colliding with it with hands.
-* Player drops boss if he falls off ledge.
+* Player should drop boss if he falls off ledge.
 * Better movement of star to its final position.
 
 ### Menus

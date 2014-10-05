@@ -176,6 +176,8 @@ public class BossController : MonoBehaviour {
 			if (fracJourney >= 1f) {
 				isGrabbingPlayer = false;
 				isThrowingPlayer = false;
+                followSpeed = defaultSpeed;
+                rigidbody.constraints = RigidbodyConstraints.None;
 				animation.Play ("Walk");
 			}
 		}
@@ -356,7 +358,9 @@ public class BossController : MonoBehaviour {
 	// Boss grabs player
 	protected IEnumerator GrabPlayer () {
 		animation.Play (grabAnimationName);
-		isGrabbingPlayer = true;
+		isGrabbingPlayer = true;        
+        followSpeed = 0;
+        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 		yield return new WaitForSeconds(animation.clip.length);
 		ThrowPlayer ();
 	}
