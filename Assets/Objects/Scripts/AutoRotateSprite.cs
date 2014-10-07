@@ -13,9 +13,9 @@ using System.Collections;
 public class AutoRotateSprite : MonoBehaviour {
 	private GameObject player;
 
-	void Awake () {
-		player = GameObject.FindWithTag("Player");
-	}
+    void Start () {
+        player = GameObject.FindWithTag("Player");
+    }
 
 	// Rotate object to always face same direction as player.
 	void Update () {
