@@ -121,7 +121,7 @@ public class Debugger : MonoBehaviour {
             Destroy(existingDebuggerMessage.gameObject);
         }
         if (stereoDialog)
-            stereoDialog.Create (-550, -700, text, Color.black, TextAlignment.Left, 48, FontStyle.Normal, "Debugger", 5);
+            stereoDialog.Create (-450, -650, text, Color.black, TextAlignment.Left, 48, FontStyle.Normal, "Debugger", 5);
         Debug.Log (text);
     }
 }

@@ -5658,6 +5658,7 @@ GameObject:
   - 23: {fileID: 552250566}
   - 54: {fileID: 552250570}
   - 138: {fileID: 552250569}
+  - 114: {fileID: 552250571}
   m_Layer: 0
   m_Name: Knob
   m_TagString: Grabbable
@@ -5741,6 +5742,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &552250571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 552250564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b925cd940abd534a9562379693822af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keepDistanceWhenGrabbed: 0
+  preferredOrientation: 0
+  objectOrientation: {x: 0, y: 0, z: 0}
+  palmOrientation: {x: 0, y: 0, z: 0}
+  ignoreOnGrab: []
+  breakableJoint: {fileID: 0}
+  breakForce: 0
+  breakTorque: 0
+  canGrab: 1
+  overrideGrabDistance: 2
 --- !u!1 &576031808
 GameObject:
   m_ObjectHideFlags: 0

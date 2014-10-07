@@ -65,7 +65,8 @@ public class SixenseHandControllerExtender : SixenseHandController {
             string handStr = Hand == SixenseHands.LEFT ? "left" : "right";
 
             if (HMDPresent && StorageManager.data.optionControlsEnableRift == true) {
-                string instructions = "To enable a Hydra controller, point it at base, pull trigger,\n\r";
+                string instructions = "To enable a Hydra controller:\n\r";
+                instructions += "Point it at base, pull trigger,\n\r";
                 instructions += "place on respective shoulder and press START\n\r";
                 DisplayStereoMessage (instructions, "center", "Sixense-center");
                 DisplayStereoMessage ("Press " + handStr + " START\n\rto control " + gameObject.name, handStr, "Sixense-" + handStr);
@@ -187,13 +188,13 @@ public class SixenseHandControllerExtender : SixenseHandController {
             float x = 0;
             float y = 0;
             if (pos == "left") {
-                x = -550;
+                x = -450;
                 y = -750;
             } else if (pos == "right") {
-                x = 160;
+                x = 100;
                 y = -750;
             } else {
-                x = -550;
+                x = -450;
                 y = 0;
             }
             if (stereoDialog)
