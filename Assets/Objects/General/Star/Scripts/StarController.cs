@@ -20,11 +20,13 @@ public class StarController : MonoBehaviour {
     protected GameObject worldTheme;
     protected string defaultTag;
     protected bool starMovingToFinalPoint;
+    protected bool canGrabStar;
     protected bool grabbedStar;
 
     protected virtual void Awake () {
         worldTheme = GameObject.Find ("Theme");
         starMovingToFinalPoint = false;
+        canGrabStar = false;
         grabbedStar = false;
         defaultTag = tag;
         tag = "Untagged";
@@ -38,9 +40,10 @@ public class StarController : MonoBehaviour {
     }
     
     protected void OnCollisionEnter(Collision col) {
-        if (col.gameObject.name == "RightHandCollider" ||
+        if (canGrabStar &&
+            (col.gameObject.name == "RightHandCollider" ||
             col.gameObject.name == "LeftHandCollider" ||
-            col.gameObject.GetComponentInParent<RigidHand>()) {
+            col.gameObject.GetComponentInParent<RigidHand>())) {
             if (!grabbedStar) {
                 StartCoroutine(GrabStar ());
             }
@@ -49,6 +52,7 @@ public class StarController : MonoBehaviour {
     }
 
     public void Spawn () {
+        rigidbody.detectCollisions = false;
         StartCoroutine(PlaySpawnAudio ());
         StartCoroutine (MoveToFinalPoint ());
     }
@@ -76,7 +80,9 @@ public class StarController : MonoBehaviour {
         SceneManager sceneManager = (SceneManager) FindObjectOfType(typeof(SceneManager));
         worldTheme.audio.clip = sceneManager.sceneAudioClip;
         worldTheme.audio.Play ();
+        rigidbody.detectCollisions = true;
         tag = defaultTag;
+        canGrabStar = true;
     }
 
     protected IEnumerator MoveToFinalPoint() {

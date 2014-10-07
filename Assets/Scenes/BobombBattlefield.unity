@@ -45664,7 +45664,7 @@ MonoBehaviour:
   invertRightHand: 1
   disableRigidbodyWhenHeld: 0
   additionalThrowForce: 0
-  positionModifier: {x: -.5, y: -1, z: -1}
+  positionModifier: {x: 0, y: -1.29999995, z: 1}
   rotationModifier: {x: 90, y: 0, z: 0}
   invertPositionModifier: {x: 0, y: 0, z: 0}
   invertRotationModifier: {x: -180, y: 180, z: 0}

@@ -66,6 +66,7 @@ public class BossController : MonoBehaviour {
     protected bool wasHeldByPlayer;                             // If boss has been held by player before
     protected bool isGrounded;
     protected bool isGrabbingPlayer = false;
+    protected bool canGrabPlayer = false;
     protected bool isThrowingPlayer = false;
     protected bool isStandingBackUp = false;
     protected bool dead;                                        // If enemy is dead
@@ -215,7 +216,8 @@ public class BossController : MonoBehaviour {
 	}
 	
 	protected void OnCollisionEnter(Collision col) {
-		if (col.gameObject.name == terrain.name && !isHeldByPlayer && wasHeldByPlayer && !isGrounded) {
+        if (col.gameObject.name == terrain.name && !isHeldByPlayer && wasHeldByPlayer && !isGrounded) {
+            canGrabPlayer = false;
             if (transform.position.y > minHurtAltitude) {
                 StartCoroutine(Hurt());
             } else {
@@ -227,7 +229,7 @@ public class BossController : MonoBehaviour {
 	
 	protected IEnumerator Hurt () {
         gameObject.tag = "Untagged";
-        rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 		isGrounded = true;
 		health -= 1;
 		if (!audio.isPlaying) {
@@ -236,7 +238,7 @@ public class BossController : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(hurtDuration);
         if (health != 0) {
-            rigidbody.constraints &= ~RigidbodyConstraints.FreezePosition;  // unfreeze position
+            rigidbody.constraints = RigidbodyConstraints.None;
             rigidbody.freezeRotation = false;
             StartCoroutine (SitBackUp (true));
         } else {
@@ -258,6 +260,7 @@ public class BossController : MonoBehaviour {
 
         wasHeldByPlayer = false;
         isGrounded = false;
+        canGrabPlayer = true;
 
         // If boss was just hurt
         if (wasHurt) {
@@ -286,7 +289,8 @@ public class BossController : MonoBehaviour {
             startedBattle = true;
             leapGrabbable.canGrab = true;
             rigidbody.useGravity = true;
-            rigidbody.isKinematic = false;
+            rigidbody.isKinematic = false;            
+            canGrabPlayer = true;
             animation.Play ("Walk");
             agent.enabled = true;
             StartCoroutine (StartFollowingPlayer (3));
@@ -296,6 +300,7 @@ public class BossController : MonoBehaviour {
             leapGrabbable.canGrab = false;
             rigidbody.useGravity = false;
             rigidbody.isKinematic = true;
+            canGrabPlayer = false;
             agent.enabled = false;
             movement = Movement.Idle;
             transform.position = spawnPosition;
@@ -338,13 +343,11 @@ public class BossController : MonoBehaviour {
 	protected void IsPlayerInGrabPermimeter () {
 		float dist = Vector3.Distance(player.transform.position, grabPerimeter.transform.position);
 
-		if (dist < minDistanceGrabPermimeter) {
-			if (!isGrabbingPlayer) {
-				StartCoroutine(GrabPlayer ());
-			}
-			Vector3 offset = new Vector3 (-5.0f, 3f, 0f);
-			player.transform.position = transform.position + offset;
-			player.transform.forward = transform.forward;
+        if (dist < minDistanceGrabPermimeter && !isGrabbingPlayer && canGrabPlayer) {
+            StartCoroutine(GrabPlayer ());
+            Vector3 offset = new Vector3 (-5.0f, 3f, 0f);
+            player.transform.position = transform.position + offset;
+            player.transform.forward = transform.forward;
 		}
 	}
 

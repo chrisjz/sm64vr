@@ -126,12 +126,11 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### King Bob-omb
 
-* When dropping KB, sometimes he rotates incorrectly when grounded.
-* Letting KB go gently at ground sometimes causes him to freeze without registering damage to KB.
-* When KB throws Mario with Mario at an angle, Mario's viewpoint is still at an angle.
+* Letting KB go gently at ground sometimes causes him to freeze without registering damage to KB. This is due to the collision occuring before player lets go of KB.
 * Grabbing KB using Leap whilst being thrown causes KB to float away waving.
 * KB doesn't return to spawn point if player throws KB and then player leaves the battleground perimeter.
 * Level is completed when player grabs star with Leap hands, instead of only when colliding with it with hands.
+* Player can grab KB too soon after he recovers from damage.
 * Player should drop boss if he falls off ledge.
 * Better movement of star to its final position.
 
