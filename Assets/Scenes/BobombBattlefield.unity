@@ -22295,7 +22295,6 @@ GameObject:
   - 114: {fileID: 750542936}
   - 114: {fileID: 750542935}
   - 114: {fileID: 750542934}
-  - 114: {fileID: 750542933}
   m_Layer: 9
   m_Name: Checkbox - Enable Rift
   m_TagString: Untagged
@@ -22317,23 +22316,6 @@ Transform:
   - {fileID: 756555523}
   m_Father: {fileID: 1592889343}
   m_RootOrder: 1
---- !u!114 &750542933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400156, guid: a7f43162a559c6849b88e31095205ded,
-    type: 2}
-  m_PrefabInternal: {fileID: 2021208732}
-  m_GameObject: {fileID: 750542931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730efd6d4058dd24598098ea1bb83a9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  action: 0
-  nextSceneName: 
-  currentPanelObject: {fileID: 0}
-  nextPanelObject: {fileID: 0}
 --- !u!114 &750542934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59236,7 +59218,8 @@ Prefab:
       propertyPath: onChange.Array.data[0].mTarget
       value: 
       objectReference: {fileID: 1484378781}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400156, guid: a7f43162a559c6849b88e31095205ded, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a7f43162a559c6849b88e31095205ded, type: 2}
   m_RootGameObject: {fileID: 2102967807}
   m_IsPrefabParent: 0
