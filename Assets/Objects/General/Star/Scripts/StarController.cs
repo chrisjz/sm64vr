@@ -41,7 +41,8 @@ public class StarController : MonoBehaviour {
     
     protected void OnCollisionEnter(Collision col) {
         if (canGrabStar &&
-            (col.gameObject.name == "RightHandCollider" ||
+            (col.transform.root.gameObject.tag == "Player" ||
+            col.gameObject.name == "RightHandCollider" ||
             col.gameObject.name == "LeftHandCollider" ||
             col.gameObject.GetComponentInParent<RigidHand>())) {
             if (!grabbedStar) {
