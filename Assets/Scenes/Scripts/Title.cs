@@ -18,6 +18,7 @@ public class Title : MonoBehaviour {
 
     public GameObject menu;
     public GameObject initialMenuPanel;
+    public GameObject scoreMenuPanel;
     public GameObject titleActionText;
     public float titleActionFlickerSpeed = 1;
 
@@ -148,10 +149,8 @@ public class Title : MonoBehaviour {
         else
             StorageManager.data.coins = new int[14];
 
-        GameObject panelScore = GameObject.Find ("Panel - Score");
-
         for (int key = 0; key < coins.Length; ++key) {
-            Transform level = panelScore.transform.Find((key + 1) + "/Label - Coins");
+            Transform level = scoreMenuPanel.transform.Find((key + 1) + "/Label - Coins");
             if (level)
                 level.GetComponent<UILabel> ().text = coins[key].ToString ();
         }

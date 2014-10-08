@@ -7080,6 +7080,7 @@ MonoBehaviour:
   detectOvr: 1
   menu: {fileID: 625370094}
   initialMenuPanel: {fileID: 718317779}
+  scoreMenuPanel: {fileID: 1411494713}
   titleActionText: {fileID: 409046353}
   titleActionFlickerSpeed: 1
 --- !u!4 &1476582088
