@@ -30,6 +30,7 @@
 
 		ul
 		{
+			padding: 0 10px;
 		}
 
 			ul.icons
@@ -61,12 +62,23 @@
 
 		#main section.cover
 		{
-			padding: 13em 0em;
+			padding: 7em 0em;
 		}
 		
 			#main section.cover header
 			{
 				padding: 0 1em;
+			}
+
+		#main > section.one
+		{
+			min-height: 0px;
+			max-height: 300px;
+		}
+
+			#main > section.one > div.container > header > p
+			{
+				display: none;
 			}
 			
 /*********************************************************************************/

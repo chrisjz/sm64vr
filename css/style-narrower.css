@@ -38,6 +38,7 @@
 
 		ul
 		{
+			padding: 0 10px;
 		}
 
 			ul.icons
@@ -84,6 +85,11 @@
 	{
 		margin: 1.5em 1.25em 1.25em 1.25em;
 	}
+
+		#logo > h1
+		{
+			font-size: 16px;
+		}
 
 	#nav
 	{
