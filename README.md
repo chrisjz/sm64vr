@@ -2,6 +2,12 @@
 
 Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
+## Download
+
+You can download the latest release executable here:
+
+[Windows](http://assets.zookal.com/downloads/sm64vr/sm64vr.zip)
+
 ## Supported Devices
 
 * __Oculus Rift DK1__
@@ -151,6 +157,18 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * Minigames in World 1, such as throwing shells at goombas with timer.
 * Luigi as a second player.
 * Enhanced Multiplayer via LAN or online.
+
+## Contributing
+
+Please don't hesitate to send pull requests or suggest issues.
+
+Note that managing changes to scenes can be tricky from a merging point of view, so please coordinate with me if you wish to do so.
+
+## Licence
+
+The MIT License (MIT).
+
+See LICENSE file for more details.
 
 ## Credits
 
