@@ -70,7 +70,19 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * __Lean Right__ - Right
 * __Poke Head Upward__ - Jump
 
+## Release Notes
+
+### 0.1
+
+- Initial release.
+
 ## To do
+
+### v0.1.x
+
+- Mario scaling issue with doorways i.e. Mario can't enter through doors easily.
+- Shortcut key to recenter camera for Rift. Shortcut can be Control + R.
+- Leap: Hand controller doesn't track with the head as it moves around in the Rift.
 
 ### v0.2
 
@@ -143,6 +155,9 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 ### Menus
 
 * Display stats on stars collected in level or world.
+* Use Leap to navigate through menu.
+* Use Sixense to navigate through menu.
+* Use MYO to navigate through menu.
 * Add title scene menu music from original game.
 
 ### Miscellaneous
@@ -157,6 +172,10 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 * Minigames in World 1, such as throwing shells at goombas with timer.
 * Luigi as a second player.
 * Enhanced Multiplayer via LAN or online.
+
+### Devices
+
+* MYO Integration.
 
 ## Contributing
 
