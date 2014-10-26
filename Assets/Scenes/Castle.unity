@@ -6457,7 +6457,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1948851489}
   m_GameObject: {fileID: 759122321}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e933e81d3c20c74ea6fdc708a67e3a5, type: 3}
   m_Name: 
@@ -6478,7 +6478,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1948851489}
   m_GameObject: {fileID: 759122321}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
   m_Name: 
@@ -8460,6 +8460,7 @@ GameObject:
   - 4: {fileID: 759122322}
   - 114: {fileID: 612664750}
   - 114: {fileID: 612664749}
+  - 114: {fileID: 759122323}
   m_Layer: 0
   m_Name: OVRCameraRig
   m_TagString: Untagged
@@ -8487,6 +8488,25 @@ Transform:
   - {fileID: 1724443429}
   m_Father: {fileID: 2002403177}
   m_RootOrder: 3
+--- !u!114 &759122323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400040, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 1948851489}
+  m_GameObject: {fileID: 759122321}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d66ece378986145aef55a231e21b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 0
+  sensitivityX: 5
+  sensitivityY: 15
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!81 &759122325
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8567,6 +8587,8 @@ GameObject:
   - 20: {fileID: 789152225}
   - 124: {fileID: 789152224}
   - 92: {fileID: 789152223}
+  - 114: {fileID: 789152226}
+  - 114: {fileID: 789152222}
   m_Layer: 0
   m_Name: MonoEyeAnchor
   m_TagString: MainCamera
@@ -8581,11 +8603,30 @@ Transform:
   m_PrefabInternal: {fileID: 1948851489}
   m_GameObject: {fileID: 789152220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0117633324, y: .0120840073, z: -.133011371}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 759122322}
   m_RootOrder: 4
+--- !u!114 &789152222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 1948851489}
+  m_GameObject: {fileID: 789152220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149bf455adc3bd54f8d6345034b9a2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 2
+  sensitivityX: 5
+  sensitivityY: 5
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!92 &789152223
 Behaviour:
   m_ObjectHideFlags: 0
@@ -8635,6 +8676,25 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!114 &789152226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400038, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 1948851489}
+  m_GameObject: {fileID: 789152220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d66ece378986145aef55a231e21b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 2
+  sensitivityX: 5
+  sensitivityY: 15
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!1 &793575577
 GameObject:
   m_ObjectHideFlags: 0
@@ -15064,6 +15124,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1388150977}
   - 81: {fileID: 759122325}
+  - 114: {fileID: 1388150979}
+  - 114: {fileID: 1388150978}
   m_Layer: 0
   m_Name: CenterEyeAnchor
   m_TagString: Untagged
@@ -15084,6 +15146,44 @@ Transform:
   - {fileID: 807787627}
   m_Father: {fileID: 759122322}
   m_RootOrder: 6
+--- !u!114 &1388150978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400010, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 1948851489}
+  m_GameObject: {fileID: 1388150976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149bf455adc3bd54f8d6345034b9a2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 2
+  sensitivityX: 5
+  sensitivityY: 5
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
+--- !u!114 &1388150979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400036, guid: 29432e9eec65f33409c3f8e9d9dc5044,
+    type: 2}
+  m_PrefabInternal: {fileID: 1948851489}
+  m_GameObject: {fileID: 1388150976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d66ece378986145aef55a231e21b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 2
+  sensitivityX: 5
+  sensitivityY: 15
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!20 &1388150981
 Camera:
   m_ObjectHideFlags: 0
@@ -21536,7 +21636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
-  sensitivityX: 5
+  sensitivityX: 3
   sensitivityY: 15
   minimumX: -360
   maximumX: 360
@@ -21732,7 +21832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
-  sensitivityX: 5
+  sensitivityX: 3
   sensitivityY: 15
   minimumX: -360
   maximumX: 360

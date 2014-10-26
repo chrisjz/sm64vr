@@ -24,6 +24,9 @@ public class SixenseHandControllerExtender : SixenseHandController {
     protected Vector3               handPreviousDirection;
     protected StereoDialog          stereoDialog;
 
+    protected OVRCameraRig ovrCameraRig;
+    protected MouseLook[] mouseLookObjects;
+
     private bool                    HMDPresent = false;
 	
 	protected override void Start() 
@@ -36,17 +39,24 @@ public class SixenseHandControllerExtender : SixenseHandController {
 
         // check if HMD is on
         HMDPresent = OVRManager.display.isPresent;
+
+        // find all objects with mouse look script
+        ovrCameraRig = transform.root.GetComponentInChildren<OVRCameraRig> ();
+        mouseLookObjects = ovrCameraRig.GetComponentsInChildren<MouseLook> ();
 		
 		base.Start();
 	}
 	
 	protected override void UpdateObject( SixenseInput.Controller controller )
 	{		
-		if ( controller.Enabled )  
-		{		
-			// Action update
-			UpdateActionInput ( controller );
-		}
+		if (controller.Enabled) {		
+            // Action update
+            UpdateActionInput (controller);
+
+            TriggerMouseLook (false);
+        } else {
+            TriggerMouseLook (true);
+        }
 		
 		base.UpdateObject(controller);
     }
@@ -199,6 +209,13 @@ public class SixenseHandControllerExtender : SixenseHandController {
             }
             if (stereoDialog)
                 stereoDialog.Create (x, y, text, Color.black, TextAlignment.Left, 48, FontStyle.Normal, name, 1);
+        }
+    }
+
+    protected void TriggerMouseLook (bool state) {
+        foreach (MouseLook obj in mouseLookObjects) {
+            if (obj.enabled != state)
+                obj.enabled = state;
         }
     }
 }
