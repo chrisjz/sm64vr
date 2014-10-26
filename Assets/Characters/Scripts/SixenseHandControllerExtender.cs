@@ -26,6 +26,7 @@ public class SixenseHandControllerExtender : SixenseHandController {
 
     protected OVRCameraRig ovrCameraRig;
     protected MouseLook[] mouseLookObjects;
+    protected HydraLook[] hydraLookObjects;
 
     private bool                    HMDPresent = false;
 	
@@ -43,6 +44,7 @@ public class SixenseHandControllerExtender : SixenseHandController {
         // find all objects with mouse look script
         ovrCameraRig = transform.root.GetComponentInChildren<OVRCameraRig> ();
         mouseLookObjects = ovrCameraRig.GetComponentsInChildren<MouseLook> ();
+        hydraLookObjects = ovrCameraRig.GetComponentsInChildren<HydraLook> ();
 		
 		base.Start();
 	}
@@ -52,10 +54,12 @@ public class SixenseHandControllerExtender : SixenseHandController {
 		if (controller.Enabled) {		
             // Action update
             UpdateActionInput (controller);
-
+            
             TriggerMouseLook (false);
+            TriggerHydraLook (true);
         } else {
             TriggerMouseLook (true);
+            TriggerHydraLook (false);
         }
 		
 		base.UpdateObject(controller);
@@ -211,9 +215,16 @@ public class SixenseHandControllerExtender : SixenseHandController {
                 stereoDialog.Create (x, y, text, Color.black, TextAlignment.Left, 48, FontStyle.Normal, name, 1);
         }
     }
-
+    
     protected void TriggerMouseLook (bool state) {
         foreach (MouseLook obj in mouseLookObjects) {
+            if (obj.enabled != state)
+                obj.enabled = state;
+        }
+    }
+    
+    protected void TriggerHydraLook (bool state) {
+        foreach (HydraLook obj in hydraLookObjects) {
             if (obj.enabled != state)
                 obj.enabled = state;
         }
