@@ -53907,7 +53907,7 @@ Transform:
   m_PrefabInternal: {fileID: 1912298565}
   m_GameObject: {fileID: 1833210254}
   m_LocalRotation: {x: 0, y: .923879564, z: 0, w: -.382683396}
-  m_LocalPosition: {x: 7.62618494, y: -2.12408781, z: -16.8687649}
+  m_LocalPosition: {x: 7.62618494, y: -2.17675495, z: -16.8687649}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1351335181}
@@ -54047,7 +54047,7 @@ CharacterController:
   m_PrefabInternal: {fileID: 1912298565}
   m_GameObject: {fileID: 1833210254}
   serializedVersion: 2
-  m_Height: 2.4000001
+  m_Height: 2.20000005
   m_Radius: .5
   m_SlopeLimit: 75
   m_StepOffset: 1
@@ -55918,7 +55918,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400124, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.12408781
+      value: -2.17675495
       objectReference: {fileID: 0}
     - target: {fileID: 400124, guid: 29432e9eec65f33409c3f8e9d9dc5044, type: 2}
       propertyPath: m_LocalPosition.z

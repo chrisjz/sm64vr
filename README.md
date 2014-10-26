@@ -76,6 +76,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 - Significant performance improvements, particularly on reducing stutter.
 - Look up/down via mouse or hydra when Rift isn't present.
+- Decrease Mario's collider height to smoothly walk under doorways.
 
 ### 0.1
 
@@ -85,7 +86,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### v0.1.x
 
-- Mario scaling issue with doorways i.e. Mario can't enter through doors easily.
 - Shortcut key to recenter camera for Rift. Shortcut can be Control + R.
 - Leap: Hand controller doesn't track with the head as it moves around in the Rift.
 
@@ -97,7 +97,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 * Screen fades out when Mario loses life.
 * Improve Mario's left hand model stretching when using Sixense tracking.
-* Look script uses both X and Y axis while also rotating Mario's head
 * Mario has arms when using leap motion.
 * Better skeletal movement of arms when using hand tracking.
 * Player can swim
