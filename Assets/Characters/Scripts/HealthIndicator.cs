@@ -29,7 +29,7 @@ public class HealthIndicator : MonoBehaviour {
 	}
 
     protected void Start () {    
-        HMDPresent = OVRDevice.IsHMDPresent();
+        HMDPresent = OVRManager.display.isPresent;
 
         SetPosition ();
     }

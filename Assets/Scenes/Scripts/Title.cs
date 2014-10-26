@@ -13,7 +13,7 @@ using System.Collections;
 public class Title : MonoBehaviour {
     
     public enum OvrCameras { Left, Right }
-    public OvrCameras mainOvrCamera = OvrCameras.Right;                 // OVR Camera where movement is oriented towards, should have audio listener too
+    public OvrCameras mainOvrCamera = OvrCameras.Right;                 // OVR Camera where movement is oriented towards
     public bool detectOvr = true;                                       // Detects if player is using Oculus Rift
 
     public GameObject menu;
@@ -35,10 +35,13 @@ public class Title : MonoBehaviour {
     protected float transitionRotationSpeed;
     protected bool transitionMenu;                                      
     
+    protected GameObject objectLogo;
     protected GameObject objectMarioHead;
     protected GameObject objectRift;
 
     protected GameObject cameraController;
+    protected OVRCameraRig ovrCameraRig;
+    protected OVRManager ovrManager;
     protected GameObject ovrCameraLeft;
     protected GameObject ovrCameraRight;
     protected GameObject generalCamera;                                 // Camera for monoscopic view
@@ -47,14 +50,19 @@ public class Title : MonoBehaviour {
 
     protected void Awake () {
         // Objects
+        objectLogo = GameObject.Find ("Logo");
         objectMarioHead = GameObject.Find ("Mario Head");
         objectRift = GameObject.Find ("Rift");
+        
+        // Camera rig
+        cameraController = GameObject.Find ("CameraController").gameObject;
+        ovrCameraRig = cameraController.GetComponentInChildren<OVRCameraRig> ();
+        ovrManager = cameraController.GetComponentInChildren<OVRManager> ();
 
         // Cameras
-        cameraController = GameObject.Find ("CameraController").gameObject;
-        ovrCameraLeft = GameObject.Find("OVRCameraController/CameraLeft").gameObject;
-        ovrCameraRight = GameObject.Find("OVRCameraController/CameraRight").gameObject;
-        generalCamera = GameObject.Find("OVRCameraController/Camera").gameObject;
+        ovrCameraLeft = GameObject.Find("OVRCameraRig/LeftEyeAnchor").gameObject;
+        ovrCameraRight = GameObject.Find("OVRCameraRig/RightEyeAnchor").gameObject;
+        generalCamera = GameObject.Find("OVRCameraRig/MonoEyeAnchor").gameObject;
 
         // Transition to Mario's viewpoint        
         startMarkerTransitionCamera = new GameObject();
@@ -76,7 +84,7 @@ public class Title : MonoBehaviour {
         transitionMenu = false;
 	}
 	
-    protected void Update () {        
+    protected void Update () {
         if (transitionMenu) {
             TransitionToFirstPerson ();
         }
@@ -133,9 +141,6 @@ public class Title : MonoBehaviour {
             dirOvrCamera = ovrCameraRight;
         }
         
-        // Apply the direction to the CharacterMotor
-        HMDPresent = OVRDevice.IsHMDPresent();
-        
         if (detectOvr) {
             DetectOVR();
         }
@@ -177,6 +182,16 @@ public class Title : MonoBehaviour {
         if (fracJourney >= journeyLengthStartTransitionRotation) {
             cameraController.transform.rotation = Quaternion.Lerp (cameraController.transform.rotation, Quaternion.Euler(new Vector3 (0, 180.0f, 0)), transitionRotationSpeed);
         }
+        
+        HMDPresent = OVRManager.display.isPresent;
+
+        if (HMDPresent == false || StorageManager.data.optionControlsEnableRift == false) { 
+            if (fracJourney >= 1f) {
+                objectLogo.SetActive (false);
+            }
+        } else if (fracJourney >= 0.5f) {
+            objectLogo.SetActive (false);
+        }
 
         if (fracJourney >= 1f) {
             menu.SetActive (true);
@@ -185,22 +200,20 @@ public class Title : MonoBehaviour {
     
     // Show OVR Camera only if OVR is being used
     protected void DetectOVR() {
-        HMDPresent = OVRDevice.IsHMDPresent();
+        HMDPresent = OVRManager.display.isPresent;
 
         if (HMDPresent == false || StorageManager.data.optionControlsEnableRift == false) {
             ovrCameraLeft.SetActive(false);
             ovrCameraRight.SetActive(false);
             generalCamera.SetActive(true);
-            
-            generalCamera.GetComponent<AudioListener>().enabled = true;
-            dirOvrCamera.GetComponent<AudioListener>().enabled = false;
+            ovrCameraRig.enabled = false;
+            ovrManager.enabled = false;
         } else {
             ovrCameraLeft.SetActive(true);
             ovrCameraRight.SetActive(true);
             generalCamera.SetActive(false);
-            
-            generalCamera.GetComponent<AudioListener>().enabled = false;
-            dirOvrCamera.GetComponent<AudioListener>().enabled = true;
+            ovrCameraRig.enabled = true;
+            ovrManager.enabled = true;
         }
     }
 }

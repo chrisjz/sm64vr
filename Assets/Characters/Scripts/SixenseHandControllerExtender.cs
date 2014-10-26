@@ -35,7 +35,7 @@ public class SixenseHandControllerExtender : SixenseHandController {
         stereoDialog = GameObject.Find ("StereoDialog").GetComponent<StereoDialog> ();
 
         // check if HMD is on
-        HMDPresent = OVRDevice.IsHMDPresent();
+        HMDPresent = OVRManager.display.isPresent;
 		
 		base.Start();
 	}

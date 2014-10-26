@@ -16,7 +16,7 @@ using System.Collections;
 
 public class FPSInputController : MonoBehaviour {
 	public enum OvrCameras { Left, Right }
-	public OvrCameras mainOvrCamera = OvrCameras.Right;                 // OVR Camera where movement is oriented towards, should have audio listener too
+	public OvrCameras mainOvrCamera = OvrCameras.Right;                 // OVR Camera where movement is oriented towards
     public AudioClip[] initialJumpAudioClips;
     public bool detectOvr = true;                                       // Detects if player is using Oculus Rift
     public Vector3 ovrControlSensitivity = new Vector3(1, 1, 1);        // Multiplier of positiona tracking move/jump actions
@@ -32,11 +32,13 @@ public class FPSInputController : MonoBehaviour {
     protected PlayerHealth playerHealth;
 
 	private CharacterMotor motor;
+    private OVRCameraRig ovrCameraRig;
+    private OVRManager ovrManager;
     private GameObject ovrCameraLeft;
     private GameObject ovrCameraRight;
     private GameObject generalCamera;                                   // Camera for monoscopic view
     private GameObject dirOvrCamera;                                    // Movement oriented using this camera for OVR
-    private GameObject mainCamera;                                      // Camera where movement orientation is done and audio listener enabled
+    private GameObject mainCamera;                                      // Camera where movement orientation is done
     private Vector3 directionVector;
 	private float defaultMaxForwardSpeed;
     private float defaultMaxBackwardsSpeed;
@@ -56,15 +58,19 @@ public class FPSInputController : MonoBehaviour {
 	void  Awake (){
         motor = GetComponent<CharacterMotor>();
         playerHealth = gameObject.GetComponent<PlayerHealth> ();
-        HMDPresent = OVRDevice.IsHMDPresent();
+        HMDPresent = OVRManager.display.isPresent;
         enableMovement = true;
 		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
 		defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
 
+        // Camera rig
+        ovrCameraRig = gameObject.GetComponentInChildren<OVRCameraRig> ();
+        ovrManager = gameObject.GetComponentInChildren<OVRManager> ();
+
         // Cameras
-        ovrCameraLeft = transform.Find("OVRCameraController/CameraLeft").gameObject;
-        ovrCameraRight = transform.Find("OVRCameraController/CameraRight").gameObject;
-        generalCamera = transform.Find("OVRCameraController/Camera").gameObject;
+        ovrCameraLeft = transform.Find("OVRCameraRig/LeftEyeAnchor").gameObject;
+        ovrCameraRight = transform.Find("OVRCameraRig/RightEyeAnchor").gameObject;
+        generalCamera = transform.Find("OVRCameraRig/MonoEyeAnchor").gameObject;
 	}
 
 	void Start() {
@@ -274,16 +280,14 @@ public class FPSInputController : MonoBehaviour {
             ovrCameraLeft.SetActive(false);
             ovrCameraRight.SetActive(false);
             generalCamera.SetActive(true);
-            
-            generalCamera.GetComponent<AudioListener>().enabled = true;
-            dirOvrCamera.GetComponent<AudioListener>().enabled = false;
+            ovrCameraRig.enabled = false;
+            ovrManager.enabled = false;
 		} else {
             ovrCameraLeft.SetActive(true);
             ovrCameraRight.SetActive(true);
             generalCamera.SetActive(false);
-            
-            generalCamera.GetComponent<AudioListener>().enabled = false;
-            dirOvrCamera.GetComponent<AudioListener>().enabled = true;
+            ovrCameraRig.enabled = true;
+            ovrManager.enabled = true;
 		}
 	}
 

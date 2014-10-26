@@ -27,7 +27,7 @@ public class MenuController : MonoBehaviour {
         menu = transform.Find ("Menu").gameObject;
         inputController = transform.GetComponent<FPSInputController> ();
         menu.SetActive (false);        
-        HMDPresent = OVRDevice.IsHMDPresent();
+        HMDPresent = OVRManager.display.isPresent;
 
         SetMenuPosition ();
     }

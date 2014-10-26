@@ -72,6 +72,10 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ## Release Notes
 
+### 0.1.1
+
+- Significant performance improvements, particularly on reducing stutter.
+
 ### 0.1
 
 - Initial release.
@@ -80,6 +84,8 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### v0.1.x
 
+- Mouse: Look up/down when Rift isn't present.
+- Hydra: Slow down rotation with joystick.
 - Mario scaling issue with doorways i.e. Mario can't enter through doors easily.
 - Shortcut key to recenter camera for Rift. Shortcut can be Control + R.
 - Leap: Hand controller doesn't track with the head as it moves around in the Rift.

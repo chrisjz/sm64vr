@@ -31,8 +31,8 @@ public class CoinIndicator : MonoBehaviour {
         
     }
     
-    protected void Start () {    
-        HMDPresent = OVRDevice.IsHMDPresent();
+    protected void Start () {
+        HMDPresent = OVRManager.display.isPresent;
         
         SetPosition ();
     }
