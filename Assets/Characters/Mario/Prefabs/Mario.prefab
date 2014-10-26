@@ -2416,9 +2416,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100154}
-  m_LocalRotation: {x: 3.09086232e-08, y: .707106829, z: .707106829, w: -3.09086232e-08}
-  m_LocalPosition: {x: -.0237059221, y: .264686823, z: 1.93785298}
-  m_LocalScale: {x: 4.99999952, y: 5, z: 4.99999952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 400304}
   m_RootOrder: 0
@@ -2441,7 +2441,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0577017404, y: -.386936188, z: -.279093355}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400154}
@@ -3541,7 +3541,7 @@ MonoBehaviour:
   recorderLoop: 0
   GroundedLocalPosition: {x: -.0240000002, y: -.600000024, z: 1.94000006}
   GroundedLocalRotation: {x: 0, y: 0, z: 0}
-  MountedLocalPosition: {x: -.0240000002, y: .25999999, z: .949999988}
+  MountedLocalPosition: {x: 0, y: 0, z: 0}
   MountedLocalRotation: {x: 270, y: 180, z: 0}
   isOrientationSet: 0
 --- !u!114 &11400018
