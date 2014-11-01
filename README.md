@@ -72,6 +72,11 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ## Release Notes
 
+### 0.1.2
+
+* Decrease arm length and reach with Hydra.
+* Fix distortion of music in each level.
+
 ### 0.1.1
 
 * Significant performance improvements, particularly on reducing stutter.
@@ -94,6 +99,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### Player
 
+* Hydra look sensitivity too high when DX11 enabled, but that is also required to reduce judder with Rift.
 * Screen fades out when Mario loses life.
 * Improve Mario's left hand model stretching when using Sixense tracking.
 * Mario has arms when using leap motion.

@@ -2221,8 +2221,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100124}
-  m_LocalRotation: {x: 0, y: .923879564, z: 0, w: -.382683396}
-  m_LocalPosition: {x: 7.62618494, y: -2.17675495, z: -16.8687649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.00763097405, y: -2.04391551, z: -10.3969517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400120}
@@ -3404,8 +3404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hand: 2
-  Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
-  minGrabDistance: 1
+  Sensitivity: {x: .00300000003, y: .00300000003, z: .00300000003}
+  minGrabDistance: 2
   throwForce: 30
 --- !u!114 &11400002
 MonoBehaviour:
@@ -3450,8 +3450,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hand: 1
-  Sensitivity: {x: .00999999978, y: .00999999978, z: .00999999978}
-  minGrabDistance: 1
+  Sensitivity: {x: .00300000003, y: .00300000003, z: .00300000003}
+  minGrabDistance: 2
   throwForce: 30
 --- !u!114 &11400008
 MonoBehaviour:
@@ -3465,8 +3465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 2
-  sensitivityX: 5
-  sensitivityY: 5
+  sensitivityX: 1
+  sensitivityY: 3
   minimumX: -360
   maximumX: 360
   minimumY: -60
@@ -3483,8 +3483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 2
-  sensitivityX: 5
-  sensitivityY: 5
+  sensitivityX: 1
+  sensitivityY: 3
   minimumX: -360
   maximumX: 360
   minimumY: -60
@@ -3556,8 +3556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
-  sensitivityX: 3
-  sensitivityY: 15
+  sensitivityX: 1
+  sensitivityY: 3
   minimumX: -360
   maximumX: 360
   minimumY: -60
@@ -3581,6 +3581,8 @@ MonoBehaviour:
   ovrControlSensitivity: {x: 5, y: 2, z: 3}
   ovrControlMinimum: {x: .100000001, y: .600000024, z: .100000001}
   ovrXAxisAction: 1
+  ovrHydraLookSensitivityX: 3
+  ovrHydraLookSensitivityY: 5
   enableMovement: 0
   fallDamageHeight: 20
   fallDamageHealth: 2
@@ -3643,7 +3645,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e437ffb7de5844b42b64f89763daf449, type: 3}
   m_Name: 

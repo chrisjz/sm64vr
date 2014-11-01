@@ -23,6 +23,8 @@ public class FPSInputController : MonoBehaviour {
     public Vector3 ovrControlMinimum = new Vector3(0, 0, 0);            // Min distance of head from centre to move/jump
     public enum OvrXAxisAction { Strafe = 0, Rotate = 1 }
     public OvrXAxisAction ovrXAxisAction = OvrXAxisAction.Rotate;       // Whether x axis positional tracking performs straffing or rotation
+    public float ovrHydraLookSensitivityX = 0;
+    public float ovrHydraLookSensitivityY = 0;
     public bool enableMovement;
 
     // Fall damage
@@ -53,6 +55,8 @@ public class FPSInputController : MonoBehaviour {
     private Vector3 initPosTrackDir;
     private Vector3 curPosTrackDir;
     private Vector3 diffPosTrackDir;
+
+    protected HydraLook[] hydraLookObjects;
 	
 	// Use this for initialization
 	void  Awake (){
@@ -61,7 +65,8 @@ public class FPSInputController : MonoBehaviour {
         HMDPresent = OVRManager.display.isPresent;
         enableMovement = true;
 		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
-		defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
+        defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
+        hydraLookObjects = gameObject.GetComponentsInChildren<HydraLook> ();
 
         // Camera rig
         ovrCameraRig = gameObject.GetComponentInChildren<OVRCameraRig> ();
@@ -288,6 +293,7 @@ public class FPSInputController : MonoBehaviour {
             generalCamera.SetActive(false);
             ovrCameraRig.enabled = true;
             ovrManager.enabled = true;
+            SetHydraLookSensitivity ();
 		}
 	}
 
@@ -308,5 +314,12 @@ public class FPSInputController : MonoBehaviour {
 	
 	public float getDefaultMaxBackwardsSpeed () {
 		return defaultMaxForwardSpeed;
-	}
+    }
+    
+    protected void SetHydraLookSensitivity () {
+        foreach (HydraLook obj in hydraLookObjects) {
+            obj.sensitivityX = ovrHydraLookSensitivityX;
+            obj.sensitivityY = ovrHydraLookSensitivityY;
+        }
+    }
 }
