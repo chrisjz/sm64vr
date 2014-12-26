@@ -313,7 +313,7 @@ MeshCollider:
   m_GameObject: {fileID: 23438421}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -1730,7 +1730,7 @@ MeshCollider:
   m_GameObject: {fileID: 118402478}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -3561,7 +3561,7 @@ MeshCollider:
   m_GameObject: {fileID: 323876277}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -8045,7 +8045,7 @@ MeshCollider:
   m_GameObject: {fileID: 724354224}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -15556,7 +15556,7 @@ MeshCollider:
   m_GameObject: {fileID: 1407093820}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -21688,10 +21688,7 @@ MonoBehaviour:
   QuitKey: 0
   SceneNames: []
   Scenes: []
-  IPDIncrement: .00249999994
   PredictionIncrement: .00100000005
-  FOVIncrement: .200000003
-  HeightIncrement: .00999999978
   SpeedRotationIncrement: .0500000007
   LayerName: Default
   CrosshairImage: {fileID: 0}
@@ -21704,7 +21701,7 @@ CharacterController:
   m_GameObject: {fileID: 2002403176}
   serializedVersion: 2
   m_Height: 2.20000005
-  m_Radius: .5
+  m_Radius: .699999988
   m_SlopeLimit: 75
   m_StepOffset: 1
   m_SkinWidth: .0799999982

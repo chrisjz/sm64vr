@@ -22,6 +22,8 @@ limitations under the License.
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
+using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Ovr;
 
@@ -37,6 +39,7 @@ public class OVRManager : MonoBehaviour
 	{
 		public float ipd;
 		public float eyeHeight;
+		public float eyeDepth;
 		public float neckHeight;
 	}
 
@@ -89,13 +92,15 @@ public class OVRManager : MonoBehaviour
 #if !UNITY_ANDROID || UNITY_EDITOR
 				float ipd = capiHmd.GetFloat(Hmd.OVR_KEY_IPD, Hmd.OVR_DEFAULT_IPD);
 				float eyeHeight = capiHmd.GetFloat(Hmd.OVR_KEY_EYE_HEIGHT, Hmd.OVR_DEFAULT_EYE_HEIGHT);
-				float neckToEyeOffsetY = capiHmd.GetFloat(Hmd.OVR_KEY_NECK_TO_EYE_DISTANCE, Hmd.OVR_DEFAULT_NECK_TO_EYE_VERTICAL);
-				float neckHeight = eyeHeight - neckToEyeOffsetY;
+				float[] defaultOffset = new float[] { Hmd.OVR_DEFAULT_NECK_TO_EYE_HORIZONTAL, Hmd.OVR_DEFAULT_NECK_TO_EYE_VERTICAL };
+				float[] neckToEyeOffset = capiHmd.GetFloatArray(Hmd.OVR_KEY_NECK_TO_EYE_DISTANCE, defaultOffset);
+				float neckHeight = eyeHeight - neckToEyeOffset[1];
 				
 				_profile = new Profile
 				{
 					ipd = ipd,
 					eyeHeight = eyeHeight,
+					eyeDepth = neckToEyeOffset[0],
 					neckHeight = neckHeight,
 				};
 #else
@@ -109,6 +114,7 @@ public class OVRManager : MonoBehaviour
 				{
 					ipd = ipd,
 					eyeHeight = eyeHeight,
+					eyeDepth = 0f, //TODO
 					neckHeight = 0.0f, // TODO
 				};
 #endif
@@ -283,6 +289,9 @@ public class OVRManager : MonoBehaviour
 	private static AndroidJavaClass javaVrActivityClass;
 	internal static int timeWarpViewNumber = 0;
 	public static event Action OnCustomPostRender;
+#else
+	private static bool ovrIsInitialized;
+	private static bool isQuitting;
 #endif
 
     public static bool isPaused
@@ -314,6 +323,14 @@ public class OVRManager : MonoBehaviour
 		instance = this;
 
 #if !UNITY_ANDROID || UNITY_EDITOR
+		if (!ovrIsInitialized)
+		{
+			OVR_Initialize();
+			OVRPluginEvent.Issue(RenderEventType.Initialize);
+
+			ovrIsInitialized = true;
+		}
+
 		var netVersion = new System.Version(Ovr.Hmd.OVR_VERSION_STRING);
 		var ovrVersion = new System.Version(Ovr.Hmd.GetVersionString());
 		if (netVersion > ovrVersion)
@@ -360,8 +377,13 @@ public class OVRManager : MonoBehaviour
 		SetEditorPlay(Application.isEditor);
 #endif
 
-		display = new OVRDisplay();
-		tracker = new OVRTracker();
+		if (display == null)
+			display = new OVRDisplay();
+		if (tracker == null)
+			tracker = new OVRTracker();
+
+		if (resetTrackerOnLoad)
+			display.RecenterPose();
 
 		// Except for D3D9, SDK rendering forces vsync unless you pass ovrHmdCap_NoVSync to Hmd.SetEnabledCaps().
 		if (timeWarp)
@@ -369,21 +391,99 @@ public class OVRManager : MonoBehaviour
 			bool useUnityVSync = SystemInfo.graphicsDeviceVersion.Contains("Direct3D 9");
 			QualitySettings.vSyncCount = useUnityVSync ? 1 : 0;
 		}
+
+#if (UNITY_STANDALONE_WIN && (UNITY_4_6 || UNITY_4_5))
+		bool unity_4_6 = false;
+		bool unity_4_5_2 = false;
+		bool unity_4_5_3 = false;
+		bool unity_4_5_4 = false;
+		bool unity_4_5_5 = false;
+
+#if (UNITY_4_6)
+		unity_4_6 = true;
+#elif (UNITY_4_5_2)
+		unity_4_5_2 = true;
+#elif (UNITY_4_5_3)
+		unity_4_5_3 = true;
+#elif (UNITY_4_5_4)
+		unity_4_5_4 = true;
+#elif (UNITY_4_5_5)
+		unity_4_5_5 = true;
+#endif
+
+		// Detect correct Unity releases which contain the fix for D3D11 exclusive mode.
+		string version = Application.unityVersion;
+		int releaseNumber;
+		bool releaseNumberFound = Int32.TryParse(Regex.Match(version, @"\d+$").Value, out releaseNumber);
+
+		// Exclusive mode was broken for D3D9 in Unity 4.5.2p2 - 4.5.4 and 4.6 builds prior to beta 21
+		bool unsupportedExclusiveModeD3D9 = (unity_4_6 && version.Last(char.IsLetter) == 'b' && releaseNumberFound && releaseNumber < 21)
+			|| (unity_4_5_2 && version.Last(char.IsLetter) == 'p' && releaseNumberFound && releaseNumber >= 2)
+			|| (unity_4_5_3)
+			|| (unity_4_5_4);
+
+		// Exclusive mode was broken for D3D11 in Unity 4.5.2p2 - 4.5.5p2 and 4.6 builds prior to f1
+		bool unsupportedExclusiveModeD3D11 = (unity_4_6 && version.Last(char.IsLetter) == 'b')
+			|| (unity_4_5_2 && version.Last(char.IsLetter) == 'p' && releaseNumberFound && releaseNumber >= 2)
+			|| (unity_4_5_3)
+			|| (unity_4_5_4)
+			|| (unity_4_5_5 && version.Last(char.IsLetter) == 'f')
+			|| (unity_4_5_5 && version.Last(char.IsLetter) == 'p' && releaseNumberFound && releaseNumber < 3);
+
+		if (unsupportedExclusiveModeD3D9 && !display.isDirectMode && SystemInfo.graphicsDeviceVersion.Contains("Direct3D 9"))
+		{
+			MessageBox(0, "Direct3D 9 extended mode is not supported in this configuration. "
+				+ "Please use direct display mode, a different graphics API, or rebuild the application with a newer Unity version."
+				, "VR Configuration Warning", 0);
+		}
+
+		if (unsupportedExclusiveModeD3D11 && !display.isDirectMode && SystemInfo.graphicsDeviceVersion.Contains("Direct3D 11"))
+		{
+			MessageBox(0, "Direct3D 11 extended mode is not supported in this configuration. "
+				+ "Please use direct display mode, a different graphics API, or rebuild the application with a newer Unity version."
+				, "VR Configuration Warning", 0);
+		}
+#endif
 	}
+
+#if !UNITY_ANDROID || UNITY_EDITOR
+	private void OnApplicationQuit()
+	{
+		isQuitting = true;
+	}
+
+	private void OnDisable()
+	{
+		if (!isQuitting)
+			return;
+
+		if (ovrIsInitialized)
+		{
+			OVR_Destroy();
+			OVRPluginEvent.Issue(RenderEventType.Destroy);
+			_capiHmd = null;
+
+			ovrIsInitialized = false;
+		}
+	}
+#endif
 
 	private void Start()
 	{
+#if !UNITY_ANDROID || UNITY_EDITOR
 		Camera cam = GetComponent<Camera>();
 		if (cam == null)
 		{
 			// Ensure there is a non-RT camera in the scene to force rendering of the left and right eyes.
 			cam = gameObject.AddComponent<Camera>();
 			cam.cullingMask = 0;
-			cam.clearFlags = CameraClearFlags.Nothing;
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = new Color(0.0f, 0.0f, 0.0f);
 			cam.renderingPath = RenderingPath.Forward;
 			cam.orthographic = true;
 			cam.useOcclusionCulling = false;
 		}
+#endif
 
 		bool isD3d = SystemInfo.graphicsDeviceVersion.Contains("Direct3D") ||
 			Application.platform == RuntimePlatform.WindowsEditor &&
@@ -581,6 +681,18 @@ public class OVRManager : MonoBehaviour
     private static extern void OVR_SetEditorPlay(bool isEditorPlay);
     [DllImport(LibOVR, CallingConvention = CallingConvention.Cdecl)]
     private static extern void OVR_SetDistortionCaps(uint distortionCaps);
+	[DllImport(LibOVR, CallingConvention = CallingConvention.Cdecl)]
+	private static extern void OVR_Initialize();
+	[DllImport(LibOVR, CallingConvention = CallingConvention.Cdecl)]
+	private static extern void OVR_Destroy();
+
+#if UNITY_STANDALONE_WIN
+	[DllImport("user32", EntryPoint = "MessageBoxA", CharSet = CharSet.Ansi)]
+	public static extern bool MessageBox(int hWnd,
+	                                     [MarshalAs(UnmanagedType.LPStr)]string text,
+	                                     [MarshalAs(UnmanagedType.LPStr)]string caption, uint type);
+#endif
+
 #else
 	[DllImport(LibOVR)]
 	private static extern void OVR_SetInitVariables(IntPtr activity, IntPtr vrActivityClass);

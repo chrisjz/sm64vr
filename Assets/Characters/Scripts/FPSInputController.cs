@@ -8,7 +8,9 @@ Authors     :   Chris Julian Zaharia
 ************************************************************************************/
 
 using UnityEngine;
+using System;
 using System.Collections;
+using System.IO;
 
 // Require a character controller to be attached to the same game object
 [RequireComponent(typeof(CharacterMotor))]
@@ -49,7 +51,8 @@ public class FPSInputController : MonoBehaviour {
     private float finalVerticalPosition;
 	private bool inputEnabled;					                        // If input is enabled/disabled
     private bool jumpEnabled;
-	private bool HMDPresent = false;
+    private bool HMDPresent = false;
+    private bool isDirectToRift = false;
 
     // OVR positional tracking, currently works via tilting head
     private Vector3 initPosTrackDir;
@@ -78,7 +81,8 @@ public class FPSInputController : MonoBehaviour {
         generalCamera = transform.Find("OVRCameraRig/MonoEyeAnchor").gameObject;
 	}
 
-	void Start() {
+    void Start() {
+        DetectDirectToRift();
 		IgnorePlayerColliders ();
         InitCamera();
         previousVerticalPosition = initialVerticalPosition = transform.position.y;
@@ -162,7 +166,7 @@ public class FPSInputController : MonoBehaviour {
         
         // Play jumping audio clips
         if (initialJumpAudioClips.Length > 0 && motor.inputJump && motor.grounded && !audio.isPlaying) {
-            audio.clip = initialJumpAudioClips[Random.Range(0, initialJumpAudioClips.Length)];
+            audio.clip = initialJumpAudioClips[UnityEngine.Random.Range(0, initialJumpAudioClips.Length)];
             audio.Play();
         }
         
@@ -226,7 +230,7 @@ public class FPSInputController : MonoBehaviour {
         }
         
         // Apply the direction to the CharacterMotor
-        if (!StorageManager.data.optionControlsEnableRift || (detectOvr && !HMDPresent)) {
+        if (!isDirectToRift && ((detectOvr && !HMDPresent) || !StorageManager.data.optionControlsEnableRift)) {
             mainCamera = generalCamera;
         } else {
             mainCamera = dirOvrCamera;
@@ -281,7 +285,7 @@ public class FPSInputController : MonoBehaviour {
 
 	// Show OVR Camera only if OVR is being used
 	protected void DetectOVR() {
-        if (!HMDPresent || !StorageManager.data.optionControlsEnableRift) {
+        if (!isDirectToRift && (!HMDPresent || !StorageManager.data.optionControlsEnableRift)) {
             ovrCameraLeft.SetActive(false);
             ovrCameraRight.SetActive(false);
             generalCamera.SetActive(true);
@@ -295,14 +299,37 @@ public class FPSInputController : MonoBehaviour {
             ovrManager.enabled = true;
             SetHydraLookSensitivity ();
 		}
-	}
+    }    
+    
+    //Detect if game is launched via Direct to Rift executable.
+    // Credit: PhilipRamirez from Oculus Forum
+    protected void DetectDirectToRift()
+    {
+        long exeSize = 0;
+        {
+            FileInfo exeFile = new System.IO.FileInfo (Environment.GetCommandLineArgs () [0]);   // Path name of the .exe used to launch
+            exeSize = exeFile.Length;   // exeFile.Length return the file size in bytes. Store it for comparison
+        }
+        
+        // Use file to determine which exe was launched. This should be stable even if a user changes the name of the .exe or uses a shortcut! =D
+        // Direct Rift sizes: 184320 is 64bit size, 32 is 164864 (3rd check is for extended mode(NOT FULLY TESTED)) 
+        // (You may want to use Debug.Log(exeSize); to double check the file size is the same on your match)
+        
+        if ((exeSize == 184320 || exeSize == 164864)) {
+            // DirectToRift.exe
+            isDirectToRift = true;
+        } else {
+            // Standard.exe
+            isDirectToRift = false;
+        }
+    }
 
 	// Prevent colliders on player from colliding with each other i.e. hand colliders with body collider
 	void IgnorePlayerColliders () {
 		Collider[] cols = GetComponentsInChildren<Collider>();
 
 		foreach (Collider col in cols) {
-			if (col != collider) {
+            if (col != collider && col.enabled) {
 				Physics.IgnoreCollision(col, collider);
 			}
 		}

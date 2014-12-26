@@ -2221,8 +2221,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.00763097405, y: -2.04391551, z: -10.3969517}
+  m_LocalRotation: {x: 0, y: .923879564, z: 0, w: -.382683396}
+  m_LocalPosition: {x: 7.62618494, y: -2.17675495, z: -16.8687649}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400120}
@@ -3007,7 +3007,7 @@ MeshCollider:
   m_GameObject: {fileID: 100080}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -3020,7 +3020,7 @@ MeshCollider:
   m_GameObject: {fileID: 100040}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -3033,7 +3033,7 @@ MeshCollider:
   m_GameObject: {fileID: 100018}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -3046,7 +3046,7 @@ MeshCollider:
   m_GameObject: {fileID: 100008}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -3059,7 +3059,7 @@ MeshCollider:
   m_GameObject: {fileID: 100000}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -3657,10 +3657,7 @@ MonoBehaviour:
   QuitKey: 0
   SceneNames: []
   Scenes: []
-  IPDIncrement: .00249999994
   PredictionIncrement: .00100000005
-  FOVIncrement: .200000003
-  HeightIncrement: .00999999978
   SpeedRotationIncrement: .0500000007
   LayerName: Default
   CrosshairImage: {fileID: 0}
@@ -4670,7 +4667,7 @@ CharacterController:
   m_GameObject: {fileID: 100124}
   serializedVersion: 2
   m_Height: 2.20000005
-  m_Radius: .5
+  m_Radius: .699999988
   m_SlopeLimit: 75
   m_StepOffset: 1
   m_SkinWidth: .0799999982

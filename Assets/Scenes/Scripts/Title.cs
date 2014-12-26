@@ -9,6 +9,8 @@ Authors     :   Chris Julian Zaharia
 
 using UnityEngine;
 using System.Collections;
+using System.IO;
+using System;
 
 public class Title : MonoBehaviour {
     
@@ -47,6 +49,7 @@ public class Title : MonoBehaviour {
     protected GameObject generalCamera;                                 // Camera for monoscopic view
     protected GameObject dirOvrCamera;                                  // Movement oriented using this camera for OVR
     protected bool HMDPresent = false;
+    protected bool isDirectToRift = false;
 
     protected void Awake () {
         // Objects
@@ -73,6 +76,7 @@ public class Title : MonoBehaviour {
     }
 
     protected void Start () {
+        DetectDirectToRift();
         InitCamera ();
         PrefillScore ();
         objectRift.transform.Find("rift").gameObject.renderer.enabled = false;
@@ -185,7 +189,7 @@ public class Title : MonoBehaviour {
         
         HMDPresent = OVRManager.display.isPresent;
 
-        if (HMDPresent == false || StorageManager.data.optionControlsEnableRift == false) { 
+        if (!isDirectToRift && (!HMDPresent || !StorageManager.data.optionControlsEnableRift)) { 
             if (fracJourney >= 1f) {
                 objectLogo.SetActive (false);
             }
@@ -202,7 +206,7 @@ public class Title : MonoBehaviour {
     protected void DetectOVR() {
         HMDPresent = OVRManager.display.isPresent;
 
-        if (HMDPresent == false || StorageManager.data.optionControlsEnableRift == false) {
+        if (!isDirectToRift && (!HMDPresent || !StorageManager.data.optionControlsEnableRift)) {
             ovrCameraLeft.SetActive(false);
             ovrCameraRight.SetActive(false);
             generalCamera.SetActive(true);
@@ -214,6 +218,29 @@ public class Title : MonoBehaviour {
             generalCamera.SetActive(false);
             ovrCameraRig.enabled = true;
             ovrManager.enabled = true;
+        }
+    }    
+    
+    //Detect if game is launched via Direct to Rift executable.
+    // Credit: PhilipRamirez from Oculus Forum
+    protected void DetectDirectToRift()
+    {
+        long exeSize = 0;
+        {
+            FileInfo exeFile = new System.IO.FileInfo (Environment.GetCommandLineArgs () [0]);   // Path name of the .exe used to launch
+            exeSize = exeFile.Length;   // exeFile.Length return the file size in bytes. Store it for comparison
+        }
+
+        // Use file to determine which exe was launched. This should be stable even if a user changes the name of the .exe or uses a shortcut! =D
+        // Direct Rift sizes: 184320 is 64bit size, 32 is 164864 (3rd check is for extended mode(NOT FULLY TESTED)) 
+        // (You may want to use Debug.Log(exeSize); to double check the file size is the same on your match)
+        
+        if ((exeSize == 184320 || exeSize == 164864)) {
+            // DirectToRift.exe
+            isDirectToRift = true;
+        } else {
+            // Standard.exe
+            isDirectToRift = false;
         }
     }
 }
