@@ -18,25 +18,15 @@ public class LeapHandControllerExtender : HandController {
     public Vector3 MountedLocalRotation = new Vector3(0, 0, 0);
 
     public bool isOrientationSet = false;
-    
-    protected Controller leap_controller_;
+
     protected bool initialised = false;
     
     protected void LateUpdate () {
-        if (!initialised) {
-            Initialise ();
-        }
-
         if (leap_controller_ == null)
             return;
 
         SetOrientation ();
         CheckIfHandsEnabled ();
-    }
-
-    protected void Initialise () {
-        leap_controller_ = new Controller ();
-        initialised = true;
     }
     
     // Set position of hands based on if leap is grounded/mounted

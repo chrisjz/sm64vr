@@ -1601,7 +1601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400044}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &400032
 Transform:
   m_ObjectHideFlags: 1
@@ -1690,7 +1690,6 @@ Transform:
   m_Children:
   - {fileID: 400088}
   - {fileID: 400060}
-  - {fileID: 400304}
   - {fileID: 400554}
   - {fileID: 400436}
   - {fileID: 400030}
@@ -1913,8 +1912,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400048}
+  - {fileID: 400304}
   m_Father: {fileID: 400044}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!4 &400080
 Transform:
   m_ObjectHideFlags: 1
@@ -2433,7 +2433,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400044}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!4 &400304
 Transform:
   m_ObjectHideFlags: 1
@@ -2445,8 +2445,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400154}
-  m_Father: {fileID: 400044}
-  m_RootOrder: 2
+  m_Father: {fileID: 400078}
+  m_RootOrder: 1
 --- !u!4 &400436
 Transform:
   m_ObjectHideFlags: 1
@@ -2458,7 +2458,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400044}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &400544
 Transform:
   m_ObjectHideFlags: 1
@@ -2534,7 +2534,7 @@ Transform:
   m_LocalScale: {x: .00499999942, y: .00200000009, z: .00199999986}
   m_Children: []
   m_Father: {fileID: 400044}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -3526,10 +3526,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   separateLeftRight: 1
-  leftGraphicsModel: {fileID: 11400010, guid: 1f65bea1655ce7c4f864ab6faa8f85aa, type: 2}
-  leftPhysicsModel: {fileID: 11400008, guid: d1ee2987e72174f659cdf5447ad5403c, type: 2}
-  rightGraphicsModel: {fileID: 11400010, guid: 1d8a201d377154d9a831f7d2639c658b, type: 2}
-  rightPhysicsModel: {fileID: 11400008, guid: d1ee2987e72174f659cdf5447ad5403c, type: 2}
+  leftGraphicsModel: {fileID: 11427540, guid: be62cda3bf36ba74fb4896d11026c7ca, type: 2}
+  leftPhysicsModel: {fileID: 11474142, guid: e6436f7bf59950344a102627c2c41fb7, type: 2}
+  rightGraphicsModel: {fileID: 11427590, guid: f3f3ed35c6f5e0f44bfa5f7ad1136412, type: 2}
+  rightPhysicsModel: {fileID: 11474142, guid: e6436f7bf59950344a102627c2c41fb7, type: 2}
   toolModel: {fileID: 0}
   isHeadMounted: 1
   mirrorZAxis: 0

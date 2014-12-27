@@ -171,7 +171,6 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### Miscellaneous
 
-* Leap: Option for Hand controller to track with the head position with Rift.
 * Mario spins continuously when he is atop certain moving objects, including: pink bob-omb.
 * Shadows for signs, trees.
 * Star model has a hole at its top tip.

@@ -23,7 +23,7 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   m_MobileMTRendering: 0
-  m_UseDX11: 1
+  m_UseDX11: 0
   m_Stereoscopic3D: 0
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
@@ -55,7 +55,7 @@ PlayerSettings:
   xboxEnableFitness: 0
   visibleInBackground: 1
   macFullscreenMode: 2
-  d3d9FullscreenMode: 1
+  d3d9FullscreenMode: 0
   d3d11ForceExclusiveMode: 1
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0

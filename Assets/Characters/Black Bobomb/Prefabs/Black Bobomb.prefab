@@ -527,17 +527,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fa1c5dbed51cc4daec6c82a9a26d63, type: 3}
+  m_Script: {fileID: 11500000, guid: 15b8898e7dbabb14bad4ee4102c342c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepDistanceWhenGrabbed: 1
-  preferredOrientation: 0
-  objectOrientation: {x: 0, y: 0, z: 0}
-  palmOrientation: {x: 0, y: 0, z: 0}
-  ignoreOnGrab: []
-  breakableJoint: {fileID: 0}
-  breakForce: 0
-  breakTorque: 0
+  isEnabled: 1
+  invertRightHand: 1
+  disableRigidbodyWhenHeld: 1
+  additionalThrowForce: 0
+  positionModifier: {x: 0, y: 0, z: 0}
+  rotationModifier: {x: 0, y: 0, z: 0}
+  invertPositionModifier: {x: 0, y: 0, z: 0}
+  invertRotationModifier: {x: 0, y: 0, z: 0}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1

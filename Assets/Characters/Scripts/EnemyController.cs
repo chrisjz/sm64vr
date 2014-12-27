@@ -116,11 +116,14 @@ public class EnemyController : MonoBehaviour {
 			}
 		}
 
-        LeapHandGrabExtender[] leapHands = GameObject.FindObjectsOfType<LeapHandGrabExtender> ();
+        LeapGrabbingHandExtender[] leapHands = GameObject.FindObjectsOfType<LeapGrabbingHandExtender> ();
 
-        foreach (LeapHandGrabExtender leapHand in leapHands) {
-            if (leapHand.Grabbed_ && leapHand.Grabbed_.gameObject == gameObject) {
-                return true;
+        foreach (LeapGrabbingHandExtender leapHand in leapHands) {
+            if (leapHand.IsPinched()) {
+                Collider col = leapHand.GetActiveObject();
+                if (col && col.gameObject == gameObject) {
+                    return true;
+                }
             }
         }
 

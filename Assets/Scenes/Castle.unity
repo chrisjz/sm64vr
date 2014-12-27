@@ -212,10 +212,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   separateLeftRight: 1
-  leftGraphicsModel: {fileID: 11400010, guid: 1f65bea1655ce7c4f864ab6faa8f85aa, type: 2}
-  leftPhysicsModel: {fileID: 11400008, guid: d1ee2987e72174f659cdf5447ad5403c, type: 2}
-  rightGraphicsModel: {fileID: 11400010, guid: 1d8a201d377154d9a831f7d2639c658b, type: 2}
-  rightPhysicsModel: {fileID: 11400008, guid: d1ee2987e72174f659cdf5447ad5403c, type: 2}
+  leftGraphicsModel: {fileID: 11427540, guid: be62cda3bf36ba74fb4896d11026c7ca, type: 2}
+  leftPhysicsModel: {fileID: 11474142, guid: e6436f7bf59950344a102627c2c41fb7, type: 2}
+  rightGraphicsModel: {fileID: 11427590, guid: f3f3ed35c6f5e0f44bfa5f7ad1136412, type: 2}
+  rightPhysicsModel: {fileID: 11474142, guid: e6436f7bf59950344a102627c2c41fb7, type: 2}
   toolModel: {fileID: 0}
   isHeadMounted: 1
   mirrorZAxis: 0
@@ -5824,11 +5824,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b925cd940abd534a9562379693822af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepDistanceWhenGrabbed: 0
-  preferredOrientation: 0
-  objectOrientation: {x: 0, y: 0, z: 0}
-  palmOrientation: {x: 0, y: 0, z: 0}
-  ignoreOnGrab: []
+  useAxisAlignment: 0
+  rightHandAxis: {x: 0, y: 0, z: 0}
+  objectAxis: {x: 0, y: 0, z: 0}
+  rotateQuickly: 1
+  centerGrabbedObject: 0
   breakableJoint: {fileID: 0}
   breakForce: 0
   breakTorque: 0
@@ -6449,7 +6449,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 759122322}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!114 &612664749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8374,8 +8374,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1833182380}
-  m_Father: {fileID: 759122322}
-  m_RootOrder: 2
+  m_Father: {fileID: 1388150977}
+  m_RootOrder: 1
 --- !u!1 &751046862
 GameObject:
   m_ObjectHideFlags: 0
@@ -8480,7 +8480,6 @@ Transform:
   m_Children:
   - {fileID: 1561087048}
   - {fileID: 1090680162}
-  - {fileID: 745294818}
   - {fileID: 1902277319}
   - {fileID: 789152221}
   - {fileID: 612664748}
@@ -8607,7 +8606,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 759122322}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!114 &789152222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15144,8 +15143,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 807787627}
+  - {fileID: 745294818}
   m_Father: {fileID: 759122322}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!114 &1388150978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18803,7 +18803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 759122322}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &1732514461
 GameObject:
   m_ObjectHideFlags: 0
@@ -20491,7 +20491,7 @@ Transform:
   m_LocalScale: {x: .00499999942, y: .00200000009, z: .00199999986}
   m_Children: []
   m_Father: {fileID: 759122322}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!114 &1902277320
 MonoBehaviour:
   m_ObjectHideFlags: 0
