@@ -72,6 +72,12 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ## Release Notes
 
+### 0.1.3
+
+* Improved hand tracking using the Leap.
+* Leap hands now follow the player camera's orientation.
+* Force using the Rift when launching the game via the Direct To Rift executable.
+
 ### 0.1.2
 
 * Decrease arm length and reach with Hydra.
