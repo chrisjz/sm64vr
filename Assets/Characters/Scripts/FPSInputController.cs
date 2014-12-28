@@ -65,7 +65,11 @@ public class FPSInputController : MonoBehaviour {
 	void  Awake (){
         motor = GetComponent<CharacterMotor>();
         playerHealth = gameObject.GetComponent<PlayerHealth> ();
+#if !UNITY_WEBPLAYER
         HMDPresent = OVRManager.display.isPresent;
+#else
+        HMDPresent = false;
+#endif
         enableMovement = true;
 		defaultMaxForwardSpeed = motor.movement.maxForwardSpeed;
         defaultMaxForwardSpeed = motor.movement.maxBackwardsSpeed;
@@ -307,8 +311,12 @@ public class FPSInputController : MonoBehaviour {
     {
         long exeSize = 0;
         {
+#if UNITY_STANDALONE_WIN
             FileInfo exeFile = new System.IO.FileInfo (Environment.GetCommandLineArgs () [0]);   // Path name of the .exe used to launch
             exeSize = exeFile.Length;   // exeFile.Length return the file size in bytes. Store it for comparison
+#else
+            exeSize = 0;
+#endif
         }
         
         // Use file to determine which exe was launched. This should be stable even if a user changes the name of the .exe or uses a shortcut! =D

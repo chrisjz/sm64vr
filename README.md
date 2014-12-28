@@ -91,7 +91,7 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### v0.1.x
 
-* Shortcut key to recenter camera for Rift. Shortcut can be Control + R.
+* Unity web player support
 
 ### v0.2
 
@@ -99,6 +99,11 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ### Player
 
+* Mario hand interactions using keyboard:
+ * Punch
+ * Grab and throw objects
+ * Open doors
+* Mario hand interactions using mouse.
 * Hydra look sensitivity too high when DX11 enabled, but that is also required to reduce judder with Rift.
 * Screen fades out when Mario loses life.
 * Improve Mario's left hand model stretching when using Sixense tracking.

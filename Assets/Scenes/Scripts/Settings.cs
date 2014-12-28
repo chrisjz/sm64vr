@@ -27,7 +27,9 @@ public class Settings : MonoBehaviour {
 
 	protected void Awake () {
 		GameData.current = new GameData();
+#if !UNITY_WEBPLAYER
 		StorageManager.Load ();
+#endif
 	}
 
 	protected void Start () {

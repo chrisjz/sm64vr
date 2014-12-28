@@ -43,7 +43,6 @@ public class Title : MonoBehaviour {
 
     protected GameObject cameraController;
     protected OVRCameraRig ovrCameraRig;
-    protected OVRManager ovrManager;
     protected GameObject ovrCameraLeft;
     protected GameObject ovrCameraRight;
     protected GameObject generalCamera;                                 // Camera for monoscopic view
@@ -60,7 +59,6 @@ public class Title : MonoBehaviour {
         // Camera rig
         cameraController = GameObject.Find ("CameraController").gameObject;
         ovrCameraRig = cameraController.GetComponentInChildren<OVRCameraRig> ();
-        ovrManager = cameraController.GetComponentInChildren<OVRManager> ();
 
         // Cameras
         ovrCameraLeft = GameObject.Find("OVRCameraRig/LeftEyeAnchor").gameObject;
@@ -76,8 +74,10 @@ public class Title : MonoBehaviour {
     }
 
     protected void Start () {
+#if !UNITY_WEBPLAYER
         DetectDirectToRift();
         InitCamera ();
+#endif
         PrefillScore ();
         objectRift.transform.Find("rift").gameObject.renderer.enabled = false;
         PlayIntroAnimation ();
@@ -144,7 +144,7 @@ public class Title : MonoBehaviour {
         } else {
             dirOvrCamera = ovrCameraRight;
         }
-        
+
         if (detectOvr) {
             DetectOVR();
         }
@@ -186,8 +186,12 @@ public class Title : MonoBehaviour {
         if (fracJourney >= journeyLengthStartTransitionRotation) {
             cameraController.transform.rotation = Quaternion.Lerp (cameraController.transform.rotation, Quaternion.Euler(new Vector3 (0, 180.0f, 0)), transitionRotationSpeed);
         }
-        
+
+#if !UNITY_WEBPLAYER
         HMDPresent = OVRManager.display.isPresent;
+#else
+        HMDPresent = false;
+#endif
 
         if (!isDirectToRift && (!HMDPresent || !StorageManager.data.optionControlsEnableRift)) { 
             if (fracJourney >= 1f) {
@@ -204,6 +208,7 @@ public class Title : MonoBehaviour {
     
     // Show OVR Camera only if OVR is being used
     protected void DetectOVR() {
+        OVRManager ovrManager = cameraController.GetComponentInChildren<OVRManager> ();
         HMDPresent = OVRManager.display.isPresent;
 
         if (!isDirectToRift && (!HMDPresent || !StorageManager.data.optionControlsEnableRift)) {
@@ -227,8 +232,12 @@ public class Title : MonoBehaviour {
     {
         long exeSize = 0;
         {
+#if UNITY_STANDALONE_WIN
             FileInfo exeFile = new System.IO.FileInfo (Environment.GetCommandLineArgs () [0]);   // Path name of the .exe used to launch
             exeSize = exeFile.Length;   // exeFile.Length return the file size in bytes. Store it for comparison
+#else
+            exeSize = 0;
+#endif
         }
 
         // Use file to determine which exe was launched. This should be stable even if a user changes the name of the .exe or uses a shortcut! =D

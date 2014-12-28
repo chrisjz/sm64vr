@@ -22,7 +22,31 @@ public class SceneManager : MonoBehaviour {
 
     protected virtual void Start () {
         player = GameObject.FindGameObjectWithTag ("Player");
+#if UNITY_WEBPLAYER
+        SetupWebPlayer();
+#endif
         Spawn ();
+    }
+
+    // Setup the scene for web player
+    protected virtual void SetupWebPlayer () {
+        if (!player)
+            return;
+
+        SixenseInput sixenseInput = player.GetComponentInChildren<SixenseInput> ();
+        
+        if (sixenseInput)
+            sixenseInput.enabled = false;
+
+        SixenseHandControllerExtender[] sixenseHandControllers = player.GetComponentsInChildren<SixenseHandControllerExtender> ();
+
+        foreach (SixenseHandControllerExtender sixenseHandController in sixenseHandControllers)
+            sixenseHandController.enabled = false;
+
+        LeapHandControllerExtender leapHandController = player.GetComponentInChildren<LeapHandControllerExtender> ();
+
+        if (leapHandController)
+            leapHandController.enabled = false;
     }
 
     // Set spawn if requested by previous scene

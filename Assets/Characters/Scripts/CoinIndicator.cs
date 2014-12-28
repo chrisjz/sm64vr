@@ -32,7 +32,11 @@ public class CoinIndicator : MonoBehaviour {
     }
     
     protected void Start () {
+#if !UNITY_WEBPLAYER
         HMDPresent = OVRManager.display.isPresent;
+#else
+        HMDPresent = false;
+#endif
         
         SetPosition ();
     }

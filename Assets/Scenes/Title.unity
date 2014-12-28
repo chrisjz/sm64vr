@@ -181,7 +181,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 717895550}
   m_GameObject: {fileID: 16763912}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
   m_Name: 
@@ -2775,6 +2775,10 @@ Prefab:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}

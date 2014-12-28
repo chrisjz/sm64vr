@@ -39,7 +39,11 @@ public class SixenseHandControllerExtender : SixenseHandController {
         stereoDialog = GameObject.Find ("StereoDialog").GetComponent<StereoDialog> ();
 
         // check if HMD is on
+#if !UNITY_WEBPLAYER
         HMDPresent = OVRManager.display.isPresent;
+#else
+        HMDPresent = false;
+#endif
 
         // find all objects with mouse look script
         ovrCameraRig = transform.root.GetComponentInChildren<OVRCameraRig> ();

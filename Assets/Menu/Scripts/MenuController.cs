@@ -27,7 +27,11 @@ public class MenuController : MonoBehaviour {
         menu = transform.Find ("Menu").gameObject;
         inputController = transform.GetComponent<FPSInputController> ();
         menu.SetActive (false);        
+#if !UNITY_WEBPLAYER
         HMDPresent = OVRManager.display.isPresent;
+#else
+        HMDPresent = false;
+#endif
 
         SetMenuPosition ();
     }

@@ -42,7 +42,9 @@ public class Debugger : MonoBehaviour {
         if (prevState != enable) {
             UpdateTriggerAudio(enable);
             StorageManager.data.debug = enable;
+#if !UNITY_WEBPLAYER
             StorageManager.Save();
+#endif
             prevState = enable;
         }
 
