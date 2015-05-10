@@ -70,21 +70,21 @@ public class LeapHandControllerExtender : HandController {
     
     protected void TriggerSixenseHands (bool state) {
         Transform player = transform.root;
-        player.Find ("Avatar/Left_Hand").renderer.enabled = state;
-        player.Find ("Avatar/Left_Upper_Arm").renderer.enabled = state;
-        player.Find ("Avatar/Left_Lower_Arm").renderer.enabled = state;
-        player.Find ("Avatar/Right_Hand").renderer.enabled = state;
-        player.Find ("Avatar/Right_Upper_Arm").renderer.enabled = state;
-        player.Find ("Avatar/Right_Lower_Arm").renderer.enabled = state;
+        player.Find ("Avatar/Left_Hand").GetComponent<Renderer>().enabled = state;
+        player.Find ("Avatar/Left_Upper_Arm").GetComponent<Renderer>().enabled = state;
+        player.Find ("Avatar/Left_Lower_Arm").GetComponent<Renderer>().enabled = state;
+        player.Find ("Avatar/Right_Hand").GetComponent<Renderer>().enabled = state;
+        player.Find ("Avatar/Right_Upper_Arm").GetComponent<Renderer>().enabled = state;
+        player.Find ("Avatar/Right_Lower_Arm").GetComponent<Renderer>().enabled = state;
 
         // Prevent sixense hand collider collision with leap hand.
         Transform sixenseLeftHandCollider = player.Find ("OVRCameraRig/SixenseHands/Left Hand/LeftHandCollider");
         Transform sixenseRightHandCollider = player.Find ("OVRCameraRig/SixenseHands/Right Hand/RightHandCollider");
 
         if (sixenseLeftHandCollider)
-            sixenseLeftHandCollider.rigidbody.detectCollisions = state;
+            sixenseLeftHandCollider.GetComponent<Rigidbody>().detectCollisions = state;
 
         if (sixenseRightHandCollider)
-        sixenseRightHandCollider.rigidbody.detectCollisions = state;
+        sixenseRightHandCollider.GetComponent<Rigidbody>().detectCollisions = state;
     }
 }

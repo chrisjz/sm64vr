@@ -447,7 +447,7 @@ public class UICamera : MonoBehaviour
 	/// Caching is always preferable for performance.
 	/// </summary>
 
-	public Camera cachedCamera { get { if (mCam == null) mCam = camera; return mCam; } }
+	public Camera cachedCamera { get { if (mCam == null) mCam = GetComponent<Camera>(); return mCam; } }
 
 	/// <summary>
 	/// Set to 'true' just before OnDrag-related events are sent. No longer needed, but kept for backwards compatibility.
@@ -667,7 +667,7 @@ public class UICamera : MonoBehaviour
 		while (trans != null)
 		{
 			if (trans.GetComponent<UIPanel>() != null) return null;
-			Rigidbody rb = trans.rigidbody;
+			Rigidbody rb = trans.GetComponent<Rigidbody>();
 			if (rb != null) return rb;
 			trans = trans.parent;
 		}
@@ -683,7 +683,7 @@ public class UICamera : MonoBehaviour
 		while (trans != null)
 		{
 			if (trans.GetComponent<UIPanel>() != null) return null;
-			Rigidbody2D rb = trans.rigidbody2D;
+			Rigidbody2D rb = trans.GetComponent<Rigidbody2D>();
 			if (rb != null) return rb;
 			trans = trans.parent;
 		}

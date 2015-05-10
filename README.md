@@ -72,6 +72,10 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ## Release Notes
 
+### 0.2.0
+
+* Upgrade project to Unity 5 Personal edition.
+
 ### 0.1.3
 
 * Improved hand tracking using the Leap.
@@ -95,12 +99,14 @@ The following controls apply in case where "Positional Tracking" is enabled for 
 
 ## To do
 
-### v0.1.x
+### v0.2.1
+
+* [BUG] Fix "Screen position out of view frustum" in NGUI library. Occurs when initially loading up Unity 5 session.
+* Extend Sixense using the new SixenseHandsController script instead of the legacy SixenseHandController script.
+
+### v0.2.x
 
 * Unity web player support
-
-### v0.2
-
 * Co-op Multiplayer via LAN or online.
 
 ### Player

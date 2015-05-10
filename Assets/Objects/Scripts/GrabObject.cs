@@ -49,8 +49,8 @@ public class GrabObject : MonoBehaviour {
 
 	// Set rigidbody collision detection 
 	public void SetRigidbodyDetectionCollisions (bool state) {
-		if (rigidbody && disableRigidbodyWhenHeld) {
-			rigidbody.detectCollisions = state;
+		if (GetComponent<Rigidbody>() && disableRigidbodyWhenHeld) {
+			GetComponent<Rigidbody>().detectCollisions = state;
 		}
 	}
 }

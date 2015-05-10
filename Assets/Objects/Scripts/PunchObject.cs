@@ -27,7 +27,7 @@ public class PunchObject : MonoBehaviour {
 
 	void Start () {
 		exploding = false;
-		transform.renderer.enabled = true;
+		transform.GetComponent<Renderer>().enabled = true;
 		gameObject.SetActive (true);
 	}
 	
@@ -44,15 +44,15 @@ public class PunchObject : MonoBehaviour {
 	void Explode() {
 		exploding = true;
 
-		if (!audio.isPlaying) {
-			audio.clip = hitAudioClip;
-			audio.Play();
+		if (!GetComponent<AudioSource>().isPlaying) {
+			GetComponent<AudioSource>().clip = hitAudioClip;
+			GetComponent<AudioSource>().Play();
 		}
 
 		emission.Play ();
 		
-		transform.renderer.enabled = false;
-        collider.enabled = false;
+		transform.GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
 
 		StartCoroutine (Destroy ());
 

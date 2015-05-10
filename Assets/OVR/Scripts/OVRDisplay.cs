@@ -64,6 +64,8 @@ public class OVRDisplay
 		/// The time between the end of TimeWarp and scan-out in seconds.
 		/// </summary>
 		public float postPresent;
+		public float renderError;
+		public float timeWarpError;
 	}
 	
 	/// <summary>
@@ -81,10 +83,12 @@ public class OVRDisplay
 		}
 	}
 
+	private int prevAntiAliasing;
 	private int prevScreenWidth;
 	private int prevScreenHeight;
+	private bool needsConfigureTexture;
 	private bool needsSetTexture;
-	private float prevVirtualTextureScale;
+	private bool needsSetDistortionCaps;
 	private bool prevFullScreen;
 	private OVRPose[] eyePoses = new OVRPose[(int)OVREye.Count];
 	private EyeRenderDesc[] eyeDescs = new EyeRenderDesc[(int)OVREye.Count];
@@ -113,9 +117,10 @@ public class OVRDisplay
 	public OVRDisplay()
 	{
 #if !UNITY_ANDROID || UNITY_EDITOR
+		needsConfigureTexture = false;
 		needsSetTexture = true;
+		needsSetDistortionCaps = true;
         prevFullScreen = Screen.fullScreen;
-        prevVirtualTextureScale = OVRManager.instance.virtualTextureScale;
 #elif !UNITY_ANDROID && !UNITY_EDITOR
 		needsSetViewport = true;
 #endif
@@ -125,9 +130,19 @@ public class OVRDisplay
 
 		for (int i = 0; i < eyeTextureCount; i += 2)
 		{
-			ConfigureEyeTexture(i, OVREye.Left, OVRManager.instance.nativeTextureScale);
-			ConfigureEyeTexture(i, OVREye.Right, OVRManager.instance.nativeTextureScale);
+			ConfigureEyeTexture(i, OVREye.Left);
+			ConfigureEyeTexture(i, OVREye.Right);
 		}
+
+		OVRManager.NativeTextureScaleModified += (prev, current) => { needsConfigureTexture = true; };
+		OVRManager.EyeTextureAntiAliasingModified += (prev, current) => { needsConfigureTexture = true; };
+		OVRManager.EyeTextureDepthModified += (prev, current) => { needsConfigureTexture = true; };
+		OVRManager.EyeTextureFormatModified += (prev, current) => { needsConfigureTexture = true; };
+
+		OVRManager.VirtualTextureScaleModified += (prev, current) => { needsSetTexture = true; };
+		OVRManager.MonoscopicModified += (prev, current) => { needsSetTexture = true; };
+
+		OVRManager.HdrModified += (prev, current) => { needsSetDistortionCaps = true; };
 	}
 
 	/// <summary>
@@ -135,14 +150,7 @@ public class OVRDisplay
 	/// </summary>
 	public void Update()
 	{
-		// HACK - needed to force DX11 into low persistence mode, remove after Unity patch release
-		if (frameCount < 2)
-		{
-			uint caps = OVRManager.capiHmd.GetEnabledCaps();
-			caps ^= (uint)HmdCaps.LowPersistence;
-			OVRManager.capiHmd.SetEnabledCaps(caps);
-		}
-
+		UpdateDistortionCaps();
 		UpdateViewport();
 		UpdateTextures();
 	}
@@ -215,7 +223,7 @@ public class OVRDisplay
 #else
 		if (eye == OVREye.Left)
 			OVR_GetSensorState(
-					false,
+					OVRManager.instance.monoscopic,
 				   	ref w,
 				   	ref x,
 				   	ref y,
@@ -248,7 +256,9 @@ public class OVRDisplay
 #if !UNITY_ANDROID || UNITY_EDITOR
 		FovPort fov = OVRManager.capiHmd.GetDesc().DefaultEyeFov[eyeId];
 
-		return Hmd.GetProjection(fov, nearClip, farClip, true).ToMatrix4x4();
+		uint projectionModFlags = (uint)Hmd.ProjectionModifier.RightHanded;
+
+		return Hmd.GetProjection(fov, nearClip, farClip, projectionModFlags).ToMatrix4x4();
 #else
 		return new Matrix4x4();
 #endif
@@ -435,7 +445,6 @@ public class OVRDisplay
 #endif
 		(uint)DistortionCaps.Chromatic |
 		(uint)DistortionCaps.Vignette |
-		(uint)DistortionCaps.SRGB |
 		(uint)DistortionCaps.Overdrive;
 
 	/// <summary>
@@ -445,24 +454,62 @@ public class OVRDisplay
 	{
 		get {
 #if !UNITY_ANDROID || UNITY_EDITOR
-			float[] values = { 0.0f, 0.0f, 0.0f };
+			float[] values = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
 			float[] latencies = OVRManager.capiHmd.GetFloatArray("DK2Latency", values);
 
 			return new LatencyData
 			{
-				render = latencies[0],
-				timeWarp = latencies[1],
-				postPresent = latencies[2]
+				render = latencies[0] * 1000.0f,
+				timeWarp = latencies[1] * 1000.0f,
+				postPresent = latencies[2] * 1000.0f,
+				renderError = latencies[3] * 1000.0f,
+				timeWarpError = latencies[4] * 1000.0f,
 			};
 #else
 			return new LatencyData
 			{
 				render = 0.0f,
 				timeWarp = 0.0f,
-				postPresent = 0.0f
+				postPresent = 0.0f,
+				renderError = 0.0f,
+				timeWarpError = 0.0f,
 			};
 #endif
 		}
+	}
+
+	private void UpdateDistortionCaps()
+	{
+#if !UNITY_ANDROID || UNITY_EDITOR
+		needsSetDistortionCaps = needsSetDistortionCaps
+			|| QualitySettings.antiAliasing != prevAntiAliasing;
+
+		if (needsSetDistortionCaps)
+		{
+			if (QualitySettings.antiAliasing > 0)
+			{
+				distortionCaps |= (uint)Ovr.DistortionCaps.HqDistortion;
+			}
+			else
+			{
+				distortionCaps &= ~(uint)Ovr.DistortionCaps.HqDistortion;
+			}
+	
+			if (QualitySettings.activeColorSpace == ColorSpace.Linear && !OVRManager.instance.hdr)
+			{
+				distortionCaps |= (uint)Ovr.DistortionCaps.SRGB;
+			}
+			else
+			{
+				distortionCaps &= ~(uint)Ovr.DistortionCaps.SRGB;
+			}
+
+			prevAntiAliasing = QualitySettings.antiAliasing;
+
+			needsSetDistortionCaps = false;
+			needsSetTexture = true;
+		}
+#endif
 	}
 
 	private void UpdateViewport()
@@ -486,6 +533,25 @@ public class OVRDisplay
 
 	private void UpdateTextures()
 	{
+#if !UNITY_ANDROID || UNITY_EDITOR
+        if (needsConfigureTexture)
+		{
+			ConfigureEyeDesc(OVREye.Left);
+			ConfigureEyeDesc(OVREye.Right);
+
+			for (int i = 0; i < eyeTextureCount; i += 2)
+			{
+				ConfigureEyeTexture(i, OVREye.Left);
+				ConfigureEyeTexture(i, OVREye.Right);
+			}
+
+			OVR_UnitySetModeChange(true);
+
+			needsConfigureTexture = false;
+			needsSetTexture = true;
+		}
+#endif
+
 		for (int i = 0; i < eyeTextureCount; i++)
 		{
 			if (!eyeTextures[i].IsCreated())
@@ -501,21 +567,29 @@ public class OVRDisplay
 
 #if !UNITY_ANDROID || UNITY_EDITOR
         needsSetTexture = needsSetTexture
-			|| OVRManager.instance.virtualTextureScale != prevVirtualTextureScale
 			|| Screen.fullScreen != prevFullScreen
 			|| OVR_UnityGetModeChange();
 
         if (needsSetTexture)
         {
-			for (int i = 0; i < eyeTextureCount; i++)
+			for (int i = 0; i < eyeTextureCount; i += (int)OVREye.Count)
 			{
-				if (eyeTextures[i].GetNativeTexturePtr() == System.IntPtr.Zero)
+				int leftEyeIndex = i + (int)OVREye.Left;
+				int rightEyeIndex = i + (int)OVREye.Right;
+
+				IntPtr leftEyeTexturePtr = eyeTextures[leftEyeIndex].GetNativeTexturePtr();
+				IntPtr rightEyeTexturePtr = eyeTextures[rightEyeIndex].GetNativeTexturePtr();
+
+				if (OVRManager.instance.monoscopic)
+					rightEyeTexturePtr = leftEyeTexturePtr;
+
+				if (leftEyeTexturePtr == System.IntPtr.Zero || rightEyeTexturePtr == System.IntPtr.Zero)
 					return;
 
-				OVR_SetTexture(i, eyeTextures[i].GetNativeTexturePtr(), OVRManager.instance.virtualTextureScale);
+				OVR_SetTexture(leftEyeIndex, leftEyeTexturePtr, OVRManager.instance.virtualTextureScale);
+				OVR_SetTexture(rightEyeIndex, rightEyeTexturePtr, OVRManager.instance.virtualTextureScale);
 			}
 
-			prevVirtualTextureScale = OVRManager.instance.virtualTextureScale;
 			prevFullScreen = Screen.fullScreen;
 			OVR_UnitySetModeChange(false);
 
@@ -529,54 +603,44 @@ public class OVRDisplay
 
 	private void ConfigureEyeDesc(OVREye eye)
 	{
+        Vector2 texSize = Vector2.zero;
+        Vector2 fovSize = Vector2.zero;
+
 #if !UNITY_ANDROID || UNITY_EDITOR
-		HmdDesc desc = OVRManager.capiHmd.GetDesc();
-		FovPort fov = desc.DefaultEyeFov[(int)eye];
-		fov.LeftTan = fov.RightTan = Mathf.Max(fov.LeftTan, fov.RightTan);
-		fov.UpTan = fov.DownTan = Mathf.Max(fov.UpTan, fov.DownTan);
+		FovPort fovPort = OVRManager.capiHmd.GetDesc().DefaultEyeFov[(int)eye];
+		fovPort.LeftTan = fovPort.RightTan = Mathf.Max(fovPort.LeftTan, fovPort.RightTan);
+		fovPort.UpTan = fovPort.DownTan = Mathf.Max(fovPort.UpTan, fovPort.DownTan);
 
-		// Configure Stereo settings. Default pixel density is one texel per pixel.
-		float desiredPixelDensity = 1f;
-		Sizei texSize = OVRManager.capiHmd.GetFovTextureSize((Ovr.Eye)eye, fov, desiredPixelDensity);
-
-		float fovH = 2f * Mathf.Rad2Deg * Mathf.Atan(fov.LeftTan);
-		float fovV = 2f * Mathf.Rad2Deg * Mathf.Atan(fov.UpTan);
-
-		eyeDescs[(int)eye] = new EyeRenderDesc()
-		{
-			resolution = texSize.ToVector2(),
-					   fov = new Vector2(fovH, fovV)
-		};
+		texSize = OVRManager.capiHmd.GetFovTextureSize((Ovr.Eye)eye, fovPort, OVRManager.instance.nativeTextureScale).ToVector2();
+        fovSize = new Vector2(2f * Mathf.Rad2Deg * Mathf.Atan(fovPort.LeftTan), 2f * Mathf.Rad2Deg * Mathf.Atan(fovPort.UpTan));
 #else
+		texSize = new Vector2(1024, 1024) * OVRManager.instance.nativeTextureScale;
+		fovSize = new Vector2(90, 90);
+#endif
+
 		eyeDescs[(int)eye] = new EyeRenderDesc()
 		{
-			resolution = new Vector2(1024, 1024),
-					   fov = new Vector2(90, 90)
+			resolution = texSize,
+            fov = fovSize
 		};
-#endif
 	}
 
-	private void ConfigureEyeTexture(int eyeBufferIndex, OVREye eye, float scale)
+	private void ConfigureEyeTexture(int eyeBufferIndex, OVREye eye)
 	{
 		int eyeIndex = eyeBufferIndex + (int)eye;
-			
 		EyeRenderDesc eyeDesc = eyeDescs[(int)eye];
 
-		int w = (int)(eyeDesc.resolution.x * scale);
-		int h = (int)(eyeDesc.resolution.y * scale);
+		eyeTextures[eyeIndex] = new RenderTexture(
+			(int)eyeDesc.resolution.x,
+			(int)eyeDesc.resolution.y,
+			(int)OVRManager.instance.eyeTextureDepth,
+			OVRManager.instance.eyeTextureFormat);
 
-		eyeTextures[eyeIndex] = new RenderTexture(w, h, OVRManager.instance.eyeTextureDepth, OVRManager.instance.eyeTextureFormat);
-		eyeTextures[eyeIndex].antiAliasing = (QualitySettings.antiAliasing == 0) ? 1 : QualitySettings.antiAliasing;
+		eyeTextures[eyeIndex].antiAliasing = (int)OVRManager.instance.eyeTextureAntiAliasing;
+
 		eyeTextures[eyeIndex].Create();
 		eyeTextureIds[eyeIndex] = eyeTextures[eyeIndex].GetNativeTextureID();
 	}
-
-    public void ForceSymmetricProj(bool enabled)
-    {
-#if !UNITY_ANDROID || UNITY_EDITOR
-        OVR_ForceSymmetricProj(enabled);
-#endif
-    }
 
     public void SetViewport(int x, int y, int w, int h)
     {
@@ -609,14 +673,6 @@ public class OVRDisplay
 		ref float ow,
 		double atTime);
 	[DllImport(LibOVR)]
-	private static extern void OVR_GetDistortionMeshInfo(
-		ref int resH,
-		ref int resV,
-		ref float fovH,
-		ref float fovV);
-	[DllImport(LibOVR)]
-	private static extern void OVR_SetLowPersistenceMode(bool on);
-	[DllImport(LibOVR)]
 	private static extern bool OVR_GetSensorState(
 		bool monoscopic,
 		ref float w,
@@ -638,7 +694,5 @@ public class OVRDisplay
     private static extern bool OVR_UnityGetModeChange();
     [DllImport(LibOVR, CallingConvention = CallingConvention.Cdecl)]
     private static extern bool OVR_UnitySetModeChange(bool isChanged);
-    [DllImport(LibOVR, CallingConvention = CallingConvention.Cdecl)]
-    private static extern void OVR_ForceSymmetricProj(bool isEnabled);
 #endif
 }

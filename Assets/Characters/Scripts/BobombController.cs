@@ -47,22 +47,22 @@ public class BobombController : EnemyController {
 	protected override void Freeze() {
 		base.Freeze ();
 
-		if (!audio.isPlaying) {
-			audio.clip = followAudioClip;
-			audio.Play();
+		if (!GetComponent<AudioSource>().isPlaying) {
+			GetComponent<AudioSource>().clip = followAudioClip;
+			GetComponent<AudioSource>().Play();
 		}
 
 		Detonation ();
 	}
 
 	protected void Detonation () {		
-		if (!smoke.particleSystem.isPlaying) {			
-			smoke.particleSystem.Play ();
+		if (!smoke.GetComponent<ParticleSystem>().isPlaying) {			
+			smoke.GetComponent<ParticleSystem>().Play ();
 		}
 		
 		if (deathTimer <= 0) {
-			animation.Play("Explode");
-			StartCoroutine(Explode(animation["Explode"].length));
+			GetComponent<Animation>().Play("Explode");
+			StartCoroutine(Explode(GetComponent<Animation>()["Explode"].length));
 		} else {
 			deathTimer -= Time.deltaTime;
 		}
@@ -74,9 +74,9 @@ public class BobombController : EnemyController {
 		dead = true;
 		yield return new WaitForSeconds(length);
 		DamageObjectsInRadius ();
-		audio.clip = explosionAudioClip;
-		audio.Play();
-		smoke.particleSystem.Stop ();
+		GetComponent<AudioSource>().clip = explosionAudioClip;
+		GetComponent<AudioSource>().Play();
+		smoke.GetComponent<ParticleSystem>().Stop ();
 		ToggleVisibility ();
 		StartCoroutine(Death(explosionAudioClip.length));
 	}

@@ -52,8 +52,8 @@ public class PlayerHealth : MonoBehaviour {
 				return;
 			}
 
-			audio.clip = hurtAudioClip;
-			audio.Play();
+			GetComponent<AudioSource>().clip = hurtAudioClip;
+			GetComponent<AudioSource>().Play();
 			StartCoroutine (Invincibility (recoveryInvincibilityTime));
 		}
 	}
@@ -74,8 +74,8 @@ public class PlayerHealth : MonoBehaviour {
 
 		dead = true;
 
-		audio.clip = deathAudioClip;
-		audio.Play();
+		GetComponent<AudioSource>().clip = deathAudioClip;
+		GetComponent<AudioSource>().Play();
 
 		FPSInputController playerInput = GetComponent<FPSInputController> ();
 

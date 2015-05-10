@@ -59,7 +59,7 @@ public class HealthIndicator : MonoBehaviour {
 
     protected void UpdateAction () {
         int health = playerHealth.health;
-        Material material = renderer.materials[1];
+        Material material = GetComponent<Renderer>().materials[1];
         
         if (health < 0) {
             material.mainTexture = healthTextures[0];

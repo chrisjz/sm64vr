@@ -113,7 +113,7 @@ public class BossController : MonoBehaviour {
         spawnPosition = transform.position;
         spawnRotation = transform.rotation;
 
-        defaultAnimationName = animation.clip.name;
+        defaultAnimationName = GetComponent<Animation>().clip.name;
 		defaultHealth = health;
 		defaultSpeed = agent.speed;
 		defaultAngularSpeed = agent.angularSpeed;
@@ -178,8 +178,8 @@ public class BossController : MonoBehaviour {
 				isGrabbingPlayer = false;
 				isThrowingPlayer = false;
                 followSpeed = defaultSpeed;
-                rigidbody.constraints = RigidbodyConstraints.None;
-				animation.Play ("Walk");
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+				GetComponent<Animation>().Play ("Walk");
 			}
 		}
         
@@ -197,7 +197,7 @@ public class BossController : MonoBehaviour {
             if (transform.position == endMarkerJump.transform.position) {
                 transform.rotation = spawnRotation;
                 isJumpingToSpawnPoint = false;
-                animation.Play(idleAnimationName);
+                GetComponent<Animation>().Play(idleAnimationName);
                 isLandingFromJump = true;
             }
         }
@@ -209,7 +209,7 @@ public class BossController : MonoBehaviour {
 
             if (transform.position == spawnPosition) {
                 isLandingFromJump = false;
-                animation.Play(idleAnimationName);
+                GetComponent<Animation>().Play(idleAnimationName);
                 TriggerBattle(false);
             }
         }
@@ -229,17 +229,17 @@ public class BossController : MonoBehaviour {
 	
 	protected IEnumerator Hurt () {
         gameObject.tag = "Untagged";
-        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 		isGrounded = true;
 		health -= 1;
-		if (!audio.isPlaying) {
-			audio.clip = hurtAudioClip;
-			audio.Play();
+		if (!GetComponent<AudioSource>().isPlaying) {
+			GetComponent<AudioSource>().clip = hurtAudioClip;
+			GetComponent<AudioSource>().Play();
 		}
 		yield return new WaitForSeconds(hurtDuration);
         if (health != 0) {
-            rigidbody.constraints = RigidbodyConstraints.None;
-            rigidbody.freezeRotation = false;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GetComponent<Rigidbody>().freezeRotation = false;
             StartCoroutine (SitBackUp (true));
         } else {
             StartCoroutine(Death());
@@ -248,8 +248,8 @@ public class BossController : MonoBehaviour {
 
 	// Boss will return back to their feet after fallen onto ground
 	protected IEnumerator SitBackUp (bool wasHurt) {
-		animation.Play ("Recover");
-		float animLength = animation.clip.length;
+		GetComponent<Animation>().Play ("Recover");
+		float animLength = GetComponent<Animation>().clip.length;
 
         isStandingBackUp = true;
 		yield return new WaitForSeconds(animLength);
@@ -265,7 +265,7 @@ public class BossController : MonoBehaviour {
         // If boss was just hurt
         if (wasHurt) {
             agent.enabled = true;
-            animation.Play ("Walk");
+            GetComponent<Animation>().Play ("Walk");
             movement = Movement.Follow;
             gameObject.tag = defaultTag;
         } else {
@@ -274,7 +274,7 @@ public class BossController : MonoBehaviour {
     }
     
     protected void JumpBackToArena() {
-        animation.Play (jumpAnimationName);
+        GetComponent<Animation>().Play (jumpAnimationName);
         
         startMarkerJump.transform.position = transform.position;
         endMarkerJump.transform.position = spawnPosition + endMarkerJumpOffset;
@@ -288,18 +288,18 @@ public class BossController : MonoBehaviour {
         if (state) {
             startedBattle = true;
             leapGrabbable.canGrab = true;
-            rigidbody.useGravity = true;
-            rigidbody.isKinematic = false;            
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().isKinematic = false;            
             canGrabPlayer = true;
-            animation.Play ("Walk");
+            GetComponent<Animation>().Play ("Walk");
             agent.enabled = true;
             StartCoroutine (StartFollowingPlayer (3));
         } else {
             startedBattle = false;
             initBattle = false;
             leapGrabbable.canGrab = false;
-            rigidbody.useGravity = false;
-            rigidbody.isKinematic = true;
+            GetComponent<Rigidbody>().useGravity = false;
+            GetComponent<Rigidbody>().isKinematic = true;
             canGrabPlayer = false;
             agent.enabled = false;
             movement = Movement.Idle;
@@ -310,8 +310,8 @@ public class BossController : MonoBehaviour {
             triggerBossBattle.SetAudioPlaying(false);
             SceneManager sceneManager = (SceneManager) FindObjectOfType(typeof(SceneManager));
             GameObject worldTheme = GameObject.Find ("Theme");
-            worldTheme.audio.clip = sceneManager.sceneAudioClip;
-            worldTheme.audio.Play ();
+            worldTheme.GetComponent<AudioSource>().clip = sceneManager.sceneAudioClip;
+            worldTheme.GetComponent<AudioSource>().Play ();
         }
     }
 	
@@ -330,7 +330,7 @@ public class BossController : MonoBehaviour {
 		if (IsHoldingEnemy ()) {
 			movement = Movement.Freeze;
 			LimitPlayerAbilities(true);
-			rigidbody.freezeRotation = true;
+			GetComponent<Rigidbody>().freezeRotation = true;
 			
 			// Ignore player colliders when held by player
 			TriggerIgnorePlayerColliders(true);
@@ -353,18 +353,18 @@ public class BossController : MonoBehaviour {
 
     protected void IsPlayerOutsideArena () {
         if (player.transform.position.y <= lowerYExitArenaBoundary) {
-            animation.Play(defaultAnimationName);
+            GetComponent<Animation>().Play(defaultAnimationName);
             TriggerBattle(false);
         }
     }
 
 	// Boss grabs player
 	protected IEnumerator GrabPlayer () {
-		animation.Play (grabAnimationName);
+		GetComponent<Animation>().Play (grabAnimationName);
 		isGrabbingPlayer = true;        
         followSpeed = 0;
-        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-		yield return new WaitForSeconds(animation.clip.length);
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+		yield return new WaitForSeconds(GetComponent<Animation>().clip.length);
 		ThrowPlayer ();
 	}
 
@@ -372,7 +372,7 @@ public class BossController : MonoBehaviour {
 		if (isThrowingPlayer) {
 			return;
 		}
-		animation.Play (throwAnimationName);
+		GetComponent<Animation>().Play (throwAnimationName);
 		startMarkerThrowPlayer.transform.position = player.transform.position;
 		endMarkerThrowPlayer.transform.position = startMarkerThrowPlayer.transform.position + new Vector3 (-20f, 10f, 0f);
 		startTimeThrowPlayer = Time.time;
@@ -402,8 +402,8 @@ public class BossController : MonoBehaviour {
         if (isHoldingEnemy) {
             isHeldByPlayer = true;
             wasHeldByPlayer = true;
-            animation.Play (heldAnimationName);
-            animation[heldAnimationName].speed = heldAnimationSpeed;
+            GetComponent<Animation>().Play (heldAnimationName);
+            GetComponent<Animation>()[heldAnimationName].speed = heldAnimationSpeed;
             if (heldFixedRotationX >= -360 && heldFixedRotationX <= 360) {
                 transform.rotation = Quaternion.Euler(new Vector3 (heldFixedRotationX, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
             }
@@ -484,7 +484,7 @@ public class BossController : MonoBehaviour {
         explosion = (GameObject) Instantiate(Resources.Load("Explosion"));
         explosion.transform.position = transform.position;
         TriggerBossBattle triggerBossBattle = (TriggerBossBattle) FindObjectOfType(typeof(TriggerBossBattle));
-        triggerBossBattle.worldTheme.audio.Stop ();
+        triggerBossBattle.worldTheme.GetComponent<AudioSource>().Stop ();
         Disable ();
         SpawnStar ();
     }

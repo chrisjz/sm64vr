@@ -103,7 +103,7 @@ public class UIScrollBar : UISlider
 
 		if (mFG != null && mFG.gameObject != gameObject)
 		{
-			bool hasCollider = (mFG.collider != null) || (mFG.GetComponent<Collider2D>() != null);
+			bool hasCollider = (mFG.GetComponent<Collider>() != null) || (mFG.GetComponent<Collider2D>() != null);
 			if (!hasCollider) return;
 
 			UIEventListener fgl = UIEventListener.Get(mFG.gameObject);

@@ -61,8 +61,8 @@ public class Title : MonoBehaviour {
         ovrCameraRig = cameraController.GetComponentInChildren<OVRCameraRig> ();
 
         // Cameras
-        ovrCameraLeft = GameObject.Find("OVRCameraRig/LeftEyeAnchor").gameObject;
-        ovrCameraRight = GameObject.Find("OVRCameraRig/RightEyeAnchor").gameObject;
+        ovrCameraLeft = GameObject.Find("OVRCameraRig/TrackingSpace/LeftEyeAnchor").gameObject;
+        ovrCameraRight = GameObject.Find("OVRCameraRig/TrackingSpace/RightEyeAnchor").gameObject;
         generalCamera = GameObject.Find("OVRCameraRig/MonoEyeAnchor").gameObject;
 
         // Transition to Mario's viewpoint        
@@ -79,7 +79,7 @@ public class Title : MonoBehaviour {
         InitCamera ();
 #endif
         PrefillScore ();
-        objectRift.transform.Find("rift").gameObject.renderer.enabled = false;
+        objectRift.transform.Find("rift").gameObject.GetComponent<Renderer>().enabled = false;
         PlayIntroAnimation ();
         menu.SetActive (false);
         initialMenuPanel.SetActive (false);
@@ -166,16 +166,16 @@ public class Title : MonoBehaviour {
     }
 
     protected void PlayIntroAnimation () {
-        objectMarioHead.animation.clip = objectMarioHead.animation.GetClip("Intro");
-        objectMarioHead.animation.Play ();
-        StartCoroutine (PlayIntroAnimation2(objectMarioHead.animation.clip.length));
+        objectMarioHead.GetComponent<Animation>().clip = objectMarioHead.GetComponent<Animation>().GetClip("Intro");
+        objectMarioHead.GetComponent<Animation>().Play ();
+        StartCoroutine (PlayIntroAnimation2(objectMarioHead.GetComponent<Animation>().clip.length));
     }
 
     protected IEnumerator PlayIntroAnimation2 (float length) {
         yield return new WaitForSeconds(length);
-        objectRift.transform.Find("rift").renderer.enabled = true;
-        objectRift.animation.clip = objectRift.animation.GetClip("Intro");
-        objectRift.animation.Play ();
+        objectRift.transform.Find("rift").GetComponent<Renderer>().enabled = true;
+        objectRift.GetComponent<Animation>().clip = objectRift.GetComponent<Animation>().GetClip("Intro");
+        objectRift.GetComponent<Animation>().Play ();
     }
 
     protected void TransitionToFirstPerson () {

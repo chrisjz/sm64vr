@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour {
 		    pathName = this.GetComponent<iTweenPath> ().pathName;
 
 		defaultSpeed = agent.speed;
-		initAnimationName = animation.clip.name;
+		initAnimationName = GetComponent<Animation>().clip.name;
 		spawnPosition = transform.position;
 		spawnRotation = transform.rotation;
 	}
@@ -136,9 +136,9 @@ public class EnemyController : MonoBehaviour {
 		agent.SetDestination (player.transform.position);
 		agent.speed = followSpeed;
 
-		if (!audio.isPlaying) {
-			audio.clip = followAudioClip;
-			audio.Play();
+		if (!GetComponent<AudioSource>().isPlaying) {
+			GetComponent<AudioSource>().clip = followAudioClip;
+			GetComponent<AudioSource>().Play();
 		}
 	}
 
@@ -181,7 +181,7 @@ public class EnemyController : MonoBehaviour {
 
 			charMotor.SetVelocity (dir * knockbackOtherForce * forceMultiplier);
 			DamagePlayer();
-		} else if (victim.rigidbody && !knockingBack) {
+		} else if (victim.GetComponent<Rigidbody>() && !knockingBack) {
 			float force = knockbackEnemyForce;
 
 			if (collider) {
@@ -196,22 +196,22 @@ public class EnemyController : MonoBehaviour {
 			}
 
 			movement = Movement.Freeze;
-			victim.rigidbody.AddForce(dir * force);
+			victim.GetComponent<Rigidbody>().AddForce(dir * force);
 			knockingBack = true;
 			StartCoroutine(KnockbackEnemy(knockbackDuration));
 		}
 	}
 	
 	protected IEnumerator KnockbackEnemy (float length) {
-		animation.Stop ();
+		GetComponent<Animation>().Stop ();
 		yield return new WaitForSeconds(length);
-		rigidbody.velocity = Vector3.zero;
-		rigidbody.angularVelocity = Vector3.zero;
-		rigidbody.Sleep();
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+		GetComponent<Rigidbody>().Sleep();
 		knockingBack = false;
 		dead = true;
 		ToggleVisibility ();
-		animation.Play ();
+		GetComponent<Animation>().Play ();
 		StartCoroutine(Death(1));
 	}
 
@@ -259,7 +259,7 @@ public class EnemyController : MonoBehaviour {
 		gameObject.transform.position = spawnPosition;
         gameObject.transform.rotation = spawnRotation;
 		agent.speed = defaultSpeed;
-		animation.Play (initAnimationName);
+		GetComponent<Animation>().Play (initAnimationName);
 		Init ();
 		ToggleVisibility ();
 	}

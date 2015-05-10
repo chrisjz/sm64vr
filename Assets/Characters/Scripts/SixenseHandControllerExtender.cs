@@ -123,7 +123,7 @@ public class SixenseHandControllerExtender : SixenseHandController {
 		
 		if ((isHoldingObject && controller.GetButton(SixenseButtons.TRIGGER)) ||
 				(closestObject != null && Vector3.Distance(closestObject.transform.position, currentPosition) < minGrabDistance && controller.GetButton(SixenseButtons.TRIGGER))) {
-			if (closestObject.rigidbody && closestObject.rigidbody.isKinematic) {
+			if (closestObject.GetComponent<Rigidbody>() && closestObject.GetComponent<Rigidbody>().isKinematic) {
 				return;
 			}
 			
@@ -155,7 +155,7 @@ public class SixenseHandControllerExtender : SixenseHandController {
 	// Throw the held object once player lets go based on hand velocity
 	// TODO: Take into account weight (1 unit = kilogram) of held object
 	protected void Throw () {
-		if (closestObject.rigidbody) {
+		if (closestObject.GetComponent<Rigidbody>()) {
 			grabObject = closestObject.GetComponent<GrabObject>();
 			float additionalThrowForce = 0;
 			
@@ -164,7 +164,7 @@ public class SixenseHandControllerExtender : SixenseHandController {
                 grabObject.SetRigidbodyDetectionCollisions(true);
 			}
 			
-			closestObject.rigidbody.AddForce(handDirection * handVelocity * (throwForce + additionalThrowForce));
+			closestObject.GetComponent<Rigidbody>().AddForce(handDirection * handVelocity * (throwForce + additionalThrowForce));
 		}
 	}
 	

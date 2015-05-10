@@ -65,7 +65,7 @@ public class OVRGamepadController : MonoBehaviour
 	/// <summary>
 	/// The default Unity input name for each gamepad Axis.
 	/// </summary>
-	public static string[] DefaultAxisNames = new string[(int)Axis.Max]
+	public static string[] AndroidAxisNames = new string[(int)Axis.Max]
 	{
 		"Left_X_Axis",
 		"Left_Y_Axis",
@@ -78,7 +78,7 @@ public class OVRGamepadController : MonoBehaviour
 	/// <summary>
 	/// The default Unity input name for each gamepad Button.
 	/// </summary>
-    public static string[] DefaultButtonNames = new string[(int)Button.Max]
+    public static string[] AndroidButtonNames = new string[(int)Button.Max]
 	{
 		"Button A",
 		"Button B",
@@ -94,6 +94,40 @@ public class OVRGamepadController : MonoBehaviour
 		"RStick",
 		"LeftShoulder",
 		"RightShoulder",
+	};
+
+	/// <summary>
+	/// The default Unity input name for each gamepad Axis.
+	/// </summary>
+	public static string[] DesktopAxisNames = new string[(int)Axis.Max]
+	{
+		"Desktop_Left_X_Axis",
+		"Desktop_Left_Y_Axis",
+		"Desktop_Right_X_Axis",
+		"Desktop_Right_Y_Axis",
+		"Desktop_LeftTrigger",
+		"Desktop_RightTrigger",
+	};
+	
+	/// <summary>
+	/// The default Unity input name for each gamepad Button.
+	/// </summary>
+	public static string[] DesktopButtonNames = new string[(int)Button.Max]
+	{
+		"Desktop_Button A",
+		"Desktop_Button B",
+		"Desktop_Button X",
+		"Desktop_Button Y",
+		"Desktop_Up",
+		"Desktop_Down",
+		"Desktop_Left",
+		"Desktop_Right",
+		"Desktop_Start",
+		"Desktop_Back",
+		"Desktop_LStick",
+		"Desktop_RStick",
+		"Desktop_LeftShoulder",
+		"Desktop_RightShoulder",
 	};
 
 	public static int[] DefaultButtonIds = new int[(int)Button.Max]
@@ -113,8 +147,13 @@ public class OVRGamepadController : MonoBehaviour
 
     static OVRGamepadController()
     {
-        SetAxisNames(DefaultAxisNames);
-        SetButtonNames(DefaultButtonNames);
+#if UNITY_ANDROID && !UNITY_EDITOR
+        SetAxisNames(AndroidAxisNames);
+        SetButtonNames(AndroidButtonNames);
+#else
+		SetAxisNames(DesktopAxisNames);
+		SetButtonNames(DesktopButtonNames);
+#endif
     }
 
 	/// <summary>

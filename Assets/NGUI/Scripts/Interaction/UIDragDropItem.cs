@@ -63,8 +63,8 @@ public class UIDragDropItem : MonoBehaviour
 	protected virtual void Start ()
 	{
 		mTrans = transform;
-		mCollider = collider;
-		mCollider2D = collider2D;
+		mCollider = GetComponent<Collider>();
+		mCollider2D = GetComponent<Collider2D>();
 		mButton = GetComponent<UIButton>();
 		mDragScrollView = GetComponent<UIDragScrollView>();
 	}

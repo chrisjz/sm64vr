@@ -28,8 +28,8 @@ public class TriggerBossBattle : MonoBehaviour {
 
 	void OnTriggerEnter (Collider col) {
 		if (col.tag == "Player" && !bossAudioPlaying) {
-			worldTheme.audio.clip = bossAudioClip;
-			worldTheme.audio.Play ();
+			worldTheme.GetComponent<AudioSource>().clip = bossAudioClip;
+			worldTheme.GetComponent<AudioSource>().Play ();
 			bossAudioPlaying = true;
 			bossController.SetInitBattle(true);
 		}

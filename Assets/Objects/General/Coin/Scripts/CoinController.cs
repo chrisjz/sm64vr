@@ -48,8 +48,8 @@ public class CoinController : MonoBehaviour {
     protected IEnumerator Collect () {
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth> ();
         int value = GetCoinValue ();
-        gameObject.collider.enabled = false;
-        gameObject.renderer.enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.GetComponent<Renderer>().enabled = false;
         PlaySound ();
         playerHealth.Heal (value);
         if (sceneManager) {
@@ -58,17 +58,17 @@ public class CoinController : MonoBehaviour {
             if (type == Type.Red)
                 sceneManager.redCoins += 1;
         }
-        yield return new WaitForSeconds(audio.clip.length);
+        yield return new WaitForSeconds(GetComponent<AudioSource>().clip.length);
         gameObject.SetActive (false);
     }
 
     protected void PlaySound () {
         if (type == Type.Red && sceneManager.redCoins < redCoinSounds.Length) {
-            audio.clip = redCoinSounds [sceneManager.redCoins];
+            GetComponent<AudioSource>().clip = redCoinSounds [sceneManager.redCoins];
         } else {
-            audio.clip = yellowCoinSound;
+            GetComponent<AudioSource>().clip = yellowCoinSound;
         }
-        audio.Play ();
+        GetComponent<AudioSource>().Play ();
     }
 
     protected int GetCoinValue () {

@@ -38,7 +38,7 @@ public class StereoDialog : MonoBehaviour {
         textMesh.fontSize = fontSize;
         textMesh.fontStyle = fontStyle;
 
-        dialog.renderer.material = fontMaterial;
+        dialog.GetComponent<Renderer>().material = fontMaterial;
 
         dialog.transform.parent = transform;
         dialog.transform.localPosition = new Vector3 (x, y, 0);

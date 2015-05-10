@@ -21,10 +21,10 @@ public class TriggerActiveSections : MonoBehaviour {
 
 	void Awake() {
 		if (loadAudio) {
-			loadAudioSource = loadAudio.audio;
+			loadAudioSource = loadAudio.GetComponent<AudioSource>();
 		}
 		if (unloadAudio) {
-			unloadAudioSource = unloadAudio.audio;
+			unloadAudioSource = unloadAudio.GetComponent<AudioSource>();
 		}
 	}
 
@@ -43,18 +43,18 @@ public class TriggerActiveSections : MonoBehaviour {
         }
         
         if (unloadAudioSource) {
-            unloadAudioSource.audio.Stop();
+            unloadAudioSource.GetComponent<AudioSource>().Stop();
         }
         
         if (loadAudioSource) {
-            loadAudio.audio.loop = true;
-            loadAudio.audio.Play();
+            loadAudio.GetComponent<AudioSource>().loop = true;
+            loadAudio.GetComponent<AudioSource>().Play();
         }
     }
 
 	private void TriggerSectionActiveness(GameObject[] sections, bool isActive) {
 		foreach (GameObject section in sections) {
-			section.SetActive (isActive);
+            section.SetActive (isActive);
 		}		
 	}
 }

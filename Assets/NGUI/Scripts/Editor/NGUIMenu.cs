@@ -201,7 +201,7 @@ static public class NGUIMenu
 	{
 		if (UIRoot.list.Count == 0 || UICamera.list.size == 0) return true;
 		foreach (UICamera c in UICamera.list)
-			if (NGUITools.GetActive(c) && c.camera.isOrthoGraphic)
+			if (NGUITools.GetActive(c) && c.GetComponent<Camera>().orthographic)
 				return false;
 		return true;
 	}
@@ -216,7 +216,7 @@ static public class NGUIMenu
 	{
 		if (UIRoot.list.Count == 0 || UICamera.list.size == 0) return true;
 		foreach (UICamera c in UICamera.list)
-			if (NGUITools.GetActive(c) && !c.camera.isOrthoGraphic)
+			if (NGUITools.GetActive(c) && !c.GetComponent<Camera>().orthographic)
 				return false;
 		return true;
 	}
@@ -576,7 +576,7 @@ static public class NGUIMenu
 
 			BoxCollider2D bc = go.AddComponent<BoxCollider2D>();
 			bc.size = size;
-			bc.center = center;
+			bc.offset = center;
 			bc.isTrigger = true;
 			NGUITools.SetDirty(go);
 
@@ -584,7 +584,7 @@ static public class NGUIMenu
 			
 			if (p != null)
 			{
-				if (p.rigidbody != null) NGUITools.Destroy(p.rigidbody);
+				if (p.GetComponent<Rigidbody>() != null) NGUITools.Destroy(p.GetComponent<Rigidbody>());
 
 				// It's unclear if having a 2D rigidbody actually helps or not
 				//if (p.GetComponent<Rigidbody2D>() == null)
@@ -613,7 +613,7 @@ static public class NGUIMenu
 
 			cam.eventType = UICamera.EventType.UI_3D;
 
-			Vector3 center = c.center;
+			Vector3 center = c.offset;
 			Vector3 size = c.size;
 			NGUITools.DestroyImmediate(c);
 
@@ -634,7 +634,7 @@ static public class NGUIMenu
 				if (p.GetComponent<Rigidbody2D>() != null)
 					NGUITools.Destroy(p.GetComponent<Rigidbody2D>());
 
-				if (p.rigidbody == null)
+				if (p.GetComponent<Rigidbody>() == null)
 				{
 					Rigidbody rb = p.gameObject.AddComponent<Rigidbody>();
 					rb.isKinematic = true;

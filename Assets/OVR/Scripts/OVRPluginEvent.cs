@@ -42,6 +42,9 @@ public enum RenderEventType
 	TimeWarp = 5,
 	PlatformUI = 6,
 	PlatformUIConfirmQuit = 7,
+	ResetVrModeParms = 8,
+	PlatformUITutorial = 9,
+	ShutdownRenderThread = 10,
 }
 
 /// <summary>

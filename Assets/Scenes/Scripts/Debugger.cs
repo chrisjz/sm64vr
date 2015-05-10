@@ -61,13 +61,13 @@ public class Debugger : MonoBehaviour {
 
     private void UpdateTriggerAudio (bool enable) {
         if (enable && audioEnable) {
-            audio.clip = audioEnable;
-            audio.Play();
+            GetComponent<AudioSource>().clip = audioEnable;
+            GetComponent<AudioSource>().Play();
         }
 
         if (!enable && audioDisable) {
-            audio.clip = audioDisable;
-            audio.Play();
+            GetComponent<AudioSource>().clip = audioDisable;
+            GetComponent<AudioSource>().Play();
         }
     }
 	

@@ -244,10 +244,14 @@ public class SixenseInput : MonoBehaviour
 	void Start()
 	{
 		SixensePlugin.sixenseInit();
+		
 		for ( int i = 0; i < MAX_CONTROLLERS; i++ )
 		{
 			m_Controllers[i] = new Controller();
 		}
+
+		// don't let the mobile device sleep
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 	
 	/// <summary>

@@ -80,8 +80,8 @@ public class FPSInputController : MonoBehaviour {
         ovrManager = gameObject.GetComponentInChildren<OVRManager> ();
 
         // Cameras
-        ovrCameraLeft = transform.Find("OVRCameraRig/LeftEyeAnchor").gameObject;
-        ovrCameraRight = transform.Find("OVRCameraRig/RightEyeAnchor").gameObject;
+        ovrCameraLeft = transform.Find("OVRCameraRig/TrackingSpace/LeftEyeAnchor").gameObject;
+        ovrCameraRight = transform.Find("OVRCameraRig/TrackingSpace/RightEyeAnchor").gameObject;
         generalCamera = transform.Find("OVRCameraRig/MonoEyeAnchor").gameObject;
 	}
 
@@ -169,9 +169,9 @@ public class FPSInputController : MonoBehaviour {
         }
         
         // Play jumping audio clips
-        if (initialJumpAudioClips.Length > 0 && motor.inputJump && motor.grounded && !audio.isPlaying) {
-            audio.clip = initialJumpAudioClips[UnityEngine.Random.Range(0, initialJumpAudioClips.Length)];
-            audio.Play();
+        if (initialJumpAudioClips.Length > 0 && motor.inputJump && motor.grounded && !GetComponent<AudioSource>().isPlaying) {
+            GetComponent<AudioSource>().clip = initialJumpAudioClips[UnityEngine.Random.Range(0, initialJumpAudioClips.Length)];
+            GetComponent<AudioSource>().Play();
         }
         
         if (directionVector != Vector3.zero) {
@@ -220,9 +220,9 @@ public class FPSInputController : MonoBehaviour {
     }
 
 	void UpdateAnimation() {
-        if (animation && directionVector.z != 0) {
-			animation["Walk"].speed = Mathf.Abs(directionVector.z);
-			animation.CrossFade("Walk");
+        if (GetComponent<Animation>() && directionVector.z != 0) {
+			GetComponent<Animation>()["Walk"].speed = Mathf.Abs(directionVector.z);
+			GetComponent<Animation>().CrossFade("Walk");
 		}
 	}
 
@@ -337,8 +337,8 @@ public class FPSInputController : MonoBehaviour {
 		Collider[] cols = GetComponentsInChildren<Collider>();
 
 		foreach (Collider col in cols) {
-            if (col != collider && col.enabled) {
-				Physics.IgnoreCollision(col, collider);
+            if (col != GetComponent<Collider>() && col.enabled) {
+				Physics.IgnoreCollision(col, GetComponent<Collider>());
 			}
 		}
 	}

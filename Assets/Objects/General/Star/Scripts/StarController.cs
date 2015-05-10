@@ -53,14 +53,14 @@ public class StarController : MonoBehaviour {
     }
 
     public void Spawn () {
-        rigidbody.detectCollisions = false;
+        GetComponent<Rigidbody>().detectCollisions = false;
         StartCoroutine(PlaySpawnAudio ());
         StartCoroutine (MoveToFinalPoint ());
     }
     
     protected IEnumerator GrabStar() {
-        worldTheme.audio.clip = captureAudioClip;
-        worldTheme.audio.Play ();
+        worldTheme.GetComponent<AudioSource>().clip = captureAudioClip;
+        worldTheme.GetComponent<AudioSource>().Play ();
         yield return new WaitForSeconds(captureAudioClip.length);
         SceneManager sceneManager = (SceneManager) FindObjectOfType(typeof(SceneManager));
 
@@ -74,14 +74,14 @@ public class StarController : MonoBehaviour {
     }
 
     protected IEnumerator PlaySpawnAudio () {
-        audio.clip = spawnAudioClip;
-        audio.Play();
+        GetComponent<AudioSource>().clip = spawnAudioClip;
+        GetComponent<AudioSource>().Play();
         starMovingToFinalPoint = true;
         yield return new WaitForSeconds(spawnAudioClip.length);
         SceneManager sceneManager = (SceneManager) FindObjectOfType(typeof(SceneManager));
-        worldTheme.audio.clip = sceneManager.sceneAudioClip;
-        worldTheme.audio.Play ();
-        rigidbody.detectCollisions = true;
+        worldTheme.GetComponent<AudioSource>().clip = sceneManager.sceneAudioClip;
+        worldTheme.GetComponent<AudioSource>().Play ();
+        GetComponent<Rigidbody>().detectCollisions = true;
         tag = defaultTag;
         canGrabStar = true;
     }

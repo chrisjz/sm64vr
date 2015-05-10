@@ -46,33 +46,33 @@ public class GoombaController : EnemyController {
 				StartCoroutine (Jumped ());
 		} else {
 			base.FollowPlayer ();
-			if (!audio.isPlaying) {
-				audio.clip = stepAudioClip;
-				audio.Play();
+			if (!GetComponent<AudioSource>().isPlaying) {
+				GetComponent<AudioSource>().clip = stepAudioClip;
+				GetComponent<AudioSource>().Play();
 			}
 		}
 	}
 
 	protected IEnumerator Jumped () {
-		animation.Play ("Jump");
-		yield return new WaitForSeconds(animation ["Jump"].length);
-		audio.clip = jumpAudioClip;
-		audio.Play();
-		animation.Play ("Walk");
+		GetComponent<Animation>().Play ("Jump");
+		yield return new WaitForSeconds(GetComponent<Animation>() ["Jump"].length);
+		GetComponent<AudioSource>().clip = jumpAudioClip;
+		GetComponent<AudioSource>().Play();
+		GetComponent<Animation>().Play ("Walk");
 		startFollowPlayer = true;
 	}
 
 	protected IEnumerator Squash () {
 		squashed = true;
 		ReboundPlayer (true);
-		rigidbody.detectCollisions = false;
+		GetComponent<Rigidbody>().detectCollisions = false;
 		movement = Movement.Freeze;
-		animation.Play ("Squash");
-        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-		yield return new WaitForSeconds(animation ["Squash"].length + squashTimeExtension);
+		GetComponent<Animation>().Play ("Squash");
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+		yield return new WaitForSeconds(GetComponent<Animation>() ["Squash"].length + squashTimeExtension);
 		dead = true;
         ToggleVisibility ();
-        rigidbody.constraints = RigidbodyConstraints.None;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 		StartCoroutine(Death(0));
 	}
 }

@@ -43,36 +43,23 @@ class OVRShimLoader
 
 		PlayerSettings.displayResolutionDialog = ResolutionDialogSetting.HiddenByDefault;
 
-// forcibly enable exclusive mode only in 4.6.0b22+ and Unity 4.5.5p3+
-#if (UNITY_4_6 || (UNITY_4_5 && !(UNITY_4_5_0 || UNITY_4_5_1 || UNITY_4_5_2 || UNITY_4_5_3 || UNITY_4_5_4)))
-		bool unity_4_6 = false;
-		bool unity_4_5_5 = false;
+		_useAutoPatcher = !OVRUnityVersionChecker.hasPreInitSupport;
 
-#if (UNITY_4_6)
-		unity_4_6 = true;
-#elif (UNITY_4_5_5)
-		unity_4_5_5 = true;
+		//Debug.Log("Version is " + OVRUnityVersionChecker.version.ToString() + " (" + Application.unityVersion + ")");
+		//Debug.Log("Use Auto Patcher? " + _useAutoPatcher);
+		//Debug.Log("Use Exclusive mode D3D11? " + OVRUnityVersionChecker.hasD3D11ExclusiveModeSupport);
+
+#if (UNITY_5_0)
+		PlayerSettings.d3d11FullscreenMode =
+			(OVRUnityVersionChecker.hasD3D11ExclusiveModeSupport) ? D3D11FullscreenMode.ExclusiveMode : D3D11FullscreenMode.FullscreenWindow;
+#else
+		PlayerSettings.d3d11ForceExclusiveMode = OVRUnityVersionChecker.hasD3D11ExclusiveModeSupport;
 #endif
 
-		// Detect correct Unity releases which contain the fix for D3D11 exclusive mode.
-		string version = Application.unityVersion;
-		int releaseNumber;
-		bool releaseNumberFound = Int32.TryParse(Regex.Match(version, @"\d+$").Value, out releaseNumber);
+		PlayerSettings.d3d9FullscreenMode =
+			(OVRUnityVersionChecker.hasD3D9ExclusiveModeSupport) ? D3D9FullscreenMode.ExclusiveMode : D3D9FullscreenMode.FullscreenWindow;
 
-		bool unsupportedUnityVersion = (unity_4_6 && version.Last(char.IsLetter) == 'b' && releaseNumberFound && releaseNumber < 22)
-			|| (unity_4_5_5 && version.Last(char.IsLetter) == 'f')
-			|| (unity_4_5_5 && version.Last(char.IsLetter) == 'p' && releaseNumberFound && releaseNumber < 3);
-
-		bool useExclusiveModeD3D11 = true;
-		if (unsupportedUnityVersion)
-		{
-			useExclusiveModeD3D11 = false;
-		}
-
-		PlayerSettings.d3d11ForceExclusiveMode = useExclusiveModeD3D11;
-		PlayerSettings.d3d9FullscreenMode = D3D9FullscreenMode.ExclusiveMode;
 		PlayerSettings.visibleInBackground = true;
-#endif
 	}
 
 	[PreferenceItem("Oculus VR")]
@@ -106,23 +93,26 @@ class OVRShimLoader
 	[PostProcessBuild]
 	public static void OnPostProcessBuild(BuildTarget target, string pathToBuiltProject)
 	{
-		// Figure out which architecture we're building for.
-		int arch;
-		if (target == BuildTarget.StandaloneWindows)
-			arch = 32;
-		else if (target == BuildTarget.StandaloneWindows64)
-			arch = 64;
-		else
-			return;
+        if (_useAutoPatcher)
+        {
+            // Figure out which architecture we're building for.
+            int arch;
+            if (target == BuildTarget.StandaloneWindows)
+                arch = 32;
+            else if (target == BuildTarget.StandaloneWindows64)
+                arch = 64;
+            else
+                return;
 
-		// Rename the target to a .bin file for the auto-patcher to find later.
-		string autoPatcherPath = Application.dataPath + "/OVR/Editor/OculusUnityPatcher_" + arch.ToString() + ".exe";
-		string targetPath = pathToBuiltProject.Replace(".exe", "_DirectToRift.exe");
+            // Rename the target to a .bin file for the auto-patcher to find later.
+            string autoPatcherPath = Application.dataPath + "/OVR/Editor/OculusUnityPatcher_" + arch.ToString() + ".exe";
+            string targetPath = pathToBuiltProject.Replace(".exe", "_DirectToRift.exe");
 
-		if (File.Exists(targetPath))
-			File.Delete(targetPath);
+            if (File.Exists(targetPath))
+                File.Delete(targetPath);
 
-		File.Copy(autoPatcherPath, targetPath);
+            File.Copy(autoPatcherPath, targetPath);
+        }
 
 		string appInfoPath = pathToBuiltProject.Replace(".exe", "_Data/OVRAppInfo");
 		var file = new System.IO.StreamWriter(appInfoPath);
@@ -132,4 +122,5 @@ class OVRShimLoader
 
 	static bool _isEnabled = true;
 	static bool _prefsLoaded = false;
+    static bool _useAutoPatcher = true;
 }

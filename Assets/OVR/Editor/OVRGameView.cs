@@ -30,49 +30,22 @@ using UnityEditor;
 [InitializeOnLoad]
 public class OVRGameView
 {
-	private static Rect cachedPosition;
-	private static EditorWindow cachedEditorWindow = null;
-	private static System.Reflection.MethodInfo cachedMethodInfo = null;
+	private static Vector2 cachedPos;
 
 	static OVRGameView()
 	{
 		EditorApplication.update += OnUpdate;
 	}
 
-	public static EditorWindow GetMainGameView()
-	{
-		if (cachedEditorWindow == null)
-		{
-			if (cachedMethodInfo == null)
-			{
-				System.Type type = System.Type.GetType("UnityEditor.GameView,UnityEditor");
-	
-				cachedMethodInfo = type.GetMethod(
-					"GetMainGameView",
-					System.Reflection.BindingFlags.NonPublic |
-					System.Reflection.BindingFlags.Static);
-			}
-
-			cachedEditorWindow = cachedMethodInfo.Invoke(null, null) as EditorWindow;
-		}
-
-		return cachedEditorWindow;
-	}
-
 	static void OnUpdate()
 	{
-		if (OVRManager.instance == null)
-			return;
-
-		EditorWindow gameView = GetMainGameView();
-		if (gameView != null)
+		if (OVRManager.instance != null)
 		{
-			Rect pos = gameView.position;
-			if (pos != cachedPosition)
+			Vector2 pos = Handles.GetMainGameViewSize();
+			if (cachedPos != pos)
 			{
-				cachedPosition = pos;
-
-				OVRManager.display.SetViewport((int)pos.x, (int)pos.y, (int)pos.width, (int)pos.height);
+				cachedPos = pos;
+				OVRManager.display.SetViewport(0, 0, (int)pos.x, (int)pos.y);
 			}
 		}
 	}
