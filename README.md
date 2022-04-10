@@ -6,7 +6,7 @@ Super Mario 64 partial re-make in VR using the Oculus Rift and Razer Hydra.
 
 You can download the latest release executable here:
 
-[Windows](http://assets.zookal.com/downloads/sm64vr/sm64vr.zip)
+[Windows](https://github.com/chrisjz/sm64vr/releases/download/v0.2/sm64vr.zip)
 
 ## Supported Devices
 
